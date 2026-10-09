@@ -2,6 +2,9 @@
 
 Application qui permet aux participants de **former leurs équipes** par adresse email, de **choisir un défi** et d'accéder aux énoncés. Tout est regroupé dans ce dossier.
 
+- Front (GitHub Pages) : https://nneilime.github.io/Hackaton-IA4Impact/
+- API (Vercel) : https://hackaton-ia4impact-team-app.vercel.app
+
 ## Structure
 
 ```
