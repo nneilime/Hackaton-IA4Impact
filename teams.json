@@ -1,3 +1,19 @@
 {
-  "teams": []
+  "teams": [
+    {
+      "slug": "test",
+      "name": "Test",
+      "challenge": "sncf",
+      "owner": "danielmbouyou@gmail.com",
+      "members": [
+        {
+          "email": "danielmbouyou@gmail.com",
+          "login": "DanielMBouyou",
+          "joined": true
+        }
+      ],
+      "created_at": "2026-10-09T17:14:23.323Z",
+      "created_by": "DanielMBouyou"
+    }
+  ]
 }
