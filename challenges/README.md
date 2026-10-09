@@ -52,7 +52,12 @@ urgence).
 
 ### [`imsa/`](imsa/) — iMSA
 
-Défi à venir. Le dossier sera complété dès sa publication.
+**Automatisation des contrôles portant sur les documents justifiant des dépenses de santé.**
+
+Automatiser le contrôle des pièces justificatives de dépenses de santé afin de réduire les dépenses non
+justifiées (maîtrise de la dépense publique), limiter les risques d'erreurs et de fraude et gagner en
+productivité dans les caisses de sécurité sociale : extraire les données des justificatifs et des
+factures, détecter les écarts éventuels et présenter aux agents les factures en écart.
 
 ## Organisation des dossiers
 
@@ -61,7 +66,7 @@ challenges/
 ├── action-logement/    # énoncé, présentation, vidéo
 ├── bpce-si/            # présentation + fiche défi
 ├── enedis/             # énoncé, pitch, jeux de données
-├── imsa/               # (défi à venir)
+├── imsa/               # énoncé du défi
 ├── lallemand/          # cahier des charges, annexes, starter kit
 └── sncf/               # fiche de cadrage, pitch, données
 ```

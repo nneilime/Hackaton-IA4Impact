@@ -47,7 +47,7 @@ sont disponibles dans le dossier [`challenges/`](challenges/).
 | **BPCE SI** | Du besoin au résultat, sans chercher — assistant conversationnel de confiance | [`challenges/bpce-si/`](challenges/bpce-si/) | ✅ Disponible |
 | **Lallemand Plant Care** | Agent IA mondial de veille réglementaire et concurrentielle | [`challenges/lallemand/`](challenges/lallemand/) | ✅ Disponible |
 | **Action Logement** | BâtIA — priorisation des rénovations et maintenance prédictive | [`challenges/action-logement/`](challenges/action-logement/) | ✅ Disponible |
-| **iMSA** | Défi à venir | [`challenges/imsa/`](challenges/imsa/) | ⏳ Bientôt |
+| **iMSA** | Automatisation des contrôles des documents justifiant des dépenses de santé | [`challenges/imsa/`](challenges/imsa/) | ✅ Disponible |
 
 ## Déposer votre travail
 

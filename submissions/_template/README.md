@@ -6,7 +6,7 @@
 
 - Nom de l'équipe :
 - Membres (pseudo GitHub) :
-- Défi choisi : (`enedis` / `sncf` / `bpce-si` / `lallemand` / `action-logement`)
+- Défi choisi : (`enedis` / `sncf` / `bpce-si` / `lallemand` / `action-logement` / `imsa`)
 
 ## Le projet
 

@@ -47,11 +47,10 @@
   {
     "slug": "imsa",
     "company": "iMSA",
-    "title": "Défi à venir",
-    "description": "Le défi proposé par iMSA sera publié prochainement. Reste connecté, le dossier sera complété dès sa mise à disposition.",
+    "title": "Automatisation des contrôles des documents justifiant des dépenses de santé",
+    "description": "Automatiser le contrôle des pièces justificatives de dépenses de santé pour réduire les dépenses non justifiées, limiter les risques d'erreur et de fraude et gagner en productivité dans les caisses de sécurité sociale : extraire les données des justificatifs et des factures, détecter les écarts et présenter aux agents les factures en écart.",
     "logo": "assets/logos/imsa.svg",
     "path": "challenges/imsa/",
-    "color": "#5a9e06",
-    "soon": true
+    "color": "#5a9e06"
   }
 ]
