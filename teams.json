@@ -1,11 +1,3 @@
 {
-  "teams": [
-    {
-      "slug": "_selftest",
-      "name": "Auto-test",
-      "members": [
-        "testuser"
-      ]
-    }
-  ]
+  "teams": []
 }
