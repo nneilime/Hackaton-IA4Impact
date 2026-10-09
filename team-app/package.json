@@ -1,0 +1,10 @@
+{
+  "name": "hackathon-ia4impact-team-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend Vercel (device flow + gestion des équipes) du Hackathon IA for Impact",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -15,6 +15,12 @@ travail dans ce dépôt.
 - Tout dépôt passe par une **Pull Request** vers `main` ; une vérification automatique s'assure que
   vous ne modifiez que votre dossier.
 
+## Former votre équipe
+
+Le plus simple est d'utiliser l'[application des équipes](https://nneilime.github.io/Hackaton-IA4Impact/) :
+connexion GitHub, choix du défi, emails des membres. Elle crée le dossier
+`submissions/<nom-de-votre-equipe>/` et vous invite comme collaborateur du dépôt.
+
 ## Créer votre dossier et déposer votre travail
 
 ```bash

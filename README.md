@@ -10,6 +10,12 @@
 ![Lieu](https://img.shields.io/badge/Toulouse%20INP--ENSEEIHT-2%20rue%20Charles%20Camichel-0aa2c0?style=for-the-badge)
 ![Prix](https://img.shields.io/badge/Cash%20prize-2%20000%20%E2%82%AC-e8a800?style=for-the-badge)
 
+<br>
+
+<a href="https://nneilime.github.io/Hackaton-IA4Impact/">
+  <img src="https://img.shields.io/badge/Former%20mon%20%C3%A9quipe%20%E2%86%92-Application%20%C3%A9quipes-2563eb?style=for-the-badge" alt="Former mon équipe">
+</a>
+
 </div>
 
 ---
@@ -48,14 +54,15 @@ sont disponibles dans le dossier [`challenges/`](challenges/).
 Tout se passe dans le dossier [`submissions/`](submissions/). Chaque participant ou équipe dispose de
 son propre dossier, et **seul ce dossier peut être modifié** par son auteur.
 
-1. Créez votre dossier de travail :
-   - en solo : `submissions/<votre-pseudo-github>/`
-   - en équipe : `submissions/<nom-de-votre-equipe>/`
+1. **Formez votre équipe** depuis l'[application des équipes](https://nneilime.github.io/Hackaton-IA4Impact/)
+   (connexion GitHub, choix du défi, emails des membres). L'application crée votre dossier d'équipe
+   et vous invite comme collaborateur.
 2. Déposez-y votre code, vos notebooks, votre README de projet, vos slides…
 3. Ouvrez une **Pull Request** vers `main` pour soumettre votre travail.
 
-La procédure complète est décrite dans [`CONTRIBUTING.md`](CONTRIBUTING.md), et un modèle de
-description de projet est fourni dans [`submissions/_template/`](submissions/_template/).
+Sans équipe, vous pouvez aussi travailler dans `submissions/<votre-pseudo-github>/`. La procédure
+complète est décrite dans [`CONTRIBUTING.md`](CONTRIBUTING.md), et un modèle de description de
+projet est fourni dans [`submissions/_template/`](submissions/_template/).
 
 ## Partenaires
 

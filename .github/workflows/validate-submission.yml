@@ -35,7 +35,10 @@ jobs:
             }
 
             const team = teams.find(t =>
-              (t.members || []).some(m => String(m).toLowerCase() === author.toLowerCase())
+              (t.members || [])
+                .map(m => (typeof m === 'string' ? m : m.login))
+                .filter(Boolean)
+                .some(l => String(l).toLowerCase() === author.toLowerCase())
             );
             const allowedRoot = team
               ? `submissions/${team.slug}/`

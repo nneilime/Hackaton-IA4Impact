@@ -1,0 +1,57 @@
+[
+  {
+    "slug": "enedis",
+    "company": "Enedis",
+    "title": "Optimiser le placement des ressources en situation de crise climatique",
+    "description": "Tempêtes, orages, neige, inondations ou canicule : construire un démonstrateur d'aide à la décision pour prioriser les incidents, affecter les bonnes ressources et rétablir les clients au plus vite, avec une décision explicable et pilotée par l'humain.",
+    "logo": "assets/logos/enedis.svg",
+    "path": "challenges/enedis/",
+    "color": "#0f8a8a"
+  },
+  {
+    "slug": "sncf",
+    "company": "SNCF",
+    "title": "Dessine-moi une mobilité durable",
+    "description": "Permettre à un enseignant d'organiser en autonomie un voyage pédagogique en Occitanie en train liO : proposer des destinations pertinentes, vérifier la faisabilité, rassurer, pré-réserver et expliquer les recommandations.",
+    "logo": "assets/logos/sncf.svg",
+    "path": "challenges/sncf/",
+    "color": "#d6002a"
+  },
+  {
+    "slug": "bpce-si",
+    "company": "BPCE Solutions informatiques",
+    "title": "Du besoin au résultat, sans chercher",
+    "description": "Un assistant conversationnel de confiance pour guider clients et prospects vers la bonne réponse, la bonne action et le bon relais humain : rendre la banque compréhensible et actionnable.",
+    "logo": "assets/logos/bpce-si.png",
+    "path": "challenges/bpce-si/",
+    "color": "#4b2e83"
+  },
+  {
+    "slug": "lallemand",
+    "company": "Lallemand Plant Care",
+    "title": "Agent IA mondial de veille réglementaire et concurrentielle",
+    "description": "Agréger, structurer et restituer la veille sur les produits de protection des plantes, publiée dans des bases nationales et régionales aux formats, langues et structures très variés.",
+    "logo": "assets/logos/lallemand.svg",
+    "path": "challenges/lallemand/",
+    "color": "#ea0029"
+  },
+  {
+    "slug": "action-logement",
+    "company": "Action Logement",
+    "title": "BâtIA — rénovation et maintenance prédictive",
+    "description": "Un moteur unique, deux sorties : priorisation des rénovations et maintenance prédictive du logement intermédiaire, via un scoring multicritère explicable (état technique, impact énergétique, coût, urgence).",
+    "logo": "assets/logos/action-logement.png",
+    "path": "challenges/action-logement/",
+    "color": "#e2001a"
+  },
+  {
+    "slug": "imsa",
+    "company": "iMSA",
+    "title": "Défi à venir",
+    "description": "Le défi proposé par iMSA sera publié prochainement. Reste connecté, le dossier sera complété dès sa mise à disposition.",
+    "logo": "assets/logos/imsa.svg",
+    "path": "challenges/imsa/",
+    "color": "#5a9e06",
+    "soon": true
+  }
+]
