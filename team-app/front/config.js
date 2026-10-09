@@ -1,9 +1,6 @@
 window.HACK_CONFIG = {
-  // URL du backend Vercel, sans slash final (ex: https://hackathon-ia4impact.vercel.app)
-  apiBase: "https://REMPLACE-MOI.vercel.app",
-
-  // Client ID de l'OAuth App GitHub (device flow activé)
-  clientId: "REMPLACE-MOI",
+  // URL du backend Vercel, sans slash final
+  apiBase: "https://hackaton-ia4impact-team-app.vercel.app",
 
   // Dépôt des travaux
   owner: "nneilime",
