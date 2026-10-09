@@ -8,8 +8,8 @@
       "members": [
         {
           "email": "danielmbouyou@gmail.com",
-          "login": "DanielMBouyou",
-          "joined": true
+          "login": null,
+          "joined": false
         }
       ],
       "created_at": "2026-10-09T17:14:23.323Z",
