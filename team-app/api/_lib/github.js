@@ -81,7 +81,8 @@ async function readTeams() {
   );
   if (status === 404) return { teams: [] };
   if (status !== 200) {
-    const err = new Error("Lecture de teams.json impossible");
+    const detail = typeof data === "string" ? data.split("\n")[0] : (data && data.message) || "";
+    const err = new Error(`Lecture de teams.json impossible (${status}${detail ? " " + detail : ""})`);
     err.statusCode = 502;
     throw err;
   }
@@ -167,6 +168,7 @@ async function inviteCollaborator(login) {
 }
 
 async function isCollaborator(login) {
+  if (login && OWNER && login.toLowerCase() === String(OWNER).toLowerCase()) return true;
   const { status } = await github(
     `/repos/${OWNER}/${REPO}/collaborators/${encodeURIComponent(login)}`
   );
