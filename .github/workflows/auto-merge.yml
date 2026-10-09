@@ -11,9 +11,7 @@ permissions:
 jobs:
   auto-merge:
     name: auto-merge
-    if: >
-      !github.event.pull_request.draft &&
-      contains(format(',{0},', vars.AUTO_MERGE_USERS), format(',{0},', github.event.pull_request.user.login))
+    if: ${{ !github.event.pull_request.draft }}
     runs-on: ubuntu-latest
     steps:
       - name: Activer l'auto-merge
