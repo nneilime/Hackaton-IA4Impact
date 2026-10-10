@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
   try {
     if (req.method !== "GET") return send(res, 405, { error: "Méthode non autorisée" });
 
-    const frontUrl = (process.env.FRONT_URL || "").replace(/\/$/, "");
+    const frontUrl = (process.env.FRONT_URL || "https://nneilime.github.io/Hackaton-IA4Impact").replace(/\/$/, "");
     const redirectBack = (hash) => {
       if (frontUrl) {
         res.statusCode = 302;
@@ -67,7 +67,7 @@ module.exports = async (req, res) => {
       return redirectBack("error=" + encodeURIComponent("config_oauth_manquante"));
     }
 
-    const redirectUri = process.env.OAUTH_REDIRECT_URI || `${origin(req)}/api/auth/callback`;
+    const redirectUri = `${origin(req)}/api/auth/callback`;
     const params = new URLSearchParams({
       client_id: clientId,
       client_secret: clientSecret,

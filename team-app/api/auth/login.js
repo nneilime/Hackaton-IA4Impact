@@ -31,7 +31,9 @@ module.exports = async (req, res) => {
     if (!clientId) return send(res, 500, { error: "OAUTH_CLIENT_ID manquant" });
     if (!secret) return send(res, 500, { error: "Secret d'état manquant (STATE_SECRET ou GH_ADMIN_TOKEN)" });
 
-    const redirectUri = process.env.OAUTH_REDIRECT_URI || `${origin(req)}/api/auth/callback`;
+    // Toujours dériver l'URL de callback de l'hôte réel de la requête, pour
+    // garantir qu'elle correspond exactement à la callback enregistrée.
+    const redirectUri = `${origin(req)}/api/auth/callback`;
     const scope = process.env.OAUTH_SCOPES || "public_repo user:email";
 
     const params = new URLSearchParams({
