@@ -351,6 +351,46 @@
       "created_by": "mathieu-audo"
     },
     {
+      "slug": "sporadar",
+      "name": "Sporadar",
+      "challenge": "lallemand",
+      "owner": "DamienMarill",
+      "members": [
+        {
+          "login": "DamienMarill",
+          "status": "joined",
+          "created_at": "2026-10-10T13:19:45.590Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:19:45.590Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:19:45.590Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:19:45.590Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:19:45.590Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:19:45.590Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:19:45.590Z",
+      "created_by": "DamienMarill"
+    },
+    {
       "slug": "staff",
       "name": "Staff",
       "challenge": "enedis",
