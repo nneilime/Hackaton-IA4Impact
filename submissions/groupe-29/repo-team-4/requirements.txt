@@ -1,0 +1,6 @@
+httpx
+python-dotenv
+pillow
+fastapi
+uvicorn
+numpy

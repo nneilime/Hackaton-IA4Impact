@@ -1,0 +1,1333 @@
+{
+  "source": "../Downloads/General-main/Bordereaux jpg/Facture1_10.jpg",
+  "width": 1190,
+  "height": 1684,
+  "blocks": [
+    {
+      "label": "title",
+      "bbox": [
+        234,
+        12,
+        764,
+        27
+      ],
+      "text": "# établissements de santé privés – bordereau de facturation",
+      "continues": false,
+      "bbox_pixels": [
+        278,
+        20,
+        909,
+        45
+      ]
+    },
+    {
+      "label": "header_image",
+      "bbox": [
+        15,
+        22,
+        77,
+        37
+      ],
+      "text": "logo \"cea fa\"",
+      "continues": false,
+      "bbox_pixels": [
+        18,
+        37,
+        92,
+        62
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        33,
+        79,
+        49
+      ],
+      "text": "n° 12278*01",
+      "continues": false,
+      "bbox_pixels": [
+        18,
+        56,
+        94,
+        83
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        370,
+        33,
+        628,
+        41
+      ],
+      "text": "articles R. 161-40 et suivants du Code de la sécurité sociale",
+      "continues": false,
+      "bbox_pixels": [
+        440,
+        56,
+        747,
+        69
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        310,
+        42,
+        689,
+        51
+      ],
+      "text": "article L. 212-1 du Code des pensions militaires d'invalidité et des victimes de la guerre",
+      "continues": false,
+      "bbox_pixels": [
+        369,
+        71,
+        820,
+        86
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        732,
+        42,
+        897,
+        51
+      ],
+      "text": "date d'élaboration 04/08/2026",
+      "continues": false,
+      "bbox_pixels": [
+        871,
+        71,
+        1067,
+        86
+      ]
+    },
+    {
+      "label": "page_number",
+      "bbox": [
+        927,
+        42,
+        984,
+        53
+      ],
+      "text": "Page 1/1",
+      "continues": false,
+      "bbox_pixels": [
+        1103,
+        71,
+        1171,
+        89
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        55,
+        263,
+        64
+      ],
+      "text": "identification de l'établissement dont n° FINESS",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        93,
+        313,
+        108
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        65,
+        146,
+        74
+      ],
+      "text": "POLYCLINIQUE MAYMARD",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        109,
+        174,
+        125
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        75,
+        146,
+        84
+      ],
+      "text": "13 Rue Marcel PAUL",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        126,
+        174,
+        141
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        85,
+        84,
+        94
+      ],
+      "text": "20200 BASTIA",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        143,
+        100,
+        158
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        442,
+        55,
+        543,
+        64
+      ],
+      "text": "200200145",
+      "continues": false,
+      "bbox_pixels": [
+        526,
+        93,
+        646,
+        108
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        654,
+        55,
+        692,
+        64
+      ],
+      "text": "références à rappeler",
+      "continues": false,
+      "bbox_pixels": [
+        778,
+        93,
+        823,
+        108
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        662,
+        64,
+        692,
+        74
+      ],
+      "text": "N° LOT 574",
+      "continues": false,
+      "bbox_pixels": [
+        788,
+        108,
+        823,
+        125
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        857,
+        55,
+        904,
+        64
+      ],
+      "text": "02491",
+      "continues": false,
+      "bbox_pixels": [
+        1020,
+        93,
+        1076,
+        108
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        442,
+        75,
+        543,
+        84
+      ],
+      "text": "coefficient MCO :",
+      "continues": false,
+      "bbox_pixels": [
+        526,
+        126,
+        646,
+        141
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        654,
+        75,
+        735,
+        84
+      ],
+      "text": "N° FACTURE 260800010",
+      "continues": false,
+      "bbox_pixels": [
+        778,
+        126,
+        875,
+        141
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        654,
+        85,
+        734,
+        94
+      ],
+      "text": "N° D'ENTREE c722614851",
+      "continues": false,
+      "bbox_pixels": [
+        778,
+        143,
+        873,
+        158
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        841,
+        85,
+        921,
+        94
+      ],
+      "text": "MSA ANGERS",
+      "continues": false,
+      "bbox_pixels": [
+        1001,
+        143,
+        1096,
+        158
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        442,
+        95,
+        500,
+        104
+      ],
+      "text": "1,1007",
+      "continues": false,
+      "bbox_pixels": [
+        526,
+        160,
+        595,
+        175
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        654,
+        95,
+        692,
+        104
+      ],
+      "text": "N° FEUILLET 1",
+      "continues": false,
+      "bbox_pixels": [
+        778,
+        160,
+        823,
+        175
+      ]
+    },
+    {
+      "label": "title",
+      "bbox": [
+        14,
+        109,
+        136,
+        118
+      ],
+      "text": "le bénéficiaire des soins",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        184,
+        162,
+        199
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        118,
+        136,
+        128
+      ],
+      "text": "nom et prénom(s) Nom Prénom",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        199,
+        162,
+        216
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        129,
+        242,
+        138
+      ],
+      "text": "nom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu)",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        217,
+        288,
+        232
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        139,
+        331,
+        148
+      ],
+      "text": "n° d'immatriculation et clé 2520299007010 01 à défaut, date de naissance",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        234,
+        394,
+        249
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        149,
+        235,
+        158
+      ],
+      "text": "code organisme de rattachement 02491000 date début hospitalisation",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        251,
+        280,
+        266
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        159,
+        472,
+        168
+      ],
+      "text": "entrée le 03/08/2026 à 11 heures, sortie le 03/08/2026 à 14 heures",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        268,
+        562,
+        283
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        506,
+        109,
+        649,
+        118
+      ],
+      "text": "l'assuré(e) (s'il et elle n'est pas le bénéficiaire des soins)",
+      "continues": false,
+      "bbox_pixels": [
+        602,
+        184,
+        772,
+        199
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        506,
+        118,
+        649,
+        128
+      ],
+      "text": "nom et prénom(s)",
+      "continues": false,
+      "bbox_pixels": [
+        602,
+        199,
+        772,
+        216
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        506,
+        129,
+        649,
+        138
+      ],
+      "text": "nom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu)",
+      "continues": false,
+      "bbox_pixels": [
+        602,
+        217,
+        772,
+        232
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        506,
+        139,
+        649,
+        148
+      ],
+      "text": "n° d'immatriculation et clé",
+      "continues": false,
+      "bbox_pixels": [
+        602,
+        234,
+        772,
+        249
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        506,
+        149,
+        563,
+        158
+      ],
+      "text": "adresse",
+      "continues": false,
+      "bbox_pixels": [
+        602,
+        251,
+        670,
+        266
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        506,
+        160,
+        649,
+        168
+      ],
+      "text": "Nom usuel :",
+      "continues": false,
+      "bbox_pixels": [
+        602,
+        269,
+        772,
+        283
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        506,
+        169,
+        649,
+        178
+      ],
+      "text": "Nom usuel :",
+      "continues": false,
+      "bbox_pixels": [
+        602,
+        285,
+        772,
+        300
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        372,
+        170,
+        649,
+        179
+      ],
+      "text": "conditions de prise en charge du bénéficiaire des soins",
+      "continues": false,
+      "bbox_pixels": [
+        443,
+        286,
+        772,
+        301
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        372,
+        180,
+        441,
+        189
+      ],
+      "text": "code exonération 4",
+      "continues": false,
+      "bbox_pixels": [
+        443,
+        303,
+        525,
+        318
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        717,
+        180,
+        906,
+        189
+      ],
+      "text": "soins en rapport avec l'article L. 212-1",
+      "continues": false,
+      "bbox_pixels": [
+        853,
+        303,
+        1078,
+        318
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        189,
+        106,
+        198
+      ],
+      "text": "maternité",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        318,
+        126,
+        333
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        107,
+        199,
+        337,
+        208
+      ],
+      "text": "date du début de grossesse ou date d'accouchement",
+      "continues": false,
+      "bbox_pixels": [
+        127,
+        335,
+        401,
+        350
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        442,
+        199,
+        499,
+        208
+      ],
+      "text": "AT/MP",
+      "continues": false,
+      "bbox_pixels": [
+        526,
+        335,
+        594,
+        350
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        506,
+        199,
+        563,
+        208
+      ],
+      "text": "n° ou date",
+      "continues": false,
+      "bbox_pixels": [
+        602,
+        335,
+        670,
+        350
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        610,
+        199,
+        707,
+        208
+      ],
+      "text": "accident causé par un tiers non oui date",
+      "continues": false,
+      "bbox_pixels": [
+        726,
+        335,
+        841,
+        350
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        162,
+        219,
+        337,
+        228
+      ],
+      "text": "frais de structure et de soins (1)",
+      "continues": false,
+      "bbox_pixels": [
+        193,
+        369,
+        401,
+        384
+      ]
+    },
+    {
+      "label": "table",
+      "bbox": [
+        14,
+        218,
+        499,
+        312
+      ],
+      "text": "<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>période</th>\n      <th>prix unitaire</th>\n      <th>quantité</th>\n      <th>coût</th>\n      <th>montant facturé</th>\n      <th>codes exo</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>S</td>\n      <td></td>\n      <td>GHS</td>\n      <td>9606</td>\n      <td>03/08/26</td>\n      <td>03/08/26</td>\n      <td>340,21</td>\n      <td>1</td>\n      <td>1</td>\n      <td>374,47</td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        367,
+        594,
+        525
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        334,
+        303,
+        461,
+        312
+      ],
+      "text": "sous-total 1 374,47",
+      "continues": false,
+      "bbox_pixels": [
+        397,
+        510,
+        549,
+        525
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        654,
+        219,
+        830,
+        228
+      ],
+      "text": "frais de structure et de soins (2)",
+      "continues": false,
+      "bbox_pixels": [
+        778,
+        369,
+        988,
+        384
+      ]
+    },
+    {
+      "label": "table",
+      "bbox": [
+        500,
+        218,
+        990,
+        312
+      ],
+      "text": "<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>période</th>\n      <th>prix unitaire</th>\n      <th>quantité</th>\n      <th>coût</th>\n      <th>montant facturé</th>\n      <th>codes exo</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>",
+      "continues": false,
+      "bbox_pixels": [
+        595,
+        367,
+        1178,
+        525
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        832,
+        303,
+        906,
+        312
+      ],
+      "text": "sous-total 2",
+      "continues": false,
+      "bbox_pixels": [
+        990,
+        510,
+        1078,
+        525
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        198,
+        322,
+        793,
+        331
+      ],
+      "text": "produits de la LPP facturables, spécialités pharmaceutiques et médicaments soumis à ATU (joindre la prescription)",
+      "continues": false,
+      "bbox_pixels": [
+        236,
+        542,
+        944,
+        557
+      ]
+    },
+    {
+      "label": "table",
+      "bbox": [
+        14,
+        322,
+        990,
+        498
+      ],
+      "text": "<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>n° d'identification du prescripteur</th>\n      <th>date de prescription</th>\n      <th>date d'implantation</th>\n      <th>libellé</th>\n      <th>code</th>\n      <th>tarif de référence ou prix unitaire</th>\n      <th>quantité</th>\n      <th>montant facturé</th>\n      <th>codes exo</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td>PH8</td>\n      <td>9606</td>\n      <td>201400330</td>\n      <td>03/08/2026</td>\n      <td>03/08/26</td>\n      <td>Ecart de tarif médicaments</td>\n      <td>9002651</td>\n      <td>182,37</td>\n      <td>2</td>\n      <td>364,74</td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td></td>\n      <td></td>\n      <td>EMI</td>\n      <td>9606</td>\n      <td>201400330</td>\n      <td>03/08/2026</td>\n      <td>03/08/26</td>\n      <td></td>\n      <td></td>\n      <td>79,76</td>\n      <td>1</td>\n      <td>79,76</td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        542,
+        1178,
+        839
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        762,
+        488,
+        853,
+        497
+      ],
+      "text": "sous-total 3 444,50",
+      "continues": false,
+      "bbox_pixels": [
+        907,
+        822,
+        1015,
+        837
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        770,
+        497,
+        950,
+        506
+      ],
+      "text": "sous-total 1+2+3 818,97",
+      "continues": false,
+      "bbox_pixels": [
+        916,
+        837,
+        1130,
+        852
+      ]
+    },
+    {
+      "label": "title",
+      "bbox": [
+        56,
+        507,
+        453,
+        517
+      ],
+      "text": "relevé des honoraires médicaux, para médicaux et actes de laboratoire",
+      "continues": false,
+      "bbox_pixels": [
+        67,
+        854,
+        539,
+        871
+      ]
+    },
+    {
+      "label": "table",
+      "bbox": [
+        11,
+        507,
+        990,
+        851
+      ],
+      "text": "<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>n° de case</th>\n      <th>numéro d'identification du prescripteur</th>\n      <th>spécialité</th>\n      <th>numéro d'identification de l'exécutant</th>\n      <th>spécialité</th>\n      <th>date des actes</th>\n      <th>date de la prescription</th>\n      <th>n° GHS</th>\n      <th>code acte ou lettre-clé</th>\n      <th>actes effectués</th>\n      <th>quantité ou coefficient</th>\n      <th>honoraires facturés</th>\n      <th>dispos</th>\n      <th>code exonération</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td>1</td>\n      <td></td>\n      <td></td>\n      <td>201400330</td>\n      <td>73</td>\n      <td>03/08/26</td>\n      <td></td>\n      <td>9606K</td>\n      <td></td>\n      <td></td>\n      <td>15</td>\n      <td>28,80</td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>",
+      "continues": false,
+      "bbox_pixels": [
+        13,
+        854,
+        1178,
+        1433
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        827,
+        518,
+        982,
+        577
+      ],
+      "text": "signature des praticiens ou auxiliaires médicaux attestant la prestation des actes, l'exactitude du montant total des honoraires facturés et la dispense d'avance de frais",
+      "continues": false,
+      "bbox_pixels": [
+        984,
+        872,
+        1169,
+        972
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        827,
+        577,
+        952,
+        586
+      ],
+      "text": "201400330",
+      "continues": false,
+      "bbox_pixels": [
+        984,
+        972,
+        1133,
+        987
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        827,
+        587,
+        906,
+        596
+      ],
+      "text": "Dr. FRIKHA AHMED - PAR MANDAT",
+      "continues": false,
+      "bbox_pixels": [
+        984,
+        989,
+        1078,
+        1004
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        927,
+        587,
+        982,
+        596
+      ],
+      "text": "28,80",
+      "continues": false,
+      "bbox_pixels": [
+        1103,
+        989,
+        1169,
+        1004
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        555,
+        842,
+        649,
+        851
+      ],
+      "text": "sous-total 4 28,80",
+      "continues": false,
+      "bbox_pixels": [
+        660,
+        1418,
+        772,
+        1433
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        855,
+        263,
+        864
+      ],
+      "text": "transfert provisoire – n° FINESS établissement 1",
+      "continues": false,
+      "bbox_pixels": [
+        18,
+        1440,
+        313,
+        1455
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        442,
+        855,
+        592,
+        864
+      ],
+      "text": "n° FINESS établissement 2",
+      "continues": false,
+      "bbox_pixels": [
+        526,
+        1440,
+        704,
+        1455
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        864,
+        106,
+        874
+      ],
+      "text": "MANDATAIRE(S)",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        1455,
+        126,
+        1472
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        875,
+        106,
+        885
+      ],
+      "text": "Domiciliation :",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        1474,
+        126,
+        1490
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        400,
+        875,
+        440,
+        885
+      ],
+      "text": "IBAN :",
+      "continues": false,
+      "bbox_pixels": [
+        476,
+        1474,
+        524,
+        1490
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        14,
+        886,
+        44,
+        896
+      ],
+      "text": "RIB :",
+      "continues": false,
+      "bbox_pixels": [
+        17,
+        1492,
+        52,
+        1509
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        400,
+        886,
+        440,
+        896
+      ],
+      "text": "BIC :",
+      "continues": false,
+      "bbox_pixels": [
+        476,
+        1492,
+        524,
+        1509
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        907,
+        106,
+        916
+      ],
+      "text": "MONTANT TOTAL en euros ( 1+2+3+4 )",
+      "continues": false,
+      "bbox_pixels": [
+        18,
+        1527,
+        126,
+        1543
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        212,
+        907,
+        268,
+        916
+      ],
+      "text": "847,77",
+      "continues": false,
+      "bbox_pixels": [
+        252,
+        1527,
+        319,
+        1543
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        292,
+        907,
+        441,
+        916
+      ],
+      "text": "l'assuré(e) n'a pas payé la part obligatoire",
+      "continues": false,
+      "bbox_pixels": [
+        347,
+        1527,
+        525,
+        1543
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        481,
+        907,
+        540,
+        916
+      ],
+      "text": "X",
+      "continues": false,
+      "bbox_pixels": [
+        572,
+        1527,
+        643,
+        1543
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        564,
+        907,
+        704,
+        916
+      ],
+      "text": "l'assuré(e) n'a pas payé la part complémentaire",
+      "continues": false,
+      "bbox_pixels": [
+        671,
+        1527,
+        838,
+        1543
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        827,
+        890,
+        873,
+        900
+      ],
+      "text": "signature de l'établis",
+      "continues": false,
+      "bbox_pixels": [
+        984,
+        1499,
+        1039,
+        1516
+      ]
+    },
+    {
+      "label": "text",
+      "bbox": [
+        16,
+        938,
+        373,
+        947
+      ],
+      "text": "Le règlement est effectué conformément au choix fait par le praticien.",
+      "continues": false,
+      "bbox_pixels": [
+        19,
+        1580,
+        444,
+        1595
+      ]
+    },
+    {
+      "label": "footer",
+      "bbox": [
+        15,
+        950,
+        905,
+        959
+      ],
+      "text": "Quiconque se rend coupable de fraude ou de fausse déclaration est passible de pénalités financières, d'amende et/ou d'emprisonnement (articles 313-1 à 313-3, 433-19, 441-1 et suivants du Code pénal, article L. 164-17-1 du Code de la sécurité sociale).",
+      "continues": false,
+      "bbox_pixels": [
+        18,
+        1600,
+        1077,
+        1615
+      ]
+    },
+    {
+      "label": "footer",
+      "bbox": [
+        15,
+        961,
+        873,
+        970
+      ],
+      "text": "Les informations figurant sur cette feuille, y compris le détail des actes et des prestations servies, sont destinées à votre organisme d'assurance maladie aux fins de remboursement et de contrôle.",
+      "continues": false,
+      "bbox_pixels": [
+        18,
+        1618,
+        1039,
+        1633
+      ]
+    },
+    {
+      "label": "footer",
+      "bbox": [
+        15,
+        971,
+        909,
+        987
+      ],
+      "text": "En application de la loi du 6 janvier 1978 modifiée, vous pouvez obtenir la communication des informations vous concernant et, le cas échéant, leur rectification en vous adressant auprès de votre organisme d'assurance maladie.",
+      "continues": false,
+      "bbox_pixels": [
+        18,
+        1635,
+        1082,
+        1662
+      ]
+    },
+    {
+      "label": "footer",
+      "bbox": [
+        789,
+        938,
+        978,
+        947
+      ],
+      "text": "Le 04/08/2026 14:51 (LAPREZ)",
+      "continues": false,
+      "bbox_pixels": [
+        939,
+        1580,
+        1164,
+        1595
+      ]
+    },
+    {
+      "label": "page_number",
+      "bbox": [
+        952,
+        961,
+        988,
+        973
+      ],
+      "text": "S 3404",
+      "continues": false,
+      "bbox_pixels": [
+        1133,
+        1618,
+        1176,
+        1639
+      ]
+    }
+  ]
+}

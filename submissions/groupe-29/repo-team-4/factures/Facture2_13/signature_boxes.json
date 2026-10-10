@@ -1,0 +1,13 @@
+{
+  "source": "/Users/kapsulon/Downloads/General-main/Bordereaux jpg/Facture2_13.jpg",
+  "boxes": {
+    "1": "493700710 LABO DU PARC 01/01/2005 - MANDAT 55.50",
+    "2": "491702593 LEONARD Grégoire 622.02 MANDAT",
+    "3": "491053989 TAILHAN Baptiste 259.16 MANDAT"
+  },
+  "messages": [
+    "box 1: LightOnOCR-3-4B · vLLM endpoint · 334×108 px · 3 blocks · 90 tokens · 0.6 s",
+    "box 2: LightOnOCR-3-4B · vLLM endpoint · 334×106 px · 2 blocks · 65 tokens · 0.5 s",
+    "box 3: LightOnOCR-3-4B · vLLM endpoint · 334×108 px · 2 blocks · 64 tokens · 0.5 s"
+  ]
+}

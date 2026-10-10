@@ -1,0 +1,844 @@
+{
+  "path": "/tmp/gradio/a1b02e6fb55bf9bfc180321cbbdd5430e284787bcad58e266d7d62f2a6339dc0/Facture1_07.jpg",
+  "name": "Facture1_07.jpg",
+  "pages": 1,
+  "page": 1,
+  "image": "gradio_api/file=/tmp/gradio/lightonocr3/a3da55fc0fb04ba1067c.jpg",
+  "width": 1190,
+  "height": 1684,
+  "mode": "grounding",
+  "model": "LightOnOCR-3-4B",
+  "raw": "![title](234,12,764,27) # établissements de santé privés – bordereau de facturation\n\n![header_image](16,22,77,37) logo \"ceafr\"\n\n![header](374,32,627,40) articles R. 161-40 et suivants du Code de la sécurité sociale\n\n![header](310,42,688,51) article L. 212-1 du Code des pensions militaires d'invalidité et des victimes de la guerre\n\n![header](14,42,79,51) n° 12278*01\n\n![header](734,42,901,51) date d'élaboration 04/08/2026\n\n![header](928,42,984,53) Page 1/1\n\n![text](15,55,258,64) identification de l'établissement dont n° FINESS\n\n![text](15,66,147,75) POLYCLINIQUE MAYMARD\n\n![text](15,77,147,86) 13 Rue Marcel PAUL\n\n![text](15,88,103,97) 20200 BASTIA\n\n![text](424,55,534,64) 200200145\n\n![text](602,55,694,64) références à rappeler\n\n![text](662,66,694,75) N° LOT 574\n\n![text](853,66,901,75) 02491\n\n![text](424,77,534,86) coefficient MCO :\n\n![text](662,77,778,86) N° FACTURE 260800007\n\n![text](842,88,921,97) MSA ANGERS\n\n![text](424,88,534,97) 1,1007\n\n![text](662,88,778,97) N° D'ENTREE c722614851\n\n![text](662,98,727,107) N° FEUILLET 1\n\n![title](14,109,136,118) le bénéficiaire des soins\n\n![text](15,119,183,129) nom et prénom(s) Nom Prénom\n\n![text](15,130,309,139) nom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu)\n\n![text](15,140,350,150) n° d'immatriculation et clé 2520299007007 01 à défaut, date de naissance\n\n![text](15,151,247,160) code organisme de rattachement 02491000 date début hospitalisation\n\n![text](15,161,472,169) entrée le 03/08/2026 à 11 heures, sortie le 03/08/2026 à 14 heures\n\n![text](507,109,781,118) l'assuré(e) (s'il et elle n'est pas le bénéficiaire des soins)\n\n![text](507,119,660,129) nom et prénom(s)\n\n![text](507,130,781,139) nom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu)\n\n![text](507,140,660,150) n° d'immatriculation et clé\n\n![text](507,151,563,160) adresse\n\n![text](507,161,660,170) Nom usuel :\n\n![text](507,171,563,180) Nom usuel :\n\n![text](375,173,660,182) conditions de prise en charge du bénéficiaire des soins\n\n![text](375,183,468,192) code exonération 4\n\n![text](717,183,900,192) soins en rapport avec l'article L. 212-1\n\n![text](15,194,338,203) maternité □ date du début de grossesse ou date d'accouchement\n\n![text](507,194,563,203) AT/MP □ n° ou date\n\n![text](612,194,781,203) accident causé par un tiers non □ oui □ date\n\n![text](172,214,340,224) frais de structure et de soins (1)\n\n![table](14,224,498,312) <table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>période</th>\n      <th>prix unitaire</th>\n      <th>quantité</th>\n      <th>coût</th>\n      <th>montant facturé</th>\n      <th>codes exo.</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>S</td>\n      <td></td>\n      <td>GHS</td>\n      <td>9606</td>\n      <td>03/08/26</td>\n      <td>03/08/26</td>\n      <td>340,21</td>\n      <td>1</td>\n      <td>1</td>\n      <td>374,47</td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n\n![text](338,307,469,316) sous-total 1 374,47\n\n![text](662,225,840,234) frais de structure et de soins (2)\n\n![table](500,224,990,312) <table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>période</th>\n      <th>prix unitaire</th>\n      <th>quantité</th>\n      <th>coût</th>\n      <th>montant facturé</th>\n      <th>codes exo.</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n\n![text](830,307,900,316) sous-total 2\n\n![title](197,320,795,333) produits de la LPP facturables, spécialités pharmaceutiques et médicaments soumis à ATU (joindre la prescription)\n\n![table](14,324,990,498) <table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>n° d'identification du prescripteur</th>\n      <th>date de prescription</th>\n      <th>date d'implantation</th>\n      <th>libellé</th>\n      <th>code</th>\n      <th>tarif de référence ou prix unitaire</th>\n      <th>quantité</th>\n      <th>montant facturé</th>\n      <th>codes exo.</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td>PH8</td>\n      <td>9606</td>\n      <td>201400330</td>\n      <td>03/08/2026</td>\n      <td>03/08/26</td>\n      <td>Ecart de tarif médicaments</td>\n      <td>9002651</td>\n      <td>182,37</td>\n      <td>2</td>\n      <td>364,74</td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td></td>\n      <td></td>\n      <td>EMI</td>\n      <td>9606</td>\n      <td>201400330</td>\n      <td>03/08/2026</td>\n      <td>03/08/26</td>\n      <td></td>\n      <td></td>\n      <td>79,76</td>\n      <td>1</td>\n      <td>79,76</td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n\n![text](762,488,852,497) sous-total 3 444,50\n\n![text](771,498,950,507) sous-total 1+2+3 818,97\n\n![title](56,508,454,519) relevé des honoraires médicaux, para médicaux et actes de laboratoire\n\n![table](11,518,812,848) <table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>n° de case</th>\n      <th>numéro d'identification du prescripteur</th>\n      <th>spécialité</th>\n      <th>numéro d'identification de l'exécutant</th>\n      <th>spécialité</th>\n      <th>date des actes</th>\n      <th>date de la prescription</th>\n      <th>n° GHS</th>\n      <th>code acte ou lettre-clé</th>\n      <th>actes effectués</th>\n      <th>quantité ou coefficient</th>\n      <th>honoraires facturés</th>\n      <th>disponibilité</th>\n      <th>code exonération</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td>1</td>\n      <td></td>\n      <td></td>\n      <td>201400330</td>\n      <td>73</td>\n      <td>03/08/26</td>\n      <td></td>\n      <td>9606K</td>\n      <td></td>\n      <td></td>\n      <td>15</td>\n      <td>28,80</td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n\n![text](827,520,981,579) signature des praticiens ou auxiliaires médicaux attestant la prestation des actes, l'exactitude du montant total des honoraires facturés et la dispense d'avance de frais\n\n![text](827,581,950,590) 201400330\n\n![text](827,592,900,601) Dr. FRIKHA AHMED - PAR MANDAT\n\n![text](950,592,988,601) 28,80\n\n![text](556,848,766,857) sous-total 4 28,80\n\n![text](15,857,267,866) transfert provisoire – n° FINESS établissement 1\n\n![text](448,857,590,866) n° FINESS établissement 2\n\n![text](15,868,110,877) MANDATAIRE(S)\n\n![text](15,879,103,888) Domiciliation :\n\n![text](400,879,432,888) IBAN :\n\n![text](15,890,50,900) RIB :\n\n![text](400,890,432,900) BIC :\n\n![text](15,909,123,918) MONTANT TOTAL en euros ( 1+2+3+4 )\n\n![text](212,909,277,918) 847,77\n\n![text](312,909,469,918) l'assuré(e) n'a pas payé la part obligatoire\n\n![text](507,909,650,918) l'assuré(e) n'a pas payé la part complémentaire\n\n![text](827,890,873,900) signature l'établis\n\n![text](15,937,373,946) Le règlement est effectué conformément au choix fait par le praticien.\n\n![text](15,950,904,959) Quiconque se rend coupable de fraude ou de fausse déclaration est passible de pénalités financières, d'amende et/ou d'emprisonnement (articles 313-1 à 313-3, 433-19, 441-1 et suivants du Code pénal, article L. 164-17-1 du Code de la sécurité sociale).\n\n![text](15,961,873,970) Les informations figurant sur cette feuille, y compris le détail des actes et des prestations servies, sont destinées à votre organisme d'assurance maladie aux fins de remboursement et de contrôle.\n\n![text](15,972,909,985) En application de la loi du 6 janvier 1978 modifiée, vous pouvez obtenir la communication des informations vous concernant et, le cas échéant, leur rectification en vous adressant auprès de votre organisme d'assurance maladie.\n\n![footer](789,937,978,946) Le 04/08/2026 14:51 (LAPREZ)\n\n![page_number](953,962,988,972) S 3404",
+  "markdown": "# établissements de santé privés – bordereau de facturation\n\nlogo \"ceafr\"\n\narticles R. 161-40 et suivants du Code de la sécurité sociale\n\narticle L. 212-1 du Code des pensions militaires d'invalidité et des victimes de la guerre\n\nn° 12278*01\n\ndate d'élaboration 04/08/2026\n\nPage 1/1\n\nidentification de l'établissement dont n° FINESS\n\nPOLYCLINIQUE MAYMARD\n\n13 Rue Marcel PAUL\n\n20200 BASTIA\n\n200200145\n\nréférences à rappeler\n\nN° LOT 574\n\n02491\n\ncoefficient MCO :\n\nN° FACTURE 260800007\n\nMSA ANGERS\n\n1,1007\n\nN° D'ENTREE c722614851\n\nN° FEUILLET 1\n\nle bénéficiaire des soins\n\nnom et prénom(s) Nom Prénom\n\nnom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu)\n\nn° d'immatriculation et clé 2520299007007 01 à défaut, date de naissance\n\ncode organisme de rattachement 02491000 date début hospitalisation\n\nentrée le 03/08/2026 à 11 heures, sortie le 03/08/2026 à 14 heures\n\nl'assuré(e) (s'il et elle n'est pas le bénéficiaire des soins)\n\nnom et prénom(s)\n\nnom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu)\n\nn° d'immatriculation et clé\n\nadresse\n\nNom usuel :\n\nNom usuel :\n\nconditions de prise en charge du bénéficiaire des soins\n\ncode exonération 4\n\nsoins en rapport avec l'article L. 212-1\n\nmaternité □ date du début de grossesse ou date d'accouchement\n\nAT/MP □ n° ou date\n\naccident causé par un tiers non □ oui □ date\n\nfrais de structure et de soins (1)\n\n<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>période</th>\n      <th>prix unitaire</th>\n      <th>quantité</th>\n      <th>coût</th>\n      <th>montant facturé</th>\n      <th>codes exo.</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>S</td>\n      <td></td>\n      <td>GHS</td>\n      <td>9606</td>\n      <td>03/08/26</td>\n      <td>03/08/26</td>\n      <td>340,21</td>\n      <td>1</td>\n      <td>1</td>\n      <td>374,47</td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n\nsous-total 1 374,47\n\nfrais de structure et de soins (2)\n\n<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>période</th>\n      <th>prix unitaire</th>\n      <th>quantité</th>\n      <th>coût</th>\n      <th>montant facturé</th>\n      <th>codes exo.</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n\nsous-total 2\n\nproduits de la LPP facturables, spécialités pharmaceutiques et médicaments soumis à ATU (joindre la prescription)\n\n<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>n° d'identification du prescripteur</th>\n      <th>date de prescription</th>\n      <th>date d'implantation</th>\n      <th>libellé</th>\n      <th>code</th>\n      <th>tarif de référence ou prix unitaire</th>\n      <th>quantité</th>\n      <th>montant facturé</th>\n      <th>codes exo.</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td>PH8</td>\n      <td>9606</td>\n      <td>201400330</td>\n      <td>03/08/2026</td>\n      <td>03/08/26</td>\n      <td>Ecart de tarif médicaments</td>\n      <td>9002651</td>\n      <td>182,37</td>\n      <td>2</td>\n      <td>364,74</td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td></td>\n      <td></td>\n      <td>EMI</td>\n      <td>9606</td>\n      <td>201400330</td>\n      <td>03/08/2026</td>\n      <td>03/08/26</td>\n      <td></td>\n      <td></td>\n      <td>79,76</td>\n      <td>1</td>\n      <td>79,76</td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n\nsous-total 3 444,50\n\nsous-total 1+2+3 818,97\n\nrelevé des honoraires médicaux, para médicaux et actes de laboratoire\n\n<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>n° de case</th>\n      <th>numéro d'identification du prescripteur</th>\n      <th>spécialité</th>\n      <th>numéro d'identification de l'exécutant</th>\n      <th>spécialité</th>\n      <th>date des actes</th>\n      <th>date de la prescription</th>\n      <th>n° GHS</th>\n      <th>code acte ou lettre-clé</th>\n      <th>actes effectués</th>\n      <th>quantité ou coefficient</th>\n      <th>honoraires facturés</th>\n      <th>disponibilité</th>\n      <th>code exonération</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td>1</td>\n      <td></td>\n      <td></td>\n      <td>201400330</td>\n      <td>73</td>\n      <td>03/08/26</td>\n      <td></td>\n      <td>9606K</td>\n      <td></td>\n      <td></td>\n      <td>15</td>\n      <td>28,80</td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>\n\nsignature des praticiens ou auxiliaires médicaux attestant la prestation des actes, l'exactitude du montant total des honoraires facturés et la dispense d'avance de frais\n\n201400330\n\nDr. FRIKHA AHMED - PAR MANDAT\n\n28,80\n\nsous-total 4 28,80\n\ntransfert provisoire – n° FINESS établissement 1\n\nn° FINESS établissement 2\n\nMANDATAIRE(S)\n\nDomiciliation :\n\nIBAN :\n\nRIB :\n\nBIC :\n\nMONTANT TOTAL en euros ( 1+2+3+4 )\n\n847,77\n\nl'assuré(e) n'a pas payé la part obligatoire\n\nl'assuré(e) n'a pas payé la part complémentaire\n\nsignature l'établis\n\nLe règlement est effectué conformément au choix fait par le praticien.\n\nQuiconque se rend coupable de fraude ou de fausse déclaration est passible de pénalités financières, d'amende et/ou d'emprisonnement (articles 313-1 à 313-3, 433-19, 441-1 et suivants du Code pénal, article L. 164-17-1 du Code de la sécurité sociale).\n\nLes informations figurant sur cette feuille, y compris le détail des actes et des prestations servies, sont destinées à votre organisme d'assurance maladie aux fins de remboursement et de contrôle.\n\nEn application de la loi du 6 janvier 1978 modifiée, vous pouvez obtenir la communication des informations vous concernant et, le cas échéant, leur rectification en vous adressant auprès de votre organisme d'assurance maladie.\n\nLe 04/08/2026 14:51 (LAPREZ)\n\nS 3404",
+  "blocks": [
+    {
+      "label": "title",
+      "bbox": [
+        234,
+        12,
+        764,
+        27
+      ],
+      "text": "# établissements de santé privés – bordereau de facturation",
+      "continues": false
+    },
+    {
+      "label": "header_image",
+      "bbox": [
+        16,
+        22,
+        77,
+        37
+      ],
+      "text": "logo \"ceafr\"",
+      "continues": false
+    },
+    {
+      "label": "header",
+      "bbox": [
+        374,
+        32,
+        627,
+        40
+      ],
+      "text": "articles R. 161-40 et suivants du Code de la sécurité sociale",
+      "continues": false
+    },
+    {
+      "label": "header",
+      "bbox": [
+        310,
+        42,
+        688,
+        51
+      ],
+      "text": "article L. 212-1 du Code des pensions militaires d'invalidité et des victimes de la guerre",
+      "continues": false
+    },
+    {
+      "label": "header",
+      "bbox": [
+        14,
+        42,
+        79,
+        51
+      ],
+      "text": "n° 12278*01",
+      "continues": false
+    },
+    {
+      "label": "header",
+      "bbox": [
+        734,
+        42,
+        901,
+        51
+      ],
+      "text": "date d'élaboration 04/08/2026",
+      "continues": false
+    },
+    {
+      "label": "header",
+      "bbox": [
+        928,
+        42,
+        984,
+        53
+      ],
+      "text": "Page 1/1",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        55,
+        258,
+        64
+      ],
+      "text": "identification de l'établissement dont n° FINESS",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        66,
+        147,
+        75
+      ],
+      "text": "POLYCLINIQUE MAYMARD",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        77,
+        147,
+        86
+      ],
+      "text": "13 Rue Marcel PAUL",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        88,
+        103,
+        97
+      ],
+      "text": "20200 BASTIA",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        424,
+        55,
+        534,
+        64
+      ],
+      "text": "200200145",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        602,
+        55,
+        694,
+        64
+      ],
+      "text": "références à rappeler",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        662,
+        66,
+        694,
+        75
+      ],
+      "text": "N° LOT 574",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        853,
+        66,
+        901,
+        75
+      ],
+      "text": "02491",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        424,
+        77,
+        534,
+        86
+      ],
+      "text": "coefficient MCO :",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        662,
+        77,
+        778,
+        86
+      ],
+      "text": "N° FACTURE 260800007",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        842,
+        88,
+        921,
+        97
+      ],
+      "text": "MSA ANGERS",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        424,
+        88,
+        534,
+        97
+      ],
+      "text": "1,1007",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        662,
+        88,
+        778,
+        97
+      ],
+      "text": "N° D'ENTREE c722614851",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        662,
+        98,
+        727,
+        107
+      ],
+      "text": "N° FEUILLET 1",
+      "continues": false
+    },
+    {
+      "label": "title",
+      "bbox": [
+        14,
+        109,
+        136,
+        118
+      ],
+      "text": "le bénéficiaire des soins",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        119,
+        183,
+        129
+      ],
+      "text": "nom et prénom(s) Nom Prénom",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        130,
+        309,
+        139
+      ],
+      "text": "nom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu)",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        140,
+        350,
+        150
+      ],
+      "text": "n° d'immatriculation et clé 2520299007007 01 à défaut, date de naissance",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        151,
+        247,
+        160
+      ],
+      "text": "code organisme de rattachement 02491000 date début hospitalisation",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        161,
+        472,
+        169
+      ],
+      "text": "entrée le 03/08/2026 à 11 heures, sortie le 03/08/2026 à 14 heures",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        507,
+        109,
+        781,
+        118
+      ],
+      "text": "l'assuré(e) (s'il et elle n'est pas le bénéficiaire des soins)",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        507,
+        119,
+        660,
+        129
+      ],
+      "text": "nom et prénom(s)",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        507,
+        130,
+        781,
+        139
+      ],
+      "text": "nom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu)",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        507,
+        140,
+        660,
+        150
+      ],
+      "text": "n° d'immatriculation et clé",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        507,
+        151,
+        563,
+        160
+      ],
+      "text": "adresse",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        507,
+        161,
+        660,
+        170
+      ],
+      "text": "Nom usuel :",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        507,
+        171,
+        563,
+        180
+      ],
+      "text": "Nom usuel :",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        375,
+        173,
+        660,
+        182
+      ],
+      "text": "conditions de prise en charge du bénéficiaire des soins",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        375,
+        183,
+        468,
+        192
+      ],
+      "text": "code exonération 4",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        717,
+        183,
+        900,
+        192
+      ],
+      "text": "soins en rapport avec l'article L. 212-1",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        194,
+        338,
+        203
+      ],
+      "text": "maternité □ date du début de grossesse ou date d'accouchement",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        507,
+        194,
+        563,
+        203
+      ],
+      "text": "AT/MP □ n° ou date",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        612,
+        194,
+        781,
+        203
+      ],
+      "text": "accident causé par un tiers non □ oui □ date",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        172,
+        214,
+        340,
+        224
+      ],
+      "text": "frais de structure et de soins (1)",
+      "continues": false
+    },
+    {
+      "label": "table",
+      "bbox": [
+        14,
+        224,
+        498,
+        312
+      ],
+      "text": "<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>période</th>\n      <th>prix unitaire</th>\n      <th>quantité</th>\n      <th>coût</th>\n      <th>montant facturé</th>\n      <th>codes exo.</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>S</td>\n      <td></td>\n      <td>GHS</td>\n      <td>9606</td>\n      <td>03/08/26</td>\n      <td>03/08/26</td>\n      <td>340,21</td>\n      <td>1</td>\n      <td>1</td>\n      <td>374,47</td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        338,
+        307,
+        469,
+        316
+      ],
+      "text": "sous-total 1 374,47",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        662,
+        225,
+        840,
+        234
+      ],
+      "text": "frais de structure et de soins (2)",
+      "continues": false
+    },
+    {
+      "label": "table",
+      "bbox": [
+        500,
+        224,
+        990,
+        312
+      ],
+      "text": "<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>période</th>\n      <th>prix unitaire</th>\n      <th>quantité</th>\n      <th>coût</th>\n      <th>montant facturé</th>\n      <th>codes exo.</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        830,
+        307,
+        900,
+        316
+      ],
+      "text": "sous-total 2",
+      "continues": false
+    },
+    {
+      "label": "title",
+      "bbox": [
+        197,
+        320,
+        795,
+        333
+      ],
+      "text": "produits de la LPP facturables, spécialités pharmaceutiques et médicaments soumis à ATU (joindre la prescription)",
+      "continues": false
+    },
+    {
+      "label": "table",
+      "bbox": [
+        14,
+        324,
+        990,
+        498
+      ],
+      "text": "<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>mode de traitement</th>\n      <th>DMT</th>\n      <th>présentation</th>\n      <th>n° GHS</th>\n      <th>n° d'identification du prescripteur</th>\n      <th>date de prescription</th>\n      <th>date d'implantation</th>\n      <th>libellé</th>\n      <th>code</th>\n      <th>tarif de référence ou prix unitaire</th>\n      <th>quantité</th>\n      <th>montant facturé</th>\n      <th>codes exo.</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td></td>\n      <td>PH8</td>\n      <td>9606</td>\n      <td>201400330</td>\n      <td>03/08/2026</td>\n      <td>03/08/26</td>\n      <td>Ecart de tarif médicaments</td>\n      <td>9002651</td>\n      <td>182,37</td>\n      <td>2</td>\n      <td>364,74</td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td></td>\n      <td></td>\n      <td>EMI</td>\n      <td>9606</td>\n      <td>201400330</td>\n      <td>03/08/2026</td>\n      <td>03/08/26</td>\n      <td></td>\n      <td></td>\n      <td>79,76</td>\n      <td>1</td>\n      <td>79,76</td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        762,
+        488,
+        852,
+        497
+      ],
+      "text": "sous-total 3 444,50",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        771,
+        498,
+        950,
+        507
+      ],
+      "text": "sous-total 1+2+3 818,97",
+      "continues": false
+    },
+    {
+      "label": "title",
+      "bbox": [
+        56,
+        508,
+        454,
+        519
+      ],
+      "text": "relevé des honoraires médicaux, para médicaux et actes de laboratoire",
+      "continues": false
+    },
+    {
+      "label": "table",
+      "bbox": [
+        11,
+        518,
+        812,
+        848
+      ],
+      "text": "<table>\n  <thead>\n    <tr>\n      <th>transfert</th>\n      <th>n° de case</th>\n      <th>numéro d'identification du prescripteur</th>\n      <th>spécialité</th>\n      <th>numéro d'identification de l'exécutant</th>\n      <th>spécialité</th>\n      <th>date des actes</th>\n      <th>date de la prescription</th>\n      <th>n° GHS</th>\n      <th>code acte ou lettre-clé</th>\n      <th>actes effectués</th>\n      <th>quantité ou coefficient</th>\n      <th>honoraires facturés</th>\n      <th>disponibilité</th>\n      <th>code exonération</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td></td>\n      <td>1</td>\n      <td></td>\n      <td></td>\n      <td>201400330</td>\n      <td>73</td>\n      <td>03/08/26</td>\n      <td></td>\n      <td>9606K</td>\n      <td></td>\n      <td></td>\n      <td>15</td>\n      <td>28,80</td>\n      <td></td>\n      <td></td>\n    </tr>\n  </tbody>\n</table>",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        827,
+        520,
+        981,
+        579
+      ],
+      "text": "signature des praticiens ou auxiliaires médicaux attestant la prestation des actes, l'exactitude du montant total des honoraires facturés et la dispense d'avance de frais",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        827,
+        581,
+        950,
+        590
+      ],
+      "text": "201400330",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        827,
+        592,
+        900,
+        601
+      ],
+      "text": "Dr. FRIKHA AHMED - PAR MANDAT",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        950,
+        592,
+        988,
+        601
+      ],
+      "text": "28,80",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        556,
+        848,
+        766,
+        857
+      ],
+      "text": "sous-total 4 28,80",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        857,
+        267,
+        866
+      ],
+      "text": "transfert provisoire – n° FINESS établissement 1",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        448,
+        857,
+        590,
+        866
+      ],
+      "text": "n° FINESS établissement 2",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        868,
+        110,
+        877
+      ],
+      "text": "MANDATAIRE(S)",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        879,
+        103,
+        888
+      ],
+      "text": "Domiciliation :",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        400,
+        879,
+        432,
+        888
+      ],
+      "text": "IBAN :",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        890,
+        50,
+        900
+      ],
+      "text": "RIB :",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        400,
+        890,
+        432,
+        900
+      ],
+      "text": "BIC :",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        909,
+        123,
+        918
+      ],
+      "text": "MONTANT TOTAL en euros ( 1+2+3+4 )",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        212,
+        909,
+        277,
+        918
+      ],
+      "text": "847,77",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        312,
+        909,
+        469,
+        918
+      ],
+      "text": "l'assuré(e) n'a pas payé la part obligatoire",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        507,
+        909,
+        650,
+        918
+      ],
+      "text": "l'assuré(e) n'a pas payé la part complémentaire",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        827,
+        890,
+        873,
+        900
+      ],
+      "text": "signature l'établis",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        937,
+        373,
+        946
+      ],
+      "text": "Le règlement est effectué conformément au choix fait par le praticien.",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        950,
+        904,
+        959
+      ],
+      "text": "Quiconque se rend coupable de fraude ou de fausse déclaration est passible de pénalités financières, d'amende et/ou d'emprisonnement (articles 313-1 à 313-3, 433-19, 441-1 et suivants du Code pénal, article L. 164-17-1 du Code de la sécurité sociale).",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        961,
+        873,
+        970
+      ],
+      "text": "Les informations figurant sur cette feuille, y compris le détail des actes et des prestations servies, sont destinées à votre organisme d'assurance maladie aux fins de remboursement et de contrôle.",
+      "continues": false
+    },
+    {
+      "label": "text",
+      "bbox": [
+        15,
+        972,
+        909,
+        985
+      ],
+      "text": "En application de la loi du 6 janvier 1978 modifiée, vous pouvez obtenir la communication des informations vous concernant et, le cas échéant, leur rectification en vous adressant auprès de votre organisme d'assurance maladie.",
+      "continues": false
+    },
+    {
+      "label": "footer",
+      "bbox": [
+        789,
+        937,
+        978,
+        946
+      ],
+      "text": "Le 04/08/2026 14:51 (LAPREZ)",
+      "continues": false
+    },
+    {
+      "label": "page_number",
+      "bbox": [
+        953,
+        962,
+        988,
+        972
+      ],
+      "text": "S 3404",
+      "continues": false
+    }
+  ],
+  "status": "done",
+  "message": "LightOnOCR-3-4B · vLLM endpoint · 1190×1684 px · 75 blocks · 3,815 tokens · 244 tok/s · 16.8 s",
+  "filename": "Facture1_07",
+  "example": null
+}

@@ -1,0 +1,289 @@
+![title](234,12,764,27) # établissements de santé privés – bordereau de facturation
+
+![header_image](15,22,77,38) logo "cea fa"
+
+![header](308,32,689,50) articles R. 161-40 et suivants du Code de la sécurité sociale article L. 212-1 du Code des pensions militaires d'invalidité et des victimes de la guerre
+
+![header](14,40,79,49) n° 12278*01
+
+![header](730,42,983,53) date d'élaboration 04/08/2026 Page 1/1
+
+![text](14,54,259,85) identification de l'établissement dont n° FINESS POLYCLINIQUE MAYMARD 13 Rue Marcel PAUL
+
+![text+](396,85,477,96) 20200 BASTIA
+
+![text](400,55,537,64) 200200145
+
+![text](397,72,537,81) coefficient MCO : 1,1007
+
+![text](595,54,690,63) références à rappeler
+
+![text](665,62,693,74) N° LOT 574
+
+![text](665,73,754,82) N° FACTURE 260800016
+
+![text](665,83,744,92) N° D'ENTREE c722614851
+
+![text](840,83,921,92) MSA ANGERS
+
+![text](840,62,900,74) 02491
+
+![text](14,109,136,118) le bénéficiaire des soins
+
+![text](14,118,222,127) nom et prénom(s) Nom Prénom
+
+![text](14,128,262,137) (nom de famille (de naissance) suivi du nom d'usage (éventuel et s'il y a lieu))
+
+![text](14,138,351,147) n° d'immatriculation et clé 2520299007016 01 à défaut, date de naissance
+
+![text](14,148,313,157) code organisme de rattachement 02491000 date début hospitalisation
+
+![text](14,157,474,166) entrée le 03/08/2026 à 11 heures, sortie le 03/08/2026 à 14 heures
+
+![text](504,109,778,118) l'assuré(e) (s'il et elle n'est pas le bénéficiaire des soins)
+
+![text](504,118,662,127) nom et prénom(s)
+
+![text](504,128,762,137) (nom de famille (de naissance) suivi du nom d'usage (éventuel et s'il y a lieu))
+
+![text](504,138,662,147) n° d'immatriculation et clé
+
+![text](504,148,563,157) adresse
+
+![text](504,157,643,166) Nom usuel :
+
+![text](504,167,643,176) Nom usuel :
+
+![text](376,167,636,176) conditions de prise en charge du bénéficiaire des soins
+
+![text](376,177,494,186) code exonération 4
+
+![text](717,177,983,186) soins en rapport avec l'article L. 212-1
+
+![text](14,187,337,207) maternité date du début de grossesse ou date d'accouchement
+
+![text](504,187,636,196) AT/MP n° ou date
+
+![text](611,187,983,196) accident causé par un tiers non oui date
+
+![text](162,216,493,225) frais de structure et de soins (1)
+
+![table](14,216,498,312) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>mode de traitement</th>
+      <th>DMT</th>
+      <th>présentation</th>
+      <th>n° GHS</th>
+      <th>période</th>
+      <th>quantité</th>
+      <th>coût</th>
+      <th>montant facturé</th>
+      <th>codes exo.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>S</td>
+      <td></td>
+      <td>GHS</td>
+      <td>9606</td>
+      <td>03/08/26</td>
+      <td>03/08/26</td>
+      <td>340,21</td>
+      <td>1</td>
+      <td>374,47</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+![text](329,307,460,316) sous-total 1 374,47
+
+![text](650,216,983,225) frais de structure et de soins (2)
+
+![table](504,216,988,312) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>mode de traitement</th>
+      <th>DMT</th>
+      <th>présentation</th>
+      <th>n° GHS</th>
+      <th>période</th>
+      <th>quantité</th>
+      <th>coût</th>
+      <th>montant facturé</th>
+      <th>codes exo.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+![text](830,307,982,316) sous-total 2
+
+![text](199,322,792,331) produits de la LPP facturables, spécialités pharmaceutiques et médicaments soumis à ATU (joindre la prescription)
+
+![table](14,322,988,498) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>mode de traitement</th>
+      <th>DMT</th>
+      <th>présentation</th>
+      <th>n° GHS</th>
+      <th>n° d'identification du prescripteur</th>
+      <th>date de prescription</th>
+      <th>date d'implantation</th>
+      <th>libellé</th>
+      <th>code</th>
+      <th>tarif de référence ou prix unitaire</th>
+      <th>quantité</th>
+      <th>montant facturé</th>
+      <th>codes exo.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>PH8</td>
+      <td>9606</td>
+      <td>201400330</td>
+      <td>03/08/2026</td>
+      <td>03/08/26</td>
+      <td>Ecart de tarif médicaments</td>
+      <td>9002651</td>
+      <td>182,37</td>
+      <td>2</td>
+      <td>364,74</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>EMI</td>
+      <td>9606</td>
+      <td>201400330</td>
+      <td>03/08/2026</td>
+      <td>03/08/26</td>
+      <td></td>
+      <td></td>
+      <td>79,76</td>
+      <td>1</td>
+      <td>79,76</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+![text](769,498,899,507) sous-total 3 444,50
+
+![text](770,498,949,507) sous-total 1+2+3 818,97
+
+![title](56,507,453,518) relevé des honoraires médicaux, para médicaux et actes de laboratoire
+
+![table](14,507,988,846) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>n° de case</th>
+      <th>numéro d'identification du prescripteur</th>
+      <th>spécialité</th>
+      <th>numéro d'identification de l'exécutant</th>
+      <th>spécialité</th>
+      <th>date des actes</th>
+      <th>date de la prescription</th>
+      <th>n° GHS</th>
+      <th>code acte ou lettre-clé</th>
+      <th>actes effectués</th>
+      <th>quantité ou coefficient</th>
+      <th>honoraires facturés</th>
+      <th>dates</th>
+      <th>code exonération</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>201400330</td>
+      <td>73</td>
+      <td>03/08/26</td>
+      <td></td>
+      <td>9606K</td>
+      <td></td>
+      <td></td>
+      <td>15</td>
+      <td>28,80</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+![text](770,518,982,537) signature des praticiens ou auxiliaires médicaux attestant la prestation des actes, l'exactitude du montant total des honoraires facturés et la dispense d'avance de frais
+
+![text](830,557,977,566) 201400330
+
+![text](830,567,920,576) Dr. FRIKHA AHMED - PAR MANDAT
+
+![text](940,567,984,576) 28,80
+
+![text](556,846,766,855) sous-total 4 28,80
+
+![text](14,855,265,864) transfert provisoire – n° FINESS établissement 1
+
+![text](446,855,590,864) n° FINESS établissement 2
+
+![text](14,864,112,874) MANDATAIRE(S)
+
+![text](14,875,103,884) Domiciliation :
+
+![text](397,875,437,884) IBAN :
+
+![text](14,885,43,896) RIB :
+
+![text](397,885,437,896) BIC :
+
+![text](14,907,136,916) MONTANT TOTAL en euros ( 1+2+3+4 )
+
+![text](212,907,270,916) 847,77
+
+![text](296,907,437,916) l'assuré(e) n'a pas payé la part obligatoire
+
+![text](478,907,650,916) l'assuré(e) n'a pas payé la part complémentaire
+
+![text](828,892,871,901) signature
+
+![text](873,892,908,901) l'établis
+
+![text](14,937,372,946) Le règlement est effectué conformément au choix fait par le praticien.
+
+![text](14,950,905,959) Quiconque se rend coupable de fraude ou de fausse déclaration est passible de pénalités financières, d'amende et/ou d'emprisonnement (articles 313-1 à 313-3, 433-19, 441-1 et suivants du Code pénal, article L. 163-17-1 du Code de la sécurité sociale).
+
+![text](14,961,872,970) Les informations figurant sur cette feuille, y compris le détail des actes et des prestations servies, sont destinées à votre organisme d'assurance maladie aux fins de remboursement et de contrôle.
+
+![text](14,972,909,985) En application de la loi du 6 janvier 1978 modifiée, vous pouvez obtenir la communication des informations vous concernant et, le cas échéant, leur rectification en vous adressant auprès de votre organisme d'assurance maladie.
+
+![footer](788,937,978,946) Le 04/08/2026 14:51 (LAPREZ)
+
+![page_number](952,962,988,972) S 3404
