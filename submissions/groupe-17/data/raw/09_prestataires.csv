@@ -1,0 +1,15 @@
+prestataire_id,nom,domaine,type_contrat
+PRE01,Garonne Multiservices (fictif),Multiservices / chauffage (contrat P2P3),Contrat multiservices
+PRE02,Occitherm Maintenance (fictif),Chauffage collectif (contrat P2P3),Contrat chaufferies
+PRE03,Elev'Sud Ascenseurs (fictif),Ascenseurs,Contrat ascenseurs
+PRE04,Pyrène Plomberie Confort (fictif),Plomberie / sanitaires,Marché à bons de commande
+PRE05,Volt'Occitan Électricité (fictif),Électricité,Marché à bons de commande
+PRE06,Menuiseries du Lauragais (fictif),Menuiseries / serrurerie,Marché à bons de commande
+PRE07,Tolosa Rénovation TCE (fictif),Tous corps d'état (remise en état),Marché TCE
+PRE08,Peintures & Sols Midi (fictif),Peinture / sols,Marché TCE
+PRE09,Net'Résidence 31 (fictif),Nettoyage,Contrat nettoyage
+PRE10,Diag'Habitat Sud (fictif),"Diagnostics (DPE, amiante...)",Marché diagnostics
+PRE11,Hygiène Services Sud (fictif),Nuisibles (3D),Marché à bons de commande
+PRE12,Jardins de l'Hers (fictif),Espaces verts,Contrat espaces verts
+PRE13,Accès Contrôle Toulouse (fictif),Portes / contrôle d'accès,Marché à bons de commande
+PRE14,Énergies Solaires Garonne (fictif),Solaire thermique,Contrat maintenance

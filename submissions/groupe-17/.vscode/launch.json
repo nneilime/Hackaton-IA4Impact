@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "BatIA - Streamlit",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "streamlit",
+      "args": ["run", "app.py", "--server.port", "8501"],
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}",
+      "env": { "PYTHONPATH": "${workspaceFolder}/src" }
+    }
+  ]
+}

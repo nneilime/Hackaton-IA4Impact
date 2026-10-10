@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/outputs/
+.streamlit/secrets.toml
+.vscode/launch.json

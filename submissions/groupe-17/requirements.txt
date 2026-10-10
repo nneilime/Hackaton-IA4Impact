@@ -1,0 +1,10 @@
+streamlit
+plotly
+pandas
+numpy
+scikit-learn
+pdfplumber
+pyarrow
+python-dotenv
+pytest
+ruff
