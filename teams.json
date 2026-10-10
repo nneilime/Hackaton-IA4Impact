@@ -256,6 +256,46 @@
       "created_by": "Maz0ky"
     },
     {
+      "slug": "groupe-18-bis",
+      "name": "Groupe 18 bis",
+      "challenge": "action-logement",
+      "owner": "MattDupp",
+      "members": [
+        {
+          "login": "MattDupp",
+          "status": "joined",
+          "created_at": "2026-10-10T13:39:13.411Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:39:13.411Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:39:13.411Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:39:13.411Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:39:13.411Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:39:13.411Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:39:13.411Z",
+      "created_by": "MattDupp"
+    },
+    {
       "slug": "groupe-21",
       "name": "Groupe 21",
       "challenge": "bpce-si",
