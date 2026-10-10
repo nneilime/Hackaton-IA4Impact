@@ -1,6 +1,36 @@
 {
   "teams": [
     {
+      "slug": "groupe-13",
+      "name": "Groupe 13",
+      "challenge": "imsa",
+      "owner": "Zalingu",
+      "members": [
+        {
+          "login": "Zalingu",
+          "status": "joined",
+          "created_at": "2026-10-10T12:31:44.616Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T12:31:44.616Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T12:31:44.616Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T12:31:44.616Z"
+        }
+      ],
+      "created_at": "2026-10-10T12:31:44.616Z",
+      "created_by": "Zalingu"
+    },
+    {
       "slug": "staff",
       "name": "Staff",
       "challenge": "enedis",
