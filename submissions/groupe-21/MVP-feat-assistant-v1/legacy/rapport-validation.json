@@ -1,0 +1,45 @@
+{
+  "source_files_copied_exactly": 11,
+  "rag_records": 921,
+  "rag_groups": 458,
+  "rag_verified_partial_contexts": 8,
+  "human_groups": 458,
+  "human_source_urls": 921,
+  "human_article_words": 396,
+  "human_max_pages": 1,
+  "static_records_complete_answers": false,
+  "live_source_reader_required": true,
+  "human_pdf_pages_verified": 1,
+  "human_pdf_render_inspected": true,
+  "rag_cache_reads_verified": 921,
+  "rag_unparsed_editorial_blocks": 0,
+  "rag_nested_lists_checked": 44,
+  "rag_tables_checked": 8,
+  "rag_live_http_reads": [
+    {
+      "status": "ok",
+      "bank_code": "CE",
+      "read_mode": "live_http",
+      "read_at": "2026-10-10T00:29:37.525149+00:00",
+      "factual_answer_allowed": true,
+      "html_changed_since_snapshot": true,
+      "unparsed_editorial_tags": [],
+      "source_id": "CE-f4ebc36eec0b",
+      "blocks": 7,
+      "words": 172
+    },
+    {
+      "status": "ok",
+      "bank_code": "BP",
+      "read_mode": "live_http",
+      "read_at": "2026-10-10T00:29:38.771976+00:00",
+      "factual_answer_allowed": true,
+      "html_changed_since_snapshot": true,
+      "unparsed_editorial_tags": [],
+      "source_id": "BP-3a449fc3bca5",
+      "blocks": 4,
+      "words": 175
+    }
+  ],
+  "deployed_chatbot_tested": false
+}

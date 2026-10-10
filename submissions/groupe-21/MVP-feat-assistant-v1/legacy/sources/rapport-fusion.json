@@ -1,0 +1,80 @@
+{
+  "source_questions": 921,
+  "exact_title_groups_before_review": 468,
+  "compact_groups": 458,
+  "common_groups": 445,
+  "bank_specific_groups": 13,
+  "avoided_repeated_entries": 463,
+  "manual_reviewed_merges": [
+    {
+      "label": "Peut-on activer ou désactiver le paiement sans contact ?",
+      "groups_before": 2,
+      "source_count": 2,
+      "match": "thème commun, portée différente"
+    },
+    {
+      "label": "Comment alimenter Wise par un virement SEPA depuis mon compte ?",
+      "groups_before": 2,
+      "source_count": 4,
+      "match": "questions similaires"
+    },
+    {
+      "label": "Comment ajouter un bénéficiaire de virement ou son IBAN ?",
+      "groups_before": 2,
+      "source_count": 4,
+      "match": "questions similaires"
+    },
+    {
+      "label": "Quand puis-je virer de l’argent à un nouveau bénéficiaire ?",
+      "groups_before": 2,
+      "source_count": 4,
+      "match": "questions similaires"
+    },
+    {
+      "label": "L’assurance auto est-elle obligatoire et pourquoi assurer son véhicule ?",
+      "groups_before": 2,
+      "source_count": 4,
+      "match": "questions similaires"
+    },
+    {
+      "label": "À quoi sert l’ajout de comptes détenus dans une autre banque ?",
+      "groups_before": 2,
+      "source_count": 4,
+      "match": "questions similaires"
+    },
+    {
+      "label": "Qu’est-ce que la version digitale de ma carte et à quoi sert-elle ?",
+      "groups_before": 2,
+      "source_count": 4,
+      "match": "questions similaires"
+    },
+    {
+      "label": "Où retrouver un fichier téléchargé ?",
+      "groups_before": 3,
+      "source_count": 6,
+      "match": "même incident, variantes navigateur"
+    },
+    {
+      "label": "Comment adhérer à un plan d’épargne retraite individuel en ligne ?",
+      "groups_before": 2,
+      "source_count": 4,
+      "match": "questions similaires"
+    }
+  ],
+  "comparison_counts": {
+    "Repères à comparer": 21,
+    "Identiques": 21,
+    "Rédaction différente": 65,
+    "Adaptées": 336,
+    "Adaptées · portée précisée": 1,
+    "Rédaction différente · portée précisée": 1,
+    "BP uniquement": 8,
+    "CE uniquement": 5
+  },
+  "omitted_urls": [],
+  "duplicated_urls": [],
+  "banks": {
+    "Caisse d’Épargne": 459,
+    "Banque Populaire": 462
+  }
+}
