@@ -1,11 +1,12 @@
 const { send, readBody, handleError, guard, authenticate, checkEventCode } = require("../_lib/http");
 const {
   readTeams,
+  readParticipants,
+  serializeParticipants,
   commitFiles,
   slugify,
   getUserEmails,
   inviteCollaborator,
-  buildParticipantsCsv,
 } = require("../_lib/github");
 const { hashEmail, encryptEmail } = require("../_lib/emailCrypto");
 const { cleanEmails, publicTeam, findActiveMembership } = require("../_lib/teams");
@@ -25,8 +26,8 @@ function teamReadme(team) {
     "",
     ...team.members.map((m) => {
       const who = m.login ? `@${m.login}` : "en attente de connexion";
-      const hash = m.email_hash ? ` — \`${m.email_hash.slice(0, 12)}…\`` : "";
-      return `- ${who}${hash}`;
+      const status = m.status === "joined" ? "" : " _(invité)_";
+      return `- ${who}${status}`;
     }),
     "",
     "## Le projet",
@@ -76,7 +77,11 @@ module.exports = async (req, res) => {
     const primaryHash = hashEmail(primaryEmail);
 
     const creatorHashes = [...new Set(creatorEmails.map((e) => hashEmail(e)).filter(Boolean))];
-    const conflict = findActiveMembership(store, { login: user.login, hashes: creatorHashes });
+    const participants = await readParticipants();
+    const conflict = findActiveMembership(store, participants.rows, {
+      login: user.login,
+      hashes: creatorHashes,
+    });
     if (conflict) {
       return send(res, 409, {
         error: `Tu fais déjà partie de l'équipe "${conflict.name}". Quitte-la avant d'en créer une autre.`,
@@ -84,33 +89,27 @@ module.exports = async (req, res) => {
     }
 
     const declared = cleanEmails(body.members);
+    // Le créateur (email principal) est toujours membre ; on évite les doublons
+    // si l'un de ses autres emails vérifiés figure aussi dans la liste déclarée.
+    const memberEmails = [primaryEmail, ...declared.filter((e) => !creatorEmailSet.has(e))];
+
+    const created_at = new Date().toISOString();
     const members = [];
+    const newRows = [];
     const seen = new Set();
-    for (const email of declared) {
+    for (const email of memberEmails) {
       const hash = hashEmail(email);
       if (!hash || seen.has(hash)) continue;
       seen.add(hash);
       const isCreator = creatorEmailSet.has(email) || hash === primaryHash;
-      members.push({
+      const login = isCreator ? user.login : null;
+      members.push({ login, status: isCreator ? "joined" : "invited", created_at });
+      newRows.push({
         email_hash: hash,
         email_enc: encryptEmail(email),
-        login: isCreator ? user.login : null,
-        joined: isCreator,
+        login: login || "",
+        team_name: name,
       });
-    }
-    if (!members.some((m) => m.email_hash === primaryHash)) {
-      members.unshift({
-        email_hash: primaryHash,
-        email_enc: encryptEmail(primaryEmail),
-        login: user.login,
-        joined: true,
-      });
-    }
-    // Le créateur est toujours membre confirmé
-    const creatorEntry = members.find((m) => m.email_hash === primaryHash);
-    if (creatorEntry) {
-      creatorEntry.login = user.login;
-      creatorEntry.joined = true;
     }
 
     const team = {
@@ -119,7 +118,7 @@ module.exports = async (req, res) => {
       challenge: challenge || null,
       owner: user.login,
       members,
-      created_at: new Date().toISOString(),
+      created_at,
       created_by: user.login,
     };
 
@@ -129,7 +128,7 @@ module.exports = async (req, res) => {
     await commitFiles(
       {
         "teams.json": JSON.stringify(store, null, 2) + "\n",
-        "participants.csv": buildParticipantsCsv(store),
+        "participants.csv": serializeParticipants([...participants.rows, ...newRows]),
         [`submissions/${slug}/README.md`]: teamReadme(team),
       },
       `teams: création de ${slug}`

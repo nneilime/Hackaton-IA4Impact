@@ -162,30 +162,21 @@
     });
   }
 
-  function shortHash(hash) {
-    const s = String(hash || "");
-    return s ? s.slice(0, 10) + "…" : "";
-  }
-
   function memberView(m) {
-    const pending = !m.joined;
+    const pending = m.status !== "joined";
     return `<li>
       <span class="dot ${pending ? "dot--pending" : ""}"></span>
       <span>${m.login ? "@" + esc(m.login) : "en attente"}</span>
-      ${m.email_hash ? `<span class="muted hash" title="${esc(m.email_hash)}">${esc(shortHash(m.email_hash))}</span>` : ""}
     </li>`;
   }
 
   function teamCard(team) {
     const challenge = state.challenges.find((c) => c.slug === team.challenge);
-    const myHashes = (state.user && state.user.email_hashes) || [];
     const myLogin = state.user ? String(state.user.login || "").toLowerCase() : null;
     const me = (team.members || []).find(
-      (m) =>
-        (myLogin && m.login && String(m.login).toLowerCase() === myLogin) ||
-        myHashes.includes(String(m.email_hash || "").toLowerCase())
+      (m) => myLogin && m.login && String(m.login).toLowerCase() === myLogin
     );
-    const joined = !!(me && me.joined && me.login);
+    const joined = !!(me && me.login && me.status === "joined");
     const isOwner = !!(myLogin && team.owner && String(team.owner).toLowerCase() === myLogin);
 
     const card = document.createElement("article");

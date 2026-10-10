@@ -1,3 +1,3 @@
-email_hash,email_enc,login,team_slug,team_name,challenge,status,created_at
-6b08c86058d9c154e67a23a7e68b4a5037e6cbb88b69bb0d74d8764d1ad0343e,v1:ejrAtlVoydvY38/E:cLpMgChftbOCb71JTunMRg==:qc8OcLPrfS6rTx5uEEe7jkje,2chaynz,staff,Staff,enedis,joined,2026-10-10T09:41:27.843Z
-e55de18f61deaeca4eb205bb12124719f6166be49a42d22a2cd87089a81cb648,v1:ftdUl7GZg6IMD8dI:ZpkAxNjmUyPUybumftIDdQ==:VV5Mvcmixj1a/DG7IjTmOU9i49ftnpEOSnI=,nneilime,staff,Staff,enedis,joined,2026-10-10T09:41:27.843Z
+email_hash,email_enc,login,team_name
+6b08c86058d9c154e67a23a7e68b4a5037e6cbb88b69bb0d74d8764d1ad0343e,v1:ejrAtlVoydvY38/E:cLpMgChftbOCb71JTunMRg==:qc8OcLPrfS6rTx5uEEe7jkje,2chaynz,Staff
+e55de18f61deaeca4eb205bb12124719f6166be49a42d22a2cd87089a81cb648,v1:ftdUl7GZg6IMD8dI:ZpkAxNjmUyPUybumftIDdQ==:VV5Mvcmixj1a/DG7IjTmOU9i49ftnpEOSnI=,nneilime,Staff

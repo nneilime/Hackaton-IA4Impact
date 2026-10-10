@@ -1,5 +1,10 @@
 const { send, readBody, handleError, guard, authenticate, checkEventCode } = require("../_lib/http");
-const { readTeams, commitFiles, buildParticipantsCsv } = require("../_lib/github");
+const {
+  readTeams,
+  readParticipants,
+  serializeParticipants,
+  commitFiles,
+} = require("../_lib/github");
 const { hashEmail, encryptEmail } = require("../_lib/emailCrypto");
 const { cleanEmails, publicTeam, findActiveMembership } = require("../_lib/teams");
 
@@ -27,27 +32,34 @@ module.exports = async (req, res) => {
     const list = cleanEmails(emails);
     if (!list.length) return send(res, 400, { error: "Aucune adresse email valide." });
 
+    const participants = await readParticipants();
+    const teamNameLc = String(team.name || "").toLowerCase();
     team.members = team.members || [];
     const existing = new Set(
-      team.members.map((m) => String((m && m.email_hash) || "").toLowerCase()).filter(Boolean)
+      participants.rows
+        .filter((r) => String(r.team_name || "").toLowerCase() === teamNameLc)
+        .map((r) => String(r.email_hash || "").toLowerCase())
+        .filter(Boolean)
     );
+    const created_at = new Date().toISOString();
     const added = [];
     const skipped = [];
     for (const email of list) {
       const hash = hashEmail(email);
       if (!hash || existing.has(hash.toLowerCase())) continue;
-      const conflict = findActiveMembership(store, { hashes: [hash] }, slug);
+      const conflict = findActiveMembership(store, participants.rows, { hashes: [hash] }, slug);
       if (conflict) {
         skipped.push({ email, team: conflict.name });
         continue;
       }
       existing.add(hash.toLowerCase());
-      team.members.push({
+      participants.rows.push({
         email_hash: hash,
         email_enc: encryptEmail(email),
-        login: null,
-        joined: false,
+        login: "",
+        team_name: team.name,
       });
+      team.members.push({ login: null, status: "invited", created_at });
       added.push(email);
     }
 
@@ -55,7 +67,7 @@ module.exports = async (req, res) => {
       await commitFiles(
         {
           "teams.json": JSON.stringify(store, null, 2) + "\n",
-          "participants.csv": buildParticipantsCsv(store),
+          "participants.csv": serializeParticipants(participants.rows),
         },
         `teams: ${user.login} ajoute ${added.length} membre(s) à ${slug}`
       );

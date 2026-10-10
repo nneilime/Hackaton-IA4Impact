@@ -39,27 +39,74 @@ function init() {
   console.log(fs.readFileSync(KEY_PATH, "utf8").trim());
 }
 
-function loadStore() {
-  const raw = fs.readFileSync(path.join(REPO_ROOT, "teams.json"), "utf8");
-  const parsed = JSON.parse(raw);
-  if (!Array.isArray(parsed.teams)) parsed.teams = [];
-  return parsed;
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let field = "";
+  let inQuotes = false;
+  for (let i = 0; i < text.length; i += 1) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i + 1] === '"') {
+          field += '"';
+          i += 1;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        field += c;
+      }
+    } else if (c === '"') {
+      inQuotes = true;
+    } else if (c === ",") {
+      row.push(field);
+      field = "";
+    } else if (c === "\n") {
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = "";
+    } else if (c !== "\r") {
+      field += c;
+    }
+  }
+  if (field !== "" || row.length) {
+    row.push(field);
+    rows.push(row);
+  }
+  return rows.filter((r) => r.some((v) => v !== ""));
 }
+
+function loadParticipants() {
+  const raw = fs.readFileSync(path.join(REPO_ROOT, "participants.csv"), "utf8");
+  const rows = parseCsv(raw);
+  if (!rows.length) return [];
+  const header = rows[0].map((h) => String(h).trim());
+  return rows.slice(1).map((cells) => {
+    const obj = {};
+    header.forEach((h, i) => {
+      obj[h] = cells[i] != null ? cells[i] : "";
+    });
+    return obj;
+  });
+}
+
+const csvEscape = (v) =>
+  /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
 
 function exportEmails() {
   process.env.EMAIL_SECRET_KEY = readKeyFile();
   const { decryptEmail } = require("../api/_lib/emailCrypto");
-  const store = loadStore();
-  const rows = [["email", "login", "team_slug", "team_name", "status"].join(",")];
-  for (const team of store.teams) {
-    for (const m of team.members || []) {
-      const email = m && typeof m === "object" && m.email_enc ? decryptEmail(m.email_enc) : "";
-      rows.push(
-        [email, (m && m.login) || "", team.slug, team.name, m && m.joined ? "joined" : "invited"]
-          .map((v) => (/[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : v))
-          .join(",")
-      );
+  const rows = [["email", "login", "team_name"].join(",")];
+  for (const p of loadParticipants()) {
+    let email = "";
+    try {
+      if (p.email_enc) email = decryptEmail(p.email_enc);
+    } catch {
+      email = "";
     }
+    rows.push([email, p.login || "", p.team_name || ""].map(csvEscape).join(","));
   }
   console.log(rows.join("\n"));
 }

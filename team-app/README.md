@@ -22,6 +22,7 @@ team-app/
 │   ├── teams/{index,join,leave,members}.js
 │   └── _lib/                    # helpers (GitHub, CORS, auth, chiffrement)
 ├── scripts/email-key.js      # gestion de la clé de chiffrement des emails
+├── scripts/build-front.js    # minification HTML/CSS/JS du front → dist/
 ├── vercel.json
 └── package.json
 ```
@@ -30,14 +31,16 @@ team-app/
 
 1. Le participant se connecte avec GitHub via le **flow OAuth web** : le site redirige vers
    GitHub, puis le backend échange le code contre un token. **Aucun code à copier-coller.**
-2. Le backend Vercel lit son **login** et ses **emails vérifiés**, et n'expose plus que des
-   **empreintes** (`email_hash`).
+2. Le backend Vercel lit son **login** et ses **emails vérifiés**, puis ne conserve les emails
+   que sous forme **hashée + chiffrée** dans `participants.csv` (jamais en clair). `teams.json`
+   ne stocke que les **profils publics** : `login`, `status` (`joined`/`invited`) et `created_at`.
 3. Il crée une équipe (`teams.json`), crée le dossier `submissions/<équipe>/` et invite le
-   créateur comme collaborateur. Les emails déclarés sont stockés **hashés + chiffrés**, jamais en clair.
+   créateur comme collaborateur. Les emails déclarés alimentent `participants.csv`, qui sert de
+   source de vérité pour le matching des adhésions.
 4. Un coéquipier rejoint l'équipe en cliquant sur **Rejoindre** : tout participant connecté
-   peut rejoindre une équipe librement (son login et l'empreinte de son email GitHub sont
-   enregistrés, puis il est invité comme collaborateur). S'il avait été déclaré par email,
-   son adhésion est simplement confirmée.
+   peut rejoindre une équipe librement (son login est enregistré dans `teams.json` et l'empreinte
+   de son email GitHub dans `participants.csv`, puis il est invité comme collaborateur). S'il
+   avait été déclaré par email, son adhésion est simplement confirmée.
 5. Le **créateur** peut ajouter des emails à son équipe à tout moment : les personnes
    concernées deviennent *membres en attente* et pourront rejoindre en se connectant avec
    cet email GitHub.
@@ -49,9 +52,10 @@ team-app/
    de l'utilisateur) dans `submissions/<équipe>/`. Si `main` est protégée, une Pull Request est
    ouverte automatiquement.
 
-Le backend tient aussi à jour un registre `participants.csv` (`email_hash`, `email_enc`, login,
-équipe, défi, statut `joined`/`invited`) qui couvre **tous les participants déclarés**, y compris
-les membres invités qui n'ont pas encore rejoint l'équipe.
+Le backend tient aussi à jour un registre `participants.csv` (`email_hash`, `email_enc`, `login`,
+`team_name`) qui couvre **tous les participants déclarés**, y compris les membres invités qui
+n'ont pas encore rejoint l'équipe. C'est ce fichier qui sert de source de vérité pour le matching
+des adhésions et la règle « une seule équipe active par personne ».
 
 Aucun email n'est envoyé par l'application.
 
@@ -73,6 +77,19 @@ La clé (32 octets) vit **hors du dépôt**, dans le dossier parent :
 - Calculer l'empreinte d'un email : `node team-app/scripts/email-key.js hash <email>`
 
 La même valeur doit être définie dans Vercel sous `EMAIL_SECRET_KEY`. **Ne jamais committer la clé.**
+
+## Build du front (minification)
+
+Le front est servi **minifié**. Le workflow GitHub Pages installe les dépendances et lance le
+build ; en local :
+
+```bash
+cd team-app
+npm install
+npm run build   # génère team-app/dist/ (HTML/CSS/JS minifiés + assets)
+```
+
+`dist/` est généré et ignoré par git. Modifier les sources dans `front/` puis rebuilder.
 
 ## Configuration
 

@@ -1,7 +1,32 @@
 const { send, readBody, handleError, guard, authenticate, checkEventCode } = require("../_lib/http");
-const { readTeams, commitFiles, getUserEmails, inviteCollaborator, buildParticipantsCsv } = require("../_lib/github");
+const {
+  readTeams,
+  readParticipants,
+  serializeParticipants,
+  commitFiles,
+  getUserEmails,
+  inviteCollaborator,
+} = require("../_lib/github");
 const { hashEmail, encryptEmail } = require("../_lib/emailCrypto");
 const { publicTeam, findActiveMembership } = require("../_lib/teams");
+
+function promoteOrAddMember(team, login, created_at) {
+  team.members = team.members || [];
+  const existing = team.members.find(
+    (m) => m && m.login && String(m.login).toLowerCase() === login.toLowerCase()
+  );
+  if (existing) {
+    existing.status = "joined";
+    return;
+  }
+  const invited = team.members.find((m) => m && !m.login && (m.status || "invited") !== "joined");
+  if (invited) {
+    invited.login = login;
+    invited.status = "joined";
+    return;
+  }
+  team.members.push({ login, status: "joined", created_at });
+}
 
 module.exports = async (req, res) => {
   if (guard(req, res)) return;
@@ -28,51 +53,46 @@ module.exports = async (req, res) => {
 
     // Déjà membre confirmé de cette équipe : opération idempotente.
     const alreadyJoined = (team.members || []).some(
-      (m) =>
-        m &&
-        typeof m === "object" &&
-        m.joined &&
-        ((m.login && String(m.login).toLowerCase() === loginLc) ||
-          hashes.includes(String(m.email_hash || "").toLowerCase()))
+      (m) => m && m.login && String(m.login).toLowerCase() === loginLc && (m.status || "joined") === "joined"
     );
     if (alreadyJoined) {
       await inviteCollaborator(user.login);
       return send(res, 200, { team: publicTeam(team), invited: user.login });
     }
 
-    const conflict = findActiveMembership(store, { login: user.login, hashes }, slug);
+    const participants = await readParticipants();
+    const conflict = findActiveMembership(store, participants.rows, { login: user.login, hashes }, slug);
     if (conflict) {
       return send(res, 409, {
         error: `Tu fais déjà partie de l'équipe "${conflict.name}". Quitte-la avant d'en rejoindre une autre.`,
       });
     }
 
+    const created_at = new Date().toISOString();
     // Membre déclaré correspondant à l'un des emails : on confirme l'adhésion.
-    const member = (team.members || []).find(
-      (m) =>
-        m &&
-        typeof m === "object" &&
-        hashes.includes(String(m.email_hash || "").toLowerCase())
+    const declaredRow = participants.rows.find(
+      (r) =>
+        String(r.team_name || "").toLowerCase() === String(team.name || "").toLowerCase() &&
+        hashes.includes(String(r.email_hash || "").toLowerCase())
     );
-    if (member) {
-      member.login = user.login;
-      member.joined = true;
+    if (declaredRow) {
+      declaredRow.login = user.login;
     } else {
-      // Rejoindre librement : on ajoute le nouveau membre.
+      // Rejoindre librement : on ajoute le nouveau participant.
       const primaryEmail = uniqueEmails[0] || `${user.login}@users.noreply.github.com`;
-      team.members = team.members || [];
-      team.members.push({
+      participants.rows.push({
         email_hash: hashEmail(primaryEmail),
         email_enc: encryptEmail(primaryEmail),
         login: user.login,
-        joined: true,
+        team_name: team.name,
       });
     }
+    promoteOrAddMember(team, user.login, created_at);
 
     await commitFiles(
       {
         "teams.json": JSON.stringify(store, null, 2) + "\n",
-        "participants.csv": buildParticipantsCsv(store),
+        "participants.csv": serializeParticipants(participants.rows),
       },
       `teams: ${user.login} rejoint ${slug}`
     );

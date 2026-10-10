@@ -192,47 +192,92 @@ function csvCell(value) {
   return /[",\n\r;]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 }
 
-// Registre de tous les participants (y compris les membres invités non encore rejoints).
-// Les emails ne sont stockés que sous forme hashée + chiffrée.
-function buildParticipantsCsv(store) {
-  const header = [
-    "email_hash",
-    "email_enc",
-    "login",
-    "team_slug",
-    "team_name",
-    "challenge",
-    "status",
-    "created_at",
-  ];
-  const rows = [header.join(",")];
-  const teams = ((store && store.teams) || [])
-    .slice()
-    .sort((a, b) => String(a.slug).localeCompare(String(b.slug)));
-  for (const team of teams) {
-    const members = (team.members || []).slice().sort((a, b) => {
-      const ea = typeof a === "string" ? a : a.email_hash || a.email || "";
-      const eb = typeof b === "string" ? b : b.email_hash || b.email || "";
-      return String(ea).localeCompare(String(eb));
-    });
-    for (const m of members) {
-      const isObj = m && typeof m === "object";
-      const joined = !!(isObj && m.joined && m.login);
-      rows.push(
-        [
-          csvCell(isObj ? m.email_hash || "" : ""),
-          csvCell(isObj ? m.email_enc || "" : ""),
-          csvCell(isObj ? m.login || "" : ""),
-          csvCell(team.slug),
-          csvCell(team.name),
-          csvCell(team.challenge || ""),
-          csvCell(joined ? "joined" : "invited"),
-          csvCell(team.created_at || ""),
-        ].join(",")
-      );
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let field = "";
+  let inQuotes = false;
+  for (let i = 0; i < text.length; i += 1) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i + 1] === '"') {
+          field += '"';
+          i += 1;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        field += c;
+      }
+    } else if (c === '"') {
+      inQuotes = true;
+    } else if (c === ",") {
+      row.push(field);
+      field = "";
+    } else if (c === "\n") {
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = "";
+    } else if (c !== "\r") {
+      field += c;
     }
   }
-  return rows.join("\n") + "\n";
+  if (field !== "" || row.length) {
+    row.push(field);
+    rows.push(row);
+  }
+  return rows.filter((r) => r.some((v) => v !== ""));
+}
+
+const PARTICIPANTS_HEADER = ["email_hash", "email_enc", "login", "team_name"];
+
+// Registre des participants : source de vérité des hashes d'emails.
+// Les emails ne sont stockés que sous forme hashée + chiffrée.
+async function readParticipants() {
+  const { status, data } = await github(
+    `/repos/${OWNER}/${REPO}/contents/participants.csv?ref=${encodeURIComponent(DEFAULT_BRANCH)}`
+  );
+  if (status === 404) return { rows: [] };
+  if (status !== 200) {
+    const detail = typeof data === "string" ? data.split("\n")[0] : (data && data.message) || "";
+    const err = new Error(`Lecture de participants.csv impossible (${status}${detail ? " " + detail : ""})`);
+    err.statusCode = 502;
+    throw err;
+  }
+  const decoded = Buffer.from(data.content, "base64").toString("utf8");
+  const parsed = parseCsv(decoded);
+  if (!parsed.length) return { rows: [] };
+  const header = parsed[0].map((h) => String(h).trim());
+  const rows = parsed
+    .slice(1)
+    .map((cells) => {
+      const obj = {};
+      header.forEach((h, i) => {
+        obj[h] = cells[i] != null ? cells[i] : "";
+      });
+      return {
+        email_hash: (obj.email_hash || "").trim(),
+        email_enc: obj.email_enc || "",
+        login: (obj.login || "").trim(),
+        team_name: obj.team_name || "",
+      };
+    })
+    .filter((r) => r.email_hash || r.login);
+  return { rows };
+}
+
+function serializeParticipants(rows) {
+  const lines = (rows || []).map((r) =>
+    [
+      csvCell(r.email_hash || ""),
+      csvCell(r.email_enc || ""),
+      csvCell(r.login || ""),
+      csvCell(r.team_name || ""),
+    ].join(",")
+  );
+  return [PARTICIPANTS_HEADER.join(","), ...lines].join("\n") + "\n";
 }
 
 module.exports = {
@@ -246,10 +291,12 @@ module.exports = {
   requireEnv,
   slugify,
   readTeams,
+  readParticipants,
+  serializeParticipants,
   commitFiles,
   inviteCollaborator,
   isCollaborator,
   teamMemberLogins,
   findTeamByLogin,
-  buildParticipantsCsv,
-};
+  csvCell,
+}
