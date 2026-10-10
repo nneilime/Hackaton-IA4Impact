@@ -21,6 +21,10 @@ Le plus simple est d'utiliser l'[application des équipes](https://nneilime.gith
 connexion GitHub, choix du défi, emails des membres. Elle crée le dossier
 `submissions/<nom-de-votre-equipe>/` et vous invite comme collaborateur du dépôt.
 
+Une fois membre confirmé, vous pouvez aussi **déposer votre projet au format `.zip` directement
+depuis le site** : son contenu est extrait dans votre dossier d'équipe (aucune connaissance de git
+requise). Les adresses email de tous les membres déclarés sont conservées dans `participants.csv`.
+
 ## Créer votre dossier et déposer votre travail
 
 ```bash

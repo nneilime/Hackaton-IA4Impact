@@ -57,7 +57,8 @@ son propre dossier, et **seul ce dossier peut être modifié** par son auteur.
 1. **Formez votre équipe** depuis l'[application des équipes](https://nneilime.github.io/Hackaton-IA4Impact/)
    (connexion GitHub, choix du défi, emails des membres). L'application crée votre dossier d'équipe
    et vous invite comme collaborateur.
-2. Déposez-y votre code, vos notebooks, votre README de projet, vos slides…
+2. Déposez-y votre code, vos notebooks, votre README de projet, vos slides… directement en **uploadant
+   un `.zip`** depuis le site, ou en poussant vos fichiers avec git.
 3. Ouvrez une **Pull Request** vers `main` pour soumettre votre travail.
 
 Sans équipe, vous pouvez aussi travailler dans `submissions/<votre-pseudo-github>/`. La procédure

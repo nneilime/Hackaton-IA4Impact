@@ -10,6 +10,7 @@
     user: null,
     teams: [],
     challenges: [],
+    upload: { slug: null, name: null },
   };
 
   const $ = (sel) => document.querySelector(sel);
@@ -213,6 +214,12 @@
 
     const actions = card.querySelector(".team__actions");
     if (state.user && joined) {
+      const uploadBtn = document.createElement("button");
+      uploadBtn.className = "btn btn--primary btn--small";
+      uploadBtn.textContent = "Déposer un .zip";
+      uploadBtn.onclick = () => openUpload(team);
+      actions.appendChild(uploadBtn);
+
       const btn = document.createElement("button");
       btn.className = "btn btn--danger btn--small";
       btn.textContent = "Quitter";
@@ -319,6 +326,254 @@
     }
   }
 
+  /* --------------------------- Upload .zip ------------------------- */
+  const GITHUB_API = "https://api.github.com";
+
+  function sleep(ms) {
+    return new Promise((r) => setTimeout(r, ms));
+  }
+
+  function setUploadProgress(ratio, text) {
+    const bar = $("#uploadBar");
+    const status = $("#uploadStatus");
+    $("#uploadProgress").classList.remove("hidden");
+    if (bar) bar.style.width = Math.max(0, Math.min(1, ratio)) * 100 + "%";
+    if (status && text) status.textContent = text;
+  }
+
+  // Appel direct à l'API GitHub avec le token OAuth de l'utilisateur (rôle `repo`).
+  async function ghApi(path, { method = "GET", body } = {}) {
+    const headers = {
+      Authorization: "Bearer " + state.token,
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    };
+    if (body !== undefined) headers["Content-Type"] = "application/json";
+    const res = await fetch(GITHUB_API + path, {
+      method,
+      headers,
+      body: body !== undefined ? JSON.stringify(body) : undefined,
+    });
+    const text = await res.text();
+    let data = null;
+    if (text) {
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = text;
+      }
+    }
+    if (!res.ok) {
+      const err = new Error((data && data.message) || `GitHub ${res.status}`);
+      err.status = res.status;
+      err.data = data;
+      throw err;
+    }
+    return data;
+  }
+
+  function isProtectedError(err) {
+    const msg = String((err && err.message) || "");
+    return !!(err && err.status === 422 && /protected|status check|pull request/i.test(msg));
+  }
+
+  // Nettoie et sécurise un chemin d'entrée d'archive (anti zip-slip).
+  function sanitizeZipPath(name) {
+    const normalized = String(name).replace(/\\/g, "/").replace(/^\.\//, "");
+    const parts = normalized.split("/").filter((s) => s && s !== ".");
+    if (!parts.length || parts.some((s) => s === "..")) return null;
+    if (parts.includes("__MACOSX")) return null;
+    if (parts[0] === ".git" || parts.includes(".git")) return null;
+    if (parts[parts.length - 1] === ".DS_Store") return null;
+    return parts.join("/");
+  }
+
+  // Si tous les fichiers partagent un unique dossier racine, on le retire.
+  function stripCommonRoot(paths) {
+    if (!paths.length) return paths;
+    const root = paths[0].split("/")[0];
+    const allInside = paths.every((p) => p.includes("/") && p.split("/")[0] === root);
+    if (!allInside) return paths;
+    return paths.map((p) => p.slice(root.length + 1));
+  }
+
+  async function mapConcurrent(items, limit, fn) {
+    let index = 0;
+    const workers = Array.from({ length: Math.min(limit, items.length) }, async () => {
+      while (index < items.length) {
+        const i = index++;
+        await fn(items[i], i);
+      }
+    });
+    await Promise.all(workers);
+  }
+
+  async function createBlobs(files, onProgress) {
+    const { owner, repo } = CFG;
+    const tree = [];
+    let done = 0;
+    await mapConcurrent(files, 4, async (file) => {
+      const blob = await ghApi(`/repos/${owner}/${repo}/git/blobs`, {
+        method: "POST",
+        body: { content: file.content, encoding: "base64" },
+      });
+      tree.push({ path: file.path, mode: "100644", type: "blob", sha: blob.sha });
+      done += 1;
+      if (onProgress) onProgress(done, files.length);
+    });
+    return tree;
+  }
+
+  async function commitToRef(files, message, refName, onProgress) {
+    const { owner, repo } = CFG;
+    for (let attempt = 0; ; attempt += 1) {
+      try {
+        const ref = await ghApi(`/repos/${owner}/${repo}/git/ref/heads/${refName}`);
+        const baseCommitSha = ref.object.sha;
+        const baseCommit = await ghApi(`/repos/${owner}/${repo}/git/commits/${baseCommitSha}`);
+        const tree = await createBlobs(files, onProgress);
+        const newTree = await ghApi(`/repos/${owner}/${repo}/git/trees`, {
+          method: "POST",
+          body: { base_tree: baseCommit.tree.sha, tree },
+        });
+        const newCommit = await ghApi(`/repos/${owner}/${repo}/git/commits`, {
+          method: "POST",
+          body: { message, tree: newTree.sha, parents: [baseCommitSha] },
+        });
+        await ghApi(`/repos/${owner}/${repo}/git/refs/heads/${refName}`, {
+          method: "PATCH",
+          body: { sha: newCommit.sha, force: false },
+        });
+        return { commitSha: newCommit.sha, html_url: newCommit.html_url };
+      } catch (err) {
+        if (err.status === 422 && !isProtectedError(err) && attempt < 3) {
+          await sleep(500 * (attempt + 1));
+          continue;
+        }
+        throw err;
+      }
+    }
+  }
+
+  async function pushViaPullRequest(files, message, slug, onProgress) {
+    const { owner, repo } = CFG;
+    const branch = `depot/${slug}-${Date.now()}`;
+    const mainRef = await ghApi(`/repos/${owner}/${repo}/git/ref/heads/main`);
+    await ghApi(`/repos/${owner}/${repo}/git/refs`, {
+      method: "POST",
+      body: { ref: `refs/heads/${branch}`, sha: mainRef.object.sha },
+    });
+    await commitToRef(files, message, branch, onProgress);
+    const pr = await ghApi(`/repos/${owner}/${repo}/pulls`, {
+      method: "POST",
+      body: {
+        title: `Dépôt ${slug} — ${files.length} fichier(s)`,
+        head: branch,
+        base: "main",
+        body:
+          `Dépôt automatique du dossier \`submissions/${slug}/\` depuis l'application des équipes ` +
+          `(par @${state.user.login}).`,
+      },
+    });
+    return pr.html_url;
+  }
+
+  function openUpload(team) {
+    state.upload = { slug: team.slug, name: team.name };
+    $("#uploadTarget").textContent = `submissions/${team.slug}/`;
+    $("#zipInput").value = "";
+    $("#uploadSubmit").disabled = true;
+    $("#uploadProgress").classList.add("hidden");
+    $("#uploadBar").style.width = "0%";
+    $("#uploadStatus").textContent = "";
+    openModal("uploadModal");
+  }
+
+  async function handleUpload() {
+    const file = $("#zipInput").files[0];
+    const slug = state.upload.slug;
+    if (!file || !slug) return;
+
+    const btn = $("#uploadSubmit");
+    btn.disabled = true;
+    btn.textContent = "Envoi…";
+    try {
+      if (!window.JSZip) throw new Error("Bibliothèque de décompression indisponible.");
+      if (file.size > 150 * 1024 * 1024) {
+        throw new Error("Archive trop volumineuse (> 150 Mo). Utilise git pour un dépôt aussi lourd.");
+      }
+
+      setUploadProgress(0.02, "Lecture de l'archive…");
+      const zip = await window.JSZip.loadAsync(file);
+
+      const entries = [];
+      zip.forEach((relativePath, entry) => {
+        if (entry.dir) return;
+        const clean = sanitizeZipPath(relativePath);
+        if (clean) entries.push({ path: clean, entry });
+      });
+      if (!entries.length) throw new Error("Aucun fichier exploitable dans l'archive.");
+
+      let list = entries;
+      if ($("#stripRoot").checked) {
+        const stripped = stripCommonRoot(list.map((e) => e.path));
+        list = list.map((e, i) => ({ path: stripped[i], entry: e.entry }));
+      }
+
+      const files = [];
+      const skipped = [];
+      for (let i = 0; i < list.length; i += 1) {
+        const base64 = await list[i].entry.async("base64");
+        const size = Math.floor((base64.length * 3) / 4);
+        if (size > 90 * 1024 * 1024) {
+          skipped.push(list[i].path);
+        } else {
+          files.push({ path: `submissions/${slug}/${list[i].path}`, content: base64 });
+        }
+        setUploadProgress(0.05 + (0.35 * (i + 1)) / list.length, `Décompression… ${i + 1}/${list.length}`);
+      }
+      if (!files.length) throw new Error("Aucun fichier à déposer (trop volumineux ?).");
+
+      setUploadProgress(0.4, "Création des fichiers sur GitHub…");
+      const message = `depot(${slug}): ${files.length} fichier(s) depuis le site`;
+      const onProgress = (done, total) =>
+        setUploadProgress(0.4 + (0.45 * done) / total, `Envoi… ${done}/${total}`);
+
+      let prUrl = null;
+      try {
+        await commitToRef(files, message, "main", onProgress);
+      } catch (err) {
+        if (isProtectedError(err)) {
+          setUploadProgress(0.4, "Branche protégée : ouverture d'une Pull Request…");
+          prUrl = await pushViaPullRequest(files, message, slug, onProgress);
+        } else {
+          throw err;
+        }
+      }
+
+      setUploadProgress(1, "Dépôt terminé.");
+      if (skipped.length) {
+        toast(`${skipped.length} fichier(s) ignoré(s) car trop volumineux (> 90 Mo).`, "error");
+      }
+      if (prUrl) {
+        toast("Dépôt effectué via une Pull Request : " + prUrl, "success");
+      } else {
+        toast(`Fichiers déposés dans submissions/${slug}/`, "success");
+      }
+      setTimeout(() => closeModal("uploadModal"), 800);
+    } catch (err) {
+      let message = err.message;
+      if (err.status === 403 || err.status === 404) {
+        message = "Dépôt refusé : accepte l'invitation GitHub au dépôt puis réessaie.";
+      }
+      $("#uploadStatus").textContent = message;
+      toast(message, "error");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Déposer";
+    }
+  }
+
   /* --------------------- Création : lignes email ------------------- */
   function renderEmailInputs(values) {
     const list = $("#emailList");
@@ -348,6 +603,11 @@
       renderEmailInputs([]);
     };
     $("#addEmailBtn").onclick = () => addEmailRow("");
+    $("#zipInput").onchange = () => {
+      $("#uploadSubmit").disabled = !$("#zipInput").files[0];
+      $("#uploadStatus").textContent = "";
+    };
+    $("#uploadSubmit").onclick = handleUpload;
     $("#createForm").onsubmit = (e) => {
       e.preventDefault();
       createTeam(e.target);

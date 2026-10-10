@@ -1,5 +1,5 @@
 const { send, readBody, handleError, guard, authenticate, checkEventCode } = require("../_lib/http");
-const { readTeams, commitFiles, getUserEmails } = require("../_lib/github");
+const { readTeams, commitFiles, getUserEmails, buildParticipantsCsv } = require("../_lib/github");
 
 module.exports = async (req, res) => {
   if (guard(req, res)) return;
@@ -31,7 +31,10 @@ module.exports = async (req, res) => {
     member.joined = false;
 
     await commitFiles(
-      { "teams.json": JSON.stringify(store, null, 2) + "\n" },
+      {
+        "teams.json": JSON.stringify(store, null, 2) + "\n",
+        "participants.csv": buildParticipantsCsv(store),
+      },
       `teams: ${user.login} quitte ${slug}`
     );
 

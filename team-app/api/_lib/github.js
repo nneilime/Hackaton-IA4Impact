@@ -187,6 +187,45 @@ function findTeamByLogin(teams, login) {
   return teams.find((t) => teamMemberLogins(t).includes(target));
 }
 
+function csvCell(value) {
+  const s = value == null ? "" : String(value);
+  return /[",\n\r;]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+}
+
+// Registre de tous les participants (y compris les membres invités non encore rejoints).
+function buildParticipantsCsv(store) {
+  const header = ["email", "login", "team_slug", "team_name", "challenge", "status", "created_at"];
+  const rows = [header.join(",")];
+  const teams = ((store && store.teams) || [])
+    .slice()
+    .sort((a, b) => String(a.slug).localeCompare(String(b.slug)));
+  for (const team of teams) {
+    const members = (team.members || [])
+      .slice()
+      .sort((a, b) =>
+        String(typeof a === "string" ? a : a.email).localeCompare(
+          String(typeof b === "string" ? b : b.email)
+        )
+      );
+    for (const m of members) {
+      const isObj = m && typeof m === "object";
+      const joined = !!(isObj && m.joined && m.login);
+      rows.push(
+        [
+          csvCell(isObj ? m.email : m),
+          csvCell(isObj ? m.login || "" : ""),
+          csvCell(team.slug),
+          csvCell(team.name),
+          csvCell(team.challenge || ""),
+          csvCell(joined ? "joined" : "invited"),
+          csvCell(team.created_at || ""),
+        ].join(",")
+      );
+    }
+  }
+  return rows.join("\n") + "\n";
+}
+
 module.exports = {
   OWNER,
   REPO,
@@ -203,4 +242,5 @@ module.exports = {
   isCollaborator,
   teamMemberLogins,
   findTeamByLogin,
+  buildParticipantsCsv,
 };

@@ -33,6 +33,14 @@ team-app/
    `submissions/<équipe>/` et invite le créateur comme collaborateur.
 4. Un coéquipier rejoint l'équipe quand son **email GitHub** correspond à un email déclaré ;
    son login est alors enregistré et il est invité comme collaborateur.
+5. Un membre confirmé peut **déposer un `.zip`** depuis le site : l'archive est décompressée
+   dans le navigateur (JSZip) puis poussée directement sur `main` (API Git Data GitHub, token
+   de l'utilisateur) dans `submissions/<équipe>/`. Si `main` est protégée, une Pull Request est
+   ouverte automatiquement.
+
+Le backend tient aussi à jour un registre `participants.csv` (email, login, équipe, défi, statut
+`joined`/`invited`) qui contient **tous les emails déclarés**, y compris les membres invités qui
+n'ont pas encore rejoint l'équipe.
 
 Aucun email n'est envoyé par l'application.
 
@@ -41,3 +49,6 @@ Aucun email n'est envoyé par l'application.
 - `front/config.js` : `apiBase` (URL Vercel), `clientId` (OAuth App), `eventCode` (optionnel).
 - Variables d'environnement Vercel : `GH_OWNER`, `GH_REPO`, `GH_ADMIN_TOKEN`, `OAUTH_CLIENT_ID`,
   `ALLOWED_ORIGIN`, `EVENT_CODE` (optionnel).
+- Le dépôt de `.zip` s'appuie sur le **scope OAuth `repo`** (compris dans `OAUTH_SCOPES` par défaut)
+  et sur le fait que le membre ait **accepté l'invitation** au dépôt. Le front charge **JSZip** depuis
+  cdnjs.

@@ -5,6 +5,7 @@ const {
   slugify,
   getUserEmails,
   inviteCollaborator,
+  buildParticipantsCsv,
 } = require("../_lib/github");
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -107,6 +108,7 @@ module.exports = async (req, res) => {
     await commitFiles(
       {
         "teams.json": JSON.stringify(store, null, 2) + "\n",
+        "participants.csv": buildParticipantsCsv(store),
         [`submissions/${slug}/README.md`]: teamReadme(team),
       },
       `teams: création de ${slug}`

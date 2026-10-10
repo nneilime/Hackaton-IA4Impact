@@ -125,9 +125,40 @@
     </div>
   </div>
 
+  <!-- Modal dépôt de projet -->
+  <div class="modal hidden" id="uploadModal">
+    <div class="modal__backdrop" data-close="uploadModal"></div>
+    <div class="modal__card">
+      <button class="modal__close" data-close="uploadModal">×</button>
+      <h3>Déposer un .zip</h3>
+      <p class="muted">Le contenu de l'archive sera extrait dans <code id="uploadTarget">submissions/…</code>.</p>
+      <label class="field">
+        <span>Archive .zip</span>
+        <input class="input" type="file" id="zipInput" accept=".zip,application/zip,application/x-zip-compressed" />
+      </label>
+      <label class="field field--inline">
+        <input type="checkbox" id="stripRoot" checked />
+        <span>Ignorer le dossier racine de l'archive (ex. <code>mon-projet-main/</code>)</span>
+      </label>
+      <div class="upload__progress hidden" id="uploadProgress">
+        <div class="upload__bar"><span id="uploadBar"></span></div>
+        <p class="muted" id="uploadStatus"></p>
+      </div>
+      <div class="modal__actions">
+        <button type="button" class="btn btn--ghost" data-close="uploadModal">Annuler</button>
+        <button type="button" class="btn btn--primary" id="uploadSubmit" disabled>Déposer</button>
+      </div>
+    </div>
+  </div>
+
   <div class="toasts" id="toasts"></div>
 
   <script src="config.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+    integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
   <script src="app.js"></script>
 </body>
 </html>

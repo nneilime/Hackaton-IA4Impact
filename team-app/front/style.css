@@ -192,6 +192,19 @@ code {
 
 .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
 .field > span { font-size: 13px; font-weight: 600; color: var(--muted); }
+.field--inline { flex-direction: row; align-items: center; gap: 10px; }
+.field--inline > span { font-weight: 500; text-transform: none; }
+.field--inline input[type="checkbox"] { width: auto; accent-color: var(--primary); }
+
+/* Upload de projet */
+.upload__progress { margin: 4px 0 14px; }
+.upload__bar {
+  height: 8px; border-radius: 999px; background: var(--surface-2); overflow: hidden; margin-bottom: 8px;
+}
+.upload__bar span {
+  display: block; height: 100%; width: 0; border-radius: 999px;
+  background: var(--primary); transition: width 0.2s ease;
+}
 .emails { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
 .emails .email-row { display: flex; gap: 8px; }
 
