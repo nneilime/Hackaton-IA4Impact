@@ -19,7 +19,7 @@ team-app/
 ├── api/                      # fonctions serverless (hébergées sur Vercel)
 │   ├── auth/{login,callback}.js # OAuth web GitHub (redirection)
 │   ├── me.js                    # profil + empreintes d'emails
-│   ├── teams/{index,join,leave}.js
+│   ├── teams/{index,join,leave,members}.js
 │   └── _lib/                    # helpers (GitHub, CORS, auth, chiffrement)
 ├── scripts/email-key.js      # gestion de la clé de chiffrement des emails
 ├── vercel.json
@@ -34,9 +34,17 @@ team-app/
    **empreintes** (`email_hash`).
 3. Il crée une équipe (`teams.json`), crée le dossier `submissions/<équipe>/` et invite le
    créateur comme collaborateur. Les emails déclarés sont stockés **hashés + chiffrés**, jamais en clair.
-4. Un coéquipier rejoint l'équipe quand l'empreinte de son **email GitHub** correspond à un email
-   déclaré ; son login est alors enregistré et il est invité comme collaborateur.
-5. Un membre confirmé peut **déposer un `.zip`** depuis le site : l'archive est décompressée
+4. Un coéquipier rejoint l'équipe en cliquant sur **Rejoindre** : tout participant connecté
+   peut rejoindre une équipe librement (son login et l'empreinte de son email GitHub sont
+   enregistrés, puis il est invité comme collaborateur). S'il avait été déclaré par email,
+   son adhésion est simplement confirmée.
+5. Le **créateur** peut ajouter des emails à son équipe à tout moment : les personnes
+   concernées deviennent *membres en attente* et pourront rejoindre en se connectant avec
+   cet email GitHub.
+6. Un participant ne peut être **membre confirmé que d'une seule équipe** à la fois : créer
+   ou rejoindre une nouvelle équipe est refusé (`409`) tant qu'il n'a pas quitté la
+   précédente. Les emails simplement *déclarés* (membres en attente) ne bloquent pas.
+7. Un membre confirmé peut **déposer un `.zip`** depuis le site : l'archive est décompressée
    dans le navigateur (JSZip) puis poussée directement sur `main` (API Git Data GitHub, token
    de l'utilisateur) dans `submissions/<équipe>/`. Si `main` est protégée, une Pull Request est
    ouverte automatiquement.

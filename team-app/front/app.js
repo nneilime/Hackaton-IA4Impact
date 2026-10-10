@@ -11,6 +11,7 @@
     teams: [],
     challenges: [],
     upload: { slug: null, name: null },
+    members: { slug: null, name: null },
   };
 
   const $ = (sel) => document.querySelector(sel);
@@ -178,9 +179,14 @@
   function teamCard(team) {
     const challenge = state.challenges.find((c) => c.slug === team.challenge);
     const myHashes = (state.user && state.user.email_hashes) || [];
-    const me = (team.members || []).find((m) => myHashes.includes(String(m.email_hash || "").toLowerCase()));
-    const iAmMember = !!me;
+    const myLogin = state.user ? String(state.user.login || "").toLowerCase() : null;
+    const me = (team.members || []).find(
+      (m) =>
+        (myLogin && m.login && String(m.login).toLowerCase() === myLogin) ||
+        myHashes.includes(String(m.email_hash || "").toLowerCase())
+    );
     const joined = !!(me && me.joined && me.login);
+    const isOwner = !!(myLogin && team.owner && String(team.owner).toLowerCase() === myLogin);
 
     const card = document.createElement("article");
     card.className = "card";
@@ -201,22 +207,25 @@
       uploadBtn.onclick = () => openUpload(team);
       actions.appendChild(uploadBtn);
 
+      if (isOwner) {
+        const addBtn = document.createElement("button");
+        addBtn.className = "btn btn--ghost btn--small";
+        addBtn.textContent = "Ajouter des membres";
+        addBtn.onclick = () => openMembers(team);
+        actions.appendChild(addBtn);
+      }
+
       const btn = document.createElement("button");
       btn.className = "btn btn--danger btn--small";
       btn.textContent = "Quitter";
       btn.onclick = () => leaveTeam(team.slug);
       actions.appendChild(btn);
-    } else if (state.user && iAmMember) {
+    } else if (state.user) {
       const btn = document.createElement("button");
       btn.className = "btn btn--primary btn--small";
       btn.textContent = "Rejoindre";
       btn.onclick = () => joinTeam(team.slug);
       actions.appendChild(btn);
-    } else if (state.user) {
-      const span = document.createElement("span");
-      span.className = "muted";
-      span.textContent = "Ajoute ton email à ce défi pour le rejoindre.";
-      actions.appendChild(span);
     }
     return card;
   }
@@ -268,7 +277,7 @@
       const { team, invited } = await api("/api/teams", { method: "POST", body: { name, challenge, members } });
       closeModal("createModal");
       form.reset();
-      renderEmailInputs([]);
+      renderEmailInputs($("#emailList"), []);
       await loadTeams();
       toast(`Équipe « ${team.name} » créée !`, "success");
       if (!state.user.isCollaborator) {
@@ -304,6 +313,45 @@
       toast("Tu as quitté l'équipe.");
     } catch (err) {
       toast(err.message, "error");
+    }
+  }
+
+  /* ----------------------- Ajout de membres ------------------------ */
+  function openMembers(team) {
+    state.members = { slug: team.slug, name: team.name };
+    $("#membersTeamName").textContent = team.name;
+    renderEmailInputs($("#memberEmailList"), []);
+    openModal("membersModal");
+  }
+
+  async function addMembers(form) {
+    const slug = state.members.slug;
+    if (!slug) return;
+    const emails = Array.from(form.querySelectorAll('input[name="member"]'))
+      .map((i) => i.value.trim())
+      .filter(Boolean);
+    if (!emails.length) return toast("Ajoute au moins un email.", "error");
+
+    const btn = $("#membersSubmit");
+    btn.disabled = true;
+    btn.textContent = "Ajout…";
+    try {
+      const { added = 0, skipped = [] } = await api("/api/teams/members", {
+        method: "POST",
+        body: { slug, emails },
+      });
+      closeModal("membersModal");
+      form.reset();
+      renderEmailInputs($("#memberEmailList"), []);
+      await loadTeams();
+      if (added) toast(`${added} membre(s) ajouté(s).`, "success");
+      if (skipped.length) toast(`${skipped.length} email(s) ignoré(s) : déjà membre(s) d'une autre équipe.`, "error");
+      if (!added && !skipped.length) toast("Ces emails sont déjà dans l'équipe.", "error");
+    } catch (err) {
+      toast(err.message, "error");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Ajouter";
     }
   }
 
@@ -556,22 +604,23 @@
   }
 
   /* --------------------- Création : lignes email ------------------- */
-  function renderEmailInputs(values) {
-    const list = $("#emailList");
+  function renderEmailInputs(container, values) {
+    const list = typeof container === "string" ? $(container) : container;
     list.innerHTML = "";
-    (values && values.length ? values : [""]).forEach((v) => addEmailRow(v));
+    (values && values.length ? values : [""]).forEach((v) => addEmailRow(list, v));
   }
-  function addEmailRow(value) {
+  function addEmailRow(container, value) {
+    const list = typeof container === "string" ? $(container) : container;
     const row = document.createElement("div");
     row.className = "email-row";
     row.innerHTML = `
       <input class="input" type="email" name="member" placeholder="coequipier@exemple.fr" value="${esc(value || "")}" />
       <button type="button" class="btn btn--ghost btn--small" aria-label="Retirer">✕</button>`;
     row.querySelector("button").onclick = () => {
-      if ($("#emailList").children.length > 1) row.remove();
+      if (list.children.length > 1) row.remove();
       else row.querySelector("input").value = "";
     };
-    $("#emailList").appendChild(row);
+    list.appendChild(row);
   }
 
   /* ----------------------------- Init ------------------------------ */
@@ -581,9 +630,14 @@
     $("#logoutBtn").onclick = () => logout(true);
     $("#createTeamBtn").onclick = () => {
       $("#createModal").classList.remove("hidden");
-      renderEmailInputs([]);
+      renderEmailInputs($("#emailList"), []);
     };
-    $("#addEmailBtn").onclick = () => addEmailRow("");
+    $("#addEmailBtn").onclick = () => addEmailRow($("#emailList"), "");
+    $("#addMemberEmailBtn").onclick = () => addEmailRow($("#memberEmailList"), "");
+    $("#membersForm").onsubmit = (e) => {
+      e.preventDefault();
+      addMembers(e.target);
+    };
     $("#zipInput").onchange = () => {
       $("#uploadSubmit").disabled = !$("#zipInput").files[0];
       $("#uploadStatus").textContent = "";
@@ -598,7 +652,8 @@
 
   async function init() {
     bind();
-    renderEmailInputs([]);
+    renderEmailInputs($("#emailList"), []);
+    renderEmailInputs($("#memberEmailList"), []);
     await loadChallenges();
     const justLogged = consumeAuthRedirect();
     if (state.token) await refreshUser();

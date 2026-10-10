@@ -1,6 +1,7 @@
 const { send, readBody, handleError, guard, authenticate, checkEventCode } = require("../_lib/http");
 const { readTeams, commitFiles, getUserEmails, buildParticipantsCsv } = require("../_lib/github");
 const { hashEmail } = require("../_lib/emailCrypto");
+const { publicTeam } = require("../_lib/teams");
 
 module.exports = async (req, res) => {
   if (guard(req, res)) return;
@@ -41,15 +42,8 @@ module.exports = async (req, res) => {
       `teams: ${user.login} quitte ${slug}`
     );
 
-    const publicTeam = {
-      ...team,
-      members: (team.members || []).map((m) => ({
-        email_hash: m.email_hash || "",
-        login: m.login || null,
-        joined: !!m.joined,
-      })),
-    };
-    return send(res, 200, { team: publicTeam });
+    const publicTeamView = publicTeam(team);
+    return send(res, 200, { team: publicTeamView });
   } catch (err) {
     return handleError(res, err);
   }

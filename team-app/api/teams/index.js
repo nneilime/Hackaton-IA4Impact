@@ -8,25 +8,9 @@ const {
   buildParticipantsCsv,
 } = require("../_lib/github");
 const { hashEmail, encryptEmail } = require("../_lib/emailCrypto");
+const { cleanEmails, publicTeam, findActiveMembership } = require("../_lib/teams");
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const CHALLENGES = ["enedis", "sncf", "bpce-si", "lallemand", "action-logement", "imsa"];
-
-function cleanEmails(list) {
-  if (!Array.isArray(list)) return [];
-  return [...new Set(list.map((e) => String(e).trim().toLowerCase()).filter((e) => EMAIL_RE.test(e)))];
-}
-
-// Retire les valeurs chiffrées avant d'exposer l'équipe.
-function publicTeam(team) {
-  return {
-    ...team,
-    members: (team.members || []).map((m) => {
-      if (!m || typeof m !== "object") return { email_hash: "", login: null, joined: false };
-      return { email_hash: m.email_hash || "", login: m.login || null, joined: !!m.joined };
-    }),
-  };
-}
 
 function teamReadme(team) {
   const lines = [
@@ -90,6 +74,14 @@ module.exports = async (req, res) => {
     const creatorEmailSet = new Set(creatorEmails);
     const primaryEmail = creatorEmails[0] || `${user.login}@users.noreply.github.com`;
     const primaryHash = hashEmail(primaryEmail);
+
+    const creatorHashes = [...new Set(creatorEmails.map((e) => hashEmail(e)).filter(Boolean))];
+    const conflict = findActiveMembership(store, { login: user.login, hashes: creatorHashes });
+    if (conflict) {
+      return send(res, 409, {
+        error: `Tu fais déjà partie de l'équipe "${conflict.name}". Quitte-la avant d'en créer une autre.`,
+      });
+    }
 
     const declared = cleanEmails(body.members);
     const members = [];

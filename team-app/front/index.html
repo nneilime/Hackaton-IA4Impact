@@ -107,6 +107,27 @@
     </div>
   </div>
 
+  <!-- Modal ajout de membres -->
+  <div class="modal hidden" id="membersModal">
+    <div class="modal__backdrop" data-close="membersModal"></div>
+    <div class="modal__card">
+      <button class="modal__close" data-close="membersModal">×</button>
+      <h3>Ajouter des membres</h3>
+      <p class="muted">Les personnes ajoutées pourront rejoindre <strong id="membersTeamName">l'équipe</strong> après connexion avec l'un de ces emails GitHub.</p>
+      <form id="membersForm">
+        <div class="field">
+          <span>Emails des membres</span>
+          <div class="emails" id="memberEmailList"></div>
+          <button type="button" class="btn btn--ghost btn--small" id="addMemberEmailBtn">+ Ajouter un email</button>
+        </div>
+        <div class="modal__actions">
+          <button type="button" class="btn btn--ghost" data-close="membersModal">Annuler</button>
+          <button type="submit" class="btn btn--primary" id="membersSubmit">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Modal dépôt de projet -->
   <div class="modal hidden" id="uploadModal">
     <div class="modal__backdrop" data-close="uploadModal"></div>
