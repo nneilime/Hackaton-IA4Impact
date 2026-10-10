@@ -1,0 +1,17 @@
+# Environnement virtuel
+.venv/
+
+# Cache Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Fichiers OS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Streamlit local
+.streamlit/secrets.toml

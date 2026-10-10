@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/deck.gl@9.0.38/dist.min.js"></script>
+<style>
+  :root {
+    --bleu: #005EB8; --vert: #93C90E; --rouge: #D62728; --orange: #FF7F0E;
+    --texte: #1E293B; --gris: #64748B; --bord: #E2E8F0; --fond: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--texte); background: var(--fond); }
+  .compteurs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-bottom: 8px; }
+  .tuile { border: 1px solid var(--bord); border-radius: 8px; padding: 6px 10px; background: #F8FAFC; }
+  .tuile .titre { font-size: 12px; color: var(--gris); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tuile .valeur { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .tuile .sous { font-size: 11px; color: var(--gris); font-variant-numeric: tabular-nums; }
+  .commandes { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  button { border: none; border-radius: 6px; background: var(--vert); color: #FFF; font-weight: 700;
+           padding: 6px 14px; cursor: pointer; font-size: 14px; min-width: 96px; }
+  button:hover { background: #7AB30B; }
+  .horloge { font-weight: 700; font-variant-numeric: tabular-nums; min-width: 140px; }
+  input[type=range] { flex: 1; min-width: 160px; accent-color: var(--bleu); }
+  .vitesse { font-size: 13px; color: var(--gris); white-space: nowrap; }
+  #carte { position: relative; width: 100%; height: 470px; border-radius: 8px; overflow: hidden; border: 1px solid var(--bord); }
+  .legende { font-size: 12px; color: var(--gris); margin-top: 6px; line-height: 1.7; }
+  .pastille { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: middle; margin-right: 4px; }
+  @media (max-width: 640px) { .compteurs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>
+</head>
+<body>
+<div class="compteurs">
+  <div class="tuile"><div class="titre">🔴 En attente</div><div class="valeur" id="c-attente">0</div><div class="sous">sans équipe affectée</div></div>
+  <div class="tuile"><div class="titre">👷 Équipe en route</div><div class="valeur" id="c-route">0</div><div class="sous" id="c-tech">0 technicien en déplacement</div></div>
+  <div class="tuile"><div class="titre">🟠 En réparation</div><div class="valeur" id="c-reparation">0</div><div class="sous">équipe sur place</div></div>
+  <div class="tuile"><div class="titre">🟢 Résolues</div><div class="valeur" id="c-resolues">0</div><div class="sous" id="c-total">sur 0 connues</div></div>
+  <div class="tuile"><div class="titre">Clients rétablis</div><div class="valeur" id="c-clients">0</div><div class="sous" id="c-coupes">0 encore coupés</div></div>
+</div>
+
+<div class="commandes">
+  <button id="lecture" type="button">⏸ Pause</button>
+  <span class="horloge" id="horloge">--</span>
+  <input id="frise" type="range" aria-label="Instant de la crise">
+  <span class="vitesse" id="vitesse"></span>
+</div>
+
+<div id="carte"></div>
+<div class="legende">
+  <span id="legende-propositions" style="display:none"><span class="pastille" style="background:var(--vert); border-radius:2px"></span><b>Proposition d'affectation n°</b> (équipe ● → incident) &nbsp;·&nbsp; </span>
+  <span class="pastille" style="background:var(--rouge)"></span>Incident en attente (même si une équipe est en route)
+  &nbsp;·&nbsp; <span class="pastille" style="background:var(--orange)"></span>Réparation en cours
+  &nbsp;·&nbsp; 👷 Technicien en déplacement (pointillés : destination)
+  &nbsp;·&nbsp; 🏠 Site &nbsp;·&nbsp; Les incidents résolus disparaissent. Survolez un élément pour le détail.
+</div>
+
+<script>
+const D = __DONNEES__;
+// Pilotage : propositions d'affectation du pas en cours (n°, équipe, panne, positions).
+const PROPOSITIONS = __PROPOSITIONS__;
+let ICONE_TECH = __ICONE_TECH__;
+let ICONE_SITE = __ICONE_SITE__;
+
+// deck.gl charge mal les SVG dans Chromium : on les convertit en PNG avant de démarrer.
+function enPng(icone) {
+  return new Promise((resoudre) => {
+    const image = new Image();
+    image.onload = () => {
+      const toile = document.createElement('canvas');
+      toile.width = icone.width; toile.height = icone.height;
+      toile.getContext('2d').drawImage(image, 0, 0, icone.width, icone.height);
+      resoudre({ ...icone, url: toile.toDataURL('image/png') });
+    };
+    image.onerror = () => resoudre(icone);
+    image.src = icone.url;
+  });
+}
+const VITESSE = D.pas_min;   // minutes simulées par seconde réelle : un pas de temps par seconde
+const NB_TIRETS = 14;
+const ROUGE = [214, 39, 40], ORANGE = [255, 127, 14];
+
+const $ = (id) => document.getElementById(id);
+const nombre = (n) => n.toLocaleString('fr-FR');
+const deux = (n) => String(n).padStart(2, '0');
+function formatHeure(ms, avecDate) {
+  const d = new Date(ms);
+  const heure = `${deux(d.getUTCHours())}:${deux(d.getUTCMinutes())}`;
+  return avecDate ? `${deux(d.getUTCDate())}/${deux(d.getUTCMonth() + 1)}/${d.getUTCFullYear()} ${heure}` : heure;
+}
+
+let t = D.debut;
+let lecture = true;
+let dernierTic = null;
+let aRedessiner = true;
+
+// ── Carte : créée une seule fois, seules les couches changent ensuite ──
+const points = D.incidents.map(i => [i.lon, i.lat]).concat(D.sites.map(s => [s.lon, s.lat]));
+const lons = points.map(p => p[0]), lats = points.map(p => p[1]);
+const emprise = points.length > 1
+  ? [[Math.min(...lons), Math.min(...lats)], [Math.max(...lons), Math.max(...lats)]]
+  : null;
+// Fond Esri « Light Gray » (tuiles raster sans clé). Les fonds Carto refusent les requêtes
+// venant de l'iframe Streamlit, qui n'a pas d'origine web : la carte restait blanche.
+const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas';
+const STYLE_FOND = {
+  version: 8,
+  sources: {
+    fond: { type: 'raster', tileSize: 256, maxzoom: 16,
+            tiles: [`${ESRI}/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`],
+            attribution: 'Esri, HERE, Garmin, © OpenStreetMap contributors' },
+    libelles: { type: 'raster', tileSize: 256, maxzoom: 16,
+                tiles: [`${ESRI}/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}`] },
+  },
+  layers: [
+    { id: 'fond', type: 'raster', source: 'fond' },
+    { id: 'libelles', type: 'raster', source: 'libelles' },
+  ],
+};
+const carte = new maplibregl.Map({
+  container: 'carte',
+  style: STYLE_FOND,
+  center: points.length ? points[0] : [1.3, 43.3],
+  zoom: 7.5,
+  attributionControl: { compact: true },
+});
+carte.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+
+// Cadrage sur incidents + sites, une seule fois et seulement quand la carte a une vraie taille
+// (elle peut naître dans un accordéon fermé). Ensuite, zoom et déplacement restent libres.
+let cadree = false;
+function cadrer() {
+  const boite = $('carte').getBoundingClientRect();
+  if (cadree || !emprise || boite.width < 50 || boite.height < 50) return;
+  carte.resize();
+  carte.fitBounds(emprise, { padding: 30, duration: 0 });
+  cadree = true;
+}
+new ResizeObserver(() => { carte.resize(); cadrer(); }).observe($('carte'));
+carte.on('load', cadrer);
+
+const surcouche = new deck.MapboxOverlay({
+  layers: [],
+  getTooltip: ({ object }) => object && object.info ? {
+    html: object.info,
+    style: { backgroundColor: '#FFFFFF', color: '#1E293B', fontSize: '12px', borderRadius: '6px',
+             boxShadow: '0 2px 8px rgba(0,0,0,0.15)', padding: '6px 8px' },
+  } : null,
+});
+carte.addControl(surcouche);
+
+// Couche des sites : fixe, construite une fois les icônes prêtes.
+const donneesSites = D.sites.map(s => ({ ...s, info: `<b>Site ${s.id}</b>${s.commune ? '<br/>' + s.commune : ''}` }));
+let coucheSites = null;
+function construireCoucheSites() {
+  coucheSites = new deck.IconLayer({
+    id: 'sites', data: donneesSites,
+    getIcon: () => ICONE_SITE,
+    getPosition: s => [s.lon, s.lat],
+    getSize: 22, sizeUnits: 'pixels', pickable: true,
+  });
+}
+
+function etat(instant) {
+  const incidents = [];
+  const c = { attente: 0, route: 0, reparation: 0, resolues: 0, connues: 0, clients: 0, coupes: 0 };
+  for (const i of D.incidents) {
+    if (i.date > instant) continue;
+    c.connues += 1;
+    if (i.fin !== null && i.fin <= instant) { c.resolues += 1; c.clients += i.clients; continue; }
+    c.coupes += i.clients;
+    let statut;
+    if (i.arr !== null && i.arr <= instant) { statut = 'Réparation en cours'; c.reparation += 1; }
+    else if (i.aff !== null && i.aff <= instant) { statut = 'Équipe en route'; c.route += 1; }
+    else { statut = 'En attente d\'une équipe'; c.attente += 1; }
+    incidents.push({
+      ...i, couleur: statut === 'Réparation en cours' ? ORANGE : ROUGE,
+      info: `<b>Incident ${i.id}</b><br/>${nombre(i.clients)} clients coupés<br/>${statut}`,
+    });
+  }
+  const techniciens = [];
+  for (const tr of D.trajets) {
+    if (!(tr.d <= instant && instant < tr.a)) continue;
+    const part = Math.min(Math.max((instant - tr.d) / (tr.a - tr.d), 0), 1);
+    const amplitude = tr.amp0 + (instant - tr.d) / 3600000;
+    techniciens.push({
+      ...tr,
+      lat: tr.lat0 + part * (tr.lat1 - tr.lat0),
+      lon: tr.lon0 + part * (tr.lon1 - tr.lon0),
+      info: `<b>Équipe ${tr.equipe}</b><br/>Site d'origine : ${tr.site}<br/>`
+          + (tr.dest === 'incident'
+              ? `Vers l'incident ${tr.incident}`
+              : (tr.motif === 'fin_service'
+                  ? 'Retour au site : fin de service, puis repos'
+                  : 'Retour au site : plus d\'incident à prendre (reste disponible)'))
+          + `<br/>Arrivée prévue : ${formatHeure(tr.a, false)}`
+          + `<br/>Amplitude effectuée : ${amplitude.toFixed(1)} h`,
+    });
+  }
+  return { incidents, techniciens, c };
+}
+
+function tirets(techniciens) {
+  const segments = [];
+  for (const tech of techniciens) {
+    const dlat = tech.lat1 - tech.lat, dlon = tech.lon1 - tech.lon;
+    for (let rang = 0; rang < NB_TIRETS; rang += 2) {
+      const a = rang / NB_TIRETS, b = (rang + 1) / NB_TIRETS;
+      segments.push({ source: [tech.lon + a * dlon, tech.lat + a * dlat],
+                      target: [tech.lon + b * dlon, tech.lat + b * dlat] });
+    }
+  }
+  return segments;
+}
+
+// Propositions du pas en cours, visibles une fois arrivé à l'instant de la décision.
+function couchesPropositions() {
+  if (!PROPOSITIONS.length || t < D.fin) return [];
+  const donnees = PROPOSITIONS.map(p => ({
+    ...p,
+    milieu: [(p.lon0 + p.lon1) / 2, (p.lat0 + p.lat1) / 2],
+    info: `<b>Proposition n° ${p.n}</b><br/>Équipe ${p.equipe} → incident ${p.incident}`,
+  }));
+  return [
+    new deck.LineLayer({
+      id: 'propositions', data: donnees,
+      getSourcePosition: p => [p.lon0, p.lat0], getTargetPosition: p => [p.lon1, p.lat1],
+      getColor: [147, 201, 14, 230], getWidth: 4, widthUnits: 'pixels', pickable: true,
+    }),
+    new deck.ScatterplotLayer({
+      id: 'propositions-depart', data: donnees,
+      getPosition: p => [p.lon0, p.lat0], getFillColor: [0, 94, 184],
+      getLineColor: [255, 255, 255], stroked: true, lineWidthMinPixels: 1,
+      radiusUnits: 'pixels', getRadius: 5, pickable: true,
+    }),
+    new deck.TextLayer({
+      id: 'propositions-numeros', data: donnees,
+      getPosition: p => p.milieu, getText: p => String(p.n),
+      getSize: 13, getColor: [255, 255, 255], fontWeight: 700,
+      background: true, getBackgroundColor: [61, 120, 0], backgroundPadding: [4, 2],
+      characterSet: '0123456789',
+    }),
+  ];
+}
+
+function dessiner() {
+  const { incidents, techniciens, c } = etat(t);
+  surcouche.setProps({ layers: [
+    coucheSites,
+    new deck.ScatterplotLayer({
+      id: 'incidents', data: incidents,
+      getPosition: i => [i.lon, i.lat], getFillColor: i => i.couleur,
+      getLineColor: [255, 255, 255], stroked: true, lineWidthMinPixels: 1,
+      getRadius: 400, radiusMinPixels: 6, radiusMaxPixels: 12, pickable: true,
+    }),
+    new deck.LineLayer({
+      id: 'trajets', data: tirets(techniciens),
+      getSourcePosition: s => s.source, getTargetPosition: s => s.target,
+      getColor: [0, 94, 184, 200], getWidth: 2, widthUnits: 'pixels',
+    }),
+    new deck.IconLayer({
+      id: 'techniciens', data: techniciens,
+      getIcon: () => ICONE_TECH, getPosition: tech => [tech.lon, tech.lat],
+      getSize: 34, sizeUnits: 'pixels', pickable: true,
+    }),
+    ...couchesPropositions(),
+  ] });
+
+  $('c-attente').textContent = nombre(c.attente);
+  $('c-route').textContent = nombre(c.route);
+  $('c-tech').textContent = `${techniciens.length} technicien${techniciens.length > 1 ? 's' : ''} en déplacement`;
+  $('c-reparation').textContent = nombre(c.reparation);
+  $('c-resolues').textContent = nombre(c.resolues);
+  $('c-total').textContent = `sur ${nombre(c.connues)} connues`;
+  $('c-clients').textContent = nombre(c.clients);
+  $('c-coupes').textContent = `${nombre(c.coupes)} encore coupés`;
+  $('horloge').textContent = formatHeure(t, true);
+  $('frise').value = t;
+}
+
+// ── Commandes ──
+const frise = $('frise');
+frise.min = D.debut; frise.max = D.fin; frise.step = 60000; frise.value = D.debut;
+frise.addEventListener('input', () => { t = Number(frise.value); lecture = false; majBouton(); aRedessiner = true; });
+
+$('vitesse').textContent = `Vitesse : 1 pas (${VITESSE} min) par seconde`;
+if (PROPOSITIONS.length) $('legende-propositions').style.display = 'inline';
+
+function majBouton() {
+  $('lecture').textContent = lecture ? '⏸ Pause' : (t >= D.fin ? '↺ Rejouer' : '▶ Lecture');
+}
+$('lecture').addEventListener('click', () => {
+  if (!lecture && t >= D.fin) t = D.debut;
+  lecture = !lecture;
+  dernierTic = null;
+  majBouton();
+  aRedessiner = true;
+});
+
+function boucle(horodatage) {
+  if (lecture) {
+    if (dernierTic !== null) {
+      t += (horodatage - dernierTic) / 1000 * VITESSE * 60000;
+      if (t >= D.fin) { t = D.fin; lecture = false; majBouton(); }
+    }
+    dernierTic = horodatage;
+    aRedessiner = true;
+  } else {
+    dernierTic = null;
+  }
+  if (aRedessiner) { dessiner(); aRedessiner = false; }
+  requestAnimationFrame(boucle);
+}
+majBouton();
+// Démarre dès que les icônes sont prêtes, sans attendre le fond de carte :
+// la surcouche deck.gl garde ses couches et les affiche quand la carte est prête.
+let demarre = false;
+Promise.all([enPng(ICONE_TECH), enPng(ICONE_SITE)]).then(([tech, site]) => {
+  ICONE_TECH = tech; ICONE_SITE = site; construireCoucheSites();
+  demarre = true;
+  requestAnimationFrame(boucle);
+});
+</script>
+</body>
+</html>
