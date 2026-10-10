@@ -1,0 +1,115 @@
+@startuml architecture
+' Défi Enedis - crisis dispatch: system architecture
+' Render: java -jar ../tools/plantuml.jar -charset UTF-8 -tpng architecture.puml
+!pragma layout smetana
+top to bottom direction
+
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam nodesep 40
+skinparam ranksep 55
+skinparam ArrowColor #475569
+skinparam ArrowFontSize 10
+skinparam ArrowFontColor #334155
+skinparam rectangle {
+  BorderColor #94A3B8
+  FontStyle bold
+}
+skinparam component {
+  BorderColor #64748B
+  BackgroundColor #FFFFFF
+  FontStyle plain
+}
+skinparam database {
+  BorderColor #64748B
+  BackgroundColor #F3F4F6
+}
+skinparam queue {
+  BorderColor #64748B
+  BackgroundColor #F3F4F6
+}
+
+title Crisis dispatch - system architecture\n<size:11><color:#6B7280>The engine decides and computes · the LLM translates and explains · the manager validates</color></size>
+
+rectangle "Event sources (interchangeable)" as SRC #F8FAFC {
+  component "CSV crisis replay\n×1 / ×60 / pause" as CSV
+  component "Operator input\nclick on the map" as OPIN
+  component "Storm generator" as GEN
+  component "World simulator\ntrue durations & travel" as WORLD
+}
+
+queue "Event bus\nnew incident · team on site · repair done · team late / unavailable · shift end" as BUS
+
+rectangle "[1] Optimisation engine - the only source of decisions and numbers" as ENG #DCE7F3 {
+  component "Situation state\nteams · pending incidents · locks" as STATE
+  component "Greedy: list scheduling\nmax w / (travel + repair)\n< 10 ms" as GREEDY
+  component "Local search + ALNS\nrelocate · swap · reorder\n200–500 ms" as LS
+  component "evaluate_route()\n12 h work / 11 h rest\nΣ w·(C − r)" as EVAL
+  component "Counterfactuals\nalternatives · Δscore\ntipping points" as CF
+}
+
+rectangle "LLM layer - translates and explains, never decides" as LLM #D9F2EC {
+  component "[2] Explain\nfacts → French text\nnumbers checked vs engine" as LLMX
+  component "[3] Translate the reason\ntext → JSON modifiers\nfixed catalogue" as LLMT
+}
+
+actor "Crisis manager" as MGR #FAD9CF
+
+component "[4] Validator\nIDs exist · values in range\nsafety rules locked" as VAL #FFEFC7
+
+database "Active rules & config\nversioned · removable\nβ · λ · forbid · reserve · zones" as RULES
+
+database "Decision log\nproposal · response · reason · modifier · outcome" as LOG
+
+rectangle "[5] Memory & learning - proposes, never applies silently" as LEARN #E9E4FB {
+  component "Calibration\nestimated vs actual\nwithin the crisis" as CAL
+  component "Rules from memory\nrecurring rejections\nbetween crises" as MEMR
+  component "Preference learning\nfit β, λ from choices\nbetween crises" as PREF
+}
+
+' ---------- live loop
+CSV --> BUS
+OPIN --> BUS
+GEN --> BUS
+WORLD --> BUS : actual durations revealed\non completion
+BUS --> STATE : every event\n(grouped per second)
+
+STATE --> GREEDY : warm start
+GREEDY --> LS
+LS --> CF : best plan
+GREEDY ..> EVAL
+LS ..> EVAL : 1–2 routes per move
+
+CF --> LLMX : plan + explanation facts
+LLMX --> MGR : recommendations\n+ justification
+MGR --> WORLD : accept → dispatch
+MGR --> LLMT : reject + reason
+LLMT --> VAL : JSON modifiers
+VAL --> MGR : confirm?\n+ cost of the rule
+VAL --> RULES : confirmed
+RULES --> STATE : constraints & weights\n→ re-solve
+
+' ---------- learning loop
+MGR --> LOG : decisions
+CF --> LOG : proposals
+LOG --> CAL
+LOG --> MEMR
+LOG --> PREF
+CAL --> STATE : corrected estimates
+MEMR ..> MGR
+PREF ..> MGR
+
+legend right
+  <b>Colour code</b>
+  <color:#5B8DC9>■</color> Engine: decides & computes
+  <color:#3FA98E>■</color> LLM: translates & explains
+  <color:#E0A82E>■</color> Guardrail
+  <color:#8B7BD8>■</color> Learning: proposes only
+  <color:#E07A5F>■</color> Human: validates
+  ----
+  solid arrow = data / action
+  dotted arrow = proposal to the manager, or internal call
+endlegend
+@enduml

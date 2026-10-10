@@ -1,0 +1,332 @@
+﻿numero_crise;id_incident;id_poste;causeInterruption;dateHeureIncident;dureeDepannage
+CRISE_DEMO;DEMO_0001;POSTE_022695;Défaillance de matériel : autre défaillance;15/01/2017 18:26;4h
+CRISE_DEMO;DEMO_0002;POSTE_009250;Effort anormal par tempête de vent ou de pluie;15/01/2017 18:56;8h
+CRISE_DEMO;DEMO_0003;POSTE_003793;Effort anormal par tempête de vent ou de pluie;15/01/2017 19:14;4h
+CRISE_DEMO;DEMO_0004;POSTE_032955;Chute de branche par vent;15/01/2017 19:43;2h
+CRISE_DEMO;DEMO_0005;POSTE_003611;Effort anormal par tempête de vent ou de pluie;15/01/2017 20:01;2h
+CRISE_DEMO;DEMO_0009;POSTE_022299;Effort anormal par tempête de vent ou de pluie;15/01/2017 20:04;8h
+CRISE_DEMO;DEMO_0008;POSTE_029313;Chute de branche par vent;15/01/2017 20:06;4h
+CRISE_DEMO;DEMO_0007;POSTE_012338;Effort anormal par tempête de vent ou de pluie;15/01/2017 20:07;4h
+CRISE_DEMO;DEMO_0006;POSTE_026891;Coup de foudre;15/01/2017 20:27;2h
+CRISE_DEMO;DEMO_0011;POSTE_003408;Chute de branche par vent;15/01/2017 20:31;4h
+CRISE_DEMO;DEMO_0010;POSTE_024118;Usure naturelle;15/01/2017 20:45;4h
+CRISE_DEMO;DEMO_0013;POSTE_014359;Coup de foudre;15/01/2017 20:48;2h
+CRISE_DEMO;DEMO_0012;POSTE_012435;Chute de branche par vent;15/01/2017 20:54;8h
+CRISE_DEMO;DEMO_0014;POSTE_027431;Cause inconnue avec circonstances atmosphériques normales;15/01/2017 21:02;4h
+CRISE_DEMO;DEMO_0015;POSTE_000460;Usure naturelle;15/01/2017 21:09;2h
+CRISE_DEMO;DEMO_0018;POSTE_006889;Effort anormal par tempête de vent ou de pluie;15/01/2017 21:37;8h
+CRISE_DEMO;DEMO_0020;POSTE_023878;Effort anormal par tempête de vent ou de pluie;15/01/2017 21:41;4h
+CRISE_DEMO;DEMO_0019;POSTE_025300;Chute de branche par vent;15/01/2017 21:46;8h
+CRISE_DEMO;DEMO_0017;POSTE_032295;Coup de foudre;15/01/2017 21:49;4h
+CRISE_DEMO;DEMO_0016;POSTE_024913;Coup de foudre;15/01/2017 21:57;4h
+CRISE_DEMO;DEMO_0021;POSTE_010588;Défaillance de matériel : autre défaillance;15/01/2017 22:00;8h
+CRISE_DEMO;DEMO_0029;POSTE_003563;Chute de branche par vent;15/01/2017 22:02;2h
+CRISE_DEMO;DEMO_0024;POSTE_006249;Chute de branche par vent;15/01/2017 22:05;4h
+CRISE_DEMO;DEMO_0032;POSTE_024240;Effort anormal par tempête de vent ou de pluie;15/01/2017 22:06;4h
+CRISE_DEMO;DEMO_0030;POSTE_025013;Élagage insuffisant;15/01/2017 22:07;2h
+CRISE_DEMO;DEMO_0022;POSTE_028129;Élagage insuffisant;15/01/2017 22:12;4h
+CRISE_DEMO;DEMO_0028;POSTE_027801;Usure naturelle;15/01/2017 22:12;4h
+CRISE_DEMO;DEMO_0027;POSTE_031650;Usure naturelle;15/01/2017 22:15;8h
+CRISE_DEMO;DEMO_0031;POSTE_004840;Cause inconnue avec circonstances atmosphériques normales;15/01/2017 22:18;4h
+CRISE_DEMO;DEMO_0023;POSTE_016424;Chute de branche par vent;15/01/2017 22:23;2h
+CRISE_DEMO;DEMO_0026;POSTE_002796;Chute de branche par vent;15/01/2017 22:28;8h
+CRISE_DEMO;DEMO_0025;POSTE_010112;Coup de foudre;15/01/2017 22:28;4h
+CRISE_DEMO;DEMO_0036;POSTE_014199;Effort anormal par tempête de vent ou de pluie;15/01/2017 22:30;4h
+CRISE_DEMO;DEMO_0034;POSTE_028133;Défaillance protection;15/01/2017 22:33;8h
+CRISE_DEMO;DEMO_0040;POSTE_008245;Coup de foudre;15/01/2017 22:35;4h
+CRISE_DEMO;DEMO_0043;POSTE_010410;Usure naturelle;15/01/2017 22:39;8h
+CRISE_DEMO;DEMO_0042;POSTE_027942;Effort anormal par tempête de vent ou de pluie;15/01/2017 22:39;2h
+CRISE_DEMO;DEMO_0033;POSTE_022427;Défaillance de matériel : autre défaillance;15/01/2017 22:42;8h
+CRISE_DEMO;DEMO_0035;POSTE_029704;Défaillance protection;15/01/2017 22:45;4h
+CRISE_DEMO;DEMO_0039;POSTE_028659;Élagage insuffisant;15/01/2017 22:46;2h
+CRISE_DEMO;DEMO_0037;POSTE_032330;Effort anormal par tempête de vent ou de pluie;15/01/2017 22:47;2h
+CRISE_DEMO;DEMO_0038;POSTE_003619;Effort anormal par tempête de vent ou de pluie;15/01/2017 22:50;4h
+CRISE_DEMO;DEMO_0044;POSTE_027504;Usure naturelle;15/01/2017 22:53;4h
+CRISE_DEMO;DEMO_0041;POSTE_015860;Élagage insuffisant;15/01/2017 22:58;4h
+CRISE_DEMO;DEMO_0055;POSTE_015345;Défaillance de matériel : autre défaillance;15/01/2017 23:02;8h
+CRISE_DEMO;DEMO_0051;POSTE_005312;Défaillance de matériel : autre défaillance;15/01/2017 23:02;4h
+CRISE_DEMO;DEMO_0050;POSTE_019615;Défaillance de matériel : autre défaillance;15/01/2017 23:02;2h
+CRISE_DEMO;DEMO_0052;POSTE_028057;Effort anormal par tempête de vent ou de pluie;15/01/2017 23:03;8h
+CRISE_DEMO;DEMO_0047;POSTE_020039;Chute de branche par vent;15/01/2017 23:03;4h
+CRISE_DEMO;DEMO_0049;POSTE_010199;Effort anormal par tempête de vent ou de pluie;15/01/2017 23:06;4h
+CRISE_DEMO;DEMO_0053;POSTE_027941;Élagage insuffisant;15/01/2017 23:09;2h
+CRISE_DEMO;DEMO_0046;POSTE_029898;Effort anormal par tempête de vent ou de pluie;15/01/2017 23:11;2h
+CRISE_DEMO;DEMO_0054;POSTE_000612;Usure naturelle;15/01/2017 23:13;4h
+CRISE_DEMO;DEMO_0045;POSTE_016119;Effort anormal par tempête de vent ou de pluie;15/01/2017 23:19;2h
+CRISE_DEMO;DEMO_0056;POSTE_028409;Chute de branche par vent;15/01/2017 23:20;4h
+CRISE_DEMO;DEMO_0048;POSTE_022844;Chute de branche par vent;15/01/2017 23:24;4h
+CRISE_DEMO;DEMO_0064;POSTE_004644;Défaillance de matériel : autre défaillance;15/01/2017 23:34;8h
+CRISE_DEMO;DEMO_0059;POSTE_006920;Défaillance de matériel : autre défaillance;15/01/2017 23:35;8h
+CRISE_DEMO;DEMO_0063;POSTE_012406;Effort anormal par tempête de vent ou de pluie;15/01/2017 23:41;8h
+CRISE_DEMO;DEMO_0060;POSTE_007195;Chute de branche par vent;15/01/2017 23:43;4h
+CRISE_DEMO;DEMO_0057;POSTE_015237;Défaillance de matériel : autre défaillance;15/01/2017 23:49;8h
+CRISE_DEMO;DEMO_0062;POSTE_000827;Chute de branche par vent;15/01/2017 23:51;8h
+CRISE_DEMO;DEMO_0061;POSTE_011092;Chute de branche par vent;15/01/2017 23:55;4h
+CRISE_DEMO;DEMO_0058;POSTE_026518;Défaillance de matériel : autre défaillance;15/01/2017 23:55;4h
+CRISE_DEMO;DEMO_0067;POSTE_004936;Chute de branche par vent;16/01/2017 00:00;4h
+CRISE_DEMO;DEMO_0066;POSTE_025196;Défaillance de matériel : autre défaillance;16/01/2017 00:06;4h
+CRISE_DEMO;DEMO_0065;POSTE_031655;Défaillance de matériel : autre défaillance;16/01/2017 00:13;4h
+CRISE_DEMO;DEMO_0068;POSTE_008602;Effort anormal par tempête de vent ou de pluie;16/01/2017 00:13;8h
+CRISE_DEMO;DEMO_0069;POSTE_008765;Effort anormal par tempête de vent ou de pluie;16/01/2017 00:27;4h
+CRISE_DEMO;DEMO_0071;POSTE_028553;Chute de branche par vent;16/01/2017 00:37;4h
+CRISE_DEMO;DEMO_0072;POSTE_023676;Chute de branche par vent;16/01/2017 00:48;4h
+CRISE_DEMO;DEMO_0070;POSTE_018714;Chute de branche par vent;16/01/2017 00:55;4h
+CRISE_DEMO;DEMO_0073;POSTE_006392;Effort anormal par tempête de vent ou de pluie;16/01/2017 00:56;4h
+CRISE_DEMO;DEMO_0079;POSTE_018953;Chute de branche par vent;16/01/2017 01:04;4h
+CRISE_DEMO;DEMO_0077;POSTE_011601;Effort anormal par tempête de vent ou de pluie;16/01/2017 01:09;8h
+CRISE_DEMO;DEMO_0082;POSTE_007894;Coup de foudre;16/01/2017 01:12;8h
+CRISE_DEMO;DEMO_0080;POSTE_012041;Élagage insuffisant;16/01/2017 01:17;4h
+CRISE_DEMO;DEMO_0074;POSTE_011568;Effort anormal par tempête de vent ou de pluie;16/01/2017 01:17;4h
+CRISE_DEMO;DEMO_0081;POSTE_014766;Coup de foudre;16/01/2017 01:21;8h
+CRISE_DEMO;DEMO_0076;POSTE_027873;Élagage insuffisant;16/01/2017 01:21;2h
+CRISE_DEMO;DEMO_0075;POSTE_028579;Défaillance de matériel : autre défaillance;16/01/2017 01:26;8h
+CRISE_DEMO;DEMO_0078;POSTE_012870;Coup de foudre;16/01/2017 01:27;4h
+CRISE_DEMO;DEMO_0087;POSTE_000472;Usure naturelle;16/01/2017 01:35;4h
+CRISE_DEMO;DEMO_0089;POSTE_004122;Coup de foudre;16/01/2017 01:43;8h
+CRISE_DEMO;DEMO_0083;POSTE_024743;Chute de branche par vent;16/01/2017 01:44;2h
+CRISE_DEMO;DEMO_0086;POSTE_002610;Effort anormal par tempête de vent ou de pluie;16/01/2017 01:46;2h
+CRISE_DEMO;DEMO_0084;POSTE_031061;Effort anormal par tempête de vent ou de pluie;16/01/2017 01:51;2h
+CRISE_DEMO;DEMO_0088;POSTE_027931;Coup de foudre;16/01/2017 01:52;2h
+CRISE_DEMO;DEMO_0085;POSTE_001534;Effort anormal par tempête de vent ou de pluie;16/01/2017 01:57;2h
+CRISE_DEMO;DEMO_0090;POSTE_029927;Chute de branche par vent;16/01/2017 02:01;8h
+CRISE_DEMO;DEMO_0104;POSTE_005827;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 02:06;4h
+CRISE_DEMO;DEMO_0103;POSTE_029729;Chute de branche par vent;16/01/2017 02:07;2h
+CRISE_DEMO;DEMO_0102;POSTE_019550;Coup de foudre;16/01/2017 02:07;4h
+CRISE_DEMO;DEMO_0094;POSTE_030878;Coup de foudre;16/01/2017 02:11;8h
+CRISE_DEMO;DEMO_0095;POSTE_028065;Effort anormal par tempête de vent ou de pluie;16/01/2017 02:11;8h
+CRISE_DEMO;DEMO_0099;POSTE_027543;Chute de branche par vent;16/01/2017 02:11;4h
+CRISE_DEMO;DEMO_0092;POSTE_012930;Effort anormal par tempête de vent ou de pluie;16/01/2017 02:12;4h
+CRISE_DEMO;DEMO_0093;POSTE_008603;Véhicule;16/01/2017 02:12;4h
+CRISE_DEMO;DEMO_0097;POSTE_018289;Effort anormal par tempête de vent ou de pluie;16/01/2017 02:14;4h
+CRISE_DEMO;DEMO_0091;POSTE_016702;Coup de foudre;16/01/2017 02:16;2h
+CRISE_DEMO;DEMO_0096;POSTE_031145;Effort anormal par tempête de vent ou de pluie;16/01/2017 02:20;8h
+CRISE_DEMO;DEMO_0100;POSTE_017488;Défaillance de matériel : autre défaillance;16/01/2017 02:21;4h
+CRISE_DEMO;DEMO_0098;POSTE_014970;Chute de branche par vent;16/01/2017 02:24;8h
+CRISE_DEMO;DEMO_0101;POSTE_020041;Chute de branche par vent;16/01/2017 02:24;4h
+CRISE_DEMO;DEMO_0110;POSTE_000439;Effort anormal par tempête de vent ou de pluie;16/01/2017 02:35;2h
+CRISE_DEMO;DEMO_0109;POSTE_011673;Effort anormal par tempête de vent ou de pluie;16/01/2017 02:35;8h
+CRISE_DEMO;DEMO_0107;POSTE_007621;Chute de branche par vent;16/01/2017 02:37;2h
+CRISE_DEMO;DEMO_0108;POSTE_012517;Coup de foudre;16/01/2017 02:43;4h
+CRISE_DEMO;DEMO_0111;POSTE_004229;Effort anormal par tempête de vent ou de pluie;16/01/2017 02:43;4h
+CRISE_DEMO;DEMO_0106;POSTE_019998;Défaillance de matériel : autre défaillance;16/01/2017 02:48;8h
+CRISE_DEMO;DEMO_0105;POSTE_026547;Chute de branche par vent;16/01/2017 02:53;8h
+CRISE_DEMO;DEMO_0119;POSTE_018204;Effort anormal par tempête de vent ou de pluie;16/01/2017 03:05;2h
+CRISE_DEMO;DEMO_0120;POSTE_000237;Usure naturelle;16/01/2017 03:08;2h
+CRISE_DEMO;DEMO_0121;POSTE_005106;Effort anormal par tempête de vent ou de pluie;16/01/2017 03:12;8h
+CRISE_DEMO;DEMO_0112;POSTE_032731;Défaillance de matériel : autre défaillance;16/01/2017 03:18;4h
+CRISE_DEMO;DEMO_0116;POSTE_029465;Chute de branche par vent;16/01/2017 03:18;2h
+CRISE_DEMO;DEMO_0115;POSTE_025561;Coup de foudre;16/01/2017 03:19;2h
+CRISE_DEMO;DEMO_0117;POSTE_012912;Coup de foudre;16/01/2017 03:21;4h
+CRISE_DEMO;DEMO_0118;POSTE_031479;Chute de branche par vent;16/01/2017 03:22;4h
+CRISE_DEMO;DEMO_0114;POSTE_028392;Défaillance protection;16/01/2017 03:24;8h
+CRISE_DEMO;DEMO_0113;POSTE_000889;Effort anormal par tempête de vent ou de pluie;16/01/2017 03:26;4h
+CRISE_DEMO;DEMO_0130;POSTE_017226;Effort anormal par tempête de vent ou de pluie;16/01/2017 03:32;4h
+CRISE_DEMO;DEMO_0122;POSTE_016639;Chute de branche par vent;16/01/2017 03:33;4h
+CRISE_DEMO;DEMO_0128;POSTE_008006;Défaillance de matériel : autre défaillance;16/01/2017 03:36;4h
+CRISE_DEMO;DEMO_0127;POSTE_005142;Effort anormal par tempête de vent ou de pluie;16/01/2017 03:41;8h
+CRISE_DEMO;DEMO_0124;POSTE_027458;Effort anormal par tempête de vent ou de pluie;16/01/2017 03:48;2h
+CRISE_DEMO;DEMO_0126;POSTE_007040;Chute de branche par vent;16/01/2017 03:52;2h
+CRISE_DEMO;DEMO_0129;POSTE_002062;Chute de branche par vent;16/01/2017 03:55;4h
+CRISE_DEMO;DEMO_0125;POSTE_023687;Effort anormal par tempête de vent ou de pluie;16/01/2017 03:55;8h
+CRISE_DEMO;DEMO_0123;POSTE_005371;Effort anormal par tempête de vent ou de pluie;16/01/2017 03:55;4h
+CRISE_DEMO;DEMO_0136;POSTE_013721;Chute de branche par vent;16/01/2017 04:01;4h
+CRISE_DEMO;DEMO_0131;POSTE_017800;Effort anormal par tempête de vent ou de pluie;16/01/2017 04:02;8h
+CRISE_DEMO;DEMO_0135;POSTE_013687;Chute de branche par vent;16/01/2017 04:14;8h
+CRISE_DEMO;DEMO_0137;POSTE_002201;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 04:17;2h
+CRISE_DEMO;DEMO_0134;POSTE_019128;Effort anormal par tempête de vent ou de pluie;16/01/2017 04:22;4h
+CRISE_DEMO;DEMO_0132;POSTE_026811;Effort anormal par tempête de vent ou de pluie;16/01/2017 04:24;2h
+CRISE_DEMO;DEMO_0133;POSTE_031454;Effort anormal par tempête de vent ou de pluie;16/01/2017 04:26;2h
+CRISE_DEMO;DEMO_0149;POSTE_032354;Effort anormal par tempête de vent ou de pluie;16/01/2017 04:31;4h
+CRISE_DEMO;DEMO_0142;POSTE_022743;Chute de branche par vent;16/01/2017 04:31;4h
+CRISE_DEMO;DEMO_0140;POSTE_005231;Élagage insuffisant;16/01/2017 04:33;8h
+CRISE_DEMO;DEMO_0141;POSTE_012536;Effort anormal par tempête de vent ou de pluie;16/01/2017 04:37;8h
+CRISE_DEMO;DEMO_0145;POSTE_029263;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 04:40;8h
+CRISE_DEMO;DEMO_0139;POSTE_025774;Chute de branche par vent;16/01/2017 04:41;2h
+CRISE_DEMO;DEMO_0144;POSTE_032503;Défaillance de matériel : autre défaillance;16/01/2017 04:45;4h
+CRISE_DEMO;DEMO_0148;POSTE_008487;Effort anormal par tempête de vent ou de pluie;16/01/2017 04:45;4h
+CRISE_DEMO;DEMO_0138;POSTE_027406;Défaillance de matériel : autre défaillance;16/01/2017 04:46;4h
+CRISE_DEMO;DEMO_0146;POSTE_014396;Effort anormal par tempête de vent ou de pluie;16/01/2017 04:54;8h
+CRISE_DEMO;DEMO_0147;POSTE_015831;Effort anormal par tempête de vent ou de pluie;16/01/2017 04:56;2h
+CRISE_DEMO;DEMO_0143;POSTE_016862;Effort anormal par tempête de vent ou de pluie;16/01/2017 04:57;4h
+CRISE_DEMO;DEMO_0158;POSTE_028560;Coup de foudre;16/01/2017 05:02;2h
+CRISE_DEMO;DEMO_0155;POSTE_028453;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 05:03;2h
+CRISE_DEMO;DEMO_0151;POSTE_025051;Chute de branche par vent;16/01/2017 05:07;8h
+CRISE_DEMO;DEMO_0153;POSTE_015867;Effort anormal par tempête de vent ou de pluie;16/01/2017 05:07;4h
+CRISE_DEMO;DEMO_0150;POSTE_024598;Effort anormal par tempête de vent ou de pluie;16/01/2017 05:08;4h
+CRISE_DEMO;DEMO_0159;POSTE_014680;Coup de foudre;16/01/2017 05:22;8h
+CRISE_DEMO;DEMO_0160;POSTE_030639;Chute de branche par vent;16/01/2017 05:24;8h
+CRISE_DEMO;DEMO_0152;POSTE_007546;Défaillance protection;16/01/2017 05:26;4h
+CRISE_DEMO;DEMO_0156;POSTE_005663;Effort anormal par tempête de vent ou de pluie;16/01/2017 05:27;4h
+CRISE_DEMO;DEMO_0154;POSTE_025816;Effort anormal par tempête de vent ou de pluie;16/01/2017 05:28;2h
+CRISE_DEMO;DEMO_0157;POSTE_001866;Effort anormal par tempête de vent ou de pluie;16/01/2017 05:28;8h
+CRISE_DEMO;DEMO_0167;POSTE_025377;Effort anormal par tempête de vent ou de pluie;16/01/2017 05:35;2h
+CRISE_DEMO;DEMO_0165;POSTE_016283;Effort anormal par tempête de vent ou de pluie;16/01/2017 05:36;4h
+CRISE_DEMO;DEMO_0168;POSTE_009155;Coup de foudre;16/01/2017 05:38;4h
+CRISE_DEMO;DEMO_0162;POSTE_025090;Défaillance de matériel : autre défaillance;16/01/2017 05:41;2h
+CRISE_DEMO;DEMO_0163;POSTE_007456;Chute de branche par vent;16/01/2017 05:41;4h
+CRISE_DEMO;DEMO_0166;POSTE_017705;Chute de branche par vent;16/01/2017 05:52;4h
+CRISE_DEMO;DEMO_0164;POSTE_027633;Coup de foudre;16/01/2017 05:52;2h
+CRISE_DEMO;DEMO_0161;POSTE_015941;Chute de branche par vent;16/01/2017 05:58;8h
+CRISE_DEMO;DEMO_0176;POSTE_016674;Défaillance protection;16/01/2017 06:00;4h
+CRISE_DEMO;DEMO_0175;POSTE_005291;Effort anormal par tempête de vent ou de pluie;16/01/2017 06:02;4h
+CRISE_DEMO;DEMO_0171;POSTE_024348;Effort anormal par tempête de vent ou de pluie;16/01/2017 06:07;8h
+CRISE_DEMO;DEMO_0174;POSTE_019832;Effort anormal par tempête de vent ou de pluie;16/01/2017 06:09;4h
+CRISE_DEMO;DEMO_0169;POSTE_022278;Coup de foudre;16/01/2017 06:10;2h
+CRISE_DEMO;DEMO_0173;POSTE_026611;Coup de foudre;16/01/2017 06:15;2h
+CRISE_DEMO;DEMO_0172;POSTE_015246;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 06:18;8h
+CRISE_DEMO;DEMO_0170;POSTE_007979;Effort anormal par tempête de vent ou de pluie;16/01/2017 06:21;8h
+CRISE_DEMO;DEMO_0177;POSTE_019785;Effort anormal par tempête de vent ou de pluie;16/01/2017 06:21;4h
+CRISE_DEMO;DEMO_0178;POSTE_021152;Coup de foudre;16/01/2017 06:26;4h
+CRISE_DEMO;DEMO_0184;POSTE_007181;Usure naturelle;16/01/2017 06:30;4h
+CRISE_DEMO;DEMO_0179;POSTE_033025;Effort anormal par tempête de vent ou de pluie;16/01/2017 06:30;2h
+CRISE_DEMO;DEMO_0181;POSTE_006360;Élagage insuffisant;16/01/2017 06:32;2h
+CRISE_DEMO;DEMO_0180;POSTE_009073;Usure naturelle;16/01/2017 06:34;4h
+CRISE_DEMO;DEMO_0186;POSTE_021767;Effort anormal par tempête de vent ou de pluie;16/01/2017 06:35;8h
+CRISE_DEMO;DEMO_0187;POSTE_027554;Usure naturelle;16/01/2017 06:37;4h
+CRISE_DEMO;DEMO_0182;POSTE_022568;Effort anormal par tempête de vent ou de pluie;16/01/2017 06:48;4h
+CRISE_DEMO;DEMO_0185;POSTE_012783;Élagage insuffisant;16/01/2017 06:50;8h
+CRISE_DEMO;DEMO_0183;POSTE_024589;Élagage insuffisant;16/01/2017 06:58;2h
+CRISE_DEMO;DEMO_0193;POSTE_007116;Effort anormal par tempête de vent ou de pluie;16/01/2017 07:03;4h
+CRISE_DEMO;DEMO_0188;POSTE_023807;Effort anormal par tempête de vent ou de pluie;16/01/2017 07:13;2h
+CRISE_DEMO;DEMO_0196;POSTE_010674;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 07:14;2h
+CRISE_DEMO;DEMO_0192;POSTE_004142;Chute de branche par vent;16/01/2017 07:15;8h
+CRISE_DEMO;DEMO_0194;POSTE_029398;Défaillance de matériel : autre défaillance;16/01/2017 07:18;2h
+CRISE_DEMO;DEMO_0195;POSTE_014020;Effort anormal par tempête de vent ou de pluie;16/01/2017 07:24;2h
+CRISE_DEMO;DEMO_0189;POSTE_020262;Usure naturelle;16/01/2017 07:26;4h
+CRISE_DEMO;DEMO_0190;POSTE_028999;Chute de branche par vent;16/01/2017 07:28;4h
+CRISE_DEMO;DEMO_0191;POSTE_013043;Coup de foudre;16/01/2017 07:29;4h
+CRISE_DEMO;DEMO_0197;POSTE_009979;Effort anormal par tempête de vent ou de pluie;16/01/2017 07:31;4h
+CRISE_DEMO;DEMO_0199;POSTE_030563;Usure naturelle;16/01/2017 07:35;8h
+CRISE_DEMO;DEMO_0198;POSTE_024513;Chute de branche par vent;16/01/2017 07:41;4h
+CRISE_DEMO;DEMO_0200;POSTE_024452;Élagage insuffisant;16/01/2017 07:43;4h
+CRISE_DEMO;DEMO_0209;POSTE_030844;Effort anormal par tempête de vent ou de pluie;16/01/2017 08:00;4h
+CRISE_DEMO;DEMO_0203;POSTE_027790;Effort anormal par tempête de vent ou de pluie;16/01/2017 08:02;2h
+CRISE_DEMO;DEMO_0208;POSTE_011778;Élagage insuffisant;16/01/2017 08:03;8h
+CRISE_DEMO;DEMO_0207;POSTE_020400;Chute de branche par vent;16/01/2017 08:06;4h
+CRISE_DEMO;DEMO_0201;POSTE_020425;Coup de foudre;16/01/2017 08:10;8h
+CRISE_DEMO;DEMO_0210;POSTE_028817;Chute de branche par vent;16/01/2017 08:17;4h
+CRISE_DEMO;DEMO_0211;POSTE_032061;Effort anormal par tempête de vent ou de pluie;16/01/2017 08:19;4h
+CRISE_DEMO;DEMO_0204;POSTE_019081;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 08:20;8h
+CRISE_DEMO;DEMO_0214;POSTE_019498;Effort anormal par tempête de vent ou de pluie;16/01/2017 08:20;4h
+CRISE_DEMO;DEMO_0205;POSTE_020743;Effort anormal par tempête de vent ou de pluie;16/01/2017 08:24;8h
+CRISE_DEMO;DEMO_0202;POSTE_008774;Chute de branche par vent;16/01/2017 08:24;4h
+CRISE_DEMO;DEMO_0206;POSTE_021216;Usure naturelle;16/01/2017 08:26;2h
+CRISE_DEMO;DEMO_0213;POSTE_020836;Chute de branche par vent;16/01/2017 08:26;2h
+CRISE_DEMO;DEMO_0212;POSTE_023512;Effort anormal par tempête de vent ou de pluie;16/01/2017 08:27;2h
+CRISE_DEMO;DEMO_0220;POSTE_024940;Chute de branche par vent;16/01/2017 08:42;8h
+CRISE_DEMO;DEMO_0222;POSTE_020896;Chute de branche par vent;16/01/2017 08:44;4h
+CRISE_DEMO;DEMO_0218;POSTE_027162;Effort anormal par tempête de vent ou de pluie;16/01/2017 08:45;2h
+CRISE_DEMO;DEMO_0215;POSTE_018654;Chute de branche par vent;16/01/2017 08:47;4h
+CRISE_DEMO;DEMO_0217;POSTE_002904;Chute de branche par vent;16/01/2017 08:48;8h
+CRISE_DEMO;DEMO_0221;POSTE_027658;Défaillance de matériel : autre défaillance;16/01/2017 08:49;2h
+CRISE_DEMO;DEMO_0219;POSTE_017120;Effort anormal par tempête de vent ou de pluie;16/01/2017 08:51;8h
+CRISE_DEMO;DEMO_0216;POSTE_016918;Coup de foudre;16/01/2017 08:54;4h
+CRISE_DEMO;DEMO_0225;POSTE_010489;Coup de foudre;16/01/2017 09:01;4h
+CRISE_DEMO;DEMO_0230;POSTE_032362;Effort anormal par tempête de vent ou de pluie;16/01/2017 09:02;8h
+CRISE_DEMO;DEMO_0231;POSTE_007263;Chute de branche par vent;16/01/2017 09:04;4h
+CRISE_DEMO;DEMO_0236;POSTE_010134;Chute de branche par vent;16/01/2017 09:07;2h
+CRISE_DEMO;DEMO_0229;POSTE_008864;Défaillance de matériel : autre défaillance;16/01/2017 09:08;4h
+CRISE_DEMO;DEMO_0226;POSTE_021948;Coup de foudre;16/01/2017 09:09;8h
+CRISE_DEMO;DEMO_0227;POSTE_030403;Coup de foudre;16/01/2017 09:09;4h
+CRISE_DEMO;DEMO_0223;POSTE_029527;Défaillance protection;16/01/2017 09:12;8h
+CRISE_DEMO;DEMO_0239;POSTE_001048;Effort anormal par tempête de vent ou de pluie;16/01/2017 09:19;4h
+CRISE_DEMO;DEMO_0232;POSTE_024474;Élagage insuffisant;16/01/2017 09:22;4h
+CRISE_DEMO;DEMO_0238;POSTE_029211;Coup de foudre;16/01/2017 09:24;2h
+CRISE_DEMO;DEMO_0234;POSTE_009491;Coup de foudre;16/01/2017 09:26;8h
+CRISE_DEMO;DEMO_0235;POSTE_002035;Effort anormal par tempête de vent ou de pluie;16/01/2017 09:26;2h
+CRISE_DEMO;DEMO_0237;POSTE_005820;Effort anormal par tempête de vent ou de pluie;16/01/2017 09:27;4h
+CRISE_DEMO;DEMO_0228;POSTE_002595;Effort anormal par tempête de vent ou de pluie;16/01/2017 09:28;8h
+CRISE_DEMO;DEMO_0233;POSTE_008298;Chute de branche par vent;16/01/2017 09:29;8h
+CRISE_DEMO;DEMO_0224;POSTE_002964;Coup de foudre;16/01/2017 09:29;4h
+CRISE_DEMO;DEMO_0246;POSTE_009028;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 09:31;8h
+CRISE_DEMO;DEMO_0240;POSTE_018394;Chute de branche par vent;16/01/2017 09:31;4h
+CRISE_DEMO;DEMO_0244;POSTE_002420;Élagage insuffisant;16/01/2017 09:33;4h
+CRISE_DEMO;DEMO_0247;POSTE_005496;Usure naturelle;16/01/2017 09:33;2h
+CRISE_DEMO;DEMO_0248;POSTE_016579;Effort anormal par tempête de vent ou de pluie;16/01/2017 09:44;4h
+CRISE_DEMO;DEMO_0250;POSTE_026493;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 09:44;4h
+CRISE_DEMO;DEMO_0241;POSTE_013284;Défaillance protection;16/01/2017 09:47;4h
+CRISE_DEMO;DEMO_0242;POSTE_009872;Usure naturelle;16/01/2017 09:48;2h
+CRISE_DEMO;DEMO_0245;POSTE_002410;Chute de branche par vent;16/01/2017 09:48;4h
+CRISE_DEMO;DEMO_0243;POSTE_023093;Chute de branche par vent;16/01/2017 09:54;8h
+CRISE_DEMO;DEMO_0249;POSTE_019349;Élagage insuffisant;16/01/2017 09:57;4h
+CRISE_DEMO;DEMO_0251;POSTE_024637;Défaillance de matériel : autre défaillance;16/01/2017 10:02;4h
+CRISE_DEMO;DEMO_0253;POSTE_009185;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 10:11;8h
+CRISE_DEMO;DEMO_0257;POSTE_005681;Chute de branche par vent;16/01/2017 10:16;8h
+CRISE_DEMO;DEMO_0254;POSTE_013524;Défaillance protection;16/01/2017 10:21;8h
+CRISE_DEMO;DEMO_0256;POSTE_012533;Effort anormal par tempête de vent ou de pluie;16/01/2017 10:21;4h
+CRISE_DEMO;DEMO_0255;POSTE_019911;Élagage insuffisant;16/01/2017 10:25;4h
+CRISE_DEMO;DEMO_0252;POSTE_015855;Défaillance protection;16/01/2017 10:26;4h
+CRISE_DEMO;DEMO_0259;POSTE_000917;Effort anormal par tempête de vent ou de pluie;16/01/2017 10:31;2h
+CRISE_DEMO;DEMO_0261;POSTE_022434;Effort anormal par tempête de vent ou de pluie;16/01/2017 10:31;8h
+CRISE_DEMO;DEMO_0263;POSTE_017801;Coup de foudre;16/01/2017 10:42;2h
+CRISE_DEMO;DEMO_0262;POSTE_032851;Effort anormal par tempête de vent ou de pluie;16/01/2017 10:45;8h
+CRISE_DEMO;DEMO_0260;POSTE_005905;Défaillance de matériel : autre défaillance;16/01/2017 10:45;2h
+CRISE_DEMO;DEMO_0264;POSTE_013952;Chute de branche par vent;16/01/2017 10:52;4h
+CRISE_DEMO;DEMO_0258;POSTE_025478;Coup de foudre;16/01/2017 10:56;2h
+CRISE_DEMO;DEMO_0268;POSTE_030951;Chute de branche par vent;16/01/2017 11:04;4h
+CRISE_DEMO;DEMO_0267;POSTE_024473;Chute de branche par vent;16/01/2017 11:10;4h
+CRISE_DEMO;DEMO_0266;POSTE_021604;Défaillance de matériel : autre défaillance;16/01/2017 11:11;2h
+CRISE_DEMO;DEMO_0265;POSTE_013958;Coup de foudre;16/01/2017 11:15;8h
+CRISE_DEMO;DEMO_0273;POSTE_018826;Coup de foudre;16/01/2017 11:32;2h
+CRISE_DEMO;DEMO_0278;POSTE_013219;Chute de branche par vent;16/01/2017 11:39;2h
+CRISE_DEMO;DEMO_0270;POSTE_022100;Coup de foudre;16/01/2017 11:39;4h
+CRISE_DEMO;DEMO_0274;POSTE_006452;Effort anormal par tempête de vent ou de pluie;16/01/2017 11:43;2h
+CRISE_DEMO;DEMO_0276;POSTE_023422;Défaillance protection;16/01/2017 11:48;8h
+CRISE_DEMO;DEMO_0269;POSTE_026324;Élagage insuffisant;16/01/2017 11:49;2h
+CRISE_DEMO;DEMO_0271;POSTE_008141;Effort anormal par tempête de vent ou de pluie;16/01/2017 11:50;4h
+CRISE_DEMO;DEMO_0275;POSTE_002821;Chute de branche par vent;16/01/2017 11:52;4h
+CRISE_DEMO;DEMO_0277;POSTE_002285;Effort anormal par tempête de vent ou de pluie;16/01/2017 11:53;2h
+CRISE_DEMO;DEMO_0272;POSTE_002068;Coup de foudre;16/01/2017 11:54;4h
+CRISE_DEMO;DEMO_0281;POSTE_021375;Usure naturelle;16/01/2017 12:03;4h
+CRISE_DEMO;DEMO_0284;POSTE_021456;Coup de foudre;16/01/2017 12:04;4h
+CRISE_DEMO;DEMO_0279;POSTE_027587;Chute de branche par vent;16/01/2017 12:06;4h
+CRISE_DEMO;DEMO_0282;POSTE_016797;Effort anormal par tempête de vent ou de pluie;16/01/2017 12:14;4h
+CRISE_DEMO;DEMO_0283;POSTE_012118;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 12:21;4h
+CRISE_DEMO;DEMO_0286;POSTE_003577;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 12:24;2h
+CRISE_DEMO;DEMO_0285;POSTE_016339;Défaillance de matériel : autre défaillance;16/01/2017 12:24;4h
+CRISE_DEMO;DEMO_0280;POSTE_025772;Chute de branche par vent;16/01/2017 12:26;4h
+CRISE_DEMO;DEMO_0287;POSTE_022811;Défaillance de matériel : autre défaillance;16/01/2017 12:29;2h
+CRISE_DEMO;DEMO_0291;POSTE_022602;Élagage insuffisant;16/01/2017 12:37;8h
+CRISE_DEMO;DEMO_0288;POSTE_013175;Élagage insuffisant;16/01/2017 12:43;4h
+CRISE_DEMO;DEMO_0289;POSTE_013625;Chute de branche par vent;16/01/2017 12:50;4h
+CRISE_DEMO;DEMO_0293;POSTE_027209;Défaillance de matériel : autre défaillance;16/01/2017 12:51;2h
+CRISE_DEMO;DEMO_0290;POSTE_021926;Effort anormal par tempête de vent ou de pluie;16/01/2017 12:52;4h
+CRISE_DEMO;DEMO_0292;POSTE_026339;Coup de foudre;16/01/2017 12:55;4h
+CRISE_DEMO;DEMO_0296;POSTE_015994;Chute de branche par vent;16/01/2017 13:02;8h
+CRISE_DEMO;DEMO_0299;POSTE_014667;Effort anormal par tempête de vent ou de pluie;16/01/2017 13:09;8h
+CRISE_DEMO;DEMO_0294;POSTE_025823;Chute de branche par vent;16/01/2017 13:11;8h
+CRISE_DEMO;DEMO_0298;POSTE_018572;Chute de branche par vent;16/01/2017 13:13;2h
+CRISE_DEMO;DEMO_0295;POSTE_010803;Cause inconnue avec circonstances atmosphériques normales;16/01/2017 13:20;4h
+CRISE_DEMO;DEMO_0297;POSTE_026074;Usure naturelle;16/01/2017 13:22;2h
+CRISE_DEMO;DEMO_0300;POSTE_015067;Effort anormal par tempête de vent ou de pluie;16/01/2017 13:33;4h
+CRISE_DEMO;DEMO_0302;POSTE_014450;Coup de foudre;16/01/2017 13:34;4h
+CRISE_DEMO;DEMO_0305;POSTE_022256;Défaillance de matériel : autre défaillance;16/01/2017 13:37;2h
+CRISE_DEMO;DEMO_0306;POSTE_000113;Coup de foudre;16/01/2017 13:43;8h
+CRISE_DEMO;DEMO_0304;POSTE_024651;Chute de branche par vent;16/01/2017 13:49;4h
+CRISE_DEMO;DEMO_0301;POSTE_003638;Chute de branche par vent;16/01/2017 13:57;8h
+CRISE_DEMO;DEMO_0303;POSTE_032813;Chute de branche par vent;16/01/2017 13:58;4h
+CRISE_DEMO;DEMO_0307;POSTE_007253;Effort anormal par tempête de vent ou de pluie;16/01/2017 14:03;4h
+CRISE_DEMO;DEMO_0308;POSTE_016738;Élagage insuffisant;16/01/2017 14:22;2h
+CRISE_DEMO;DEMO_0311;POSTE_004282;Effort anormal par tempête de vent ou de pluie;16/01/2017 14:35;4h
+CRISE_DEMO;DEMO_0310;POSTE_017081;Coup de foudre;16/01/2017 14:50;2h
+CRISE_DEMO;DEMO_0309;POSTE_000076;Effort anormal par tempête de vent ou de pluie;16/01/2017 14:53;4h
+CRISE_DEMO;DEMO_0314;POSTE_029683;Effort anormal par tempête de vent ou de pluie;16/01/2017 15:05;4h
+CRISE_DEMO;DEMO_0313;POSTE_028906;Coup de foudre;16/01/2017 15:10;8h
+CRISE_DEMO;DEMO_0312;POSTE_007224;Défaillance protection;16/01/2017 15:24;2h
+CRISE_DEMO;DEMO_0316;POSTE_006291;Coup de foudre;16/01/2017 15:49;2h
+CRISE_DEMO;DEMO_0315;POSTE_004813;Coup de foudre;16/01/2017 15:53;4h
+CRISE_DEMO;DEMO_0317;POSTE_028901;Chute de branche par vent;16/01/2017 15:58;2h
+CRISE_DEMO;DEMO_0318;POSTE_021940;Effort anormal par tempête de vent ou de pluie;16/01/2017 16:01;4h
+CRISE_DEMO;DEMO_0319;POSTE_011394;Effort anormal par tempête de vent ou de pluie;16/01/2017 16:30;8h
+CRISE_DEMO;DEMO_0320;POSTE_015290;Effort anormal par tempête de vent ou de pluie;16/01/2017 16:43;2h
+CRISE_DEMO;DEMO_0323;POSTE_030979;Chute de branche par vent;16/01/2017 17:07;4h
+CRISE_DEMO;DEMO_0321;POSTE_025779;Coup de foudre;16/01/2017 17:08;8h
+CRISE_DEMO;DEMO_0324;POSTE_023849;Effort anormal par tempête de vent ou de pluie;16/01/2017 17:24;4h
+CRISE_DEMO;DEMO_0322;POSTE_020112;Chute de branche par vent;16/01/2017 17:25;8h
+CRISE_DEMO;DEMO_0325;POSTE_002534;Élagage insuffisant;16/01/2017 17:30;4h
+CRISE_DEMO;DEMO_0327;POSTE_009575;Usure naturelle;16/01/2017 17:36;8h
+CRISE_DEMO;DEMO_0331;POSTE_003061;Chute de branche par vent;16/01/2017 17:38;4h
+CRISE_DEMO;DEMO_0326;POSTE_013405;Chute de branche par vent;16/01/2017 17:39;2h
+CRISE_DEMO;DEMO_0330;POSTE_014506;Effort anormal par tempête de vent ou de pluie;16/01/2017 17:39;4h
+CRISE_DEMO;DEMO_0329;POSTE_019841;Effort anormal par tempête de vent ou de pluie;16/01/2017 17:45;4h
+CRISE_DEMO;DEMO_0328;POSTE_011957;Effort anormal par tempête de vent ou de pluie;16/01/2017 17:46;8h

@@ -1,0 +1,58 @@
+/* The only colour definitions in the app. The map reads them at runtime (src/lib/theme.ts).
+   Values sampled from the Enedis website. */
+:root {
+  /* Brand */
+  --blue: #1423dc; /* headings, figures, links, solid buttons, icons, team markers */
+  --bg: #e9f3fb; /* page background */
+  --surface: #ffffff; /* cards and panels */
+  --tag: #d3e6f6; /* tag background */
+  --selected: #daddfc; /* selected pill, active control */
+  --line: #c4c8f6; /* thin borders */
+  --text: #2c2c2c; /* body paragraphs only */
+
+  /* Accents: pictograms and the line motif */
+  --green: #93c90e;
+  --teal: #48c0c0;
+  --yellow: #f8c028;
+
+  /* Status (separate from the brand) */
+  --waiting: #e08a00;
+  --critical: #d92d20;
+  --restored: var(--green);
+
+  /* Contrast-adjusted variants for text on white / --bg */
+  --green-text: #4e7a0e; /* --green is too light for text (1.9:1) */
+  --waiting-text: #9a5b00; /* --waiting is 2.7:1 on white; this is 5.4:1 */
+  --blue-muted: #4f5ae5; /* secondary blue labels: 5.4:1 on white, 4.8:1 on --bg */
+
+
+  /* Overlay behind the side drawer, card shadows */
+  --shadow: rgba(20, 35, 220, 0.14); /* --blue at 14 % */
+  --scrim: rgba(44, 44, 44, 0.32);
+
+  /* Two faces, two jobs. Outfit (tabular figures): figures and main titles only.
+     Public Sans: everything else (labels, card text, buttons, map labels, axes). */
+  --font-display: 'Outfit Variable', 'Public Sans Variable', system-ui, sans-serif;
+  --font-body: 'Public Sans Variable', system-ui, sans-serif;
+
+  /* Type scale: five sizes, nothing else, nothing under 12 px */
+  --fs-1: 12px; /* small labels, axis ticks, tags */
+  --fs-2: 14px; /* body, buttons, rows */
+  --fs-3: 18px; /* panel titles, focused action */
+  --fs-4: 24px; /* KPI figures */
+  --fs-5: 36px; /* the 90 % estimate */
+
+  /* Cards: one radius, one border, one elevation for every panel of the dashboard */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --elev: 0 1px 2px rgba(20, 35, 220, 0.06), 0 4px 14px rgba(20, 35, 220, 0.06);
+  --elev-hover: 0 2px 4px rgba(20, 35, 220, 0.08), 0 8px 20px rgba(20, 35, 220, 0.1);
+
+  /* Spacing scale */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+}
