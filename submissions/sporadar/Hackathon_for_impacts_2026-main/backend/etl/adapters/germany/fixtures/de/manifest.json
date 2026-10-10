@@ -1,0 +1,28 @@
+{
+  "is_synthetic": true,
+  "complete": true,
+  "scope": "Fictional test scenario; timestamp is synthetic, not a BVL retrieval time",
+  "responses": [
+    {
+      "collection": "awg",
+      "file": "awg.json",
+      "source_url": "https://psm-api.bvl.bund.de/ords/psm/api-v1/awg/",
+      "collected_at": "2026-10-09T00:00:00Z",
+      "sha256": "534e5f690e326a399e524e48af9e79ef9b3673e3a2686eea9a0d3561d5698abf"
+    },
+    {
+      "collection": "mittel",
+      "file": "mittel.json",
+      "source_url": "https://psm-api.bvl.bund.de/ords/psm/api-v1/mittel/",
+      "collected_at": "2026-10-09T00:00:00Z",
+      "sha256": "4bcc9b7f7a16689a162fec47b66d0bf8b4f5a8678dcb9646d6783305baa1a552"
+    },
+    {
+      "collection": "wirkstoff",
+      "file": "wirkstoff.json",
+      "source_url": "https://psm-api.bvl.bund.de/ords/psm/api-v1/wirkstoff/",
+      "collected_at": "2026-10-09T00:00:00Z",
+      "sha256": "15b3901582eb8b89ecb746d2106e603fd9ee8302837c8e0b90f7b012cb6fd803"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+.env
+.venv
+state
+out
+fixtures
+__pycache__
+*.pyc
+tests
+backup*
+.git

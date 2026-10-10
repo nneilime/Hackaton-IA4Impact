@@ -1,0 +1,5 @@
+registration_id,product_id,country_code,authority_name,registration_number,status_original,status_normalized,approval_date,expiration_date,source_id,source_record_url,collected_at,validation_status,is_synthetic
+R-TEST-001,P-TEST-001,FR,ANSES (TEST),,TEST status,unknown,,,FR-EPHY,https://example.org/lpc-test/fr/R-TEST-001,2026-10-10T00:00:00Z,to_verify,true
+R-TEST-002,P-TEST-002,DE,BVL (TEST),,TEST Status,unknown,,,DE-BVL,https://example.org/lpc-test/de/R-TEST-002,2026-10-10T00:00:00Z,to_verify,true
+R-TEST-003,P-TEST-003,FR,ANSES (TEST),,TEST status,unknown,,,FR-EPHY,https://example.org/lpc-test/fr/R-TEST-003,2026-10-10T00:00:00Z,to_verify,true
+R-TEST-004,P-TEST-003,DE,BVL (TEST),,TEST Status,unknown,,,DE-BVL,https://example.org/lpc-test/de/R-TEST-004,2026-10-10T00:00:00Z,to_verify,true

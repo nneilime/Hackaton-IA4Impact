@@ -1,0 +1,28 @@
+name: lpc-germany-adapter
+services:
+  germany:
+    build: .
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 6m
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL in .env}
+      REFRESH_INTERVAL_SECONDS: ${REFRESH_INTERVAL_SECONDS:-604800}
+      RETRY_INTERVAL_SECONDS: ${RETRY_INTERVAL_SECONDS:-300}
+      BVL_REGISTRATIONS: ${BVL_REGISTRATIONS:-}
+      DATA_DIR: /state
+    volumes:
+      - germany_state:/state
+    healthcheck:
+      test: ["CMD", "python", "-c", "import pathlib,time; p=pathlib.Path('/state/heartbeat'); assert p.exists() and time.time()-p.stat().st_mtime<120"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  germany_state:

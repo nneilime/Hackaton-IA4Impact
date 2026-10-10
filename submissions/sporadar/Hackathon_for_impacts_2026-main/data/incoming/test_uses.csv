@@ -1,0 +1,7 @@
+use_id,registration_id,crop_name_original,crop_name_normalized,eppo_crop_code,target_name_original,target_name_normalized,eppo_target_code,application_method,dose_value,dose_unit_original,dose_unit_normalized,max_applications,application_interval_days,phi_days,rei_hours,restrictions_original,validation_status,is_synthetic
+U-TEST-001,R-TEST-001,Tomate,,,Pourriture grise,,,,,,,,,,,TEST synthetic use,to_verify,true
+U-TEST-002,R-TEST-001,Vigne,,,Oïdium de la vigne,,,,,,,,,,,TEST synthetic use,to_verify,true
+U-TEST-003,R-TEST-002,Tomaten,,,Grauschimmel,,,,,,,,,,,TEST synthetic use (cible allemande absente du mapping),to_verify,true
+U-TEST-004,R-TEST-002,Weinrebe,,,Botrytis cinerea,,,,,,,,,,,TEST synthetic use,to_verify,true
+U-TEST-005,R-TEST-003,Zierpflanzen,,,Rhizoctonia,,,,,,,,,,,TEST synthetic use (culture absente du mapping),to_verify,true
+U-TEST-006,R-TEST-004,Kartoffeln,,,Sclerotinia sclerotiorum,,,,,,,,,,,TEST synthetic use,to_verify,true

@@ -1,0 +1,16 @@
+# Aucun secret ni fichier inutile dans l'image (ttl.sh est un registre public)
+.env
+.env.*
+!.env.example
+.git
+.github
+.venv
+.claude
+.pytest_cache
+**/__pycache__
+frontend/
+data/raw/
+data/merged/
+backend/etl/adapters/**/.env
+*.log
+evaluation/our_submission.json

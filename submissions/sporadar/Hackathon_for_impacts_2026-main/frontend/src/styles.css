@@ -1,0 +1,61 @@
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css';
+@import 'tw-animate-css';
+@import '@spartan-ng/brain/hlm-tailwind-preset.css';
+
+/* Design system Atlas Homologations : tokens bruts, puis correspondance vers les variables Spartan. */
+@import './styles/atlas-tokens.css';
+@import './styles/spartan-theme.css';
+
+/* ---------- Transition accueil ↔ résultats (View Transitions, déclenchées par le routeur) ----------
+   La barre de question (view-transition-name: ask-bar, dans ask-bar.ts) glisse de sa place dans le hero
+   vers le haut de page ; le reste de la page fait un fondu enchaîné court. */
+::view-transition-group(ask-bar) {
+  animation-duration: 550ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 300ms;
+}
+
+/* ---------- Texte « l'IA réfléchit » : un reflet lumineux qui balaie le texte (thinking-status.ts) ---------- */
+@utility text-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    var(--ink-muted) 0%,
+    var(--ink-muted) 40%,
+    var(--ink-strong) 50%,
+    var(--ink-muted) 60%,
+    var(--ink-muted) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  color: transparent;
+  animation: text-shimmer 2s linear infinite;
+}
+
+@keyframes text-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-shimmer {
+    animation: none;
+    color: var(--ink-muted);
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

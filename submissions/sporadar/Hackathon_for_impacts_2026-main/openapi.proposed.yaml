@@ -1,0 +1,857 @@
+openapi: 3.1.0
+info:
+  title: LPC Global Regulatory AI API
+  version: 0.2.2
+  description: |
+    Hackathon contract for the Lallemand Plant Care regulatory intelligence agent.
+
+    Extends the starter-kit contract (v0.1.0) without breaking it: every original
+    route, field and required list is kept; everything new is optional or a new route.
+    See docs/openapi-changes.md for what changed, why, and what it means for the backend.
+    v0.2.2: adds the optional Product.matchedVia (search results) and AnswerGenerator.mode, already returned by the backend.
+    v0.2.1: aligned on the team PostgreSQL schema (db/schema.sql); no new column or table is needed.
+    Mock examples (synthetic, one per question type and per route) live in mocks/examples.yaml.
+    Prism serves them: `prism mock openapi.proposed.yaml`, pick one with the header `Prefer: example=<name>`.
+
+    Rules every response follows:
+    - Every regulatory value carries its evidence (source, record URL, collection date, validation status).
+    - Original wording is always returned next to the normalized value.
+    - "Not found in the sources we searched" is never presented as "not registered" (see CountryCoverage).
+    - AI confidence and validation status are separate fields and never merged.
+
+    Regulatory Affairs validation is required before any decision.
+servers:
+  - url: http://localhost:3000/api
+    description: Backend called directly (BACK_PORT=3000, routes exposed under /api).
+  - url: http://localhost:8080/api
+    description: Through the frontend nginx proxy (same origin as the Angular app).
+  - url: https://{tunnelHost}/api
+    description: Public HTTPS tunnel (ngrok / cloudflared) used for the Power Platform demo.
+    variables:
+      tunnelHost:
+        default: your-tunnel.ngrok-free.app
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: system
+  - name: products
+  - name: comparison
+  - name: agent
+  - name: quality
+  - name: sources
+paths:
+  /health:
+    get:
+      tags: [system]
+      operationId: getHealth
+      summary: Health check
+      description: Returns ok when the API is up. Public, no API key.
+      security: []
+      responses:
+        '200':
+          description: Service available
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: {type: string, const: ok}
+  /products:
+    get:
+      tags: [products]
+      operationId: searchProducts
+      summary: Search products
+      description: |
+        Search products by commercial name, alias, active entity (microorganism or substance),
+        crop, target or country. Name search also matches known aliases
+        (former taxonomic names, market names), so "Metarhizium anisopliae F52" finds LALGUARD M52 OD.
+      parameters:
+        - in: query
+          name: q
+          description: Free text matched against commercial names and aliases.
+          schema: {type: string}
+        - in: query
+          name: activeEntity
+          description: Microorganism or active substance, original or normalized wording (aliases are expanded).
+          schema: {type: string}
+        - in: query
+          name: crop
+          description: Crop as an EPPO code (e.g. LYPES) or a name in any language.
+          schema: {type: string}
+        - in: query
+          name: target
+          description: Pest or disease as an EPPO code (e.g. BOTRCI) or a name in any language.
+          schema: {type: string}
+        - in: query
+          name: country
+          description: ISO 3166-1 alpha-2 country code; only products with a registration found in this country.
+          schema: {type: string, pattern: '^[A-Z]{2}$'}
+        - in: query
+          name: includeCompetitors
+          description: Include non-LPC products.
+          schema: {type: boolean, default: true}
+      responses:
+        '200':
+          description: Matching products
+          content:
+            application/json:
+              examples:
+                name_search: {$ref: 'mocks/examples.yaml#/products_name_search'}
+                ingredient_search: {$ref: 'mocks/examples.yaml#/products_ingredient_search'}
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: {$ref: '#/components/schemas/Product'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /products/{productId}/registrations:
+    get:
+      tags: [products]
+      operationId: getProductRegistrations
+      summary: Registrations of a product by country
+      description: |
+        Registrations found for a product, one per country and authority, with status, evidence and
+        authorized uses. `coverage` says, for every target market, whether we searched and what we found:
+        a country with outcome `not_found` was searched without result, which is not proof that the
+        product is unregistered there.
+      parameters:
+        - in: path
+          name: productId
+          required: true
+          description: Internal product identifier, e.g. P-LPC-M52.
+          schema: {type: string}
+        - in: query
+          name: country
+          description: Restrict to one ISO 3166-1 alpha-2 country code.
+          schema: {type: string, pattern: '^[A-Z]{2}$'}
+      responses:
+        '200':
+          description: Registrations
+          content:
+            application/json:
+              examples:
+                m52: {$ref: 'mocks/examples.yaml#/registrations_m52'}
+              schema:
+                type: object
+                required: [items, disclaimer]
+                properties:
+                  items:
+                    type: array
+                    items: {$ref: '#/components/schemas/Registration'}
+                  coverage:
+                    type: array
+                    description: Search outcome per target market, including markets with no result or no source.
+                    items: {$ref: '#/components/schemas/CountryCoverage'}
+                  warnings:
+                    type: array
+                    items: {type: string}
+                  disclaimer: {type: string}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404':
+          description: Unknown productId in our product catalogue. This is not proof of no registration.
+  /products/{productId}/sisters:
+    get:
+      tags: [products]
+      operationId: getSisterCandidates
+      summary: Sister-product candidates (hypotheses)
+      description: |
+        Products that could be sister products of the given product (same strain, former name,
+        related formulation, market name). Every candidate is a hypothesis with a confidence score and a
+        review status; it must be presented as "to confirm" unless reviewStatus is validated.
+      parameters:
+        - in: path
+          name: productId
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: Candidates with evidence
+          content:
+            application/json:
+              examples:
+                m52: {$ref: 'mocks/examples.yaml#/sisters_m52'}
+              schema: {$ref: '#/components/schemas/SisterCandidatesResponse'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404':
+          description: Unknown productId in our product catalogue.
+  /compare:
+    get:
+      tags: [comparison]
+      operationId: compareProductUses
+      summary: Compare authorized uses across countries
+      description: |
+        Compares the authorized uses of one product between countries. `rows` aligns uses on the
+        normalized crop x target pair (EPPO codes) and keeps one cell per country: values from different
+        countries are never merged. Use format=csv for an export usable in Excel or Power Automate.
+      parameters:
+        - in: query
+          name: productId
+          required: true
+          schema: {type: string}
+        - in: query
+          name: countries
+          required: true
+          description: Comma-separated ISO 3166-1 alpha-2 codes.
+          schema: {type: string, example: 'CA,US,BR'}
+        - in: query
+          name: crop
+          description: Optional crop filter, EPPO code or name.
+          schema: {type: string}
+        - in: query
+          name: target
+          description: Optional pest or disease filter, EPPO code or name.
+          schema: {type: string}
+        - in: query
+          name: format
+          description: Response format. csv returns one line per country x use with evidence columns.
+          schema:
+            type: string
+            enum: [json, csv]
+            default: json
+      responses:
+        '200':
+          description: Comparison with evidence
+          content:
+            application/json:
+              examples:
+                m52_fr_ca: {$ref: 'mocks/examples.yaml#/compare_m52_fr_ca'}
+              schema: {$ref: '#/components/schemas/ComparisonResponse'}
+            text/csv:
+              examples:
+                m52_fr_ca: {$ref: 'mocks/examples.yaml#/compare_m52_fr_ca_csv'}
+              schema: {type: string}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /ask:
+    post:
+      tags: [agent]
+      operationId: askRegulatoryQuestion
+      summary: Ask a regulatory question in natural language
+      description: |
+        Answers a question in natural language from the structured regulatory database only (no web search).
+        The response states the detected `intent`, what was understood (`parameters`), a one-sentence
+        `answer`, the structured data for that intent, `facts` each linked to evidence, the search
+        `coverage` and suggested follow-up questions. When citing, always give the source and the
+        validation status of each fact, and never turn a `not_found` outcome into "not registered".
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/AskRequest'}
+      responses:
+        '200':
+          description: Grounded answer
+          content:
+            application/json:
+              examples:
+                registration_lookup: {$ref: 'mocks/examples.yaml#/ask_registration_lookup'}
+                use_comparison: {$ref: 'mocks/examples.yaml#/ask_use_comparison'}
+                data_quality: {$ref: 'mocks/examples.yaml#/ask_data_quality'}
+                sister_product: {$ref: 'mocks/examples.yaml#/ask_sister_product'}
+                source_lookup: {$ref: 'mocks/examples.yaml#/ask_source_lookup'}
+                ingredient_search: {$ref: 'mocks/examples.yaml#/ask_ingredient_search'}
+                expiry_watch: {$ref: 'mocks/examples.yaml#/ask_expiry_watch'}
+                needs_clarification: {$ref: 'mocks/examples.yaml#/ask_needs_clarification'}
+                other: {$ref: 'mocks/examples.yaml#/ask_other'}
+              schema: {$ref: '#/components/schemas/Answer'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /issues:
+    get:
+      tags: [quality]
+      operationId: listDataIssues
+      summary: Missing, uncertain or unvalidated fields
+      description: |
+        Work queue for Regulatory Affairs: every field that is missing, uncertain (low AI confidence),
+        not yet validated, unmapped to EPPO, conflicting between sources, or whose source was unavailable.
+      parameters:
+        - in: query
+          name: productId
+          schema: {type: string}
+        - in: query
+          name: country
+          schema: {type: string, pattern: '^[A-Z]{2}$'}
+        - in: query
+          name: issueType
+          schema: {$ref: '#/components/schemas/IssueType'}
+      responses:
+        '200':
+          description: Issues found
+          content:
+            application/json:
+              examples:
+                m52: {$ref: 'mocks/examples.yaml#/issues_m52'}
+              schema: {$ref: '#/components/schemas/IssuesResponse'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /expirations:
+    get:
+      tags: [quality]
+      operationId: listExpirations
+      summary: Registrations expiring soon
+      description: Registrations whose expiration date falls within the given window, soonest first.
+      parameters:
+        - in: query
+          name: withinMonths
+          schema: {type: integer, minimum: 1, maximum: 60, default: 12}
+        - in: query
+          name: referenceDate
+          description: Defaults to today (UTC).
+          schema: {type: string, format: date}
+        - in: query
+          name: country
+          schema: {type: string, pattern: '^[A-Z]{2}$'}
+      responses:
+        '200':
+          description: Expiring registrations
+          content:
+            application/json:
+              examples:
+                next_12_months: {$ref: 'mocks/examples.yaml#/expirations_12_months'}
+              schema: {$ref: '#/components/schemas/ExpirationsResponse'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /sources:
+    get:
+      tags: [sources]
+      operationId: listSources
+      summary: Integrated official sources and freshness
+      description: Official sources, the countries they cover, access method, licence and last collection date.
+      responses:
+        '200':
+          description: Sources
+          content:
+            application/json:
+              examples:
+                all: {$ref: 'mocks/examples.yaml#/sources_all'}
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: {$ref: '#/components/schemas/SourceInfo'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /reviews:
+    post:
+      tags: [quality]
+      operationId: submitReview
+      summary: Record a human review decision (optional, stretch goal)
+      description: |
+        Lets Regulatory Affairs validate or reject a registration, a use, an alias mapping or a
+        sister-product candidate. Optional: implement only if time allows.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ReviewRequest'}
+      responses:
+        '201':
+          description: Review recorded
+          content:
+            application/json:
+              examples:
+                alias_validated: {$ref: 'mocks/examples.yaml#/review_alias_validated'}
+              schema: {$ref: '#/components/schemas/Review'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404':
+          description: Unknown target.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Shared API key read from the API_KEY environment variable. Leave API_KEY empty to disable the check in local dev. Entra ID is the documented target for production.
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-API-Key header.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Problem'}
+  schemas:
+    # ----- Enumerations ------------------------------------------------------
+    ValidationStatus:
+      type: string
+      description: Human review state. Independent from AI confidence.
+      enum: [automatically_extracted, to_verify, validated, rejected, obsolete, source_unavailable]
+    RegistrationStatus:
+      type: string
+      enum: [active, expired, withdrawn, pending, unknown]
+    CoverageOutcome:
+      type: string
+      description: |
+        found = at least one registration found; not_found = source searched, nothing found (not proof of
+        no registration); source_unavailable = source could not be queried; not_covered = no source integrated
+        for this country yet.
+      enum: [found, not_found, source_unavailable, not_covered]
+    Intent:
+      type: string
+      description: Question type detected by the agent. Values follow data/business_questions.csv, plus source_lookup and other.
+      enum: [registration_lookup, use_comparison, ingredient_search, expiry_watch, data_quality, sister_product, source_lookup, other]
+    AnswerStatus:
+      type: string
+      description: answered = complete; partial = some data missing or to verify; no_data = nothing found in our sources; out_of_scope = not answerable from the database; needs_clarification = ambiguous question.
+      enum: [answered, partial, no_data, out_of_scope, needs_clarification]
+    MappingStatus:
+      type: string
+      description: State of the EPPO mapping for a crop or target.
+      enum: [validated, to_verify, unmapped]
+    IssueType:
+      type: string
+      enum: [missing, uncertain, not_validated, unmapped, conflicting, source_unavailable]
+    ReviewStatus:
+      type: string
+      enum: [validated, confirmed, to_verify, rejected]
+    ConfidenceStatus:
+      type: string
+      enum: [confirmed_internal, confirmed_related, strong_candidate, candidate]
+    AliasRelationshipType:
+      type: string
+      description: Relationship vocabulary of the starter mapping files (product_name_mapping, active_entity_mapping, product_aliases).
+      enum:
+        - canonical_name
+        - historical_or_market_name
+        - related_formulation
+        - sister_product_candidate
+        - confirmed_sister_product
+        - alternate_name
+        - historical_name
+        - current_label_name
+        - current_eu_label_name
+        - short_name
+        - former_taxonomic_name
+        - market_or_regulatory_alias
+    MatchedOn:
+      type: string
+      enum: [commercial_name, product_alias, active_entity, active_entity_alias, registration_number]
+    CellState:
+      type: string
+      description: |
+        present = uses found for this country; absent_in_extracted_uses = a registration exists but none of
+        its extracted uses matches this row (may be an extraction gap); registration_not_found,
+        source_unavailable, not_covered = same meaning as CoverageOutcome.
+      enum: [present, absent_in_extracted_uses, registration_not_found, source_unavailable, not_covered]
+    AccessMethod:
+      type: string
+      description: 'Access method as listed in source_registry: web, api, download, sftp, manual_extract, or a combination such as api/web or api/download.'
+    # ----- Starter schemas (kept, extended with optional fields) --------------
+    Product:
+      type: object
+      required: [productId, commercialName, isSynthetic]
+      properties:
+        productId: {type: string}
+        commercialName: {type: string}
+        activeEntityOriginal: {type: [string, 'null']}
+        activeEntityNormalized: {type: [string, 'null']}
+        formulationCode: {type: [string, 'null']}
+        isSynthetic: {type: boolean}
+        isLpcProduct: {type: boolean, description: True for Lallemand Plant Care products, false for competitors.}
+        validationStatus: {$ref: '#/components/schemas/ValidationStatus'}
+        aliases:
+          type: array
+          description: Known product names and active-entity names (internal LPC mapping files).
+          items: {$ref: '#/components/schemas/ProductAlias'}
+        matchedVia:
+          description: 'Only present on search results (GET /products): by which name, alias or active entity the product was found. Shown so users see when a match relies on an alias still to verify.'
+          $ref: '#/components/schemas/MatchedVia'
+    Evidence:
+      type: object
+      required: [sourceId, sourceUrl, collectedAt, validationStatus]
+      properties:
+        evidenceId: {type: string, description: 'Stable id so facts can point to their evidence, built from the stored row: registration:{registration_id}, use:{use_id} or field:{field_evidence.evidence_id}.'}
+        sourceId: {type: string}
+        sourceName: {type: string}
+        sourceUrl: {type: string, format: uri, description: Official source (dataset or database home).}
+        sourceRecordUrl: {type: [string, 'null'], format: uri, description: Direct link to the official record when available.}
+        collectedAt: {type: string, format: date-time}
+        validationStatus: {$ref: '#/components/schemas/ValidationStatus'}
+        confidence: {type: [number, 'null'], minimum: 0, maximum: 1, description: AI extraction confidence. Not a validation.}
+        isFrozenExtract: {type: boolean, default: false, description: True when data was loaded from a dated file (collection_runs.input_file) instead of a live query.}
+        isSynthetic: {type: boolean, default: false}
+        languageOriginal: {type: [string, 'null'], description: ISO 639-1 language of the source wording.}
+        excerpt: {type: [string, 'null']}
+    AuthorizedUse:
+      type: object
+      required: [useId, evidence]
+      properties:
+        useId: {type: string}
+        cropOriginal: {type: [string, 'null']}
+        cropNormalized: {type: [string, 'null']}
+        eppoCropCode: {type: [string, 'null']}
+        cropMappingStatus: {$ref: '#/components/schemas/MappingStatus'}
+        targetOriginal: {type: [string, 'null']}
+        targetNormalized: {type: [string, 'null']}
+        eppoTargetCode: {type: [string, 'null']}
+        targetMappingStatus: {$ref: '#/components/schemas/MappingStatus'}
+        doseValue: {type: [number, 'null'], description: Dose as stored (uses.dose_value), expressed in doseUnitOriginal. Never converted.}
+        doseUnitOriginal: {type: [string, 'null']}
+        doseUnitNormalized: {type: [string, 'null'], description: 'Normalized spelling of the same unit (e.g. "l/ha" -> "L/ha"). No conversion: doseValue stays in this unit.'}
+        applicationMethod: {type: [string, 'null']}
+        maxApplications: {type: [integer, 'null']}
+        applicationIntervalDays: {type: [number, 'null']}
+        phiDays: {type: [number, 'null'], description: Pre-harvest interval in days.}
+        reiHours: {type: [number, 'null'], description: Restricted-entry interval in hours.}
+        restrictionsOriginal: {type: [string, 'null']}
+        isSynthetic: {type: boolean, default: false}
+        evidence: {$ref: '#/components/schemas/Evidence'}
+    Registration:
+      type: object
+      required: [registrationId, productId, countryCode, statusNormalized, evidence]
+      properties:
+        registrationId: {type: string}
+        productId: {type: string}
+        countryCode: {type: string, pattern: '^[A-Z]{2}$'}
+        authorityName: {type: string}
+        registrationNumber: {type: [string, 'null']}
+        statusOriginal: {type: [string, 'null'], description: Status wording exactly as in the source.}
+        statusNormalized: {$ref: '#/components/schemas/RegistrationStatus'}
+        approvalDate: {type: [string, 'null'], format: date}
+        expirationDate: {type: [string, 'null'], format: date}
+        productNameOriginal: {type: [string, 'null'], description: Product name as registered in this country (commercial_name of the product row this registration belongs to; each source loads its own product rows).}
+        activeEntityOriginal: {type: [string, 'null'], description: Active entity as written in this country's source (products.active_entity_original of that product row).}
+        matchedVia: {$ref: '#/components/schemas/MatchedVia'}
+        missingFields:
+          type: array
+          description: Canonical fields we could not extract for this registration.
+          items: {type: string}
+        warnings:
+          type: array
+          items: {type: string}
+        isSynthetic: {type: boolean, default: false}
+        uses:
+          type: array
+          items: {$ref: '#/components/schemas/AuthorizedUse'}
+        evidence: {$ref: '#/components/schemas/Evidence'}
+    ComparisonResponse:
+      type: object
+      required: [productId, countries, registrations, warnings, disclaimer]
+      properties:
+        productId: {type: string}
+        countries: {type: array, items: {type: string}}
+        registrations: {type: array, items: {$ref: '#/components/schemas/Registration'}}
+        rows:
+          type: array
+          description: Uses aligned on crop x target (EPPO), one cell per country. Never merges values across countries.
+          items: {$ref: '#/components/schemas/ComparisonRow'}
+        coverage:
+          type: array
+          items: {$ref: '#/components/schemas/CountryCoverage'}
+        warnings: {type: array, items: {type: string}}
+        disclaimer: {type: string}
+    Answer:
+      type: object
+      required: [answer, evidence, warnings, disclaimer]
+      description: |
+        Starter fields (answer, evidence, warnings, disclaimer) are unchanged. The structured field matching
+        `intent` is filled: registration_lookup -> registrations; use_comparison -> comparison;
+        ingredient_search -> products; expiry_watch -> expirations; data_quality -> issues;
+        sister_product -> sisterCandidates; source_lookup -> sources.
+      properties:
+        answer: {type: string, description: One or two sentences that state the conclusion and its uncertainty.}
+        evidence: {type: array, items: {$ref: '#/components/schemas/Evidence'}}
+        warnings: {type: array, items: {type: string}}
+        disclaimer: {type: string}
+        answerId: {type: string}
+        generatedAt: {type: string, format: date-time}
+        language: {type: string, description: 'Language of answer and labels: fr or en. Original values stay in their source language.'}
+        intent: {$ref: '#/components/schemas/Intent'}
+        answerStatus: {$ref: '#/components/schemas/AnswerStatus'}
+        parameters: {$ref: '#/components/schemas/AskParameters'}
+        clarificationOptions:
+          type: array
+          description: Choices to show when answerStatus is needs_clarification.
+          items: {type: string}
+        facts:
+          type: array
+          description: Atomic statements behind the answer, each linked to its evidence.
+          items: {$ref: '#/components/schemas/Fact'}
+        coverage:
+          type: array
+          items: {$ref: '#/components/schemas/CountryCoverage'}
+        registrations:
+          type: array
+          items: {$ref: '#/components/schemas/Registration'}
+        comparison: {$ref: '#/components/schemas/ComparisonResponse'}
+        products:
+          type: array
+          items: {$ref: '#/components/schemas/ProductMatch'}
+        expirations:
+          type: array
+          items: {$ref: '#/components/schemas/ExpirationItem'}
+        issues:
+          type: array
+          items: {$ref: '#/components/schemas/DataIssue'}
+        sisterCandidates:
+          type: array
+          items: {$ref: '#/components/schemas/SisterCandidate'}
+        sources:
+          type: array
+          items: {$ref: '#/components/schemas/SourceInfo'}
+        suggestedQuestions:
+          type: array
+          items: {$ref: '#/components/schemas/SuggestedQuestion'}
+        generator: {$ref: '#/components/schemas/AnswerGenerator'}
+    # ----- New schemas --------------------------------------------------------
+    AskRequest:
+      type: object
+      required: [question]
+      properties:
+        question: {type: string, minLength: 3}
+        language: {type: string, default: fr, description: fr or en.}
+        productId: {type: string, description: Optional context from the UI (follow-up question on a product).}
+        countries:
+          type: array
+          description: Optional context from the UI.
+          items: {type: string, pattern: '^[A-Z]{2}$'}
+    AskParameters:
+      type: object
+      description: What the agent understood from the question, shown to the user so they can correct it.
+      properties:
+        productIds: {type: array, items: {type: string}}
+        countries: {type: array, items: {type: string}}
+        activeEntity: {type: [string, 'null']}
+        crop: {type: [string, 'null']}
+        target: {type: [string, 'null']}
+        referenceDate: {type: [string, 'null'], format: date}
+    ProductAlias:
+      type: object
+      required: [name, kind, relationshipType]
+      properties:
+        name: {type: string}
+        kind:
+          type: string
+          enum: [product_name, active_entity]
+        relationshipType: {$ref: '#/components/schemas/AliasRelationshipType'}
+        strain: {type: [string, 'null']}
+        marketOrCountry: {type: [string, 'null']}
+        confidenceScore: {type: [number, 'null'], minimum: 0, maximum: 1}
+        confidenceStatus: {$ref: '#/components/schemas/ConfidenceStatus'}
+        reviewStatus: {$ref: '#/components/schemas/ReviewStatus'}
+        evidenceSummary: {type: [string, 'null']}
+    MatchedVia:
+      type: object
+      description: How this registration was linked to the product. Shown so users see when a match relies on an alias still to verify.
+      required: [matchedName, matchedOn]
+      properties:
+        matchedName: {type: string}
+        matchedOn: {$ref: '#/components/schemas/MatchedOn'}
+        aliasRelationshipType: {$ref: '#/components/schemas/AliasRelationshipType'}
+        aliasReviewStatus: {$ref: '#/components/schemas/ReviewStatus'}
+        aliasConfidenceScore: {type: [number, 'null'], minimum: 0, maximum: 1}
+    CountryCoverage:
+      type: object
+      required: [countryCode, outcome]
+      properties:
+        countryCode: {type: string, pattern: '^[A-Z]{2}$'}
+        outcome: {$ref: '#/components/schemas/CoverageOutcome'}
+        sourceIds: {type: array, items: {type: string}}
+        lastCollectedAt: {type: [string, 'null'], format: date-time}
+        searchedTerms:
+          type: array
+          description: Names and aliases actually searched in this country's sources.
+          items: {type: string}
+        registrationIds: {type: array, items: {type: string}}
+        note: {type: [string, 'null']}
+    ComparisonRow:
+      type: object
+      required: [rowId, cells]
+      properties:
+        rowId: {type: string}
+        cropNormalized: {type: [string, 'null']}
+        eppoCropCode: {type: [string, 'null']}
+        targetNormalized: {type: [string, 'null']}
+        eppoTargetCode: {type: [string, 'null']}
+        differsAcrossCountries: {type: boolean, description: True when the row is not present in every compared country, or doseValue / doseUnitNormalized differ.}
+        cells:
+          type: array
+          items: {$ref: '#/components/schemas/ComparisonCell'}
+    ComparisonCell:
+      type: object
+      required: [countryCode, state]
+      properties:
+        countryCode: {type: string, pattern: '^[A-Z]{2}$'}
+        state: {$ref: '#/components/schemas/CellState'}
+        registrationId: {type: [string, 'null']}
+        uses:
+          type: array
+          description: Uses of this country only.
+          items: {$ref: '#/components/schemas/AuthorizedUse'}
+    Fact:
+      type: object
+      required: [factId, label, value, evidenceIds]
+      properties:
+        factId: {type: string}
+        label: {type: string, description: Human-readable label in the answer language.}
+        field: {type: [string, 'null'], description: 'Canonical field, e.g. registration.statusNormalized.'}
+        value: {type: [string, number, boolean, 'null']}
+        valueOriginal: {type: [string, 'null']}
+        productId: {type: [string, 'null']}
+        countryCode: {type: [string, 'null']}
+        validationStatus: {$ref: '#/components/schemas/ValidationStatus'}
+        confidence: {type: [number, 'null'], minimum: 0, maximum: 1}
+        evidenceIds: {type: array, minItems: 1, items: {type: string}}
+    ProductMatch:
+      type: object
+      required: [product, registrations]
+      properties:
+        product: {$ref: '#/components/schemas/Product'}
+        registrations:
+          type: array
+          description: Registrations whose uses match the search filters.
+          items: {$ref: '#/components/schemas/Registration'}
+    DataIssue:
+      type: object
+      required: [issueId, issueType, entityType, field]
+      properties:
+        issueId: {type: string}
+        issueType: {$ref: '#/components/schemas/IssueType'}
+        priority:
+          type: string
+          enum: [high, medium, low]
+        productId: {type: [string, 'null']}
+        countryCode: {type: [string, 'null']}
+        entityType:
+          type: string
+          enum: [product, registration, use, mapping, source]
+        entityId: {type: [string, 'null']}
+        field: {type: string}
+        detail: {type: [string, 'null']}
+        confidence: {type: [number, 'null'], minimum: 0, maximum: 1}
+        validationStatus: {$ref: '#/components/schemas/ValidationStatus'}
+        evidence:
+          type: array
+          items: {$ref: '#/components/schemas/Evidence'}
+    IssuesResponse:
+      type: object
+      required: [items, disclaimer]
+      properties:
+        items:
+          type: array
+          items: {$ref: '#/components/schemas/DataIssue'}
+        countsByType:
+          type: object
+          additionalProperties: {type: integer}
+        disclaimer: {type: string}
+    SisterCandidate:
+      type: object
+      required: [candidateId, productId, candidateName, relationshipType, confidenceScore, reviewStatus, evidenceSummary]
+      properties:
+        candidateId: {type: string}
+        productId: {type: string, description: Reference product.}
+        candidateName: {type: string}
+        candidateProductId: {type: [string, 'null']}
+        marketOrCountry: {type: [string, 'null']}
+        relationshipType: {$ref: '#/components/schemas/AliasRelationshipType'}
+        sharedTraits:
+          type: array
+          description: 'What both products share, e.g. "same species and strain (Ma 43)".'
+          items: {type: string}
+        confidenceScore: {type: [number, 'null'], minimum: 0, maximum: 1}
+        confidenceStatus: {$ref: '#/components/schemas/ConfidenceStatus'}
+        reviewStatus: {$ref: '#/components/schemas/ReviewStatus'}
+        evidenceSummary: {type: [string, 'null']}
+        evidenceType: {type: [string, 'null']}
+        evidence:
+          type: array
+          description: Official records supporting the hypothesis, when found.
+          items: {$ref: '#/components/schemas/Evidence'}
+    SisterCandidatesResponse:
+      type: object
+      required: [productId, candidates, disclaimer]
+      properties:
+        productId: {type: string}
+        candidates:
+          type: array
+          items: {$ref: '#/components/schemas/SisterCandidate'}
+        warnings: {type: array, items: {type: string}}
+        disclaimer: {type: string}
+    ExpirationItem:
+      type: object
+      required: [registrationId, productId, countryCode, expirationDate, evidence]
+      properties:
+        registrationId: {type: string}
+        productId: {type: string}
+        commercialName: {type: [string, 'null']}
+        countryCode: {type: string, pattern: '^[A-Z]{2}$'}
+        registrationNumber: {type: [string, 'null']}
+        statusNormalized: {$ref: '#/components/schemas/RegistrationStatus'}
+        expirationDate: {type: string, format: date}
+        daysUntilExpiration: {type: integer}
+        evidence: {$ref: '#/components/schemas/Evidence'}
+    ExpirationsResponse:
+      type: object
+      required: [referenceDate, items, disclaimer]
+      properties:
+        referenceDate: {type: string, format: date}
+        withinMonths: {type: integer}
+        items:
+          type: array
+          items: {$ref: '#/components/schemas/ExpirationItem'}
+        warnings: {type: array, items: {type: string}}
+        disclaimer: {type: string}
+    SourceInfo:
+      type: object
+      required: [sourceId, officialName, accessMethod]
+      properties:
+        sourceId: {type: string}
+        officialName: {type: string}
+        countryOrRegion: {type: [string, 'null']}
+        countryCodes: {type: array, items: {type: string}}
+        baseUrl: {type: [string, 'null'], format: uri, description: Null for sources still to validate (e.g. MX-COFEPRIS-TBD).}
+        accessMethod: {$ref: '#/components/schemas/AccessMethod'}
+        dataFormat: {type: [string, 'null']}
+        licenseName: {type: [string, 'null']}
+        lastCollectedAt: {type: [string, 'null'], format: date-time}
+        isFrozenExtract: {type: boolean, default: false}
+        availability:
+          type: string
+          enum: [available, unavailable, unknown]
+        recordCount: {type: [integer, 'null']}
+        manualValidationRequired: {type: [boolean, 'null']}
+    SuggestedQuestion:
+      type: object
+      required: [label, question]
+      properties:
+        label: {type: string}
+        question: {type: string}
+        intent: {$ref: '#/components/schemas/Intent'}
+    AnswerGenerator:
+      type: object
+      description: AI provider and model used for this answer (configurable, never hard-coded).
+      properties:
+        provider: {type: string}
+        model: {type: string}
+        mode:
+          type: string
+          enum: [llm, keyword]
+          description: 'llm = the AI wrote the sentence (every figure and citation is checked by code); keyword = degraded mode without AI key (keyword understanding, template sentence).'
+    ReviewRequest:
+      type: object
+      required: [targetType, targetId, decision]
+      properties:
+        targetType:
+          type: string
+          enum: [registration, use, alias_mapping, sister_candidate]
+        targetId: {type: string}
+        decision:
+          type: string
+          enum: [validated, rejected, to_verify]
+        comment: {type: [string, 'null']}
+        reviewer: {type: [string, 'null']}
+    Review:
+      type: object
+      required: [reviewId, targetType, targetId, decision, reviewedAt]
+      properties:
+        reviewId: {type: string}
+        targetType: {type: string}
+        targetId: {type: string}
+        decision: {type: string}
+        comment: {type: [string, 'null']}
+        reviewer: {type: [string, 'null']}
+        reviewedAt: {type: string, format: date-time}
+    Problem:
+      type: object
+      required: [code, message]
+      properties:
+        code: {type: string}
+        message: {type: string}

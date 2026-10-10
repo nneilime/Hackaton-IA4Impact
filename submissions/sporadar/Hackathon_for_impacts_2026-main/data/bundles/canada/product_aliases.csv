@@ -1,0 +1,4 @@
+alias_id,product_id,related_product_id,alias_name,country_code,relationship_type,confidence,evidence,review_status,is_synthetic
+AL-CA-29147,P-LPC-M52,P-CA-29147,LALGUARD M52 GR,CA,confirmed_sister_product,0.95,LPC product_name_mapping PNM-008: Same M52 active strain family but different formulation,validated,false
+AL-CA-28820,P-LPC-G46,P-CA-28820,PRESTOP,CA,sister_product_candidate,0.85,"Same active entity (Clonostachys rosea, same strain) in Health Canada PPID reg. 28820; also listed in LPC product_name_mapping PNM-004",to_verify,false
+AL-CA-32404,P-LPC-G46,P-CA-32404,PRESTOP WG,CA,sister_product_candidate,0.8,"Same active entity (Clonostachys rosea, same strain) in Health Canada PPID reg. 32404",to_verify,false

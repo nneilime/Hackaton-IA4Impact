@@ -1,0 +1,7 @@
+# Dépendances d'exécution de l'API (le générateur de modèles est seulement dans ../requirements.txt)
+fastapi
+uvicorn
+sqlalchemy
+psycopg[binary]
+python-dotenv
+openai
