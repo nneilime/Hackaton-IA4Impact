@@ -1,0 +1,4 @@
+Dépannages analysés : 9955
+Dispersion mensuelle (Fano) : 2.32  (Poisson = 1 ; une part vient de la saisonnalité du chauffage)
+Récidive <= 90 j : observée 30.9% contre 22.7% si indépendantes, sur 7107 intervalles
+Hurst R/S mensuel : 0.77 sur 96 mois (indice seulement, pas une preuve de fractalité)

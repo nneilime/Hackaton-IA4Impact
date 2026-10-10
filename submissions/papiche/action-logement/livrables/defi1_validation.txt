@@ -1,0 +1,6 @@
+Pannes bloquantes janv.-sept. 2025 : 76 / 1285 (5.9%)
+lambda (L2) retenu sur 2024 : 0.01  (AUC par lambda : {0.0003: 0.809, 0.001: 0.813, 0.003: 0.817, 0.01: 0.82, 0.03: 0.819})
+AUC  baseline âge relatif : 0.777   | modèle BâtIA : 0.850
+Précision top 10 % baseline : 14.8%   | modèle BâtIA : 28.1%   (taux de base 5.9%)
+En inspectant les 128 équipements en tête (10 %) : 36 vraies pannes repérées sur 76 (47%) avec BâtIA, contre 19 (25%) avec l'âge seul ; hasard attendu : 8
+Variables les plus influentes (coef. standardisé) : signaux_texte_18m +0.42, dem_panne_12m +0.37, age_relatif +0.30, nb_rempl_passes -0.26, age_ans +0.22, arret_24m -0.17, fam_panneaux_rayonnants -0.13, hawkes +0.13
