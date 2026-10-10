@@ -1,6 +1,26 @@
 {
   "teams": [
     {
+      "slug": "ai-need-is",
+      "name": "AI-NEED-IS",
+      "challenge": "enedis",
+      "owner": "Neaxyn",
+      "members": [
+        {
+          "login": "Neaxyn",
+          "status": "joined",
+          "created_at": "2026-10-10T13:42:39.046Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:42:39.046Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:42:39.046Z",
+      "created_by": "Neaxyn"
+    },
+    {
       "slug": "group-6",
       "name": "Group 6",
       "challenge": "enedis",
