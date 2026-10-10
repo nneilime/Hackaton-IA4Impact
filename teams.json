@@ -66,6 +66,26 @@
       "created_by": "Zalingu"
     },
     {
+      "slug": "groupe-22",
+      "name": "Groupe 22",
+      "challenge": "bpce-si",
+      "owner": "nathanpetitboulanger",
+      "members": [
+        {
+          "login": "nathanpetitboulanger",
+          "status": "joined",
+          "created_at": "2026-10-10T13:03:02.429Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:03:02.429Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:03:02.429Z",
+      "created_by": "nathanpetitboulanger"
+    },
+    {
       "slug": "groupe-26",
       "name": "Groupe 26",
       "challenge": "lallemand",
