@@ -1,6 +1,36 @@
 {
   "teams": [
     {
+      "slug": "groupe-1",
+      "name": "Groupe 1",
+      "challenge": "sncf",
+      "owner": "somboAtse",
+      "members": [
+        {
+          "login": "somboAtse",
+          "status": "joined",
+          "created_at": "2026-10-10T13:03:58.146Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:03:58.146Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:03:58.146Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:03:58.146Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:03:58.146Z",
+      "created_by": "somboAtse"
+    },
+    {
       "slug": "groupe-11",
       "name": "Groupe 11",
       "challenge": "imsa",
