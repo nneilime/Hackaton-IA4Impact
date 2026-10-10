@@ -136,6 +136,36 @@
       "created_by": "Zalingu"
     },
     {
+      "slug": "groupe-16",
+      "name": "Groupe 16",
+      "challenge": "action-logement",
+      "owner": "chaufoureaualexandre-lang",
+      "members": [
+        {
+          "login": "chaufoureaualexandre-lang",
+          "status": "joined",
+          "created_at": "2026-10-10T13:12:43.403Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:12:43.403Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:12:43.403Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:12:43.403Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:12:43.403Z",
+      "created_by": "chaufoureaualexandre-lang"
+    },
+    {
       "slug": "groupe-21",
       "name": "Groupe 21",
       "challenge": "bpce-si",
