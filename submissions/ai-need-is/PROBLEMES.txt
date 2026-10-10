@@ -1,0 +1,101 @@
+Verdict
+Oui, ce projet a des motifs sérieux pour perdre. Non parce qu’il est inutilisable — l’application démarre et les 47 tests passent — mais parce que plusieurs promesses centrales sont absentes, trompeuses ou non démontrées.
+J’ai contrôlé l’intégralité du cahier des charges de cinq pages : /Users/tommy/Downloads/Hackathon_2026_LISEZ_MOI_Enedis.docx.pdf, puis le code, les données, l’interface et les 100 crises fournies.
+P0 — Motifs quasi éliminatoires
+1. « IA Optimale » est une appellation injustifiable
+Le modèle n’apprend rien à partir des crises historiques. Il est entraîné au démarrage sur 1 000 observations artificielles générées aléatoirement, avec une cible entièrement écrite à la main dans [ia_optimizer.py (line 35)](/Users/tommy/Documents/Codex/IA_NEED_IS/crise/strategies/ia_optimizer.py:35).
+Autrement dit, c’est un score métier déterministe déguisé derrière un Gradient Boosting, puis expliqué par SHAP. Il n’existe :
+- ni jeu d’entraînement réel ;
+- ni validation ;
+- ni mesure d’erreur ;
+- ni comparaison hors échantillon ;
+- ni estimation de confiance.
+L’algorithme hongrois est seulement optimal pour l’appariement instantané selon ce score synthétique. Il ne garantit absolument pas l’optimum temporel global de la crise, contrairement aux affirmations de [ia_optimizer.py (line 1)](/Users/tommy/Documents/Codex/IA_NEED_IS/crise/strategies/ia_optimizer.py:1).
+2. La performance annoncée n’est pas démontrée
+Sur les 100 crises, à l’horizon maximal proposé :
+Stratégie	Clients rétablis moyens	Clients-heures moyens
+Distance	99,686 %	118 857
+Score pondéré	99,813 %	119 865
+« IA Optimale »	99,724 %	119 947
+Premier arrivé	98,775 %	137 355
+
+
+Face à la meilleure stratégie non-IA, l’IA :
+- gagne seulement 2 crises sur 100 ;
+- fait égalité sur 71 ;
+- perd sur 27 ;
+- est en moyenne inférieure de 0,091 point de clients rétablis ;
+- présente davantage de clients-heures que la stratégie distance.
+Elle ne mérite donc ni « optimale », ni même une revendication claire d’amélioration par rapport à la référence — critère explicite du cahier des charges.
+3. La fonction objectif est structurellement fausse
+[evaluer_fonction_objectif() (line 39)](/Users/tommy/Documents/Codex/IA_NEED_IS/crise/metrics/indicateurs.py:39) ne compte que les incidents résolus. Les incidents encore en attente ne reçoivent aucune pénalité.
+Conséquence absurde : une stratégie qui ne résout rien obtient un score de 0, potentiellement présenté comme excellent. Les paramètres malus_incident_non_couvert et seuil_clients_sensibles de [params.yaml (line 24)](/Users/tommy/Documents/Codex/IA_NEED_IS/config/params.yaml:24) ne sont jamais utilisés.
+Le cahier des charges contient lui-même une ambiguïté — « maximiser » un produit clients × durée contredit « rétablir le plus tôt possible ». Le projet devait ajuster et justifier la formule. Il se contente de la recopier sans résoudre la contradiction.
+Pire : la cible d’entraînement de l’IA récompense les dépannages longs (+15 × durée) dans [ia_optimizer.py (line 51)](/Users/tommy/Documents/Codex/IA_NEED_IS/crise/strategies/ia_optimizer.py:51), alors que l’objectif opérationnel demande de réduire le temps de coupure.
+4. Le tableau de bord présente des clients “remis” avant leur rétablissement
+Le comparateur additionne les clients au moment de l’affectation, pas à la fin de la réparation, dans [main.py (line 123)](/Users/tommy/Documents/Codex/IA_NEED_IS/app/main.py:123), puis les affiche comme « Clients remis » dans [comparison.py (line 54)](/Users/tommy/Documents/Codex/IA_NEED_IS/app/components/comparison.py:54).
+Exemple reproductible, CRISE_001, paramètres par défaut :
+- 71 incidents, 6 523 clients ;
+- le tableau peut annoncer 6 003 clients « remis » ;
+- seulement 693 sont effectivement rétablis avec la stratégie distance ;
+- seulement 6 incidents sont réellement terminés.
+C’est une présentation matériellement trompeuse du résultat.
+5. Deux des trois modes promis n’existent pas réellement
+Le README affirme couvrir préparation, jour J et rejeu dans [README.md (line 24)](/Users/tommy/Documents/Codex/IA_NEED_IS/README.md:24). En réalité :
+- aucun prépositionnement n’est calculé ;
+- aucun scénario météo n’est accepté ;
+- aucune disponibilité réelle ne peut être injectée ;
+- aucun incident temps réel ne peut être ajouté ;
+- aucune réaffectation manuelle n’est possible ;
+- seul le rejeu de CSV prédéfinis est vraiment présent.
+Le package nommé preparation fait de la jointure et du nettoyage de données, pas du prépositionnement.
+6. La décision n’est pas pilotée par l’humain
+L’interface automatise toutes les affectations. Il n’existe aucun mécanisme pour :
+- accepter ou refuser une recommandation ;
+- imposer une équipe ;
+- réserver une ressource ;
+- modifier une décision ;
+- enregistrer l’arbitrage humain.
+Le seul contrôle opérationnel est « Lancer la simulation ». Cela contredit directement le garde-fou « l’outil recommande, le responsable métier décide ».
+7. La robustesse demandée n’est pas implémentée
+Le cahier des charges cite explicitement 50 % d’équipes indisponibles après 48 h, deux crises successives et la saturation.
+Or :
+- toutes les équipes sont créées disponibles ;
+- l’utilisateur ne peut pas en neutraliser 50 % ;
+- chaque crise repart d’un état neuf ;
+- deux crises successives ne peuvent pas partager l’état des équipes ;
+- aucun stress test de ce type n’existe dans les tests ;
+- les 63 équipes sont toujours initialement mobilisables.
+P1 — Problèmes majeurs
+- La référence “distance seule” n’est pas une distance seule. Les incidents sont d’abord triés par nombre de clients, puis affectés à l’équipe la plus proche dans [allocator.py (line 128)](/Users/tommy/Documents/Codex/IA_NEED_IS/crise/strategies/allocator.py:128). La comparaison de référence est donc contaminée.
+- L’horizon temporel est faux d’un pas. Avec 96 pas de 30 minutes, les instants vont de T0 à T0 + 47 h 30, pas 48 h. Le défaut de 10 pas couvre 4 h 30 d’observation, alors que l’interface affiche 5 h. Le calcul provient de la boucle range(nb_pas) dans [moteur.py (line 468)](/Users/tommy/Documents/Codex/IA_NEED_IS/crise/simulation/moteur.py:468).
+- Le défaut de 10 pas est massivement insuffisant. Les crises fournies s’étalent jusqu’à 7 h 56 d’arrivée d’incidents. La démonstration par défaut s’arrête donc avant même que tous les incidents soient connus.
+- Les résolutions sont arrondies au pas suivant. Une réparation terminée entre deux pas n’est clôturée qu’au prochain tick. La timeline et le T90 peuvent être décalés jusqu’à 60 minutes selon le pas choisi.
+- La sécurité est réduite à une règle 12 h/11 h. Compétences, accessibilité, danger réseau, conditions routières, cause de l’incident et risques territoriaux ne participent pas à la décision.
+- Le modèle des ressources est vide. Les dataclasses de [models.py (line 1)](/Users/tommy/Documents/Codex/IA_NEED_IS/crise/models/models.py:1) ne sont jamais utilisées par le moteur. La compétence "general" n’influence rien.
+- La distance et le temps de trajet sont le même signal compté deux fois. Dans les données synthétiques d’entraînement, distance_km = temps_trajet × 60. Les deux deviennent pourtant deux caractéristiques séparées.
+- L’explicabilité est décorative. SHAP explique le score du modèle artificiel, pas pourquoi cette affectation a été retenue plutôt qu’une autre, ni les compromis globaux, ni les limites, ni un niveau de confiance.
+- L’étiquette “Hôpital/EHPAD” est inventée. La donnée source indique seulement un poste avec client sensible. Le code transforme ce booléen en catégorie précise sans information permettant de l’affirmer.
+- La “prévision” est une extrapolation linéaire naïve. [forecast.py (line 59)](/Users/tommy/Documents/Codex/IA_NEED_IS/app/components/forecast.py:59) prolonge simplement le rythme moyen observé, sans considérer les futurs incidents, les durées restantes, les repos ou l’incertitude.
+- Aucun traitement différencié entre diagnostic, réalimentation provisoire et dépannage définitif.
+- Aucune modélisation d’incertitude, alors que les durées de trajet et de dépannage sont précisément les variables incertaines les plus importantes.
+P2 — Qualité et crédibilité technique
+- Le README affirme utiliser Pydeck, Plotly, Gradio, deep learning et trois stratégies ; le code utilise principalement Streamlit/Altair, aucun deep learning, et quatre stratégies.
+- Le README annonce des scénarios de stress configurables, mais le YAML n’en contient aucun.
+- Le module crise/explain est vide malgré la promesse d’un module d’explicabilité.
+- Plusieurs fichiers .pyc générés sont suivis dans Git malgré le .gitignore.
+- Les dépendances sont décrites comme « versions figées », mais plusieurs utilisent seulement une borne minimale.
+- Les données sont dupliquées à la racine et dans data/raw, créant une ambiguïté sur la source réellement chargée.
+- Il n’y a pas de documentation réelle des hypothèses, biais et limites demandée par le cahier des charges.
+- Les tests vérifient correctement plusieurs invariants techniques, mais aucun ne démontre que l’IA améliore la référence, que l’objectif métier est minimisé ou que les scénarios de robustesse sont tenus.
+- Le dépôt de travail contient déjà des artefacts binaires Python suivis et modifiés, signe d’une hygiène Git insuffisante.
+Pourquoi ce projet doit perdre ?
+Parce qu’il présente une jolie simulation fonctionnelle comme un système d’optimisation IA validé, alors que :
+1. l’IA est entraînée sur une formule synthétique inventée ;
+2. elle ne bat pas la stratégie simple sur les 100 crises ;
+3. la métrique principale ignore les incidents non résolus ;
+4. le tableau de bord confond affectation et rétablissement ;
+5. préparation, jour J, décision humaine et stress tests sont absents ;
+6. la sécurité métier est très insuffisamment modélisée ;
+7. « optimale », « conformité AI Act » et « 48 h » sont des affirmations que le code ne soutient pas.
+La meilleure ligne d’accusation devant le jury est donc : le projet privilégie l’apparence d’une IA explicable à la preuve d’une amélioration opérationnelle fiable.
