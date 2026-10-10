@@ -1,0 +1,8 @@
+Déposez ici l'archive du corpus autorisé : General-main.zip
+(fournie par les organisateurs du défi ; elle n'est pas versionnée car elle contient des documents de santé).
+
+Au premier lancement, l'application l'extrait dans data/corpus/ puis lit les 55 bordereaux (OCR, environ 15 à 20 minutes).
+Si vous avez reçu l'archive de données locales (imsa-sentinel-donnees-locales), décompressez-la à la racine du projet :
+le cache OCR (data/cache/) est alors déjà prêt et le premier lancement prend moins d'une minute.
+
+Sans archive, l'application démarre quand même : un bandeau le signale et l'import de nouveaux dossiers reste possible.

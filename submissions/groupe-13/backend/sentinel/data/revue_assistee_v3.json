@@ -1,0 +1,701 @@
+{
+ "description": "Pré-examen réalisé avec l'assistant IA le 10/10/2026 : agrandissement de chaque région, lectures des deux moteurs, ligne du TXT. N'est PAS une validation humaine : exclu des métriques officielles, à confirmer par un validateur.",
+ "validations": [
+  {
+   "dossier": "Facture1_01",
+   "regle": "R18",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Case de signature vide sur le bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_03",
+   "regle": "R21",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Case de signature du directeur vide sur le bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_04",
+   "regle": "R12",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalPrestations du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_05",
+   "regle": "R05",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_06",
+   "regle": "R17",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalHonoraires du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_07",
+   "regle": "R03",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_08",
+   "regle": "R04",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_09",
+   "regle": "R13",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_10",
+   "regle": "R19",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_11",
+   "regle": "R11",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_11",
+   "regle": "R13",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_12",
+   "regle": "R14",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_12",
+   "regle": "R19",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_13",
+   "regle": "R11",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_14",
+   "regle": "R14",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_15",
+   "regle": "R09",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_15",
+   "regle": "R10",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_17",
+   "regle": "R22",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_18",
+   "regle": "R01",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_19",
+   "regle": "R09",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_19",
+   "regle": "R10",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_19",
+   "regle": "R16",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_20",
+   "regle": "R12",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalPrestations du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture1_20",
+   "regle": "R17",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalHonoraires du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_02",
+   "regle": "R18",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Case de signature vide sur le bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_03",
+   "regle": "R22",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_04",
+   "regle": "R01",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_04",
+   "regle": "R04",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_04",
+   "regle": "R05",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_05",
+   "regle": "R21",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Case de signature du directeur vide sur le bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R02",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "FINESS du fichier (positions 2-10, avant le caractère inséré) différent de celui imprimé sur le bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R03",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R04",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R05",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R07",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R08",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R09",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « NON_VERIFIABLE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R12",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R13",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R14",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R15",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R17",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_06",
+   "regle": "R19",
+   "verdict": "conforme_confirme",
+   "statut_moteur": "CONFORME",
+   "cause": null,
+   "commentaire": "Résultat v2.0 « ANOMALIE » faux (cause FP-B2 : caractère blanc inséré en position 11 du TXT). Après réalignement, la valeur du fichier égale celle du bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_07",
+   "regle": "R05",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_08",
+   "regle": "R03",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_09",
+   "regle": "R04",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_10",
+   "regle": "R07",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_10",
+   "regle": "R09",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_11",
+   "regle": "R09",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_12",
+   "regle": "R16",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_13",
+   "regle": "R16",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_14",
+   "regle": "R12",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalPrestations du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_15",
+   "regle": "R17",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalHonoraires du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_16",
+   "regle": "R12",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalPrestations du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_16",
+   "regle": "R17",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalHonoraires du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_17",
+   "regle": "R15",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_17",
+   "regle": "R19",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_18",
+   "regle": "R14",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_18",
+   "regle": "R19",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_19",
+   "regle": "R14",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture2_20",
+   "regle": "R19",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_02",
+   "regle": "R21",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Case de signature du directeur vide sur le bordereau.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_03",
+   "regle": "R12",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalPrestations du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_04",
+   "regle": "R05",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_05",
+   "regle": "R17",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalHonoraires du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_06",
+   "regle": "R03",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_07",
+   "regle": "R04",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_08",
+   "regle": "R07",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_09",
+   "regle": "R15",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_10",
+   "regle": "R22",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_11",
+   "regle": "R01",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_12",
+   "regle": "R12",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalPrestations du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_12",
+   "regle": "R17",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Montant imprimé vérifié à l'écran ; TotalHonoraires du fichier différent.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_14",
+   "regle": "R15",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_14",
+   "regle": "R19",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  },
+  {
+   "dossier": "Facture3_15",
+   "regle": "R19",
+   "verdict": "ecart_reel",
+   "statut_moteur": "ANOMALIE",
+   "commentaire": "Valeur imprimée vérifiée sur l'agrandissement ; elle diffère de la donnée du fichier.",
+   "version": "3.0.0",
+   "date": "2026-10-10T13:30:00"
+  }
+ ]
+}

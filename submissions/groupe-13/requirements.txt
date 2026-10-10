@@ -1,0 +1,17 @@
+# iMSA Sentinel — dépendances Python (Python 3.10 à 3.13 recommandé : 3.12)
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.6
+python-multipart>=0.0.9
+numpy>=1.26
+opencv-python>=4.9
+Pillow>=10.0
+reportlab>=4.0
+# OCR local (modèles ONNX embarqués dans le paquet, aucun téléchargement à l'exécution)
+rapidocr_onnxruntime==1.2.3
+onnxruntime>=1.17
+# Second moteur OCR facultatif (nécessite Tesseract-OCR installé sur la machine)
+pytesseract>=0.3.10
+# Tests
+pytest>=8.0
+httpx>=0.27
