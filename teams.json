@@ -56,6 +56,21 @@
       "created_by": "ATAE0"
     },
     {
+      "slug": "groupe-alexis-briand-n7",
+      "name": "Groupe  Alexis Briand N7",
+      "challenge": "action-logement",
+      "owner": "2chaynz",
+      "members": [
+        {
+          "login": "2chaynz",
+          "status": "joined",
+          "created_at": "2026-10-10T14:07:03.394Z"
+        }
+      ],
+      "created_at": "2026-10-10T14:07:03.394Z",
+      "created_by": "2chaynz"
+    },
+    {
       "slug": "groupe-1",
       "name": "Groupe 1",
       "challenge": "sncf",
