@@ -561,6 +561,36 @@
       "created_by": "mathieu-audo"
     },
     {
+      "slug": "number12",
+      "name": "number12",
+      "challenge": "imsa",
+      "owner": "StuckInStupidity",
+      "members": [
+        {
+          "login": "StuckInStupidity",
+          "status": "joined",
+          "created_at": "2026-10-10T13:53:44.333Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:53:44.333Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:53:44.333Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:53:44.333Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:53:44.333Z",
+      "created_by": "StuckInStupidity"
+    },
+    {
       "slug": "sporadar",
       "name": "Sporadar",
       "challenge": "lallemand",
