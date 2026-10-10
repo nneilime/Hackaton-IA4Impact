@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Character diff on the agent's cards (agent/diff.ts). Global, not in agent.css, to stay under the component style budget. */
+.diff-mark,
+.diff-ref {
+  text-decoration: underline 2px;
+  text-underline-offset: 4px;
+}
+
+/* Scan crops on the agent's cards (cropsFor() in agent/agent.ts): the scan as a positioned background */
+.zone-crops {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.zone-crop {
+  max-width: 100%;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 4px;
+}
+
+/* Agent cards: amount difference, scan-coherence hint, selected card (click / Enter centres the scan on it) */
+.card-note {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #94a3b8);
+}
+.discrepancy-card {
+  cursor: pointer;
+}
+/* Drawn inside the card (negative offset): the cards list scrolls, and a scroll container clips an outline
+   drawn outside its children */
+.discrepancy-card.card-selected,
+.discrepancy-card:focus-visible {
+  outline: 2px solid var(--accent-blue, #38bdf8);
+  outline-offset: -2px;
+}
+/* Three classes: must beat the component's .pulse-animation, whose keyframes drive the opacity */
+.image-frame .bounding-box.box-dim {
+  animation: none;
+  opacity: 0.3;
+}
+
+/* List checks: one line per act / prestation found in a single document (Check.ecarts) */
+.ecart-lines {
+  list-style: none;
+  margin: 0 0 16px;  /* space before the two lists compared below */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ecart-lines li {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: var(--danger, #e11d48);
+  background-color: rgba(225, 29, 72, 0.06);
+  border: 1px solid rgba(225, 29, 72, 0.25);
+}
+
+/* Clicked crop shown large (agent: openZoom()) */
+.zone-crop {
+  cursor: zoom-in;
+}
+.crop-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #cbd5e1;
+  cursor: zoom-out;
+}
+.crop-lightbox .zone-crop-large {
+  max-width: none;
+  cursor: zoom-out;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}

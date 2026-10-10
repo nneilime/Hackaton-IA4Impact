@@ -1,0 +1,162 @@
+<div class="app-container" [class.dark-theme]="isDarkMode()" [class.light-theme]="!isDarkMode()">
+
+  <!-- Barre supérieure de contrôle globale -->
+  <header class="top-bar">
+    <div class="logo-area">
+      <span class="badge">POC Audit</span>
+      <h1>Contrôle des Bordereaux</h1>
+    </div>
+    <div class="header-actions">
+      <label class="difficulty-filter" title="Masquer les factures plus difficiles que ce seuil">
+        Difficulté max <strong>{{ difficulteMax() }}</strong>
+        <input type="range" min="5" max="100" step="5" [value]="difficulteMax()"
+               (input)="setDifficulteMax($any($event.target).valueAsNumber)"
+               aria-label="Difficulté maximale affichée" />
+      </label>
+      <span class="shortcuts-hint">Raccourcis : <strong>[V]</strong> Tarifer | <strong>[R]</strong> Rejeter | <strong>[↑][↓]</strong> Défiler</span>
+      <a routerLink="/dashboard" class="theme-toggle-btn supervision-link" title="Tableau de bord superviseur">Supervision</a>
+      <button class="theme-toggle-btn" (click)="toggleTheme()" title="Changer de thème">
+        {{ isDarkMode() ? '☀️ Mode Clair' : '🌙 Mode Sombre' }}
+      </button>
+    </div>
+  </header>
+
+  <!-- Chargement de la file / backend injoignable -->
+  <div class="state-message" *ngIf="loading()">Chargement des factures…</div>
+  <div class="state-message" *ngIf="!loading() && error() && !currentInvoice()">
+    <p>{{ error() }}</p>
+    <button class="theme-toggle-btn" (click)="retry()">Réessayer</button>
+  </div>
+
+  <!-- Zone de travail principale (Sans scroll global) -->
+  <main class="workspace" *ngIf="!loading() && !isFinished() && currentInvoice() as invoice">
+
+    <!-- GAUCHE : Visualiseur de facture encadré (zoomé, scroll vertical) -->
+    <div class="document-viewer">
+      <div class="image-frame" #scrollPort tabindex="0" role="region" aria-label="Scan zoomé : flèches haut et bas pour défiler">
+        <div class="zoom-canvas">
+          <img #zoomImg [src]="invoice.image.url" alt="Facture scannée" (load)="onImageLoad()" />
+
+          <div *ngFor="let h of highlights()"
+               class="bounding-box pulse-animation"
+               [class.box-a-verifier]="h.statut === 'A_VERIFIER'"
+               [class.box-dim]="selectedCode() && h.code !== selectedCode()"
+               [style.left.%]="h.left"
+               [style.top.%]="h.top"
+               [style.width.%]="h.width"
+               [style.height.%]="h.height">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DROITE : Panneau d'analyse de l'anomalie -->
+    <div class="control-panel">
+
+      <div class="panel-header">
+        <h2>Facture : {{ invoice.id }} <span class="queue-position">{{ position() }} / {{ total() }}</span></h2>
+        <span class="anomaly-badge" *ngIf="nbKo()">{{ nbKo() }} KO</span>
+        <span class="anomaly-badge badge-a-verifier" *ngIf="nbAVerifier()">{{ nbAVerifier() }} à vérifier</span>
+        <span class="anomaly-badge {{ classeDifficulte() }}" title="Difficulté de contrôle estimée (0–100)">Difficulté {{ invoice.difficulte ?? 100 }}/100 · {{ invoice.niveau || '—' }}</span>
+      </div>
+
+      <p class="filter-note" *ngIf="nbMasquees() > 0">
+        {{ nbMasquees() }} facture(s) masquée(s) (difficulté &gt; {{ difficulteMax() }}).
+        <button class="link-btn" (click)="resetDifficulteMax()">Tout afficher</button>
+      </p>
+
+      <p class="inline-error" *ngIf="error()">{{ error() }}</p>
+      <p class="inline-error" *ngIf="b2Broken()">
+        ⚠️ Fichier B2 mal formé : ses colonnes sont décalées, donc ses valeurs ne peuvent pas servir de référence.
+        Les {{ nbNonEvalues() }} autres contrôles ne sont pas évalués : comparez la facture au scan à la main.
+      </p>
+
+      <div class="discrepancies-container">
+        <div class="discrepancy-card" *ngFor="let check of anomalies()"
+             [class.card-a-verifier]="check.statut === 'A_VERIFIER'"
+             [class.card-selected]="selectedCode() === check.code"
+             tabindex="0" title="Cliquer pour centrer le scan sur cette zone"
+             (click)="select(check.code)" (keydown.enter)="select(check.code)">
+          <div class="card-title">
+            <span class="status-tag">
+              {{ check.statut === 'KO' ? '✖' : '?' }} {{ statutLabel(check) }}
+            </span>
+            <h3>{{ check.code }} · {{ check.libelle }}
+              <span class="zone-tag" *ngIf="check.zones.length">Zone {{ check.zones.join(', ') }}</span>
+            </h3>
+          </div>
+
+          <!-- List checks: one line per item missing from one document, then the two lists as a diff (items on one side only marked) -->
+          <ul class="ecart-lines" *ngIf="check.ecarts?.length">
+            <li *ngFor="let e of check.ecarts">{{ e.message }}</li>
+          </ul>
+          <div class="comparison" *ngIf="comparisons().get(check.code) as cmp">
+            <div class="box txt-box">
+              <span class="box-label">{{ cmp.reference.label }}</span>
+              <strong *ngIf="cmp.diff; else plainRef"><span *ngFor="let s of cmp.diff.reference" [class.diff-ref]="s.diff">{{ s.text }}</span></strong>
+              <ng-template #plainRef><strong>{{ cmp.reference.value }}</strong></ng-template>
+              <span class="confidence" *ngIf="cmp.reference.confiance != null">confiance OCR : {{ confiancePct(cmp.reference.confiance) }} %</span>
+            </div>
+            <div class="box ocr-box">
+              <span class="box-label">{{ cmp.suspect.label }}</span>
+              <strong class="error-text" *ngIf="cmp.diff; else plainSuspect"><span *ngFor="let s of cmp.diff.suspect" [class.diff-mark]="s.diff">{{ s.text }}</span></strong>
+              <ng-template #plainSuspect><strong class="error-text">{{ cmp.suspect.value }}</strong></ng-template>
+              <span class="confidence" *ngIf="cmp.suspect.confiance != null">confiance OCR : {{ confiancePct(cmp.suspect.confiance) }} %</span>
+            </div>
+          </div>
+          <p class="card-note" *ngIf="comparisons().get(check.code)?.ecart as ecart">Écart : <strong>{{ ecart }}</strong></p>
+          <p class="card-note" *ngIf="isSubtotalCheck(check) && scanCoherent()">
+            Le scan est cohérent avec lui-même : sous-total 1+2+3 + sous-total 4 = montant total imprimé (C15 OK).
+            L'écart vient donc plus probablement du fichier B2 que de la lecture du scan.
+          </p>
+          <div class="zone-crops" *ngIf="crops().get(check.code)?.length">
+            <div class="zone-crop" *ngFor="let k of crops().get(check.code)" role="button" tabindex="0"
+                 aria-label="Extrait du scan : cliquer pour agrandir" title="Cliquer pour agrandir"
+                 (click)="openZoom(k); $event.stopPropagation()" (keydown.enter)="openZoom(k); $event.stopPropagation()"
+                 [style.width.px]="k.width" [style.height.px]="k.height"
+                 [style.background-image]="'url(' + invoice.image.url + ')'"
+                 [style.background-size]="k.backgroundSize" [style.background-position]="k.backgroundPosition"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Boutons d'action dynamiques -->
+      <div class="actions">
+        <button class="btn-action btn-reject" (click)="reject()" [disabled]="saving()">
+          <span>Rejeter la facture</span> <kbd>R</kbd>
+        </button>
+        <button class="btn-action btn-validate" (click)="validate()" [disabled]="saving()">
+          <span>Tarifer la facture</span> <kbd>V</kbd>
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Facture en cours de chargement (passage à la suivante) -->
+  <div class="state-message" *ngIf="!loading() && !isFinished() && !currentInvoice() && !error()">Chargement de la facture…</div>
+
+  <!-- File épuisée (rien d'analysé en attente, ou tout traité) : attente des factures que l'OCR va ajouter -->
+  <div class="state-message" *ngIf="isFinished() && !error()">
+    <ng-container *ngIf="nbMasquees() > 0; else vraimentVide">
+      <h2>File filtrée par difficulté</h2>
+      <p>{{ nbMasquees() }} facture(s) en attente dépassent la difficulté max ({{ difficulteMax() }}).</p>
+      <button class="theme-toggle-btn" (click)="resetDifficulteMax()">Tout afficher</button>
+    </ng-container>
+    <ng-template #vraimentVide>
+      <h2>Aucune facture disponible</h2>
+      <p>Aucune facture n'attend de contrôle pour le moment.</p>
+      <button class="theme-toggle-btn" (click)="retry()">Actualiser</button>
+    </ng-template>
+  </div>
+
+  <!-- Clicked crop, shown large (click anywhere or Échap to close) -->
+  <div class="crop-lightbox" *ngIf="zoomedCrop() as z" (click)="closeZoom()" role="dialog" aria-label="Extrait du scan agrandi">
+    <div class="zone-crop zone-crop-large"
+         [style.width.px]="z.width" [style.height.px]="z.height"
+         [style.background-image]="'url(' + currentInvoice()?.image?.url + ')'"
+         [style.background-size]="z.backgroundSize" [style.background-position]="z.backgroundPosition"></div>
+    <p>Cliquer ou Échap pour fermer</p>
+  </div>
+</div>

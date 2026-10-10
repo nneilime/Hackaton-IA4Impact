@@ -1,0 +1,20 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - 8000:8000
+    volumes:
+      - type: bind
+        source: ./receipts
+        target: /receipts
+      - type: bind
+        source: ./images
+        target: /images
+
+    network_mode: host
+
+  frontend:
+    build: ./angular
+    ports:
+      - 4200:4200
+    network_mode: host

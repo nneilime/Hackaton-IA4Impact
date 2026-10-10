@@ -1,0 +1,15 @@
+[project]
+name = "melee-backend"
+version = "0.1.0"
+description = "Contrôle bordereau de facturation vs fichier B2"
+# Python 3.12-3.13: the versions the OCR stack (OpenVINO, RapidOCR) is tested on here
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "fastapi>=0.143.0",
+    "jsonschema>=4.26.0",
+    # OCR: RapidOCR running PP-OCRv6 medium on OpenVINO (CPU, or the Intel iGPU once intel-opencl-icd
+    # is installed). It brings opencv-python-headless, used for the signature zones.
+    "openvino>=2026.4.0",
+    "rapidocr>=3.10.0",
+    "uvicorn[standard]>=0.54.0",
+]

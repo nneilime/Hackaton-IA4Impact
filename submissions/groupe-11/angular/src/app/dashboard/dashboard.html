@@ -1,0 +1,296 @@
+<div class="dashboard-shell">
+
+  <!-- ══ TOP BAR ══════════════════════════════════════════════════════════ -->
+  <header class="top-bar">
+    <div class="logo-area">
+      <span class="badge">Supervision</span>
+      <h1>Tableau de Bord — anomalie &amp; Contrôle</h1>
+    </div>
+    <a routerLink="/" class="back-btn">← Retour agent</a>
+  </header>
+
+  <!-- ══ LOADING / ERROR ══════════════════════════════════════════════════ -->
+  <div class="centered-state" *ngIf="loading()">
+    <div class="spinner"></div>
+    <p>Chargement des statistiques…</p>
+  </div>
+  <div class="centered-state error-state" *ngIf="!loading() && error()">
+    <p>{{ error() }}</p>
+  </div>
+
+  <!-- ══ MAIN CONTENT ═════════════════════════════════════════════════════ -->
+  <main class="dashboard-grid" *ngIf="!loading() && stats() as s">
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         SECTION 1 — Vue globale
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="section full-width">
+      <h2 class="section-title">Vue globale — anomalie &amp; Erreurs</h2>
+      <p class="section-desc">
+        Synthèse des <strong>{{ s.anomalie.nb_factures_total }} factures</strong> analysées.
+        <span class="pill ko">KO</span> = au moins un contrôle échoué.
+        <span class="pill av">À vérifier</span> = aucun KO mais champs illisibles.
+        <span class="pill ok">Conforme</span> = tous les contrôles OK.
+      </p>
+
+      <div class="overview-row">
+
+        <!-- Donut chart -->
+        <div class="donut-wrap">
+          <svg viewBox="0 0 120 120" class="donut-svg">
+            <path *ngFor="let seg of donutSegments(s.anomalie.nb_factures_ko, s.anomalie.nb_factures_a_verifier, s.anomalie.nb_factures_total)"
+                  [attr.d]="seg.d" [attr.fill]="seg.color">
+              <title>{{ seg.label }} : {{ seg.value }}</title>
+            </path>
+            <text x="60" y="56" text-anchor="middle" class="donut-num">{{ s.anomalie.nb_factures_total }}</text>
+            <text x="60" y="68" text-anchor="middle" class="donut-sub">factures</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="legend-item"><span class="dot" style="background:#fb7185"></span> KO : <strong>{{ s.anomalie.nb_factures_ko }}</strong></div>
+            <div class="legend-item"><span class="dot" style="background:#fbbf24"></span> À vérifier : <strong>{{ s.anomalie.nb_factures_a_verifier }}</strong></div>
+            <div class="legend-item"><span class="dot" style="background:#34d399"></span> Conformes : <strong>{{ s.anomalie.nb_factures_total - s.anomalie.nb_factures_ko - s.anomalie.nb_factures_a_verifier }}</strong></div>
+          </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="cost-kpis">
+          <div class="kpi-card">
+            <span class="kpi-label">Montant total à risque</span>
+            <span class="kpi-value danger">{{ fmt(s.anomalie.montant_total_a_risque) }}</span>
+            <span class="kpi-explain">
+              Somme des montants totaux (zone 13) des factures avec au moins un KO ou À vérifier.
+              Représente le volume financier exposé à une anomalie potentielle.
+            </span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Score de gravité anomalie</span>
+            <span class="kpi-value" [class]="scoreClass(s.anomalie.score_anomalie)">
+              {{ s.anomalie.score_anomalie }}&thinsp;/&thinsp;100
+            </span>
+            <span class="kpi-explain">
+              Score moyen de gravité par facture KO (0–100).
+              Calculé en pondérant les catégories d'anomalies touchées :
+              Prestations &amp; Honoraires (×4), Identité (×3), Signatures (×2), Format (×1).
+              Un score élevé indique que la plupart des factures KO touchent plusieurs catégories critiques.
+            </span>
+          </div>
+          <div class="kpi-card" *ngIf="s.anomalie.difficulte_globale">
+            <span class="kpi-label">Difficulté de vérification</span>
+            <span class="kpi-value"
+                  [class]="diffClass(s.anomalie.difficulte_globale.moyenne !== null
+                    ? (s.anomalie.difficulte_globale.moyenne >= 60 ? 'Difficile'
+                       : s.anomalie.difficulte_globale.moyenne >= 40 ? 'Moyenne'
+                       : s.anomalie.difficulte_globale.moyenne >= 20 ? 'Modérée' : 'Facile')
+                    : null)">
+              {{ s.anomalie.difficulte_globale.moyenne ?? '—' }}&thinsp;/&thinsp;100
+            </span>
+            <span class="kpi-explain">
+              Score moyen de difficulté de relecture par l'agent (0–100).
+              Tient compte du nombre de KO/AV, des zones OCR illisibles, de la confiance OCR et
+              de la longueur des valeurs à comparer.
+            </span>
+            <div class="diff-dist">
+              <span class="diff-pill" [class]="diffClass(d.niveau)"
+                    *ngFor="let d of s.anomalie.difficulte_globale.repartition"
+                    [title]="d.niveau">
+                {{ d.nb }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         SECTION 2 — Répartition par catégorie d'anomalie
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="section full-width">
+      <h2 class="section-title">Répartition par catégorie d'anomalie</h2>
+      <p class="section-desc">
+        Chaque facture KO peut déclencher plusieurs catégories. Une barre pleine signifie que toutes les factures KO touchent cette catégorie.
+        Le <strong>poids</strong> reflète la gravité investigative : Prestations &amp; Honoraires sont les plus critiques car ils portent les enjeux financiers.
+      </p>
+      <div class="cat-bars">
+        <div class="cat-row" *ngFor="let c of s.anomalie.repartition_par_categorie.sort((a, b) => b.nb_invoices_ko - a.nb_invoices_ko);">
+          <span class="cat-name">{{ c.categorie }}</span>
+          <span class="cat-weight" [title]="'Poids : ' + c.poids">×{{ c.poids }}</span>
+          <div class="cb-track">
+            <div class="cb-seg ko"
+                 [style.width.%]="barWidthPct(c.nb_invoices_ko, s.anomalie.nb_factures_ko || 1)"
+                 [title]="c.nb_invoices_ko + ' factures KO'"></div>
+          </div>
+          <span class="cat-count pill ko" *ngIf="c.nb_invoices_ko">{{ c.nb_invoices_ko }}</span>
+          <span class="cat-count" *ngIf="!c.nb_invoices_ko">—</span>
+          <span class="cat-desc">{{ c.description }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         SECTION 3 — Anomalies par contrôle
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="section full-width">
+      <h2 class="section-title">Anomalies par contrôle (C0–C17)</h2>
+      <p class="section-desc">
+        Seuls les contrôles avec au moins une anomalie sont affichés.
+        <span class="pill ko">KO</span> = écart certain.
+        <span class="pill av">AV</span> = résultat incertain (zone illisible sur le scan).
+        Une facture au fichier B2 mal formé n'est comptée qu'une fois, sous C0 : ses autres contrôles ne sont pas évalués.
+      </p>
+      <div class="no-anomaly" *ngIf="activeChecks(s.anomalie.repartition_par_check).length === 0">
+        Aucune anomalie détectée. Tous les bordereaux sont conformes.
+      </div>
+      <div class="check-bars" *ngIf="activeChecks(s.anomalie.repartition_par_check).length > 0">
+        <div class="check-bar-row" *ngFor="let c of activeChecksSorted(s.anomalie.repartition_par_check)">
+          <span class="cb-code">{{ c.code }}</span>
+          <span class="cb-label" [title]="c.libelle">{{ c.libelle }}</span>
+          <div class="cb-track">
+            <div class="cb-seg ko" [style.width.%]="barWidthPct(c.nb_ko, maxCheckCount(activeChecksSorted(s.anomalie.repartition_par_check)))" *ngIf="c.nb_ko > 0" [title]="c.nb_ko + ' KO'"></div>
+            <div class="cb-seg av" [style.width.%]="barWidthPct(c.nb_a_verifier, maxCheckCount(activeChecksSorted(s.anomalie.repartition_par_check)))" *ngIf="c.nb_a_verifier > 0" [title]="c.nb_a_verifier + ' AV'"></div>
+          </div>
+          <span class="cb-tags">
+            <span class="pill ko" *ngIf="c.nb_ko">{{ c.nb_ko }} KO</span>
+            <span class="pill av" *ngIf="c.nb_a_verifier">{{ c.nb_a_verifier }} AV</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         SECTION 4 — Classement établissements
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="section full-width">
+      <h2 class="section-title">Classement des établissements</h2>
+      <p class="section-desc">
+        Identifiés par leur numéro <strong>FINESS</strong> (contrôle C2).
+        La <strong>conformité</strong> est la proportion de factures sans aucun KO ni AV.
+        Le <strong>score</strong> est la gravité moyenne des factures KO de cet établissement (0–100).
+      </p>
+      <div class="etab-list">
+        <div class="etab-row etab-head">
+          <span>FINESS</span><span>Factures</span><span>KO</span><span>Conformité</span><span>Score</span><span>Difficulté</span><span>Risque</span>
+        </div>
+        <div class="etab-row" *ngFor="let e of s.etablissements"
+             [class.etab-ko]="e.nb_ko > 0" [class.etab-av]="e.nb_ko === 0 && e.nb_a_verifier > 0">
+          <span class="etab-finess">
+            <span class="etab-bg-bar" [style.width.%]="(e.nb_ko / maxKo(s.etablissements)) * 100"></span>
+            {{ e.finess }}
+          </span>
+          <span>{{ e.nb_factures }}</span>
+          <span>
+            <span class="pill ko" *ngIf="e.nb_ko">{{ e.nb_ko }}</span>
+            <span class="pill av" *ngIf="!e.nb_ko && e.nb_a_verifier">{{ e.nb_a_verifier }}</span>
+            <span *ngIf="!e.nb_ko && !e.nb_a_verifier">—</span>
+          </span>
+          <span class="etab-conformite">
+            <span class="conf-bar-bg"><span class="conf-bar-fill" [style.width]="pct(e.taux_conformite)"></span></span>
+            {{ pct(e.taux_conformite) }}
+          </span>
+          <span class="score-pill" [class]="scoreClass(e.score_anomalie)" *ngIf="e.nb_ko > 0">{{ e.score_anomalie }}</span>
+          <span *ngIf="e.nb_ko === 0">—</span>
+          <span *ngIf="e.niveau_moyen">
+            <span class="diff-pill" [class]="diffClass(e.niveau_moyen)" [title]="'Score : ' + e.difficulte_moyenne">
+              {{ e.niveau_moyen }}
+            </span>
+          </span>
+          <span *ngIf="!e.niveau_moyen">—</span>
+          <span class="etab-amount" [class.danger]="e.montant_a_risque > 0">
+            {{ e.montant_a_risque > 0 ? fmt(e.montant_a_risque) : '—' }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         SECTION 5 — Avancement extraction OCR
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="section full-width" *ngIf="ocr() as o">
+      <h2 class="section-title">
+        Avancement de l'extraction OCR
+        <span class="ocr-live-badge" *ngIf="ocrPolling()" title="Mise à jour automatique toutes les 3 s">
+          <span class="ocr-live-dot"></span> Live
+        </span>
+        <span class="ocr-done-badge" *ngIf="!ocrPolling()" title="Extraction terminée">✓ Complet</span>
+      </h2>
+      <p class="section-desc">
+        Les images sont traitées une fois par <code>extract.py</code> (~30 s/page) et mises en cache.
+        Tant qu'une image n'est pas traitée, tous les contrôles liés au scan restent <span class="pill av">À vérifier</span>.
+        Le <strong>score de zone</strong> est la confiance OCR minimale parmi les zones lues (1,00 = parfait, &lt;0,80 = illisible).
+      </p>
+
+      <!-- Summary bar -->
+      <div class="ocr-summary">
+        <div class="ocr-progress-wrap">
+          <div class="ocr-progress-bar">
+            <div class="ocr-progress-fill" [style.width.%]="ocrProgressPct(o)"></div>
+          </div>
+          <span class="ocr-progress-label">
+            {{ o.nb_traites }}&thinsp;/&thinsp;{{ o.nb_total }} scans traités
+            ({{ ocrProgressPct(o) }}%)
+          </span>
+        </div>
+        <div class="ocr-summary-kpis">
+          <div class="kpi-card compact">
+            <span class="kpi-label">Scans traités</span>
+            <span class="kpi-value" [class.success]="o.nb_traites === o.nb_total" [class.warning]="o.nb_traites < o.nb_total">{{ o.nb_traites }}</span>
+          </div>
+          <div class="kpi-card compact">
+            <span class="kpi-label">En attente</span>
+            <span class="kpi-value" [class.neutral]="o.nb_total - o.nb_traites === 0" [class.danger]="o.nb_total - o.nb_traites > 0">{{ o.nb_total - o.nb_traites }}</span>
+          </div>
+          <div class="kpi-card compact">
+            <span class="kpi-label">Avec zones illisibles</span>
+            <span class="kpi-value warning">{{ countWithUnreadable(o.factures) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible detail table -->
+      <div class="ocr-toggle-row">
+        <button class="ocr-toggle-btn" (click)="toggleOcrExpanded()">
+          {{ ocrExpanded() ? '▲ Masquer le détail' : '▼ Afficher le détail par facture' }}
+        </button>
+        <input *ngIf="ocrExpanded()" class="ocr-search" type="text"
+               placeholder="Filtrer par nom…"
+               [value]="ocrSearchTerm()"
+               (input)="ocrSearchTerm.set($any($event.target).value)">
+      </div>
+
+      <div class="ocr-detail" *ngIf="ocrExpanded()">
+        <div class="ocr-head">
+          <span>Facture</span><span>Statut</span><span>Score min.</span><span>Zones illisibles</span><span>Scores par zone</span>
+        </div>
+        <div class="ocr-row" *ngFor="let f of filteredOcrRows(o.factures)"
+             [class.ocr-ok]="f.traite && f.zones_illisibles.length === 0"
+             [class.ocr-warn]="f.traite && f.zones_illisibles.length > 0"
+             [class.ocr-pending]="!f.traite">
+          <span class="ocr-id">{{ f.id }}</span>
+          <span>
+            <span class="pill ok" *ngIf="f.traite && f.zones_illisibles.length === 0">Traité</span>
+            <span class="pill av" *ngIf="f.traite && f.zones_illisibles.length > 0">Illisible</span>
+            <span class="pill ko" *ngIf="!f.traite">En attente</span>
+          </span>
+          <span *ngIf="f.zone_scores">
+            <span>
+              {{ (minZoneScore(f.zone_scores)! * 100).toFixed(0) }}%
+            </span>
+          </span>
+          <span *ngIf="!f.zone_scores">—</span>
+          <span *ngIf="f.zones_illisibles.length > 0" class="pill av">
+            {{ f.zones_illisibles.map(z => 'Z' + z).join(', ') }}
+          </span>
+          <span *ngIf="f.zones_illisibles.length === 0">—</span>
+          <div class="zone-chips" *ngIf="f.zone_scores">
+            <span class="zone-chip" *ngFor="let z of sortedZones(f.zone_scores)"
+                  [style.border-color]="scoreColor(f.zone_scores[z])"
+                  [title]="zoneLabel(z) + ' : ' + (f.zone_scores[z] * 100).toFixed(1) + '%'">
+              {{ zoneLabel(z) }}&nbsp;<strong>{{ (f.zone_scores[z] * 100).toFixed(0) }}%</strong>
+            </span>
+          </div>
+          <span *ngIf="!f.zone_scores">—</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
