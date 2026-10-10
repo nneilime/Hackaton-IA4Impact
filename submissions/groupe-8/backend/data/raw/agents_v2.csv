@@ -1,0 +1,19 @@
+﻿id_site;commune;departement;longitude;latitude;nb_equipes
+SITE_01;Foix;Ariège;1.6060;42.9654;5
+SITE_02;Lavelanet;Ariège;1.8466;42.9328;4
+SITE_03;Ax-les-Thermes;Ariège;1.8388;42.7193;1
+SITE_04;Laurencin (Toulouse);Haute-Garonne;1.4168;43.6369;6
+SITE_05;Balma (Toulouse);Haute-Garonne;1.4990;43.6290;5
+SITE_06;Decroutte (Toulouse);Haute-Garonne;1.4000;43.5527;3
+SITE_07;Muret;Haute-Garonne;1.3257;43.4603;5
+SITE_08;Auch;Gers;0.5855;43.6464;3
+SITE_09;Fleurance;Gers;0.6630;43.8490;3
+SITE_10;Gimont;Gers;0.8762;43.6268;3
+SITE_11;Mirande;Gers;0.4041;43.5145;3
+SITE_12;Eauze;Gers;0.1019;43.8607;2
+SITE_13;Saint-Gaudens;Haute-Garonne;0.7237;43.1080;4
+SITE_14;Saint-Girons;Ariège;1.1459;42.9847;4
+SITE_15;Boussens;Haute-Garonne;0.9737;43.1760;3
+SITE_16;Grenade;Haute-Garonne;1.2934;43.7713;4
+SITE_17;Villefranche-de-Lauragais;Haute-Garonne;1.7169;43.4002;4
+SITE_18;Bagnères de Luchon;Haute-Garonne;0.5936;42.7904;1

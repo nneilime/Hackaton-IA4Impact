@@ -1,0 +1,48 @@
+@startuml compute_cycle
+' Compute engine: one decision cycle (RSLS model)
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam ActivityBackgroundColor #EEF3F8
+skinparam ActivityBorderColor #1F3A5F
+skinparam ActivityDiamondBackgroundColor #FFF7E6
+skinparam ActivityDiamondBorderColor #B7791F
+skinparam ArrowColor #475569
+skinparam NoteBackgroundColor #F8FAFC
+skinparam NoteBorderColor #94A3B8
+skinparam partition {
+  BorderColor #94A3B8
+}
+
+title One compute cycle of the RSLS engine (run at every event)
+
+start
+:Event arrives\n(new incident · repair done · team late / unavailable · operator decision);
+partition "1. State (model)" {
+  :Update state: known incidents, team positions,\nwork windows, **locks** (jobs in progress),\n**modifiers** (operator rules);
+}
+partition "2. Construct (< 10 ms)" {
+  if (Previous plan exists?) then (yes)
+    :Warm start: drop finished jobs,\ninsert new incidents at cheapest position;
+  else (no)
+    :Smith list scheduling:\nfree team takes max  w / (travel + repair)\nthat fits its work window;
+  endif
+}
+partition "3. Improve (200–500 ms)" {
+  :Iterated local search\nrelocate · swap · reorder · ruin & recreate\nevery candidate scored by the **decoder**;
+}
+partition "4. Robust select (< 20 ms)" {
+  :Re-score elite plans on duration scenarios;\nkeep best expected score;
+}
+if (Gain vs published plan ≥ threshold\nor forced by event?) then (yes)
+  :Publish new plan;
+else (no)
+  :Keep published plan\n(stability);
+endif
+:Commit **next job only** of each idle team\n(rest of plan = provisional preview);
+partition "5. Explain (≈ 50 ms / recommendation)" {
+  :Facts: priority index, cost breakdown,\ncounterfactual Δ, binding constraint,\ntipping point, P10–P90 restoration;
+}
+:Recommendations + facts → LLM (text) → manager;
+stop
+@enduml

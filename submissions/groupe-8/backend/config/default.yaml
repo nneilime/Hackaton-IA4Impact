@@ -1,0 +1,106 @@
+# Every business rule and weight lives here, never hard-coded in the engine.
+# See docs/CURRENT_SETUP.md for the meaning of each parameter.
+
+data:
+  raw_dir: data/raw
+  postes: poste_v2.csv
+  incidents: coupures_v2_100_crises.csv
+  sites: agents_v2.csv
+  communes: insee_v2.csv
+
+objective:
+  beta_sensitive: 0.0        # w_i = customers * (1 + beta * sensitive) * priority. 0 = official N x T mode
+  lambda_stability: 0.0      # customer-hours charged when a team's NEXT job changes vs the previous plan
+  starvation_gamma: 0.0      # extra cost per customer-hour beyond starvation_deadline_h (0 = off)
+  starvation_deadline_h: 24
+
+work_rules:
+  teams_per_incident: 1      # the engine supports 1 for now
+  travel_counts_as_work: true
+  allow_split: false         # a job (travel + repair) must fit inside one scheduled shift
+
+# Stage 1: shift schedule, fixed ONCE at initialisation (never re-optimised during the crisis).
+# Rotation: work_h on / rest_h off. Group A starts at H0, group B at H0 + b_offset_h.
+# b_per_site: number of teams of each site in group B (optimised on 50 historical crises, see bench/optimise_roster.py).
+roster:
+  work_h: 12
+  rest_h: 12
+  b_offset_h: 2
+  b_per_site: {SITE_01: 1, SITE_02: 2, SITE_03: 0, SITE_04: 3, SITE_05: 2, SITE_06: 0, SITE_07: 2, SITE_08: 2,
+               SITE_09: 1, SITE_10: 1, SITE_11: 1, SITE_12: 1, SITE_13: 1, SITE_14: 1, SITE_15: 1, SITE_16: 1,
+               SITE_17: 3, SITE_18: 1}
+  # group C, the relief: starts 12 h after H0, so teams are on duty at every hour (no "everyone asleep" window)
+  c_offset_h: 12
+  c_per_site: {SITE_01: 1, SITE_02: 0, SITE_03: 0, SITE_04: 1, SITE_05: 1, SITE_06: 0, SITE_07: 1, SITE_08: 0,
+               SITE_09: 1, SITE_10: 1, SITE_11: 1, SITE_12: 1, SITE_13: 1, SITE_14: 1, SITE_15: 1, SITE_16: 1,
+               SITE_17: 1, SITE_18: 0}
+  min_on_duty: 0.2           # floor used by bench/optimise_roster.py (--min-coverage) and checked by tests/test_roster.py
+  # optimised 10 Oct 2026 on 25 train crises, test on 50 others (Smith dispatcher): -3.0 % customer-h vs everyone at
+  # H0, min 21 % of teams on duty (previous A/B roster: -5.3 % but 0 % on duty between H+14 and H+24)
+
+travel:
+  mode: simulated            # straight | simulated (offline, terrain-aware) | osrm (real road times, cached)
+  detour_factor: 1.3         # straight mode only
+  speed_kmh: 50              # straight mode only
+  storm_factor: 1.0          # > 1 slows every trip (heavy rain, debris). Floods: use zone rules on top
+  overhead_min: 5            # getting going: loading the van, leaving the site
+  local_km: 12               # simulated: first/last km of each trip on local roads
+  zones:                     # simulated: fitted on 3,718 real OSRM trips (bench/calibrate_travel.py): MAE 8.3 min, 12.5 %
+    urban: {centre: [43.6045, 1.4440], radius_km: 12, local_kmh: 49, main_kmh: 94, detour: 1.28}   # Toulouse
+    mountain: {lat_below: 43.0, local_kmh: 32, main_kmh: 78, detour: 1.37}                         # Pyrénées
+    plain: {local_kmh: 50, main_kmh: 84, detour: 1.49}
+  osrm_url: https://router.project-osrm.org   # public demo server: light use only; self-host for heavy use
+
+solver:
+  budget_ms: 3000            # local search budget per re-plan in live use (~1-2 % from OR-Tools, see docs)
+  interactive_budget_ms: 500 # quicker re-plan right after a manager action (accept / confirm a rule)
+  seed: 42
+  neighbour_teams: 20        # relocate moves only try the N teams closest to the incident
+  ruin_every: 150            # ruin & recreate after this many non-improving moves
+  ruin_fraction: 0.15
+  publish_threshold: 0.01    # publish a new plan only if at least 1 % better (UI stability)
+
+# Checked on the result, NOT optimised.
+service_target:
+  share: 0.90
+  deadline_h: 48             # hours since the first incident (H0)
+  basis: incidents           # incidents | customers
+
+simulation:
+  group_events_min: 1        # events closer than this are processed together
+  duration_noise_sigma: 0.0  # 0 = actual repair time equals the estimate; e.g. 0.3 = lognormal noise
+
+timeline:                    # EnedisPO front-end: crisis replayed in steps of crisis time (not wall-clock)
+  step_minutes: 30
+  budget_ms: 100             # search budget per step when (re)computing a whole timeline
+  default_crisis: CRISE_DEMO  # pre-computed at API start-up (demo scenario, bench/make_demo_scenario.py)
+
+live:                        # real-time mode: the clock is the wall clock from the moment the crisis is opened
+  budget_ms: 800             # local search budget per re-plan (bursts of alerts are coalesced: one re-plan per tick)
+  history_minutes: 10        # one dashboard snapshot every N minutes of crisis time (timeline, journal)
+  tick_seconds: 1.0          # how often the clock is checked (due departures, shift changes)
+
+learning:
+  db_path: data/decisions.sqlite   # knowledge base of decisions (accepted / modified / rejected)
+  review_min_refusals: 3          # a (site -> zone) pattern refused this many times becomes a candidate rule
+
+diversion:                   # proposed, not implemented yet
+  enabled: false
+  min_remaining_min: 10
+  max_per_trip: 1
+
+llm:                         # Mistral (MISTRAL_API_KEY in .env). Without a key: templates + rule parser
+  provider: mistral
+  base_url: https://api.mistral.ai/v1
+  model: mistral-medium-latest
+  fallback_models: [mistral-small-2603]
+  fallback_provider:         # used when Mistral fails (quota, network): OpenRouter free models, then templates
+    provider: openrouter
+    base_url: https://openrouter.ai/api/v1
+    model: nvidia/nemotron-3-super-120b-a12b:free
+    fallback_models: [google/gemma-4-31b-it:free]
+    disable_reasoning: true
+  disable_reasoning: true
+  temperature: 0.2
+  max_tokens: 600
+  timeout_s: 40

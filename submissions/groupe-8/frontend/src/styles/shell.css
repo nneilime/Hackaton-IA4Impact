@@ -1,0 +1,527 @@
+/* =====================================================================================================
+   Shell (last layer, loaded after app.css): a layout that reflows instead of crushing.
+   - wide windows: header / map | panel / timeline, all in one screen;
+   - small or zoomed-in windows: the page scrolls (the map keeps a usable height) instead of clipping the
+     right panel or squeezing the map into a strip;
+   - right column = one panel with tabs (Plan · Copilote · Journal).
+   ===================================================================================================== */
+
+/* ---- page: allowed to scroll when the window is too small ---- */
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#root {
+  height: auto;
+  min-height: 100%;
+  overflow: visible;
+}
+.app {
+  min-width: 0;
+  height: 100vh;
+  min-height: 640px;
+  overflow: visible;
+  /* minmax(0, 1fr): the column follows the window when it shrinks (browser zoom) instead of keeping the width of
+     content sized in pixels at the previous size (timeline SVG, map canvas) */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(360px, 1fr) clamp(150px, 21vh, 196px);
+}
+.main > * {
+  min-height: 0;
+}
+.app > *,
+.main > *,
+.band > *,
+.timeline,
+.timeline-chart {
+  min-width: 0;
+}
+.timeline-chart {
+  overflow: hidden;
+}
+.main {
+  grid-template-columns: minmax(0, 1fr) clamp(340px, 28vw, 440px);
+  min-height: 0;
+}
+.map-wrap {
+  min-height: 360px;
+}
+
+/* ---- right panel with tabs ---- */
+.side.panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--elev);
+  overflow: hidden;
+}
+.panel-tabs {
+  flex: none;
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.panel-tabs button {
+  flex: 1;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--blue-muted);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, box-shadow 0.12s;
+}
+.panel-tabs button:hover {
+  background: var(--selected);
+  color: var(--blue);
+}
+.panel-tabs button.on {
+  background: var(--surface);
+  color: var(--blue);
+  box-shadow: var(--elev);
+}
+.panel-tabs button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+}
+.count.live {
+  background: var(--blue);
+  color: var(--surface);
+}
+.panel-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--s-3);
+}
+.panel-body:has(.panel-copilot:not([hidden])) {
+  padding: 0;
+  overflow: hidden;
+}
+.panel-body > .recs {
+  height: auto;
+  overflow: visible;
+  padding: 0;
+}
+/* cards inside the panel are flat: the panel is the card */
+.panel-body .card {
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+}
+.panel-copilot {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+.panel-copilot[hidden] {
+  display: none;
+}
+.panel-copilot .copilot {
+  flex: 1;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.panel-copilot .copilot-head h2,
+.panel-copilot .copilot-head .round-close {
+  display: none; /* the tab already names it; switching tab closes it */
+}
+
+/* ---- plan lines: numbered like the routes on the map ---- */
+.plan-list .row {
+  grid-template-columns: 26px minmax(0, 1fr) auto auto;
+  min-height: 44px;
+  padding: 6px var(--s-2);
+}
+.plan-list .row-rank,
+.plan-open-rank {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  background: var(--surface);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  transition: background 0.12s, color 0.12s;
+}
+.plan-list .row:hover .row-rank,
+.plan-list .row.hovered .row-rank,
+.plan-open-rank {
+  background: var(--blue);
+  color: var(--surface);
+}
+.plan-list .row-action {
+  font-weight: 600;
+  color: var(--blue);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.plan-open {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: var(--s-2);
+  align-items: start;
+  padding: 6px var(--s-2) 6px var(--s-2);
+}
+.plan-open-rank {
+  margin-top: var(--s-3);
+}
+.plan-open .focus {
+  margin: 0;
+}
+.plan-open .focus-actions {
+  gap: var(--s-2);
+}
+.plan-open .focus-actions .pill {
+  height: 32px;
+  padding: 0 var(--s-3);
+  font-size: var(--fs-1);
+}
+.plan-accept {
+  min-height: 44px;
+}
+
+/* ---- journal ---- */
+.journal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+.journal-list {
+  list-style: none;
+  margin: var(--s-2) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.journal-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+}
+.journal-list b {
+  color: var(--blue);
+}
+.journal-kind {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.journal-kind.accepted {
+  background: color-mix(in srgb, var(--green) 22%, var(--surface));
+  color: var(--green-text);
+}
+.journal-kind.overridden {
+  background: color-mix(in srgb, var(--waiting) 18%, var(--surface));
+  color: var(--waiting-text);
+}
+
+/* ---- header tools always labelled (icon-only buttons are unreadable) ---- */
+.tool-label {
+  display: inline !important;
+}
+.tool {
+  padding: 0 var(--s-3) !important;
+}
+
+/* ---- everything clickable shows it ---- */
+button:not(:disabled),
+summary,
+[role='tab'] {
+  cursor: pointer;
+}
+.pill:focus-visible,
+.tool:focus-visible,
+.row:focus-visible,
+.link:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ---- medium widths (laptops, zoom 125-150 %) ---- */
+@media (max-width: 1280px) {
+  .kpi-sub {
+    display: none !important;
+  }
+  .brand .tag {
+    display: none;
+  }
+  .tool-label {
+    display: none !important; /* labels return through the title tooltip; the panel tabs carry the main actions */
+  }
+}
+
+/* ---- narrow windows / strong zoom: stack the map and the panel, the page scrolls ---- */
+@media (max-width: 1100px) {
+  .app {
+    height: auto;
+    min-height: 100vh;
+    grid-template-rows: auto auto auto;
+  }
+  .topbar {
+    flex-wrap: wrap;
+  }
+  .kpis {
+    order: 5;
+    flex-basis: 100%;
+  }
+  .main {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(380px, 62vh) auto;
+    row-gap: var(--s-3);
+  }
+  .side.panel {
+    max-height: none;
+  }
+  .panel-body {
+    overflow: visible;
+  }
+  .panel-copilot {
+    min-height: 420px;
+  }
+  .band {
+    min-height: 170px;
+  }
+}
+
+/* ---- short windows: keep the map usable, let the page scroll ---- */
+@media (max-height: 640px) {
+  .app {
+    height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-tabs button,
+  .plan-list .row-rank {
+    transition: none;
+  }
+}
+
+/* plan summary figures shrink with the panel instead of being cut */
+.plan-summary b {
+  font-size: clamp(14px, 1.15vw, 18px);
+}
+
+/* ---- "Pourquoi ce plan ?": the justification of the whole plan ---- */
+.plan-why {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-3);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--blue) 5%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--blue) 18%, var(--surface));
+}
+.plan-why h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-2);
+  font-weight: 700;
+  color: var(--blue);
+}
+.plan-why-resume {
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.45;
+}
+.plan-why ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+  color: var(--text);
+  line-height: 1.45;
+}
+.plan-why li::marker {
+  color: var(--blue);
+}
+.plan-why-loading {
+  color: var(--blue-muted);
+  font-style: italic;
+}
+
+/* ---- the decision: validate (and go on) or refuse ---- */
+.plan-decision {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s-2);
+}
+.plan-decision .plan-accept {
+  width: 100%;
+}
+.plan-refuse {
+  min-height: 44px;
+  padding: 0 var(--s-4);
+  font-weight: 700;
+  color: var(--critical);
+  border-color: color-mix(in srgb, var(--critical) 40%, var(--surface));
+}
+.plan-refuse:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--critical) 8%, var(--surface)) !important;
+  border-color: var(--critical) !important;
+}
+/* Play was pressed (or the clock stopped) while a plan waits: the card asks for the decision */
+.plan-card.attention .plan-decision {
+  animation: ask-decision 0.9s ease-out 2;
+  border-radius: 999px;
+}
+@keyframes ask-decision {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--blue) 55%, transparent); }
+  100% { box-shadow: 0 0 0 14px transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .plan-card.attention .plan-decision {
+    animation: none;
+    outline: 3px solid var(--blue);
+  }
+}
+
+/* ---- refusal of the whole plan: which line ---- */
+.refuse-line {
+  display: grid;
+  gap: var(--s-1);
+  margin-bottom: var(--s-3);
+  font-weight: 600;
+  color: var(--blue);
+}
+.refuse-line select {
+  height: 40px;
+  padding: 0 var(--s-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+}
+
+/* ---- retour d'expérience: remarks -> pattern -> proposed adjustment -> decision ---- */
+.rex-steps {
+  list-style: none;
+  margin: 0 0 var(--s-2);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-2);
+  counter-reset: rex;
+}
+.rex-steps li {
+  counter-increment: rex;
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--blue);
+  font-size: var(--fs-1);
+}
+.rex-steps li::before {
+  content: counter(rex) ". ";
+  font-weight: 800;
+}
+.rex-steps b {
+  font-family: var(--font-display);
+  font-size: var(--fs-3);
+}
+.rex-card {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--blue);
+  border-radius: var(--radius-sm);
+}
+.rex-row {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: var(--s-2);
+  align-items: baseline;
+}
+.rex-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--blue-muted);
+}
+.rex-quote {
+  font-style: italic;
+  color: var(--blue-muted);
+}
+.rex-variable {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-left: 84px;
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--blue) 6%, var(--surface));
+  color: var(--blue);
+  font-weight: 600;
+}
+.rex-variable b {
+  font-family: var(--font-display);
+  font-size: var(--fs-3);
+}
+.rex-variable b.after {
+  color: var(--green-text);
+}
+.rex-remarks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+.rex-remarks li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 6px var(--s-2);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  font-size: var(--fs-1);
+}
+.rex-reason {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--waiting) 16%, var(--surface));
+  color: var(--waiting-text);
+  font-weight: 700;
+}

@@ -1,0 +1,76 @@
+@startuml decision_loop
+' Défi Enedis - one recommendation cycle: accept, reject with reason, learning
+' Render: java -jar ../tools/plantuml.jar -charset UTF-8 -tpng decision_loop.puml
+
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam roundCorner 8
+skinparam sequenceMessageAlign left
+skinparam ArrowColor #475569
+skinparam sequence {
+  LifeLineBorderColor #94A3B8
+  ParticipantBorderColor #64748B
+  GroupBorderColor #94A3B8
+  GroupBackgroundColor #F8FAFC
+  DividerBackgroundColor #EEF3F8
+  DividerBorderColor #94A3B8
+}
+
+title One decision cycle - from event to recommendation, rejection and learning
+
+participant "Event bus" as BUS #F3F4F6
+participant "Engine (OR)" as ENG #DCE7F3
+participant "LLM\nexplain" as LX #D9F2EC
+actor "Crisis manager" as MGR #FAD9CF
+participant "LLM\ntranslate" as LT #D9F2EC
+participant "Validator" as VAL #FFEFC7
+database "Active rules\n& config" as RULES #F3F4F6
+database "Decision log" as LOG #F3F4F6
+participant "Learning" as LRN #E9E4FB
+
+== 1. Something happens ==
+BUS -> ENG : new incident INC_042 (Muret, 120 customers, est. 4 h)
+activate ENG
+ENG -> ENG : warm start: insert INC_042 into previous plan (< 10 ms)
+ENG -> ENG : local search on full objective (200–500 ms)
+ENG -> ENG : counterfactuals: best alternative team, Δscore
+ENG -> LX : plan + explanation facts (JSON)
+deactivate ENG
+LX -> LX : verbalise in French,\ncheck every number exists in the facts
+LX -> MGR : "Équipe 7 → Muret : 120 clients, 25 min de route,\nfin de poste dans 6 h. Équipe 4 coûterait +410 clients·h."
+ENG -> LOG : proposal + facts
+
+== 2a. Manager accepts ==
+MGR -> BUS : dispatch team 7 → INC_042
+MGR -> LOG : accepted
+
+== 2b. Manager rejects, with a reason ==
+MGR -> LT : reject: "la route de Muret est inondée jusqu'à 18h"
+LT -> LT : fact or preference? → fact (access)
+LT -> VAL : {"type": "zone_inaccessible", "zone": "Muret", "until": "18:00"}
+VAL -> VAL : zone exists · time valid ·\nsafety rules untouched
+VAL -> ENG : re-solve with the modifier (dry run)
+activate ENG
+ENG -> VAL : new plan + cost of the rule: +320 clients·h (+2 %)
+deactivate ENG
+VAL -> MGR : "Compris : Muret inaccessible jusqu'à 18h.\nAppliquer ? (coût : +320 clients·h)"
+MGR -> VAL : confirm
+VAL -> RULES : store modifier (scope: this crisis, removable)
+RULES -> ENG : constraints & weights updated
+ENG -> LX : new plan + diff vs previous
+LX -> MGR : "Équipe 7 reste sur Saint-Gaudens ;\nMuret repris par l'équipe 4 à 18h05."
+MGR -> LOG : rejected + reason + modifier + chosen plan
+
+== 3. Reality comes back ==
+BUS -> ENG : repair done INC_031 - actual 6 h (estimated 4 h)
+ENG -> LOG : outcome
+LOG -> LRN : calibration: repairs run +30 % in this zone today
+LRN -> ENG : corrected estimates for pending incidents → re-plan
+
+== 4. Between crises: the system proposes improvements ==
+LOG -> LRN : all decisions, reasons, chosen vs rejected plans
+LRN -> LRN : rules from memory (same rejection ≥ 3 times)\npreference fit: β, λ from chosen vs rejected plans
+LRN -> MGR : "Vous valorisez les clients sensibles ≈ 5× (14 décisions).\nAdopter β = 5 ?"
+MGR -> RULES : approve → new config version (rollback possible)
+@enduml

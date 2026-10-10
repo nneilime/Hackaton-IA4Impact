@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# Secrets
+backend/.env
+.env
+
+# Local tools and outputs
+tools/
+backend/bench/results/
+logs/
+*.log
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Knowledge base of decisions (local)
+backend/data/*.sqlite
+backend/data/cache/

@@ -1,0 +1,212 @@
+/* =====================================================================================================
+   Live mode and the "Équipes" tab (last layer). Colours from tokens.css only.
+   ===================================================================================================== */
+
+/* ---- "En direct" badge (top bar, timeline band) ---- */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-weight: 700;
+  font-size: var(--fs-1);
+  color: var(--critical);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.live-badge i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--critical);
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+@keyframes live-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-badge i {
+    animation: none;
+  }
+}
+.topbar-right {
+  gap: var(--s-3);
+}
+.transport.live {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--s-2);
+}
+.transport.live .muted {
+  color: var(--blue-muted);
+  font-size: var(--fs-1);
+}
+
+/* ---- Équipes tab ---- */
+.teams-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.team-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+}
+.team-filters .pill b {
+  margin-left: 2px;
+}
+.team-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  flex: none;
+}
+.team-dot.available {
+  background: var(--blue);
+}
+.team-dot.travelling {
+  background: var(--surface);
+  box-shadow: inset 0 0 0 2px var(--blue);
+}
+.team-dot.repairing {
+  background: var(--teal);
+}
+.team-dot.resting {
+  background: var(--line);
+}
+.team-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.team-row {
+  display: grid;
+  grid-template-columns: 12px minmax(92px, auto) 112px 1fr;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 6px 2px;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-1);
+}
+.team-row.resting {
+  color: var(--blue-muted);
+}
+.team-name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  font-size: var(--fs-2);
+}
+.team-group {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--tag);
+  border-radius: 4px;
+  padding: 0 5px;
+}
+.team-status {
+  font-weight: 600;
+}
+.team-detail {
+  color: var(--text);
+  line-height: 1.3;
+}
+
+/* ---- shift roster explained ---- */
+.roster {
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-3);
+}
+.roster-help {
+  font-size: var(--fs-1);
+  line-height: 1.5;
+  margin: var(--s-2) 0 var(--s-3);
+}
+.roster-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.roster-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-1);
+}
+.roster-bar {
+  position: relative;
+  height: 14px;
+  background: var(--bg);
+  border-radius: 3px;
+}
+.roster-bar i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--blue);
+  border-radius: 3px;
+}
+.roster-now {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: var(--critical);
+}
+.roster-axis .roster-bar {
+  background: none;
+  height: 16px;
+}
+.roster-axis small {
+  position: absolute;
+  transform: translateX(-50%);
+  color: var(--blue-muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+/* first and last ticks stay inside the bar */
+.roster-axis small:first-child {
+  transform: none;
+}
+.roster-axis small:last-child {
+  transform: translateX(-100%);
+}
+.roster-groups {
+  margin: var(--s-3) 0 var(--s-2);
+  padding-left: var(--s-4);
+  font-size: var(--fs-1);
+  line-height: 1.5;
+}
+.roster-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: 11px;
+  color: var(--blue-muted);
+}
+.roster-legend i {
+  width: 14px;
+  height: 8px;
+  border-radius: 2px;
+}
+.roster-legend i.on {
+  background: var(--blue);
+}
+.roster-legend i.off {
+  background: var(--bg);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.roster-now-key {
+  width: 2px;
+  height: 12px;
+  background: var(--critical);
+}
