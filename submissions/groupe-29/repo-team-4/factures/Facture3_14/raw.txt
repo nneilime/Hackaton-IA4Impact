@@ -1,0 +1,412 @@
+![title](234,12,762,29) # établissements de santé privés – bordereau de facturation
+
+![header_image](16,22,78,38) logo "cerfa"
+
+![text](372,31,627,39) articles R. 161-40 et suivants du Code de la sécurité sociale
+
+![text](311,40,689,50) article L. 212-1 du Code des pensions militaires d'invalidité et des victimes de la guerre
+
+![text](734,42,882,51) date d'élaboration 13/07/2026
+
+![text](15,40,80,49) n° 12278*01
+
+![table](15,55,988,109) <table>
+  <thead>
+    <tr>
+      <th>identification de l'établissement dont n° FINESS</th>
+      <th>490007499</th>
+      <th>références à rappeler</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E.C.H.O PAV. MONTFORT</td>
+      <td></td>
+      <td>N° LOT 925</td>
+    </tr>
+    <tr>
+      <td>BP 10214</td>
+      <td></td>
+      <td>N° FACTURE 491914</td>
+    </tr>
+    <tr>
+      <td>TEL / 02 . 40 . 32 . 85 . 00 .</td>
+      <td></td>
+      <td>N° D'ENTREE 202127298</td>
+    </tr>
+    <tr>
+      <td>44202 NANTES CEDEX 2</td>
+      <td></td>
+      <td>N° FEUILLET 1</td>
+    </tr>
+  </tbody>
+</table>
+
+![text](410,74,524,83) coefficient MCO : 0,9901
+
+![title](15,109,142,120) ## le bénéficiaire des soins
+
+![text](15,120,134,130) nom et prénom(s)
+
+![text](15,130,308,139) (nom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu))
+
+![text](15,140,214,149) n° d'immatriculation et clé 151099917301401
+
+![text](260,140,432,149) à défaut, date de naissance
+
+![text](15,150,206,159) code organisme de rattachement 02491 491
+
+![text](15,159,472,168) entrée le 25/06/2026 à 11 heures. sortie le 26/06/2026 à 11 heures.
+
+![title](505,109,740,120) ## l'assuré(e) (s'il -si elle- n'est pas le bénéficiaire des soins)
+
+![text](505,120,617,130) nom et prénom(s)
+
+![text](505,130,807,139) (nom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu))
+
+![text](505,140,617,150) n° d'immatriculation et clé
+
+![text](505,150,564,159) adresse
+
+![title](358,168,638,177) ## conditions de prise en charge du bénéficiaire des soins
+
+![text](368,178,499,187) code exonération 4
+
+![text](719,178,921,187) soins en rapport avec l'article L. 212-1 ☐
+
+![text](15,188,337,207) maternité ☐ date du début de grossesse ou date d'accouchement
+
+![text](402,207,499,216) AT/MP ☐ n° ou date
+
+![text](601,207,798,216) accident causé par un tiers non ☐ oui ☐ date
+
+![title](175,216,350,225) ## frais de structure et de soins (1)
+
+![table](15,216,497,312) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>mode de traitement</th>
+      <th>DMT</th>
+      <th>prestation</th>
+      <th>n° GHS</th>
+      <th>période</th>
+      <th>prix unitaire</th>
+      <th>quantité</th>
+      <th>coefficient</th>
+      <th>montant facturé</th>
+      <th>codes exo.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>du</td>
+      <td>au</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>GHS</td>
+      <td>9603</td>
+      <td>25/06/2026</td>
+      <td>25/06/2026</td>
+      <td>402,28</td>
+      <td>1</td>
+      <td>100</td>
+      <td>398,30</td>
+    </tr>
+  </tbody>
+</table>
+
+![text](332,310,401,319) sous-total 1 398,3
+
+![title](669,216,851,225) ## frais de structure et de soins (2)
+
+![table](506,216,988,312) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>mode de traitement</th>
+      <th>DMT</th>
+      <th>prestation</th>
+      <th>n° GHS</th>
+      <th>période</th>
+      <th>prix unitaire</th>
+      <th>quantité</th>
+      <th>coefficient</th>
+      <th>montant facturé</th>
+      <th>codes exo.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>du</td>
+      <td>au</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+![text](824,311,893,320) sous-total 2 0
+
+![title](198,322,793,331) ## produits de la LPP facturables, spécialités pharmaceutiques et médicaments soumis à ATU (joindre la prescription)
+
+![table](15,329,988,483) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>mode de traitement</th>
+      <th>DMT</th>
+      <th>prestation</th>
+      <th>n° GHS</th>
+      <th>n° d'identification du prescripteur</th>
+      <th>date de prescription</th>
+      <th>date d'implantation</th>
+      <th>libellé</th>
+      <th>code</th>
+      <th>tarif de référence ou prix unitaire</th>
+      <th>quantité</th>
+      <th>montant facturé</th>
+      <th>codes exo.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+![text](796,481,864,490) sous-total 3 0
+
+![text](770,492,900,501) sous-total 1+2+3 398,30
+
+![title](58,501,452,513) ## relevé des honoraires médicaux, para médicaux et actes de laboratoire
+
+![table](15,514,987,853) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>n° de case</th>
+      <th>numéro d'identification du prescripteur</th>
+      <th>spécialité</th>
+      <th>numéro d'identification de l'exécutant</th>
+      <th>spécialité</th>
+      <th>date des actes</th>
+      <th>date de la prescription</th>
+      <th>n° GHS</th>
+      <th>actes effectués</th>
+      <th>quantité ou coefficient</th>
+      <th>honoraires facturés</th>
+      <th>dépassé</th>
+      <th>code exonération</th>
+      <th>signature des praticiens ou auxiliaires médicaux attestant la prestation des actes, l'exactitude du montant total des honoraires facturés et la dispense d'avance de frais</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>code acte ou lettre-clé</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>490007499</td>
+      <td>35</td>
+      <td>490007499</td>
+      <td>35</td>
+      <td>25/06/2026</td>
+      <td>25/06/2026</td>
+      <td>9603</td>
+      <td>JVRP008</td>
+      <td>1</td>
+      <td>0</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>activité</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>phase</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>est doc</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>éléments de tarification</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>modificateurs</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>autres</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+![text](553,842,609,851) sous-total 4 1 50,48
+
+![text](15,853,265,862) transfert provisoire – n° FINESS établissement 1
+
+![text](448,853,589,862) n° FINESS établissement 2
+
+![text](15,863,116,872) MANDATAIRE(S)
+
+![table](15,853,813,933) <table>
+  <thead>
+    <tr>
+      <th>MONTANT TOTAL en euros ( 1+2+3+4 )</th>
+      <th>448.78</th>
+      <th>l'assuré(e) n'a pas payé la part obligatoire</th>
+      <th>X</th>
+      <th>l'assuré(e) n'a pas payé la part complémentaire</th>
+      <th>X</th>
+    </tr>
+  </thead>
+</table>
+
+![text](16,937,372,946) Le règlement est effectué conformément au choix fait par le praticien.
+
+![text](16,948,904,957) Quiconque se rend coupable de fraude ou de fausse déclaration est passible de pénalités financières, d'amende et/ou d'emprisonnement (articles 313-1 à 313-3, 433-19, 441-1 et suivants du Code pénal, article L. 114-17-1 du Code de la sécurité sociale).
+
+![text](16,961,871,970) Les informations figurant sur cette feuille, y compris le détail des actes et des prestations servies, sont destinées à votre organisme d'assurance maladie aux fins de remboursement et de contrôle.
+
+![text](16,972,908,985) En application de la loi du 6 janvier 1978 modifiée, vous pouvez obtenir la communication des informations vous concernant et, le cas échéant, leur rectification en vous adressant auprès de votre organisme d'assurance maladie.
+
+![text](829,916,944,925) Signé numériquement par : Mr.
+
+![text](829,925,889,935) Vincent LANDI
+
+![text](829,935,930,944) Le : 04/08/2026 à 16:27:53
+
+![page_number](950,962,987,972) S 3404

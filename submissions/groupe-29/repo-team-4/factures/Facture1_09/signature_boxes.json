@@ -1,0 +1,9 @@
+{
+  "source": "/Users/kapsulon/Downloads/General-main/Bordereaux jpg/Facture1_09.jpg",
+  "boxes": {
+    "1": "201400330 Dr. FRIKHA AHMED - PAR MANDAT 28.80"
+  },
+  "messages": [
+    "box 1: LightOnOCR-3-4B · vLLM endpoint · 356×112 px · 3 blocks · 86 tokens · 0.5 s"
+  ]
+}

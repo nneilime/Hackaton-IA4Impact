@@ -1,0 +1,11 @@
+{
+  "title": "ISMA",
+  "description": "Facilitates health insurers in comparing billing documents to detect discrepancies, providing clear compliance status and detailed error analysis for clinics.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,557 @@
+![title](247,29,752,44) # établissements de santé privés – bordereau de facturation
+
+![header_image](41,38,93,53) logo "cerfa"
+
+![header](376,48,623,57) articles R. 161-40 et suivants du Code de la sécurité sociale
+
+![header](319,57,677,66) article L. 212-1 du Code des pensions militaires d'invalidité et des victimes de la guerre
+
+![header](822,46,865,55) ANGERS
+
+![header](36,57,94,66) n° 12278*01
+
+![header](724,59,874,68) date d'élaboration | 31/07/2026
+
+![text](36,70,274,79) identification de l'établissement dont n° FINESS
+
+![text](36,80,168,90) POLYCLINIQUE DU PARC
+
+![text](36,90,158,100) Avenue des Sables
+
+![text](36,100,123,109) 49300 CHOLET
+
+![text](291,80,365,90) Tél. : 02 41 63 42 00
+
+![text](291,90,365,100) Fax : 02 41 63 43 66
+
+![text](404,70,476,79) 490002037
+
+![text](404,80,476,90) coefficient MCO :
+
+![text](404,90,455,100) 0.9916
+
+![text](642,69,685,79) références à rappeler
+
+![text](642,79,685,89) N° LOT 351
+
+![text](642,89,727,100) N° FACTURE 261034517
+
+![text](642,100,731,111) N° D'ENTREE 26097089
+
+![text](642,111,685,118) N° FEUILLET 1/1
+
+![title](36,124,168,134) le bénéficiaire des soins
+
+![text](36,135,143,144) nom et prénom(s)
+
+![text](36,144,320,153) (nom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu))
+
+![text](36,154,365,163) n° d'immatriculation et clé 2540699281017 01 à défaut, date de naissance
+
+![text](36,164,266,173) code organisme de rattachement 024910000 date début hospitalisation 18/07/2026
+
+![text](36,174,472,183) entrée le 18/07/2026 à 4 heures. sortie le 19/07/2026 à 11 heures.
+
+![text](505,124,685,134) l'assuré(e) (s'il -si elle- n'est pas le bénéficiaire des soins)
+
+![text](505,135,610,144) nom et prénom(s)
+
+![text](505,144,786,153) (nom de famille (de naissance) suivi du nom d'usage (facultatif et s'il y a lieu))
+
+![text](505,154,610,163) n° d'immatriculation et clé
+
+![text](505,164,556,173) adresse
+
+![text](36,180,86,189) ANGERS
+
+![text](36,190,86,200) maladie X
+
+![text](36,201,633,209) conditions de prise en charge du bénéficiaire des soins
+
+![text](36,210,227,219) code exonération C
+
+![text](642,180,959,189) soins en rapport avec l'article L. 212-1 □
+
+![text](36,201,274,210) maternité □ date du début de grossesse ou date d'accouchement
+
+![text](404,201,476,210) ATMP □ n° ou date
+
+![text](505,201,633,210) accident causé par un tiers non X oui □ date
+
+![title](204,218,476,227) frais de structure et de soins (1)
+
+![table](36,227,497,324) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>mode de traitement</th>
+      <th>DMT</th>
+      <th>prestation</th>
+      <th>n° GHS</th>
+      <th>période</th>
+      <th>prix unitaire</th>
+      <th>quantité</th>
+      <th>coefficient</th>
+      <th>montant facturé</th>
+      <th>codes exc.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>du</td>
+      <td>au</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>GHS</td>
+      <td>4158</td>
+      <td>18/07/2026</td>
+      <td>19/07/2026</td>
+      <td>998.61</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>990.22</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>PAS</td>
+      <td>4158</td>
+      <td>18/07/2026</td>
+      <td>18/07/2026</td>
+      <td>32.00</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>FJ</td>
+      <td>4158</td>
+      <td>18/07/2026</td>
+      <td>18/07/2026</td>
+      <td>23.00</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>FJA</td>
+      <td>4158</td>
+      <td>19/07/2026</td>
+      <td>19/07/2026</td>
+      <td>23.00</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>23.00</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+![text](36,324,143,333) sous-total 1 1013.22
+
+![title](204,329,779,340) frais de structure et de soins (2)
+
+![table](36,227,497,324) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>mode de traitement</th>
+      <th>DMT</th>
+      <th>prestation</th>
+      <th>n° GHS</th>
+      <th>période</th>
+      <th>prix unitaire</th>
+      <th>quantité</th>
+      <th>coefficient</th>
+      <th>montant facturé</th>
+      <th>codes exc.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>du</td>
+      <td>au</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+![text](36,324,143,333) sous-total 2
+
+![title](204,330,779,340) produits de la LPP facturables, spécialités pharmaceutiques et médicaments soumis à ATU (joindre la prescription)
+
+![table](36,331,964,487) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>mode de traitement</th>
+      <th>DMT</th>
+      <th>prestation</th>
+      <th>n° GHS</th>
+      <th>n° d'identification du prescripteur</th>
+      <th>date de prescription</th>
+      <th>date d'implantation</th>
+      <th>libellé</th>
+      <th>code</th>
+      <th>tarif de référence ou prix unitaire</th>
+      <th>quantité</th>
+      <th>montant facturé</th>
+      <th>codes exc.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+![text](779,488,874,497) sous-total 3
+
+![text](757,498,874,507) sous-total 1+2+3 1013.22
+
+![title](80,507,454,517) relevé des honoraires médicaux, para médicaux et actes de laboratoire
+
+![table](35,507,964,833) <table>
+  <thead>
+    <tr>
+      <th>transfert</th>
+      <th>n° de case</th>
+      <th>numéro d'identification du prescripteur</th>
+      <th>spécialité</th>
+      <th>numéro d'identification de l'exécutant</th>
+      <th>spécialité</th>
+      <th>date des actes</th>
+      <th>date de la prescription</th>
+      <th>n° GHS</th>
+      <th>actes effectués</th>
+      <th>quantité ou coefficient</th>
+      <th>honoraires facturés</th>
+      <th>dépense</th>
+      <th>code exonération</th>
+      <th>signature des praticiens ou auxiliaires médicaux attestant la prestation des actes, l'exactitude du montant total des honoraires facturés et la dispense d'avance de frais</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>code acte ou lettre-clé</td>
+      <td>activité</td>
+      <td>éléments de tarification</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>phase</td>
+      <td>excédent</td>
+      <td>modificateurs</td>
+      <td>autres</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>491702593</td>
+      <td>16</td>
+      <td>493700710</td>
+      <td>30</td>
+      <td>18/07/2026</td>
+      <td>18/07/2026</td>
+      <td>4158</td>
+      <td>B</td>
+      <td>9107 9106 9005 9004 5201</td>
+      <td>111.00</td>
+      <td>27.75</td>
+      <td></td>
+      <td>1</td>
+      <td>493700710 LABO DU PARC 0007/2005 - 55.50</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491702593</td>
+      <td>16</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>APC</td>
+      <td></td>
+      <td>1.00</td>
+      <td>60.00</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491702593</td>
+      <td>16</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>JCPD001</td>
+      <td>1</td>
+      <td>JK</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>381.30</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491702593</td>
+      <td>16</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>YYYY405</td>
+      <td>1</td>
+      <td>JK</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>57.06</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491702593</td>
+      <td>16</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>YYYY405</td>
+      <td>1</td>
+      <td>JK</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>57.06</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491702593</td>
+      <td>16</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>JCLE002</td>
+      <td>1</td>
+      <td>JK</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>66.60</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491053989</td>
+      <td>02</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>CS</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.00</td>
+      <td>26.50</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491053989</td>
+      <td>02</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>CS</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.00</td>
+      <td>26.50</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491053989</td>
+      <td>02</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>JCPD001</td>
+      <td>4</td>
+      <td>7</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>136.26</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491053989</td>
+      <td>02</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>YYYY405</td>
+      <td>4</td>
+      <td>7</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>20.35</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491053989</td>
+      <td>02</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>YYYY405</td>
+      <td>4</td>
+      <td>7</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>20.35</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>491053989</td>
+      <td>02</td>
+      <td>18/07/2026</td>
+      <td></td>
+      <td>4158</td>
+      <td>JCLE002</td>
+      <td>4</td>
+      <td>7</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>29.20</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>491702593</td>
+      <td>16</td>
+      <td>493700710</td>
+      <td>30</td>
+      <td>19/07/2026</td>
+      <td>19/07/2026</td>
+      <td>4158</td>
+      <td>B</td>
+      <td>9107 9106 9005 9004 5201</td>
+      <td>111.00</td>
+      <td>27.75</td>
+      <td></td>
+      <td>3</td>
+      <td>491053989 TAILHAN Baptiste 259.16</td>
+    </tr>
+  </tbody>
+</table>
+
+![text](36,839,266,848) transfert provisoire – n° FINESS établissement 1
+
+![text](404,839,595,848) n° FINESS établissement 2
+
+![text](36,850,123,859) MANDATAIRE(S)
+
+![text](36,901,173,910) MONTANT TOTAL en euros (1+2+3+4) 1949.90
+
+![text](291,901,404,910) l'assuré(e) n'a pas payé la part obligatoire X
+
+![text](505,901,633,910) l'assuré(e) n'a pas payé la part complémentaire X
+
+![text](815,883,914,892) signature du directeur de l'établissement
+
+![text](815,912,940,921) 31/07/2026 17:51:17 - 261034573
+
+![text](36,925,379,933) Le règlement est effectué conformément au choix fait par le praticien.
+
+![text](36,935,886,950) Quiconque se rend coupable de fraude ou de fausse déclaration est passible de pénalités financières, d'amende et/ou d'emprisonnement (articles 313-1 à 313-3, 433-19, 441-1 et suivants du Code pénal, article L. 114-17-1 du Code de la sécurité sociale).
+
+![text](36,950,855,959) Les informations figurant sur cette feuille, y compris le détail des actes et des prestations servies, sont destinées à votre organisme d'assurance maladie aux fins de remboursement et de contrôle.
+
+![text](36,960,890,972) En application de la loi du 6 janvier 1978 modifiée, vous pouvez obtenir la communication des informations vous concernant et, le cas échéant, leur rectification en vous adressant auprès de votre organisme d'assurance maladie.
+
+![page_number](928,949,966,959) S 3404
