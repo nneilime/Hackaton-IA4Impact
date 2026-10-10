@@ -1,0 +1,41 @@
+seed: 42
+chemins:
+  raw: data/raw
+  clean: data/clean
+  outputs: outputs
+fichiers_bruts:
+  agents: agents_v2.csv
+  postes: poste_v2.csv
+  insee: insee_v2.csv
+  coupures: coupures_v2_100_crises.csv
+trajet:
+  coef_detour: 1.3
+  vitesse_plaine_kmh: 55
+  vitesse_montagne_kmh: 35
+  lat_seuil_montagne: 43.05     # appliqué à la latitude de la DESTINATION
+travail:
+  amplitude_max_min: 720        # 12h
+  repos_min: 660                # 11h
+  roulement_actif: true         # échelonnement des équipes (hypothèse H7)
+  pct_premier_roulement: 0.75   # 75% débutent à t=0, 25% à t=12h
+score:
+  alpha_sensible: 5.0
+  beta_attente_par_h: 0.1
+  anticipation_min: 30          # v2
+  reserve_active: false         # v2
+monte_carlo:
+  n_tirages: 30
+  sigma_duree: 0.3
+  sigma_vitesse: 0.15
+prepositionnement:
+  crises_apprentissage: [1, 80]
+  n_zones_demande: 200
+  n_points_avances: 20
+  max_equipes_par_point: 8
+copilote:
+  modele: qwen2.5:3b
+  modele_secours: qwen2.5:1.5b
+  temperature: 0.2
+  timeout_s: 30
+affichage:
+  pas_instantane_min: 30
