@@ -1,0 +1,4 @@
+"type_intervention","nombre_occurrences","source","champ_source"
+"Dépannage","9955","06_interventions.csv","type_intervention"
+"Entretien préventif","19809","06_interventions.csv","type_intervention"
+"Remplacement","866","06_interventions.csv","type_intervention"

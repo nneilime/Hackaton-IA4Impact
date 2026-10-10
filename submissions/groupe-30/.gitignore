@@ -1,0 +1,16 @@
+# Configuration locale et secrets (dans tous les sous-dossiers).
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Environnement créé par scripts/train_all.sh.
+.venv-training/
+
+.venv/
+__pycache__/
+.cache/
+artifacts/
+training_snapshots/
+table_apprentissage_mensuelle_*.csv
+table_apprentissage_mensuelle_*.metadata.json

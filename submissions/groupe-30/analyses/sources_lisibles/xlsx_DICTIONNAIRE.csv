@@ -1,0 +1,100 @@
+table,colonne,type,description,équivalent réel In'li (pour brancher les vraies données)
+01_residences,residence_id,texte,Identifiant de la résidence (clé),Code programme
+01_residences,nom,texte,Nom anonymisé (Résidence A à H),Libellé patrimoine
+01_residences,localisation,texte,Zone géographique volontairement imprécise,Adresse (retirée)
+01_residences,annee_construction,entier,Année de construction,Période de construction (ADEME)
+01_residences,nb_batiments,entier,Nombre de bâtiments / cages,
+01_residences,nb_logements,entier,Nombre de logements,
+01_residences,surface_habitable_totale_m2,décimal,Somme des surfaces habitables,
+01_residences,ascenseur,Oui/Non,Au moins un ascenseur dans la résidence,
+01_residences,energie_chauffage,texte,Énergie principale de chauffage,Colonne « Chauffage » du suivi DPE
+01_residences,type_chauffage,texte,Individuel ou collectif,Type de chauffage (suivi DPE)
+01_residences,generateur_chauffage,texte,Type de générateur,Type d’énergie de chauffage
+01_residences,production_ecs,texte,Mode de production d’eau chaude sanitaire,type_installation_ecs (ADEME)
+01_residences,ventilation,texte,Type de ventilation,type_ventilation (ADEME)
+01_residences,etiquette_dpe_majoritaire,A-G,Étiquette DPE globale la plus fréquente,
+01_residences,conso_ep_moyenne_kwh_m2_an,décimal,Consommation moyenne en énergie primaire,Consommation DPE moyenne
+01_residences,ges_moyen_kgco2_m2_an,décimal,Émissions moyennes de gaz à effet de serre,Émission GES DPE moyenne
+02_batiments,batiment_id,texte,Identifiant du bâtiment (clé),Code escalier
+02_batiments,residence_id,texte,Résidence de rattachement,
+02_batiments,nb_niveaux,entier,Nombre de niveaux (RDC inclus),nombre_niveau_immeuble (ADEME)
+02_batiments,nb_logements,entier,Logements desservis,
+02_batiments,ascenseur,Oui/Non,Présence d’un ascenseur,
+03_logements,logement_id,texte,Identifiant du logement (clé). Pseudonyme sans lien avec un numéro réel,N° de lot
+03_logements,batiment_id / residence_id,texte,Rattachement,
+03_logements,typologie,T1-T5,Nombre de pièces,Libellé du lot (« 3 pièces »)
+03_logements,surface_habitable_m2,décimal,Surface habitable,surface_habitable_logement (ADEME)
+03_logements,etage,entier,Étage (0 = rez-de-chaussée),numero_etage_appartement (ADEME)
+03_logements,dpe_methode,texte,"Ancien DPE (avant 07/2021, non comparable) ou nouveau DPE 3CL 2021",Méthode de DPE prépondérante
+03_logements,dpe_date,date,Date d’établissement du DPE,Date de DPE
+03_logements,dpe_conso_ep_kwh_m2_an,entier,Consommation en énergie primaire,conso_5_usages_par_m2_ep
+03_logements,dpe_ges_kgco2_m2_an,décimal,Émissions de GES,emission_ges_5_usages_par_m2
+03_logements,dpe_etiquette_energie / _ges / _globale,A-G,Étiquettes. La globale est la plus mauvaise des deux (double seuil),etiquette_dpe / etiquette_ges
+03_logements,nb_changements_locataire_2018_2025,entier,Nombre de rotations de locataires sur la période,Gestion locative
+03_logements,date_entree_locataire_actuel,date,Date d’entrée du locataire actuel (ou « Avant 2018 »),Gestion locative
+03_logements,statut_occupation,texte,Occupé / Vacant au 31/12/2025,
+04_equipements,equipement_id,texte,"Identifiant de l’emplacement fonctionnel (clé). Un remplacement garde le même identifiant, la date de pose change",
+04_equipements,famille / libelle_famille,texte,Famille d’équipement (voir 10_ref_familles_equipements),Libellé métier GMAO
+04_equipements,niveau_rattachement,texte,Logement ou Bâtiment (parties communes),
+04_equipements,residence_id / batiment_id / logement_id,texte,Localisation (logement vide pour les parties communes),
+04_equipements,date_pose,date,Date de pose de l’équipement en place au 31/12/2025,À constituer
+04_equipements,origine_date_pose,texte,"Niveau de preuve de la date : fait réel transposé, remplacement tracé, ou hypothèse",—
+04_equipements,date_pose_precedente,date,Date de pose de l’équipement précédent (si remplacé depuis 2018),
+04_equipements,nb_remplacements_2018_2025,entier,Nombre de remplacements sur la période,
+04_equipements,duree_vie_reference_ans,entier,Durée de vie de référence de la famille (hypothèse métier),Référentiel
+04_equipements,sous_contrat_entretien,Oui/Non,Couvert par un contrat (dépannages sans bon de commande),Contrat multiservices
+04_equipements,visite_annuelle_prevue,Oui/Non,Entretien préventif annuel prévu,
+04_equipements,code_metier,texte,Code métier prestataire (voir 10_ref_codes_metiers),Libellé métier (rapport prestataire)
+04_equipements,prestataire_id,texte,Prestataire en charge,
+04_equipements,dans_perimetre_prediction,Oui/Non,Équipement à scorer pour le défi « détection précoce de panne »,—
+05_demandes_locataires,demande_id,texte,Identifiant de la demande (clé),Référence
+05_demandes_locataires,date_creation / date_cloture,date-heure,Ouverture et clôture (clôture vide si encore ouverte au 31/12/2025),Date de création / de clôture
+05_demandes_locataires,logement_id / batiment_id / residence_id,texte,Localisation,Lot / Escalier / Groupe
+05_demandes_locataires,parties,texte,Privatives ou Communes,Parties
+05_demandes_locataires,canal,texte,Canal d’entrée,Canal
+05_demandes_locataires,motif,texte,Motif normalisé (liste réelle de l’outil),Motif
+05_demandes_locataires,objet,texte,Objet court saisi,Objet
+05_demandes_locataires,texte_demande,texte libre,"Texte de la demande — ENTIÈREMENT FICTIF, sans nom ni coordonnée",Demande initiale (non communicable en réel)
+05_demandes_locataires,priorite,texte,Niveau de priorité,Priorité
+05_demandes_locataires,nb_echanges,entier,Nombre d’échanges avec le locataire,Nb total échanges
+05_demandes_locataires,demande_reouverte,Oui/Non,La demande a été rouverte,Demande réouverte
+05_demandes_locataires,delai_resolution_h,décimal,Délai de résolution en heures,Délai de résolution (H)
+06_interventions,intervention_id,texte,Identifiant (clé),N° d’intervention GMAO
+06_interventions,date_intervention,date-heure,Date du passage,
+06_interventions,residence_id / batiment_id / logement_id,texte,Localisation,
+06_interventions,equipement_id,texte,Équipement concerné (clé vers 04_equipements),
+06_interventions,type_intervention,texte,"Entretien préventif, Dépannage ou Remplacement",Maintenance préventive / corrective
+06_interventions,code_metier,texte,Code métier du contrat,Libellé métier
+06_interventions,prestataire_id,texte,Prestataire,
+06_interventions,symptome,texte,Symptôme constaté (dépannages),
+06_interventions,gravite,texte,Gêne mineure / Fonctionnement dégradé / Arrêt total,—
+06_interventions,resultat,texte,"Issue du passage (réparé, absent, anomalie constatée, remplacement nécessaire…)",Nombre d’absents (rapport)
+06_interventions,commentaire_technicien,texte libre,Commentaire court (fictif). Contient des signaux faibles,Compte rendu technicien
+06_interventions,demande_id_liee,texte,"Demande locataire à l’origine du dépannage, si identifiée",—
+07_commandes,commande_id,texte,Identifiant (clé),N° commande
+07_commandes,date_commande,date,Date d’enregistrement,Date enregistrement
+07_commandes,residence_id / logement_id,texte,Localisation (logement vide pour les parties communes),Imputation
+07_commandes,libelle,texte,Libellé de la commande,Libellé
+07_commandes,type_commande,texte,"Type (ENTRETIEN PPV H/EDL, TRV PPV REMONTE EN GAMME, ENTRETIEN PCO…)",Type
+07_commandes,nature,texte,"Nature de dépense (PLOMBERIE, ELECTRICITE…)",Nature
+07_commandes,corps_etat,texte,Code corps d’état,Corps d’état
+07_commandes,prestataire_id,texte,Prestataire,Destinataire
+07_commandes,montant_ttc,décimal,Montant commandé (€ TTC),Montant total TTC
+07_commandes,date_facture / montant_facture_ttc,date / décimal,Facturation (vide si non facturée au 31/12/2025),Liste des factures
+07_commandes,statut,texte,Soldée ou En cours,Avancement
+08_plan_investissement,operation_id,texte,Identifiant (clé),
+08_plan_investissement,residence_id,texte,Résidence concernée,
+08_plan_investissement,type_operation,texte,Nature de l’opération,
+08_plan_investissement,perimetre,texte,"Périmètre (résidence, bâtiments, lot de logements)",
+08_plan_investissement,annee_souhaitee,entier,Année souhaitée par le demandeur,
+08_plan_investissement,cout_estime_ttc,entier,Coût estimé (€ TTC) — hypothèse,
+08_plan_investissement,gain_conso_ep_estime_kwh_m2_an,entier,Gain estimé de consommation (énergie primaire) — hypothèse,
+08_plan_investissement,nb_logements_concernes,entier,Logements impactés,
+08_plan_investissement,date_inscription_demande,date,Date à laquelle la demande a été inscrite,
+08_plan_investissement,origine_demande,texte,Motif de la demande,
+08_plan_investissement,statut,texte,Proposé (hypothétique),
+08_plan_investissement,rang_actuel_chronologique,entier,"Rang si l’on traite « premier inscrit, premier servi » (pratique actuelle)",
+09_prestataires,prestataire_id,texte,Identifiant (clé),
+09_prestataires,nom,texte,Nom fictif,
+09_prestataires,domaine,texte,Domaine d’intervention,
+09_prestataires,type_contrat,texte,Contrat ou marché,
