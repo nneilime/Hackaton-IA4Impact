@@ -244,56 +244,6 @@
       "slug": "groupe-18",
       "name": "Groupe 18",
       "challenge": "action-logement",
-      "owner": "Maz0ky",
-      "members": [
-        {
-          "login": null,
-          "status": "invited",
-          "created_at": "2026-10-10T13:17:29.885Z"
-        },
-        {
-          "login": null,
-          "status": "invited",
-          "created_at": "2026-10-10T13:17:29.885Z"
-        },
-        {
-          "login": null,
-          "status": "invited",
-          "created_at": "2026-10-10T13:17:29.885Z"
-        },
-        {
-          "login": null,
-          "status": "invited",
-          "created_at": "2026-10-10T13:17:29.885Z"
-        },
-        {
-          "login": null,
-          "status": "invited",
-          "created_at": "2026-10-10T13:17:29.885Z"
-        },
-        {
-          "login": null,
-          "status": "invited",
-          "created_at": "2026-10-10T13:17:29.885Z"
-        },
-        {
-          "login": null,
-          "status": "invited",
-          "created_at": "2026-10-10T13:26:20.338Z"
-        },
-        {
-          "login": null,
-          "status": "invited",
-          "created_at": "2026-10-10T13:26:20.338Z"
-        }
-      ],
-      "created_at": "2026-10-10T13:17:29.885Z",
-      "created_by": "Maz0ky"
-    },
-    {
-      "slug": "groupe-18-bis",
-      "name": "Groupe 18 bis",
-      "challenge": "action-logement",
       "owner": "MattDupp",
       "members": [
         {
@@ -569,26 +519,6 @@
       ],
       "created_at": "2026-10-10T13:22:10.597Z",
       "created_by": "manticore999"
-    },
-    {
-      "slug": "les-audo",
-      "name": "Les Audo",
-      "challenge": "action-logement",
-      "owner": "mathieu-audo",
-      "members": [
-        {
-          "login": null,
-          "status": "invited",
-          "created_at": "2026-10-10T13:11:57.851Z"
-        },
-        {
-          "login": null,
-          "status": "invited",
-          "created_at": "2026-10-10T13:11:57.851Z"
-        }
-      ],
-      "created_at": "2026-10-10T13:11:57.851Z",
-      "created_by": "mathieu-audo"
     },
     {
       "slug": "number12",

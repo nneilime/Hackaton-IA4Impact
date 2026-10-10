@@ -3,11 +3,11 @@
 ## Équipe
 
 - Défi choisi : `action-logement`
-- Propriétaire : Maz0ky
+- Propriétaire : MattDupp
 
 ## Membres
 
-- @Maz0ky
+- @MattDupp
 - en attente de connexion _(invité)_
 - en attente de connexion _(invité)_
 - en attente de connexion _(invité)_
