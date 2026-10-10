@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.db
+.env
+.venv/
+models/*.bin
+*.bin
+node_modules/
+dist/
+test-results/
+playwright-report/
+*.tsbuildinfo
+
+backend_lio_occitanie/data/pedagogy-cache/
