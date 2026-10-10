@@ -1,0 +1,30 @@
+code,kind,names
+VITVI,crop,vitis vinifera|vigne|vignes|grape|grapes|grapevine|uva|videira
+FRAAN,crop,fragaria x ananassa|fraisier|fraise|strawberry|strawberries|morango
+LYPES,crop,solanum lycopersicum|tomate|tomato|tomatoes
+SOLME,crop,solanum melongena|aubergine|eggplant|berinjela
+ALLCE,crop,allium cepa|oignon|onion|onions|cebola
+ALLPO,crop,allium porrum|poireau|leek|leeks|alho-poro
+CPSAN,crop,capsicum annuum|poivron|pepper|peppers|bell pepper|pimentao
+CUMSA,crop,cucumis sativus|concombre|cucumber|cucumbers|pepino
+CUMME,crop,cucumis melo|melon|melons
+LACSA,crop,lactuca sativa|laitue|lettuce|alface
+DAUCS,crop,daucus carota|carotte|carrot|carrots|cenoura
+BRSOL,crop,brassica oleracea|chou|choux|cabbage|cabbages|repolho
+SOLTU,crop,solanum tuberosum|pomme de terre|potato|potatoes|batata
+TRZAX,crop,triticum aestivum|ble|wheat|trigo
+ZEAMX,crop,zea mays|mais|maize|corn|milho
+GLXMA,crop,glycine max|soja|soybean|soybeans
+HELAN,crop,helianthus annuus|tournesol|sunflower|girassol
+BRSNN,crop,brassica napus|colza|canola|rapeseed|oilseed rape
+MEDSA,crop,medicago sativa|luzerne|alfalfa|alfafa
+ORYSA,crop,oryza sativa|riz|rice|arroz
+RUBID,crop,rubus idaeus|framboisier|raspberry|raspberries
+BOTRCI,pest,botrytis cinerea|pourriture grise|gray mold|grey mold|gray mould|grey mould|mofo cinzento
+SCLSSC,pest,sclerotinia sclerotiorum|sclerotiniose|white mold|white mould|mofo branco
+PHAKPA,pest,phakopsora pachyrhizi|rouille asiatique|asian soybean rust|ferrugem asiatica
+FRANOC,pest,frankliniella occidentalis|thrips de californie|western flower thrips
+OTIOSU,pest,otiorhynchus sulcatus|otiorhynque|black vine weevil|vine weevil|bicudo
+TRIAVA,pest,trialeurodes vaporariorum|aleurode des serres|greenhouse whitefly
+BEMITA,pest,bemisia tabaci|aleurode du tabac|tobacco whitefly|sweetpotato whitefly
+TETRUR,pest,tetranychus urticae|tetranyque tisserand|two-spotted spider mite|twospotted spider mite

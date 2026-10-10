@@ -1,0 +1,160 @@
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Administration · Veille réglementaire PPP</title>
+<style>
+:root{--bg:#0b1117;--card:#131c27;--line:#27323f;--text:#f1f2f6;--muted:#a9b4c2;--green:#2ed573;--amber:#ffb02e;--red:#ff5a68;--blue:#4aa3ff;--dim:#6b7888}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,sans-serif} a{color:var(--blue)}
+header{padding:12px 22px;border-bottom:1px solid var(--line);display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+header h1{font-size:1.05rem;margin:0} header .who{margin-left:auto;display:flex;gap:10px;align-items:center;color:var(--muted);font-size:.85rem}
+input,select,textarea{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 10px;font:inherit}
+nav{display:flex;gap:4px;padding:8px 22px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+nav button{background:transparent;border:0;color:var(--muted);padding:8px 14px;border-radius:99px;cursor:pointer;font:700 .88rem system-ui} nav button.on{background:rgba(46,213,115,.15);color:var(--green)}
+nav .badge{background:var(--amber);color:#201400;border-radius:99px;padding:0 7px;margin-left:6px;font-size:.75rem}
+main{padding:20px 26px;max-width:1180px} h2{margin:0 0 12px;font-size:1.2rem} h3{font-size:1rem;margin:22px 0 8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px} .card b{display:block;font:800 1.9rem ui-monospace,monospace;color:var(--green)} .card span{color:var(--muted);font-size:.82rem}
+.card.warn b{color:var(--amber)}
+table{width:100%;border-collapse:collapse;font-size:.9rem} th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top} th{color:var(--muted);font:700 .72rem ui-monospace,monospace;text-transform:uppercase;letter-spacing:.05em}
+.tag{display:inline-block;font:700 .7rem ui-monospace,monospace;border-radius:99px;padding:2px 9px;border:1px solid} .tag.fix{color:var(--red);border-color:var(--red)} .tag.confirm{color:var(--amber);border-color:var(--amber)} .tag.ok{color:var(--green);border-color:var(--green)} .tag.off{color:var(--dim);border-color:var(--dim)}
+button.btn{cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);padding:8px 14px;font:700 .86rem system-ui} button.btn:hover{border-color:var(--green)} button.btn.go{background:var(--green);border-color:var(--green);color:#06210f} button.btn.danger:hover{border-color:var(--red)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.log{background:#06090d;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:12px/1.5 ui-monospace,monospace;white-space:pre-wrap;max-height:260px;overflow:auto;color:#cfd6df}
+.msg{margin:10px 0;padding:10px 14px;border-radius:10px;font-size:.92rem} .msg.err{background:rgba(255,90,104,.12);border:1px solid var(--red)} .msg.ok{background:rgba(46,213,115,.12);border:1px solid var(--green)}
+.hint{color:var(--muted);font-size:.84rem} .empty{padding:36px;text-align:center;color:var(--muted)}
+.split{display:grid;grid-template-columns:330px 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden} @media(max-width:900px){.split{grid-template-columns:1fr}}
+#queue{border-right:1px solid var(--line);max-height:76vh;overflow:auto} .item{padding:11px 14px;border-bottom:1px solid var(--line);cursor:pointer} .item:hover,.item.on{background:var(--card)} .item small{color:var(--muted);display:block}
+#detail{padding:16px 20px;max-height:76vh;overflow:auto}
+.source{background:#06090d;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:13px/1.6 ui-monospace,monospace;white-space:pre-wrap;word-break:break-word}
+mark{background:rgba(46,213,115,.28);color:#b9ffd2;border-radius:3px} .why{border-left:3px solid var(--amber);background:rgba(255,176,46,.08);padding:8px 12px;border-radius:0 8px 8px 0;margin:10px 0}
+form.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:12px} label.f{display:block;font-size:.78rem;color:var(--muted)} label.f input,label.f textarea,label.f select{width:100%;margin-top:3px} .wide{grid-column:1/-1}
+</style></head><body>
+<header><h1>Administration · Veille réglementaire PPP</h1><a href="../" id="home" class="hint"></a>
+  <div class="who"><label>Relecteur <input id="author" placeholder="votre nom" size="14"></label><label id="tokenBox" hidden>Jeton <input id="token" type="password" size="12"></label></div></header>
+<nav id="tabs"></nav><main id="view"></main>
+<script>
+const $ = s => document.querySelector(s), esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const TABS = [['dashboard', 'Tableau de bord'], ['review', 'À relire'], ['sources', 'Sources et périmètre'], ['history', 'Historique']];
+const FIELDS = [['crop_original', 'Culture (telle qu\'écrite)'], ['target_original', 'Cible (telle qu\'écrite)'], ['dose_original', 'Dose (telle qu\'écrite)'], ['dose_value', 'Valeur de la dose (nombre)'], ['dose_unit', 'Unité (telle qu\'écrite)'], ['max_applications', 'Applications max'], ['min_interval_days', 'Intervalle min. (jours)'], ['pre_harvest_interval_days', 'Délai avant récolte (jours)']];
+let state = { tab: 'dashboard', queue: [], current: null, overview: null, scope: null, pollTimer: null };
+$('#author').value = localStorage.getItem('veille_author') || ''; $('#author').oninput = e => localStorage.setItem('veille_author', e.target.value);
+$('#token').value = localStorage.getItem('veille_token') || ''; $('#token').oninput = e => localStorage.setItem('veille_token', e.target.value);
+
+async function api(path, options = {}) {
+  const headers = { 'Content-Type': 'application/json', 'X-Admin-Token': $('#token').value };
+  const response = await fetch(path, { ...options, headers });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(typeof data.detail === 'string' ? data.detail : JSON.stringify(data.detail || data));
+  return data;
+}
+const post = (path, body) => api(path, { method: 'POST', body: JSON.stringify(body) });
+const notice = (kind, text) => `<div class="msg ${kind}">${esc(text)}</div>`;
+const author = () => { const a = $('#author').value.trim(); if (!a) throw new Error('Indiquez votre nom (en haut à droite) : il est gardé avec chaque décision.'); return a; };
+
+function renderTabs() {
+  const waiting = state.overview ? state.overview.review.to_correct + state.overview.review.to_confirm : 0;
+  $('#tabs').innerHTML = TABS.map(([id, label]) => `<button data-id="${id}" class="${state.tab === id ? 'on' : ''}">${label}${id === 'review' && waiting ? `<span class="badge">${waiting}</span>` : ''}</button>`).join('');
+  $('#tabs').onclick = e => { const b = e.target.closest('button'); if (b) go(b.dataset.id); };
+}
+async function go(tab) { state.tab = tab; location.hash = tab; clearInterval(state.pollTimer); await refreshOverview(); renderTabs(); ({ dashboard, review, sources, history })[tab](); }
+async function refreshOverview() { try { state.overview = await api('/admin/overview'); $('#tokenBox').hidden = !state.overview.system.token_required; } catch (e) { $('#view').innerHTML = notice('err', e.message); } }
+
+/* ───── Tableau de bord ───── */
+function dashboard() {
+  const o = state.overview; if (!o) return;
+  const sourceOptions = '<option value="">toutes les sources</option>' + o.sources.map(s => `<option value="${esc(s.id)}">${esc(s.name)}</option>`).join('');
+  $('#view').innerHTML = `<h2>Tableau de bord</h2>
+  <div class="cards"><div class="card"><b>${o.records}</b><span>enregistrements publiés</span></div>
+    <div class="card warn"><b>${o.review.to_correct}</b><span>sources à corriger</span></div><div class="card warn"><b>${o.review.to_confirm}</b><span>sources à confirmer</span></div>
+    <div class="card"><b>${o.review.decided}</b><span>décisions humaines</span></div>
+    <div class="card"><b>${o.by_status.valide_humain || 0}</b><span>validés par un expert</span></div></div>
+  <h3>Sources</h3><table><tr><th>Source</th><th>Pays</th><th>Format</th><th>Passages</th><th>Enregistrements</th><th>Dernière collecte</th></tr>
+    ${o.sources.map(s => `<tr><td><b>${esc(s.name)}</b></td><td>${esc(s.country)}</td><td>${esc(s.format)}</td><td>${s.passages}</td><td>${s.records}</td><td>${esc(s.collected_at || 'jamais')}</td></tr>`).join('')}</table>
+  <h3>Lancer un traitement</h3><div class="row"><select id="runSource">${sourceOptions}</select>
+    <button class="btn" data-task="collect">1 · Collecter</button><button class="btn" data-task="index">2 · Indexer</button><button class="btn go" data-task="extract">3 · Extraire (IA)</button><button class="btn" data-task="eval">Évaluer</button><button class="btn" data-task="web">Mettre à jour la page de présentation</button></div>
+  <label class="hint"><input type="checkbox" id="sample" checked> extraction d'essai : 3 passages par produit et pays seulement</label>
+  <div id="runMsg"></div><div id="jobs"></div>
+  <p class="hint">Modèle : ${esc(o.system.model)} · Qdrant : ${esc(o.system.qdrant)} · un seul traitement à la fois. Après une extraction, les décisions de l'expert sont rejouées automatiquement.</p>`;
+  $('#view').querySelectorAll('[data-task]').forEach(b => b.onclick = () => runTask(b.dataset.task));
+  showJobs(); state.pollTimer = setInterval(showJobs, 2500);
+}
+async function runTask(task) {
+  try {
+    const body = { task, source: $('#runSource').value || null };
+    if (task === 'extract' && $('#sample').checked) body.per_product = 3;
+    const job = await post('/admin/run', body); $('#runMsg').innerHTML = notice('ok', `Lancé : ${job.command}`); showJobs();
+  } catch (e) { $('#runMsg').innerHTML = notice('err', e.message); }
+}
+async function showJobs() {
+  const jobs = await api('/admin/jobs').catch(() => []); if (!jobs.length || !$('#jobs')) { if ($('#jobs')) $('#jobs').innerHTML = ''; return; }
+  const latest = await api('/admin/jobs/' + jobs[0].id);
+  $('#jobs').innerHTML = `<h3>Derniers traitements</h3><table>${jobs.map(j => `<tr><td>${esc(j.started)}</td><td><b>${esc(j.command)}</b></td><td><span class="tag ${j.state === 'running' ? 'confirm' : j.state === 'done' ? 'ok' : 'fix'}">${j.state === 'running' ? 'en cours' : j.state === 'done' ? 'terminé' : 'échec'}</span></td></tr>`).join('')}</table><div class="cap hint" style="margin:8px 0 4px">Journal du plus récent</div><div class="log">${esc(latest.log)}</div>`;
+  if (latest.state !== 'running') { const was = state.overview; await refreshOverview(); renderTabs(); if (was && JSON.stringify(was) !== JSON.stringify(state.overview) && state.tab === 'dashboard') { clearInterval(state.pollTimer); dashboard(); } }
+}
+
+/* ───── À relire ───── */
+async function review() {
+  state.queue = await api('/review');
+  $('#view').innerHTML = `<h2>Sources à relire</h2><p class="hint">Ce que l'IA n'a pas su trancher, ou dont elle doute. Vos valeurs sont contrôlées comme les siennes : elles doivent figurer mot à mot dans la source. Seul vous pouvez poser « validé par un expert ».</p>
+  <div class="split"><div id="queue">${state.queue.length ? state.queue.map((it, i) => `<div class="item" data-i="${i}"><span class="tag ${it.kind === 'a_corriger' ? 'fix' : 'confirm'}">${it.kind === 'a_corriger' ? 'à corriger' : 'à confirmer'}</span> <b>${esc(it.product)}</b><small>${esc(it.country)} · ${esc(it.source_id)} · ${esc(it.reason).slice(0, 80)}</small></div>`).join('') : '<div class="empty">Plus rien à relire.</div>'}</div>
+  <div id="detail"><div class="empty">Choisissez une source à relire.</div></div></div>`;
+  $('#queue').onclick = e => { const el = e.target.closest('.item'); if (el) showItem(+el.dataset.i); };
+}
+function highlight(text, quote) { const t = esc(text); if (!quote) return t; const q = esc(quote), i = t.toLowerCase().indexOf(q.toLowerCase()); return i < 0 ? t : t.slice(0, i) + '<mark>' + t.slice(i, i + q.length) + '</mark>' + t.slice(i + q.length); }
+function showItem(i) {
+  state.current = state.queue[i]; document.querySelectorAll('.item').forEach((el, k) => el.classList.toggle('on', k === i));
+  const it = state.current, p = it.proposal || {};
+  $('#detail').innerHTML = `<h2>${esc(it.product)} <small class="hint">· ${esc(it.country)} · ${esc(it.source_id)}</small></h2>
+    <div class="hint">Document officiel : <a href="${esc(it.source_url)}" target="_blank" rel="noopener">${esc(it.source_url)}</a> · collecté le ${esc(it.collected_at)}</div>
+    <div class="why"><b>Pourquoi l'IA ne tranche pas :</b> ${esc(it.reason)}</div><div class="source">${highlight(it.text, p.quote)}</div>
+    <form class="grid" id="form">${FIELDS.map(([k, l]) => `<label class="f">${l}<input name="${k}" value="${esc(p[k] ?? '')}"></label>`).join('')}<label class="f wide">Citation : un extrait copié mot à mot depuis le texte ci-dessus<textarea name="quote" rows="2">${esc(p.quote ?? '')}</textarea></label></form>
+    <div class="row"><button class="btn go" id="correct">Enregistrer ma correction</button>${it.kind === 'a_confirmer' ? '<button class="btn" id="confirm">Confirmer la proposition</button>' : ''}<button class="btn danger" id="dismiss">Écarter cette source…</button></div><div id="msg"></div>`;
+  $('#correct').onclick = () => decide('correct', formValues());
+  if ($('#confirm')) $('#confirm').onclick = () => decide('confirm', {});
+  $('#dismiss').onclick = () => { const reason = prompt('Pourquoi écarter cette source ? (obligatoire)'); if (reason) decide('dismiss', {}, reason); };
+}
+function formValues() {
+  const f = {}; new FormData($('#form')).forEach((v, k) => { v = v.trim(); if (v === '') return; f[k] = k === 'dose_value' ? parseFloat(v.replace(',', '.')) : (/^(max_applications|min_interval_days|pre_harvest_interval_days)$/.test(k) ? parseInt(v, 10) : v); });
+  f.restrictions = state.current.proposal.restrictions || []; return f;
+}
+async function decide(action, fields, reason = '') {
+  try { await post(`/review/${encodeURIComponent(state.current.passage_id)}/${action}`, { author: author(), fields, reason }); await refreshOverview(); renderTabs(); await review(); $('#detail').innerHTML = notice('ok', 'Décision enregistrée (statut « validé par un expert »).'); }
+  catch (e) { $('#msg').innerHTML = notice('err', 'Refusé : ' + e.message); }
+}
+
+/* ───── Sources et périmètre ───── */
+async function sources() {
+  state.scope = await api('/admin/scope'); const { scope, sources: infos } = state.scope;
+  $('#view').innerHTML = `<h2>Sources et périmètre surveillé</h2>
+  <h3>Périmètre : quels produits chercher dans chaque source</h3><p class="hint">Un nom par source, séparés par « ; » (le nom tel qu'il est écrit dans cette source). Vide = pas de ce produit dans cette source.</p>
+  <table id="scopeTable"><tr><th>Rôle</th><th>Produit</th>${infos.map(s => `<th>${esc(s.name)}</th>`).join('')}<th></th></tr>${scope.products.map(rowHtml(infos, state.scope.roles)).join('')}</table>
+  <div class="row"><button class="btn" id="addRow">+ Ajouter un produit</button><button class="btn go" id="saveScope">Enregistrer le périmètre</button></div><div id="scopeMsg"></div>
+  <h3>Ajouter une nouvelle source officielle</h3><p class="hint">Crée le squelette <code>sources/&lt;identifiant&gt;.py</code> ; un développeur n'a plus qu'à renseigner l'adresse du jeu de données et la lecture des lignes (voir <code>docs/AJOUTER_UNE_SOURCE.md</code>).</p>
+  <form class="grid" id="newSource"><label class="f">Identifiant (minuscules)<input name="source_id" placeholder="agrofit"></label><label class="f">Nom<input name="name" placeholder="AGROFIT (MAPA)"></label><label class="f">Code pays<input name="country_code" placeholder="BR" maxlength="3"></label><label class="f">Pays<input name="country" placeholder="Brésil"></label><label class="f">Région<input name="region" placeholder="Amérique du Sud"></label><label class="f">Format<input name="format" placeholder="API REST"></label><label class="f">Langue<input name="lang" placeholder="PT"></label></form>
+  <div class="row"><button class="btn go" id="createSource">Créer la source</button></div><div id="sourceMsg"></div>`;
+  $('#addRow').onclick = () => $('#scopeTable').insertAdjacentHTML('beforeend', rowHtml(infos, state.scope.roles)({ role: 'concurrent', name: '' }));
+  $('#scopeTable').onclick = e => { if (e.target.matches('.del')) e.target.closest('tr').remove(); };
+  $('#saveScope').onclick = saveScope; $('#createSource').onclick = createSource;
+}
+const rowHtml = (infos, roles) => p => `<tr><td><select>${roles.map(r => `<option ${r === p.role ? 'selected' : ''}>${esc(r)}</option>`).join('')}</select></td><td><input value="${esc(p.name)}" size="22"></td>${infos.map(s => `<td><input data-source="${esc(s.id)}" value="${esc((p[s.id] || []).join(' ; '))}" size="18"></td>`).join('')}<td><button class="btn del danger">×</button></td></tr>`;
+async function saveScope() {
+  const products = [...document.querySelectorAll('#scopeTable tr')].slice(1).map(tr => { const cells = tr.querySelectorAll('input,select'); const product = { role: cells[0].value, name: cells[1].value.trim() };
+    tr.querySelectorAll('[data-source]').forEach(i => { const names = i.value.split(';').map(x => x.trim()).filter(Boolean); if (names.length) product[i.dataset.source] = names; }); return product; });
+  try { const r = await api('/admin/scope', { method: 'PUT', body: JSON.stringify({ products }) }); $('#scopeMsg').innerHTML = notice('ok', `Périmètre enregistré (${r.products} produits). Relancer la collecte et l'indexation pour en tenir compte.`); }
+  catch (e) { $('#scopeMsg').innerHTML = notice('err', e.message); }
+}
+async function createSource() {
+  const body = {}; new FormData($('#newSource')).forEach((v, k) => body[k] = v.trim());
+  try { const r = await post('/admin/sources', body); $('#sourceMsg').innerHTML = notice('ok', `Créé : ${r.created}`) + `<div class="log">${esc(r.next_steps)}</div>`; }
+  catch (e) { $('#sourceMsg').innerHTML = notice('err', e.message); }
+}
+
+/* ───── Historique ───── */
+async function history() {
+  const entries = await api('/admin/history');
+  const label = { corrected: ['corrigé', 'ok'], confirmed: ['confirmé', 'ok'], dismissed: ['écarté', 'off'] };
+  $('#view').innerHTML = `<h2>Historique des décisions</h2><p class="hint">Piste d'audit : qui a décidé quoi, et quand. Les décisions sont rejouées après chaque nouvelle extraction.</p>
+  ${entries.length ? `<table><tr><th>Date</th><th>Relecteur</th><th>Décision</th><th>Produit</th><th>Détail</th></tr>${entries.map(e => `<tr><td>${esc(e.at)}</td><td>${esc(e.author)}</td><td><span class="tag ${label[e.action][1]}">${label[e.action][0]}</span></td><td>${esc(e.product)}</td><td>${esc(e.reason || (e.fields && e.fields.dose_original) || '')}</td></tr>`).join('')}</table>` : '<div class="empty">Aucune décision pour l\'instant.</div>'}`;
+}
+go(location.hash.slice(1) || 'dashboard');
+</script></body></html>

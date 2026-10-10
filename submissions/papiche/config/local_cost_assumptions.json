@@ -1,0 +1,8 @@
+{
+  "_note": "HYPOTHÈSES (pas des mesures) pour le coût du service d'IA local. À remplacer par les valeurs réelles de l'essaim. Puissance : TDP public d'une RTX 3090 (borne haute en inférence).",
+  "gpu_purchase_usd": 900,
+  "lifetime_years": 3,
+  "utilization": 0.2,
+  "gpu_power_watts": 350,
+  "electricity_usd_per_kwh": 0.22
+}

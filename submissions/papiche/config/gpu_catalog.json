@@ -1,0 +1,10 @@
+{
+  "_note": "Cartes indicatives pour le dimensionnement. Valeurs publiques de fiche technique, À VÉRIFIER avant achat ou location. Le débit théorique est un plafond (bande passante / taille des poids), jamais une mesure.",
+  "gpus": [
+    {"name": "RTX 4060 (8 Go)",        "vram_gb": 8,  "bandwidth_gb_s": 272},
+    {"name": "RTX 4060 Ti (16 Go)",    "vram_gb": 16, "bandwidth_gb_s": 288},
+    {"name": "RTX 3090 (24 Go)",       "vram_gb": 24, "bandwidth_gb_s": 936},
+    {"name": "RTX 4090 (24 Go)",       "vram_gb": 24, "bandwidth_gb_s": 1008},
+    {"name": "L40S (48 Go)",           "vram_gb": 48, "bandwidth_gb_s": 864}
+  ]
+}

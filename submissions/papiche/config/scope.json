@@ -1,0 +1,94 @@
+{
+  "_note": "Périmètre du MVP : produits pilotes LPC, produits sœurs probables et concurrents. Les noms servent de filtre sur les sources officielles (aucune donnée n'est saisie à la main).",
+  "products": [
+    {
+      "role": "pilote",
+      "name": "LALSTOP CONTANS WG",
+      "ephy": [
+        "LALSTOP CONTANS WG"
+      ],
+      "pmra": [
+        "LALSTOP CONTANS WG"
+      ],
+      "epa": [
+        "Contans Wg"
+      ]
+    },
+    {
+      "role": "pilote",
+      "name": "LALSTOP G46 WG",
+      "ephy": [
+        "LALSTOP G46 WG"
+      ],
+      "pmra": [
+        "PRESTOP WG"
+      ],
+      "epa": [
+        "Prestop"
+      ]
+    },
+    {
+      "role": "pilote",
+      "name": "LALGUARD M52 OD",
+      "ephy": [
+        "LALGUARD M52 OD"
+      ],
+      "pmra": [
+        "LALGUARD M52 OD"
+      ],
+      "epa": [
+        "Lalguard M52 Od"
+      ]
+    },
+    {
+      "role": "sœur",
+      "name": "LALGUARD M52 GR",
+      "ephy": [
+        "LALGUARD M52 GR"
+      ],
+      "pmra": [
+        "LALGUARD M52 GR"
+      ],
+      "epa": [
+        "Lalguard M52 Gr"
+      ]
+    },
+    {
+      "role": "sœur",
+      "name": "MYCOSTOP / LALSTOP K61 WP",
+      "ephy": [
+        "MYCOSTOP"
+      ],
+      "pmra": [
+        "MYCOSTOP BIOFUNGICIDE"
+      ],
+      "epa": [
+        "Mycostop Biofungicide"
+      ]
+    },
+    {
+      "role": "concurrent",
+      "name": "BOTANIGARD 22 WP",
+      "ephy": [
+        "BOTANIGARD 22 WP"
+      ],
+      "pmra": [
+        "BOTANIGARD 22WP"
+      ],
+      "epa": [
+        "BotaniGard 22"
+      ]
+    },
+    {
+      "role": "concurrent",
+      "name": "VELIFER",
+      "ephy": [
+        "VELIFER"
+      ],
+      "pmra": [
+        "VELIFER"
+      ],
+      "epa": []
+    }
+  ]
+}

@@ -1,0 +1,791 @@
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veille réglementaire PPP · Agent IA maison de veille réglementaire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="web/source/pygments.css">
+<style>
+:root{
+  --bg:#0b1117; --card:rgba(18,26,36,.88); --line:rgba(255,255,255,.09);
+  --green:#2ed573; --blue:#4aa3ff; --amber:#ffb02e; --red:#ff5a68;
+  --text:#f1f2f6; --muted:#a9b4c2; --dim:#6b7888;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;
+  background-image:radial-gradient(circle at 12% 8%,rgba(46,213,115,.08),transparent 38%),radial-gradient(circle at 88% 70%,rgba(74,163,255,.07),transparent 40%)}
+a{color:var(--blue)} code{font-family:var(--mono);font-size:.86em;background:rgba(255,255,255,.07);padding:.08em .35em;border-radius:5px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+nav.top{position:sticky;top:0;z-index:20;background:rgba(11,17,23,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:4px;overflow-x:auto;padding:10px 20px;scrollbar-width:none}
+nav.top a{color:var(--muted);text-decoration:none;font-size:.84rem;font-weight:600;padding:5px 11px;border-radius:99px;white-space:nowrap}
+nav.top a:hover{background:rgba(255,255,255,.07);color:var(--text)}
+header.hero{padding:44px 0 22px}
+.badge{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green);border:1px solid var(--green);background:rgba(46,213,115,.1);padding:4px 12px;border-radius:99px}
+h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:14px 0 10px;max-width:900px}
+.lead{color:var(--muted);font-size:1.05rem;max-width:820px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:26px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:1.5rem;color:var(--green)}
+.stat span{font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+section.block{padding:38px 0 6px}
+section.block>.wrap>h2{font-size:1.55rem;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+section.block>.wrap>p.sub{color:var(--muted);max-width:860px;margin-bottom:18px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.card h3{font-size:1.02rem;margin:6px 0}
+.card p{color:var(--muted);font-size:.9rem}
+.tag{font-family:var(--mono);font-size:.7rem;color:var(--green);text-transform:uppercase;letter-spacing:.07em}
+.cases{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{cursor:pointer;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--text);padding:8px 14px;border-radius:10px;font:600 .84rem var(--sans);text-align:left}
+.chip:hover{border-color:var(--green)} .chip.on{background:rgba(46,213,115,.14);border-color:var(--green);color:var(--green)}
+.stepper{display:flex;gap:6px;margin:6px 0 14px;overflow-x:auto;padding-bottom:4px}
+.stepper button{flex:1;min-width:104px;cursor:pointer;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted);border-radius:10px;padding:8px 6px;font:600 .74rem var(--sans)}
+.stepper button b{display:block;font:700 1.05rem var(--mono);color:var(--dim)}
+.stepper button.on{background:rgba(46,213,115,.16);border-color:var(--green);color:var(--text)} .stepper button.on b{color:var(--green)}
+.stepper button.done b{color:var(--blue)}
+.stage{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:16px}
+@media(max-width:900px){.stage{grid-template-columns:minmax(0,1fr)}}
+.stage h3{font-size:1.2rem;margin-bottom:8px}
+.stage .say p{margin-bottom:10px;color:#d7dde6}
+.keep{margin-top:12px;border-left:3px solid var(--amber);background:rgba(255,176,46,.08);padding:10px 14px;border-radius:0 10px 10px 0;font-size:.9rem}
+.keep b{color:var(--amber)}
+.glossary{margin-top:10px;font-size:.82rem;color:var(--muted)} .glossary dt{color:var(--text);font-weight:700;display:inline} .glossary dd{display:inline;margin:0 0 0 4px}
+.glossary div{margin-bottom:3px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
+.btn{cursor:pointer;background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 18px;font:700 .88rem var(--sans)}
+.btn:hover{border-color:var(--green);color:var(--green)} .btn[disabled]{opacity:.35;pointer-events:none}
+.btn.primary{background:var(--green);border-color:var(--green);color:#06210f}
+.btn.primary:hover{background:#4be58a;color:#06210f}
+pre.code,.codeblock{background:#06090d;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:.78rem/1.55 var(--mono);color:#d6dde6;white-space:pre-wrap;word-break:break-word;overflow-x:auto;max-height:340px;overflow-y:auto}
+mark{background:rgba(46,213,115,.25);color:#b9ffd2;border-radius:3px;padding:0 2px}
+.cap{font:.7rem var(--mono);color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin:10px 0 5px}
+.ok{color:var(--green)} .ko{color:var(--red)} .warn{color:var(--amber)}
+.pill{display:inline-block;font:700 .7rem var(--mono);padding:2px 9px;border-radius:99px;border:1px solid}
+.pill.ok{border-color:var(--green);background:rgba(46,213,115,.12)} .pill.ko{border-color:var(--red);background:rgba(255,90,104,.12)} .pill.warn{border-color:var(--amber);background:rgba(255,176,46,.12)} .pill.info{border-color:var(--blue);color:var(--blue);background:rgba(74,163,255,.1)}
+.tabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.tabs button{cursor:pointer;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:4px 11px;font:600 .76rem var(--mono)}
+.tabs button.on{border-color:var(--green);color:var(--green)}
+.hit{display:grid;grid-template-columns:54px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.8rem}
+.hit.target{background:rgba(46,213,115,.08);border-radius:8px;padding:8px}
+.bar{height:6px;background:rgba(255,255,255,.08);border-radius:4px;margin-top:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green)}
+.checks li{list-style:none;padding:5px 0;border-bottom:1px solid var(--line);font-size:.82rem}
+.cmp{width:100%;border-collapse:collapse;font-size:.84rem}
+.cmp th,.cmp td{padding:7px 9px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp th{color:var(--muted);font:700 .7rem var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.cmp td.o{color:var(--text)} .cmp td.n{color:var(--green);font-family:var(--mono)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.scroll .cmp th{position:sticky;top:0;background:#0f1822}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.filters select,.filters input{background:#0f1822;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px 10px;font:.84rem var(--sans)}
+.qa{margin-bottom:12px}.qa .q{font-weight:700;font-size:1.02rem}
+.qa .ans{margin:8px 0;padding:10px 14px;background:rgba(74,163,255,.08);border-left:3px solid var(--blue);border-radius:0 10px 10px 0}
+.srcs{font-size:.78rem;color:var(--muted)} .srcs a{word-break:break-all}
+.fp{display:grid;grid-template-columns:minmax(170px,1.3fr) repeat(3,1fr);gap:6px;font-size:.82rem}
+.fp>div{background:rgba(255,255,255,.04);border-radius:8px;padding:8px 10px}
+.fp .h{background:none;color:var(--muted);font:700 .7rem var(--mono);text-transform:uppercase}
+.fp .na{color:var(--dim)}
+.conf{display:flex;align-items:center;gap:8px}.conf .bar{flex:1;max-width:90px;margin:0}
+.feat{display:inline-block;font:.68rem var(--mono);background:rgba(255,255,255,.07);border-radius:6px;padding:1px 6px;margin:1px 2px 1px 0;color:var(--muted)}
+.feat.t{background:rgba(46,213,115,.15);color:var(--green)}
+footer{padding:36px 0 60px;color:var(--dim);font-size:.82rem}
+.empty{padding:30px;text-align:center;color:var(--amber);border:1px dashed var(--amber);border-radius:14px}
+
+/* astuces */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:18px}
+.kpi{background:linear-gradient(160deg,rgba(46,213,115,.14),rgba(46,213,115,.03));border:1px solid rgba(46,213,115,.35);border-radius:14px;padding:14px 16px}
+.kpi b{display:block;font:800 1.9rem var(--mono);color:var(--green)} .kpi span{font-size:.8rem;color:var(--muted)}
+.trick-group{margin:22px 0 8px;font:700 .78rem var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--blue)}
+.tricks{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px}
+.trick{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.trick h4{font-size:.98rem} .trick p{font-size:.85rem;color:var(--muted)}
+.trick .effect{margin-top:auto;padding-top:8px;border-top:1px dashed var(--line);font-size:.84rem;color:var(--green);font-weight:700}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px;margin-bottom:14px}
+.never{border-left:3px solid var(--blue);background:rgba(74,163,255,.08);padding:10px 14px;border-radius:0 10px 10px 0;font-size:.9rem;margin-top:12px}
+/* présentateur */
+.present-btn{font:700 .84rem var(--sans);background:var(--green);color:#06210f;border:0;border-radius:99px;padding:6px 14px;cursor:pointer;margin-left:auto;white-space:nowrap}
+.present-btn:hover{background:#4be58a}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.deck{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;background-image:radial-gradient(circle at 12% 8%,rgba(46,213,115,.1),transparent 40%),radial-gradient(circle at 88% 80%,rgba(74,163,255,.09),transparent 40%)}
+.deck[hidden]{display:none}
+.deck-top{display:flex;align-items:center;gap:14px;padding:10px 20px;border-bottom:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+.deck-top .title{font-weight:700;color:var(--text)} .deck-top .spacer{flex:1}
+.timer{font:700 1rem var(--mono);color:var(--green)} .timer.late{color:var(--amber)} .timer.over{color:var(--red)}
+.deck-body{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
+.deck-body.no-notes{grid-template-columns:minmax(0,1fr)}
+.slide{padding:26px 40px;overflow-y:auto}
+.slide .kicker{font:700 .74rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+.slide h2{font-size:clamp(1.6rem,3.2vw,2.5rem);line-height:1.15;margin:8px 0 6px;font-weight:800;letter-spacing:-.02em}
+.slide .message{font-size:1.15rem;color:#d7dde6;max-width:900px;margin-bottom:18px}
+.slide .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.slide .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.slide .box h4{font-size:1rem;margin-bottom:4px} .slide .box p,.slide .box li{font-size:.9rem;color:var(--muted)}
+.slide .big{font:800 2.2rem var(--mono);color:var(--green)}
+.slide .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:6px 0 12px}
+.slide .flow .node{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.84rem;min-width:130px}
+.slide .flow .node b{display:block;margin-bottom:2px} .slide .flow .node.ai{border-color:var(--blue)} .slide .flow .node.code{border-color:var(--green)} .slide .flow .node.human{border-color:var(--amber)}
+.slide .flow .arrow{align-self:center;color:var(--dim);font-size:1.2rem}
+.slide .link{display:inline-block;margin-top:14px;font-weight:700}
+.notes{border-left:1px solid var(--line);padding:18px 20px;overflow-y:auto;background:rgba(0,0,0,.22);font-size:.88rem}
+.notes h4{font:700 .72rem var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--amber);margin:12px 0 6px} .notes h4:first-child{margin-top:0}
+.notes ul{margin-left:18px;color:#d7dde6} .notes li{margin-bottom:6px}
+.qa-item{border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--card)}
+.qa-item summary{cursor:pointer;padding:10px 14px;font-weight:700;font-size:.95rem} .qa-item p{padding:0 14px 12px;color:var(--muted);font-size:.9rem}
+.deck-bar{display:flex;align-items:center;gap:12px;padding:10px 20px;border-top:1px solid var(--line)}
+.dots{display:flex;gap:6px;flex:1;justify-content:center;flex-wrap:wrap} .dots button{width:11px;height:11px;border-radius:50%;border:1px solid var(--dim);background:transparent;cursor:pointer;padding:0} .dots button.on{background:var(--green);border-color:var(--green)} .dots button.done{background:var(--blue);border-color:var(--blue)}
+@media(max-width:900px){.deck-body{grid-template-columns:1fr;grid-template-rows:1fr auto}.notes{border-left:0;border-top:1px solid var(--line);max-height:38vh}.slide{padding:18px 16px}}
+
+/* Pecha Kucha 20×20 */
+.pk{position:fixed;inset:0;z-index:60;background:#0b1117;display:flex;flex-direction:column}
+.pk[hidden]{display:none}
+.pk-top{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:14px;padding:10px 18px;font:700 .85rem var(--mono);color:var(--dim)}
+.pk-top .spacer{flex:1} .pk-top button{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:8px;width:34px;height:30px;cursor:pointer}
+.pk-stage{position:absolute;inset:0;z-index:1} .pk-stage canvas{display:block}
+.pk-text{position:absolute;top:44px;left:0;right:0;z-index:2;text-align:center;pointer-events:none;padding:0 20px}
+.pk-text h2{font:800 clamp(1.8rem,4.6vw,3.4rem)/1.1 var(--sans);letter-spacing:-.02em} .pk-text p{font:500 clamp(1rem,2vw,1.45rem) var(--sans);color:var(--muted);margin-top:6px}
+.pk-subtitle{position:absolute;left:8%;right:8%;bottom:84px;z-index:3;text-align:center;font:600 1.15rem/1.4 var(--sans);background:rgba(0,0,0,.65);padding:10px 16px;border-radius:12px}
+.pk-start{position:absolute;inset:0;z-index:4;background:rgba(11,17,23,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;text-align:center}
+.pk-start b{font:800 clamp(2rem,6vw,4rem) var(--sans)} .pk-start span{color:var(--muted);font-size:1.05rem}
+.pk-start .go{background:var(--green);color:#06210f;border-radius:99px;padding:12px 30px;font:800 1.2rem var(--sans)}
+.pk-bar{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:10px 18px 14px;display:flex;flex-direction:column;gap:8px;background:linear-gradient(transparent,rgba(11,17,23,.92) 40%)}
+.pk-segments{display:flex;gap:3px} .pk-segments i{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.12)} .pk-segments i.done{background:var(--blue)} .pk-segments i.now{background:rgba(46,213,115,.25)}
+.pk-progress{height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden} .pk-progress i{display:block;height:100%;width:0;background:var(--green)}
+.pk-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap} .pk-controls button{background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:6px 14px;font:700 .9rem var(--sans);cursor:pointer}
+.pk-controls button.off{opacity:.45} .pk-controls .status{font:.78rem var(--mono);color:var(--dim);margin-left:auto}
+.pk-stage input[type=range]{accent-color:#2ed573}
+.pk-start[hidden],.pk-subtitle[hidden]{display:none}
+.pk.recording .pk-bar,.pk.recording .pk-top,.pk.recording .pk-subtitle{display:none}
+
+/* code concret + détails repliés */
+details.more{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:12px 0;padding:0}
+details.more>summary{cursor:pointer;padding:14px 18px;font-weight:700;list-style:none} details.more>summary::before{content:'▸ ';color:var(--green)} details.more[open]>summary::before{content:'▾ '}
+details.more>div,details.more>.pad{padding:0 18px 16px}
+.codeview{background:#0a0f14;border:1px solid var(--line);border-radius:10px;padding:10px 0;font:.78rem/1.55 var(--mono);overflow:auto;max-height:520px}
+.codeview .cl{display:block;padding:0 14px;white-space:pre} .codeview .cl i{display:inline-block;width:2.8em;color:var(--dim);font-style:normal;user-select:none;margin-right:10px;text-align:right}
+.code-grid .codeview{max-height:660px}
+.code-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:18px} @media(max-width:980px){.code-grid{grid-template-columns:1fr}}
+.coderef{display:inline-block;font:600 .8rem var(--mono);color:var(--blue);text-decoration:none;margin:4px 12px 0 0} .coderef:hover{text-decoration:underline}
+.coderefs{margin-top:6px} details.code-ref{margin-top:10px} details.code-ref>summary{cursor:pointer;font:600 .82rem var(--mono);color:var(--blue)}
+ul.checklist{list-style:none;margin:6px 0 14px} ul.checklist li{padding:5px 0 5px 26px;position:relative;font-size:.95rem} ul.checklist li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800}
+.big-number{font:800 2.4rem var(--mono);color:var(--green)}
+</style>
+
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a href="#video">Vidéo</a><a href="#pas-a-pas">Preuve</a><a href="#code">Code</a><a href="#resultats">Résultats</a><a href="#tableau">Tableau</a><a href="#humain">Humain</a><a href="#souverainete">Souveraineté</a><a href="#cout">Matériel &amp; coût</a><a href="#defi">Limites</a><a href="#reproduire">Relancer</a><a href="#plus">Plus</a><button class="present-btn" id="present-open" title="Touche P">▶ Pecha Kucha</button>
+</nav>
+
+<header class="hero"><div class="wrap">
+  <span class="badge">Lallemand Plant Care · Hackathon IA for Impact 2026</span>
+  <h1>Une IA qui ne publie que ce qu'elle peut prouver</h1>
+  <p class="lead">Veille réglementaire des produits de protection des plantes : trois bases officielles, aucune valeur sans source.</p>
+  <div class="hero-actions"><button class="btn primary" id="present-open-hero">▶ Pecha Kucha 20×20 avec voix</button><a class="btn" href="#code" style="text-decoration:none">Voir le code</a><button class="btn" id="present-detail">Version détaillée</button></div>
+  <div class="stats" id="stats"></div>
+</header>
+
+<main id="app"></main>
+
+<div class="pk" id="pk" hidden>
+  <div class="pk-top"><span id="pk-count">1 / 20</span><span class="spacer"></span><span id="pk-clock">0:00 / 6:40</span><button id="pk-close" title="Échap">✕</button></div>
+  <div class="pk-stage" id="pk-stage"></div>
+  <div class="pk-text"><h2 id="pk-headline"></h2><p id="pk-caption"></p></div>
+  <div class="pk-subtitle" id="pk-subtitle" hidden></div>
+  <div class="pk-start" id="pk-start"><b>Pecha Kucha 20 × 20</b><span>20 diapositives · 20 secondes chacune · 6 min 40</span><div class="go">▶ Lancer (Espace)</div><span>Espace pause · ← → naviguer · V voix · S sous-titres · F plein écran · Échap quitter</span></div>
+  <div class="pk-bar"><div class="pk-segments" id="pk-segments"></div><div class="pk-progress"><i id="pk-progress"></i></div>
+    <div class="pk-controls"><button id="pk-prev">⏮</button><button id="pk-play">▶</button><button id="pk-next">⏭</button><button id="pk-voice">🔊 Voix</button><button id="pk-subs">Sous-titres</button><button id="pk-full">⛶</button><span class="status" id="pk-voice-status">voix prête</span></div></div>
+</div>
+<div class="deck" id="deck" hidden>
+  <div class="deck-top"><span class="title">Mode présentateur</span><span id="deck-where"></span><span class="spacer"></span>
+    <span id="deck-budget"></span><span class="timer" id="timer">00:00</span>
+    <button class="btn" id="deck-notes-toggle">Notes (N)</button><button class="btn" id="deck-close">Fermer (Échap)</button></div>
+  <div class="deck-body" id="deck-body"><section class="slide" id="slide"></section><aside class="notes" id="notes"></aside></div>
+  <div class="deck-bar"><button class="btn" id="deck-prev">← Précédent</button><div class="dots" id="dots"></div><button class="btn primary" id="deck-next">Suivant →</button></div>
+</div>
+<script src="web/data.js"></script>
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const L = window.VEILLE;
+const PAYS = {}, SRC = {};                                  // alimentés par les sources déclarées (INFO de chaque module)
+(L ? L.sources : []).forEach(s => { PAYS[s.country_code] = s.country; SRC[s.id] = s.name; });
+const COUNTRIES = [...new Set((L ? L.sources : []).map(s => s.country_code))];
+const STATUT = { verifie_auto: ['ok', 'vérifié par le code'], a_confirmer: ['warn', 'à confirmer'], valide_humain: ['ok', 'validé par un expert'], extrait: ['info', 'extrait'], rejete: ['ko', 'rejeté'] };
+const pill = (cls, t) => `<span class="pill ${cls}">${esc(t)}</span>`;
+const statutPill = s => { const [c, t] = STATUT[s] || ['info', s]; return pill(c, t); };
+const mark = (text, frag) => { const t = esc(text); if (!frag) return t; const f = esc(frag); const i = t.toLowerCase().indexOf(f.toLowerCase()); return i < 0 ? t : t.slice(0, i) + '<mark>' + t.slice(i, i + f.length) + '</mark>' + t.slice(i + f.length); };
+
+function codeDetails(key, open = false) {
+  const c = L.code && L.code[key]; if (!c) return '';
+  return `<details class="code-ref"${open ? ' open' : ''}><summary>📄 le code : ${esc(c.path.split('/').pop())} · ${esc(c.symbol || 'fichier')} · lignes ${c.start}–${c.end}</summary><div class="hl codeview">${c.html}</div><a class="coderef" href="${c.url}" target="_blank" rel="noopener">Ouvrir le fichier à ces lignes ↗</a></details>`;
+}
+function codeLink(key) {
+  const c = L.code && L.code[key];
+  return c ? `<a class="coderef" href="${c.url}" target="_blank" rel="noopener" title="${esc(c.title)}">📄 ${esc(c.path.split('/').pop())} · ${esc(c.symbol || 'fichier')}</a>` : '';
+}
+
+function init() {
+  const P = L.performance, ev = L.eval, dosePct = ev ? Math.round(ev.exactitude_par_champ.dose_value * 100) : null;
+  $('#stats').innerHTML = [
+    [Math.round(P.published_rate * 100) + ' %', 'publiés avec leur preuve'], [dosePct == null ? '–' : dosePct + ' %', 'de doses exactes'],
+    [ev ? ev.valeurs_inventees_publiees : '–', 'valeur inventée'], ['0', 'appel à une IA cloud'],
+  ].map(([b, t]) => `<div class="stat"><b>${esc(b)}</b><span>${esc(t)}</span></div>`).join('');
+  $('#app').innerHTML = `
+  <section class="block" id="promesse"><div class="wrap"><div class="grid3">
+    <div class="card"><span class="tag">Le problème</span><h3>Des jours pour comparer deux marchés</h3><p>Des dizaines de bases, de formats, de langues.</p></div>
+    <div class="card"><span class="tag">Notre réponse</span><h3>L'IA propose, le code décide</h3><p>Modèle local · Qdrant · Pydantic.</p></div>
+    <div class="card"><span class="tag">Notre promesse</span><h3>Aucune valeur sans preuve</h3><p>Source, date et citation sur chaque ligne.</p></div>
+  </div></div></section>
+  <section class="block" id="video"><div class="wrap"><h2>6 minutes 32 pour tout comprendre</h2>
+    <p class="sub">La présentation en vidéo : 20 diapositives, voix-off, sous-titres.</p>
+    <video controls preload="none" poster="video/poster.jpg" style="width:100%;max-width:960px;border-radius:14px;border:1px solid var(--line);background:#000"><source src="video/veille_reglementaire_pechakucha.mp4" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="video/veille_reglementaire_pechakucha.mp4">télécharger</a>.</video>
+    <p class="sub" style="margin-top:8px"><a href="video/veille_reglementaire_pechakucha.mp4" download>Télécharger (25 Mo)</a> · <a href="video/sous-titres.srt" download>Sous-titres (SRT, aussi intégrés au fichier)</a> · produite avec <code>generate_scene.sh</code> à partir de <code>video/storyboard.json</code></p></div></section>
+  <section class="block" id="pas-a-pas"><div class="wrap"><h2>Voir une valeur naître</h2>
+    <p class="sub">De la source officielle au résultat. Un vrai cas, 9 étapes (touches ← →).</p>
+    <div class="cases" id="cases"></div><div class="stepper" id="stepper"></div><div class="card" id="stage"></div>
+    <div class="nav"><button class="btn" id="prev">← Précédent</button><span id="where" class="cap"></span><button class="btn primary" id="next">Suivant →</button></div>
+  </div></section>
+  <section class="block" id="code"><div class="wrap"><h2>Le contrôle de preuve : voici le code</h2>
+    <p class="sub">Une trentaine de lignes de Python. Aucune IA dedans.</p><div id="code-proof"></div></div></section>
+  <section class="block" id="resultats"><div class="wrap"><h2>Résultats mesurés</h2>
+    <div class="kpis" id="kpis"></div><div class="grid3" id="eval"></div>
+    <details class="more"><summary>Les astuces derrière ces chiffres</summary><div id="tricks"></div></details></div></section>
+  <section class="block" id="tableau"><div class="wrap"><h2>Le tableau produit × pays × usage</h2>
+    <p class="sub">Valeur d'origine, valeur normalisée, lien source. « — » : la source ne dit rien.</p>
+    <div class="fp" id="fp"></div>
+    <div class="filters" style="margin-top:16px"><select id="fp-prod"></select><select id="fp-pays"></select>
+      <input id="fp-q" placeholder="culture, cible, code EPPO…" size="26"><select id="fp-dose"><option value="">Avec ou sans dose</option><option value="1">Dose publiée seulement</option></select><button class="btn" id="csv">Exporter en CSV</button><span id="cnt" class="cap" style="align-self:center"></span></div>
+    <div class="scroll"><table class="cmp" id="tbl"></table></div><button class="btn" id="tbl-more" style="margin-top:10px"></button></div></section>
+  <section class="block" id="humain"><div class="wrap"><h2>Quand l'IA ne tranche pas, l'humain garde la main</h2>
+    <p class="sub">Les sources douteuses vont dans une file de relecture. Rien n'est publié « validé » sans un expert.</p><div id="human"></div></div></section>
+  <section class="block" id="souverainete"><div class="wrap"><h2>Souveraineté et sobriété</h2>
+    <p class="sub">Tout reste chez nous. Les sources ne sont jamais surchargées.</p><div id="sovereignty"></div></div></section>
+  <section class="block" id="cout"><div class="wrap"><h2>Quel matériel ? Quel coût ?</h2><div id="headline"></div>
+    <details class="more"><summary>Détail : mémoire GPU, vitesse, stockage</summary><div id="bench"></div></details>
+    <details class="more"><summary>Détail : coût face aux IA payantes</summary><div id="cost"></div></details></div></section>
+  <section class="block" id="defi"><div class="wrap"><h2>Ce qui est fait, ce qui ne l'est pas</h2><div class="scroll"><table class="cmp" id="cov"></table></div></div></section>
+  <section class="block" id="reproduire"><div class="wrap"><h2>Relancer en trois commandes</h2><pre class="code">pip install -r requirements.txt
+./run_all.sh
+./veille ask "Quelle est la dose de LALSTOP G46 WG sur vigne en France ?"</pre>
+    <p class="sub" style="margin-top:10px">Construit le ${esc(L.built)} · ${esc(L.model)} · Qdrant ${esc(L.qdrant)} · <a href="web/source/index.html" target="_blank" rel="noopener">tout le code ↗</a> · AGPL-3.0</p></div></section>
+  <section class="block" id="plus"><div class="wrap"><h2>Pour aller plus loin</h2>
+    <details class="more"><summary>Poser une question en français</summary><div id="qa"></div></details>
+    <details class="more"><summary>Produits sœurs (hypothèses à confirmer)</summary><div class="pad"><div class="scroll"><table class="cmp" id="sis"></table></div></div></details>
+    <details class="more"><summary>Méthodes voisines : Arbor, Self-Refine, DSPy…</summary><div id="methods"></div></details>
+    <details class="more"><summary>Les prompts et le contrat de données</summary><div class="pad"><div class="tabs" id="ptabs"></div><pre class="code" id="pcode" style="max-height:420px"></pre><p class="sub" id="pwhy" style="margin:10px 0 0"></p><pre class="code" id="models" style="margin-top:12px;max-height:420px"></pre></div></details></div></section>
+  <footer><div class="wrap">Sources publiques officielles (e-Phy, PMRA, EPA), date de collecte sur chaque ligne. « Vérifié par le code » n'est pas « validé » : seul un expert valide. Code sous licence AGPL-3.0.</div></footer>`;
+  buildTricks(); buildHuman(); buildSovereignty(); buildCases(); buildQA(); buildTable(); buildSisters(); buildEval(); buildMethods(); buildBench(); buildCost(); buildHeadline(); buildPrompts(); buildCoverage(); buildCodeSection();
+}
+
+function buildHuman() {
+  const R = L.review, el = $('#human');
+  if (!R) { el.innerHTML = ''; return; }
+  const rows = R.waiting.slice(0, 8).map(it => `<tr><td><span class="pill ${it.kind === 'a_corriger' ? 'ko' : 'warn'}">${it.kind === 'a_corriger' ? 'à corriger' : 'à confirmer'}</span></td><td><b>${esc(it.product)}</b></td><td>${esc(PAYS[it.country] || it.country)}</td><td><a href="${esc(it.source_url)}" target="_blank" rel="noopener">document officiel ↗</a></td><td style="color:var(--muted)">${esc(it.reason.slice(0, 90))}</td></tr>`).join('');
+  el.innerHTML = `<div class="kpis"><div class="kpi"><b>${R.to_correct}</b><span>sources à corriger (3 essais ratés)</span></div><div class="kpi"><b>${R.to_confirm}</b><span>sources à confirmer (l'IA doute)</span></div><div class="kpi"><b>${R.decided}</b><span>décisions humaines déjà prises</span></div></div>
+  <div class="grid3" style="align-items:start">
+    <div class="card"><span class="tag">1 · Voir</span><h3>La file de relecture</h3><p>Chaque ligne renvoie au document officiel.</p><pre class="code">./veille review
+./veille review --show 3</pre></div>
+    <div class="card"><span class="tag">2 · Corriger</span><h3>Des valeurs contrôlées</h3><p>Les valeurs de l'expert doivent, elles aussi, figurer mot à mot dans la source.</p><pre class="code">./veille correct 3 --author Camille \
+  --dose-original "0.35 oz" --dose-value 0.35 ...</pre></div>
+    <div class="card"><span class="tag">3 · Étendre</span><h3>Une nouvelle source</h3><p>Un squelette, trois champs à remplir, c'est tout.</p><pre class="code">./veille new-source agrofit --name "AGROFIT" \
+  --country-code BR --country Brésil ...</pre></div></div>
+  <h3 style="font-size:1rem;margin:20px 0 8px">À relire maintenant</h3>
+  <div class="scroll"><table class="cmp"><tr><th>Cas</th><th>Produit</th><th>Pays</th><th>Source</th><th>Pourquoi</th></tr>${rows}</table></div>
+  <p class="sub" style="margin:8px 0 14px">${R.waiting.length > 8 ? `Et ${R.waiting.length - 8} autres. ` : ''}Une valeur corrigée est rejouée après chaque nouvelle extraction : une relecture n'est jamais perdue.</p>
+  <h3 style="font-size:1rem;margin:20px 0 8px">L'interface d'administration <span class="cap" style="display:inline">./veille serve puis http://localhost:8088/admin</span></h3>
+  <div class="grid3"><div class="card"><img src="web/img/admin-tableau-de-bord.png" alt="Tableau de bord d'administration" style="width:100%;border-radius:10px;border:1px solid var(--line)"><p style="margin-top:8px">Tableau de bord : sources, compteurs, lancement des traitements avec journal.</p></div>
+    <div class="card" style="grid-column:span 2"><img src="web/img/admin-relecture.png" alt="Écran de relecture" style="width:100%;border-radius:10px;border:1px solid var(--line)"><p style="margin-top:8px">Relecture : le texte source, le motif, des champs prêts à corriger. Une valeur sans preuve est <b>refusée avec son motif</b> (capture ci-dessus).</p></div></div>
+  <div class="coderefs" style="margin-top:8px">${codeLink('review_decide')} ${codeLink('review_build')} ${codeLink('scaffold')}</div>`;
+}
+
+function buildCodeSection() {
+  const proof = L.code.proof_check, test = L.code.test_proof;
+  $('#code-proof').innerHTML = `<div class="code-grid">
+    <div><div class="cap">${esc(proof.path)} · ${esc(proof.symbol)}() · lignes ${proof.start}–${proof.end}</div><div class="hl codeview">${proof.html}</div>
+      <a class="coderef" href="${proof.url}" target="_blank" rel="noopener">Ouvrir le fichier à ces lignes ↗</a></div>
+    <div><div class="cap">Ce qu'il vérifie</div>
+      <ul class="checklist"><li><b>La citation</b> existe mot à mot dans le texte source</li><li><b>Culture, cible, dose, unité</b> : idem</li><li><b>Applications, délais</b> : ces nombres sont dans le texte</li><li><b>La dose</b> figure dans la citation</li></ul>
+      <div class="cap">La preuve que ça marche · ${esc(test.path)} · lignes ${test.start}–${test.end}</div><div class="hl codeview" style="max-height:210px">${test.html}</div>
+      <pre class="code" style="margin-top:8px">python -m unittest discover -s tests -v</pre>
+      <div class="coderefs">${codeLink('attempt')} ${codeLink('loop')} ${codeLink('contract')} ${codeLink('prompt_extractor')} ${codeLink('retry_prompt')}</div>
+      <a class="btn" href="web/source/index.html" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;text-decoration:none">Parcourir tout le code ↗</a></div></div>`;
+}
+
+function buildHeadline() {
+  const B = L.bench, C = L.cost, el = $('#headline');
+  if (!B || !C) { el.innerHTML = ''; return; }
+  const reco = B.recommendation, big = C.scenarios[2], gigabytes = v => v.toLocaleString('fr-FR', { maximumFractionDigits: 1 }) + ' Go';
+  const money = v => v.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' $';
+  const apis = C.options.filter(o => o.kind !== 'local'), cheapest = apis.reduce((m, o) => o.totals[big.name] < m.totals[big.name] ? o : m);
+  const flagship = C.options.find(o => o.kind === 'api' && o.tier === 'haut' && o.label.includes('Opus'));
+  el.innerHTML = `<div class="grid3">
+    <div class="card"><span class="tag">Modèle</span><div class="big-number">${esc(reco.model.replace(':latest', ''))}</div><p>${gigabytes(reco.vram_1_request_gb)} de VRAM : une carte de 8 Go suffit.</p></div>
+    <div class="card"><span class="tag">Coût local · ${esc(frNumber(big.passages))} passages</span><div class="big-number">${money(C.options[0].totals[big.name])}</div><p>d'électricité (${money(C.options[1].totals[big.name])} avec la carte amortie).</p></div>
+    <div class="card"><span class="tag">API payante · mêmes passages</span><div class="big-number" style="color:var(--amber)">${flagship ? money(flagship.totals[big.name]) : '–'}</div><p>haut de gamme. Le moins cher : ${esc(cheapest.label)}, ${money(cheapest.totals[big.name])}.</p></div></div>
+    <div class="never"><b>Lecture honnête :</b> face aux plus petites API en lot, le local amorti est du même ordre. L'avantage décisif : les données restent chez nous, sans clé ni plafond. Seule la qualité des modèles locaux a été mesurée.</div>`;
+}
+
+/* ───────── pas à pas ───────── */
+const STEPS = ['La question', 'Les sources', 'Qdrant', 'Le prompt', 'Réponse du modèle', 'Contrat Pydantic', 'Contrôle de preuve', 'La boucle', 'Résultat'];
+let cur = 0, step = 0, att = 0;
+function buildCases() {
+  $('#cases').innerHTML = L.cases.map((c, i) => `<button class="chip" data-i="${i}">${esc(c.title)}</button>`).join('');
+  $('#cases').onclick = e => { const b = e.target.closest('.chip'); if (b) { cur = +b.dataset.i; step = 0; att = 0; render(); } };
+  $('#stepper').innerHTML = STEPS.map((s, i) => `<button data-i="${i}"><b>${i + 1}</b>${esc(s)}</button>`).join('');
+  $('#stepper').onclick = e => { const b = e.target.closest('button'); if (b) { step = +b.dataset.i; render(); } };
+  $('#prev').onclick = () => { if (step > 0) { step--; render(); } };
+  $('#next').onclick = () => { if (step < STEPS.length - 1) { step++; render(); } };
+  document.addEventListener('keydown', e => { if (e.target.matches('input,select,textarea') || deck.open) return; if (e.key === 'ArrowRight') $('#next').click(); if (e.key === 'ArrowLeft') $('#prev').click(); });
+  render();
+}
+function render() {
+  const cs = L.cases[cur]; if (!cs) { $('#stage').innerHTML = '<div class="empty">Aucun cas disponible.</div>'; return; }
+  [...$('#cases').children].forEach((b, i) => b.classList.toggle('on', i === cur));
+  [...$('#stepper').children].forEach((b, i) => { b.classList.toggle('on', i === step); b.classList.toggle('done', i < step); });
+  $('#prev').disabled = step === 0; $('#next').disabled = step === STEPS.length - 1;
+  $('#where').textContent = `étape ${step + 1} / ${STEPS.length}`;
+  const t = cs.trace; if (att >= t.attempts.length) att = 0;
+  const f = [s1, s2, s3, s4, s5, s6, s7, s8, s9][step](cs, t);
+  $('#stage').innerHTML = `<div class="stage"><div class="say"><h3>${step + 1}. ${esc(STEPS[step])}</h3>${f.say}${f.keep ? `<div class="keep"><b>À retenir.</b> ${f.keep}</div>` : ''}${f.gloss ? `<dl class="glossary">${f.gloss.map(([a, b]) => `<div><dt>${esc(a)}</dt><dd>— ${esc(b)}</dd></div>`).join('')}</dl>` : ''}</div><div class="show">${f.show}</div></div>`;
+  $('#stage').querySelectorAll('[data-att]').forEach(b => b.onclick = () => { att = +b.dataset.att; render(); });
+}
+const attTabs = t => t.attempts.length < 2 ? '' : `<div class="tabs">${t.attempts.map((a, i) => `<button data-att="${i}" class="${i === att ? 'on' : ''}">essai ${a.n} ${a.accepted ? '✓' : '✗'}</button>`).join('')}</div>`;
+
+function s1(cs) { return { say: `<p>Une question en français. La réponse ne vient que de textes officiels déjà collectés.</p>`, show: `<div class="cap">Question posée</div><div class="codeblock" style="font:1.1rem var(--sans);padding:18px">« ${esc(cs.question)} »</div>`, keep: `Pas de web, pas de mémoire du modèle : des preuves.` }; }
+function s2(cs, t) {
+  const p = t.passage, q = t.record ? t.record.citation.quote : (t.attempts[0] && (() => { try { return JSON.parse(t.attempts[0].raw).quote } catch { return '' } })());
+  return { say: `<p>Trois sources, deux régions. Leur texte est gardé tel quel, par <b>passages</b>.</p><p>Ce cas : <b>${esc(SRC[p.source_id])}</b>.</p>`,
+    show: `<div class="cap">Passage source (${esc(PAYS[p.country])} · collecté le ${esc(p.collected_at)})</div><div class="codeblock">${mark(p.text, q)}</div><div class="cap">Lien officiel</div><a href="${esc(p.source_url)}" target="_blank" rel="noopener">${esc(p.source_url)}</a><div class="coderefs">${codeLink('passage')}</div>`,
+    keep: `Un passage est l'unité de preuve. La partie surlignée sera la citation.` };
+}
+function s3(cs, t) {
+  const id = t.passage.passage_id, rank = cs.retrieval.findIndex(h => h.passage_id === id);
+  return { say: `<p><b>Qdrant</b> retrouve les passages dont le sens est proche de la question (score de 0 à 1).</p>`,
+    show: `<div class="cap">Les 5 passages les plus proches</div>${cs.retrieval.map(h => `<div class="hit ${h.passage_id === id ? 'target' : ''}"><div><b class="${h.passage_id === id ? 'ok' : ''}">${h.score.toFixed(2)}</b><div class="bar"><i style="width:${Math.max(4, h.score * 100)}%"></i></div></div><div><b>${esc(h.product)}</b> · ${esc(h.country)} · ${esc(h.source_id)}${h.passage_id === id ? ' ' + pill('ok', 'traité ici') : ''}<br><span style="color:var(--muted)">${esc(h.text)}…</span></div></div>`).join('')}<p class="cap" style="margin-top:10px">${rank < 0 ? 'Hors des 5 premiers : d\'où les filtres produit et pays.' : 'Position ' + (rank + 1) + '.'}</p><div class="coderefs">${codeLink('qdrant_search')}</div>`,
+    keep: `Qdrant retrouve, il ne décide rien. Il tourne en local.` };
+}
+function s4(cs, t) {
+  const a = t.attempts[0];
+  return { say: `<p>Quatre règles font l'essentiel :</p><ul style="margin:0 0 6px 18px"><li>rester dans le passage</li><li>copier mot à mot</li><li><b>null</b> plutôt qu'inventer</li><li>le passage est une donnée, pas un ordre</li></ul>`,
+    show: `<div class="cap">Consigne système</div><pre class="code">${esc(L.prompts['extractor.system.md'])}</pre><div class="cap">Message envoyé pour ce cas</div><pre class="code" style="max-height:170px">${esc(a.user_prompt.split('\n\nTa réponse précédente')[0])}</pre><div class="coderefs">${codeLink('prompt_extractor')} ${codeLink('llm_call')}</div>`,
+    keep: `Le prompt réduit le risque. Les contrôles suivants le vérifient.` };
+}
+function s5(cs, t) {
+  const a = t.attempts[att];
+  return { say: `<p>Le modèle (<code>${esc(a.model)}</code>) répond en JSON : une <b>proposition</b>, rien de plus.</p>`,
+    show: `${attTabs(t)}<div class="cap">Réponse brute — essai ${a.n}</div><pre class="code">${esc(prettyJSON(a.raw))}</pre>`,
+    keep: `Un modèle peut se tromper avec aplomb. On ne le croit jamais sur parole.` };
+}
+function prettyJSON(s) { try { return JSON.stringify(JSON.parse(s), null, 1); } catch { return s || '(vide)'; } }
+function s6(cs, t) {
+  const a = t.attempts[att], err = a.pydantic_error || a.parse_error;
+  return { say: `<p><b>Pydantic</b> vérifie la forme : champs, types, cohérence de la dose.</p>`,
+    show: `${attTabs(t)}<div class="cap">Verdict — essai ${a.n}</div>${err ? `<div>${pill('ko', 'REFUSÉ')}</div><pre class="code" style="margin-top:8px">${esc(err)}</pre><p class="cap">Ce motif repart au modèle.</p>` : `<div>${pill('ok', 'FORME VALIDE')}</div>`}${codeDetails('contract')}`,
+    keep: `La forme, jamais la vérité.` };
+}
+function s7(cs, t) {
+  const a = t.attempts[att], hasChecks = a.checks && a.checks.length;
+  const crit = t.critic && a.accepted ? `<div class="cap">Second avis de l'IA (indicatif)</div>${pill(t.critic.verdict === 'ok' ? 'ok' : 'warn', t.critic.verdict)} <span style="color:var(--muted);font-size:.82rem">${esc((t.critic.motifs || []).join(' ; '))}</span>` : '';
+  return { say: `<p>Le <b>code</b> cherche chaque valeur, mot à mot, dans le passage. Une preuve manque : refus.</p>`,
+    show: `${attTabs(t)}${hasChecks ? `<div class="cap">Contrôles — essai ${a.n}</div><ul class="checks">${a.checks.map(c => `<li>${c.ok ? '<span class="ok">✓</span>' : '<span class="ko">✗</span>'} <code>${esc(c.check)}</code> — ${esc(c.detail)}</li>`).join('')}</ul>` : `<p class="cap">Essai ${a.n} : déjà refusé par le contrat.</p>`}${crit}${codeDetails('proof_check', true)}`,
+    keep: `C'est ici que « aucune donnée inventée » devient vérifiable.` };
+}
+function s8(cs, t) {
+  const n = t.attempts.length;
+  return { say: n > 1 ? `<p>Refus : le modèle reçoit le motif exact et recommence (3 essais).</p><p>Ici : <b>${n} essais</b>.</p>` : `<p>Refus → motif exact → nouvel essai (3 au plus).</p><p>Ici, réussi du <b>premier coup</b>. Voir le cas « retry ».</p>`,
+    show: `<div class="cap">Déroulé</div>${t.attempts.map(a => `<div style="margin-bottom:10px">${pill(a.accepted ? 'ok' : 'ko', 'essai ' + a.n + (a.accepted ? ' · accepté' : ' · refusé'))}${a.error ? `<pre class="code" style="margin-top:6px;max-height:110px">${esc(a.error)}</pre>` : ''}</div>`).join('')}${t.outcome === 'hitl' ? `<div>${pill('warn', 'Trois échecs : un expert tranche')}</div><p class="cap">Rien n'est publié.</p>` : ''}${n > 1 ? `<div class="cap">Message de correction réellement envoyé à l'essai 2</div><pre class="code" style="max-height:160px">${esc(t.attempts[1].user_prompt.split('\n\nTa réponse précédente')[1] || '')}</pre>` : ''}${codeDetails('retry_prompt')}${codeDetails('loop')}`,
+    keep: `Mieux vaut une case vide qu'une dose fausse.` };
+}
+function s9(cs, t) {
+  const r = t.record;
+  if (!r) return { say: `<p>Trois essais, aucune réponse valide. <b>Rien n'est publié</b> : un expert reçoit le dossier.</p>`, show: `<div>${pill('warn', 'Envoyé à l\'expert')}</div><div class="cap">Passage concerné</div><div class="codeblock">${esc(t.passage.text)}</div>`, keep: `Un système fiable sait dire « je ne sais pas ».` };
+  const row = (k, o, n) => `<tr><td>${k}</td><td class="o">${o ?? '—'}</td><td class="n">${n ?? '—'}</td></tr>`;
+  const ep = t.eppo || {};
+  return { say: `<p>Valeur d'origine, valeur normalisée, lien, date, statut.</p>`,
+    show: `<div>${statutPill(r.validation_status)} ${pill('info', r.attempts + ' essai' + (r.attempts > 1 ? 's' : ''))}</div><table class="cmp" style="margin-top:8px"><tr><th>Champ</th><th>Origine</th><th>Normalisé</th></tr>
+      ${row('Produit', esc(r.product), '')}${row('Pays', esc(PAYS[r.country]), esc(r.country))}${row('Culture', esc(r.crop_original), esc(r.crop_eppo))}${row('Cible', esc(r.target_original), esc(r.target_eppo))}${row('Dose', esc(r.dose_original), r.dose_norm_value != null ? esc(r.dose_norm_value + ' ' + r.dose_norm_unit) : null)}${row('Applications max', r.max_applications, '')}${row('Délai avant récolte (j)', r.pre_harvest_interval_days, '')}${row('Statut d\'autorisation', esc(r.authorization_status_original), esc(r.authorization_status))}</table>
+      <div class="cap">Citation retrouvée dans la source</div><div class="codeblock">${esc(r.citation.quote)}</div>
+      <div class="cap">Source · collecté le ${esc(r.citation.collected_at)}</div><a href="${esc(r.citation.source_url)}" target="_blank" rel="noopener">${esc(r.citation.source_url)}</a>
+      ${(ep.crop && ep.crop.steps.length) || (ep.target && ep.target.steps.length) ? `<div class="cap">Codes EPPO : le modèle choisit parmi des candidats, la table confirme</div><pre class="code" style="max-height:120px">${esc(JSON.stringify({ culture: ep.crop && ep.crop.steps.map(x => ({ mot: x.part, methode: x.method, code: x.code })), cible: ep.target && ep.target.steps.map(x => ({ mot: x.part, methode: x.method, code: x.code })) }, null, 1))}</pre>` : ''}<div class="coderefs">${codeLink('eppo')} ${codeLink('dose_norm')}</div>`,
+    keep: `Au mieux « vérifié par le code ». Seul un expert valide.` };
+}
+
+/* ───────── questions ───────── */
+function buildQA() {
+  $('#qa').innerHTML = L.qa.map(q => `<div class="card qa"><div class="q">« ${esc(q.question)} »</div>
+    <div class="cap">1 · Filtres déduits par le modèle (il ne répond pas)</div><pre class="code" style="max-height:90px">${esc(JSON.stringify(q.plan.plan))}</pre>
+    <div class="cap">2 · Réponse ${q.answer_grounded_by_code ? '(rédigée par le modèle, chaque nombre vérifié par le code)' : '(déterministe : aucun texte généré)'}</div><div class="ans">${esc(q.answer)}</div>
+    <div class="cap">3 · Sources</div><div class="srcs">${q.citations.slice(0, 6).map(c => `[${c.n}] <a href="${esc(c.source_url)}" target="_blank" rel="noopener">${esc(c.source_url)}</a> · collecté le ${esc(c.collected_at)} · « ${esc(c.quote.slice(0, 80))}${c.quote.length > 80 ? '…' : ''} »`).join('<br>')}</div></div>`).join('');
+}
+
+/* ───────── tableau ───────── */
+let shown = [], tableExpanded = false;
+function buildTable() {
+  const prods = [...new Set(L.table.map(r => r.product))].sort();
+  $('#fp-pays').innerHTML = '<option value="">Tous les pays</option>' + COUNTRIES.map(c => `<option value="${esc(c)}">${esc(PAYS[c])}</option>`).join('');
+  $('#fp-prod').innerHTML = '<option value="">Tous les produits</option>' + prods.map(p => `<option>${esc(p)}</option>`).join('');
+  const fp = L.footprint, fprod = [...new Set(fp.map(r => r.product))];
+  $('#fp').innerHTML = `<div class="h">Produit</div>` + COUNTRIES.map(c => `<div class="h">${PAYS[c]}</div>`).join('') + fprod.map(p => `<div>${esc(p)}</div>` + COUNTRIES.map(c => { const x = fp.find(r => r.product === p && r.country === c); return x ? `<div><b class="ok">${x.usages}</b> usage${x.usages > 1 ? 's' : ''} · ${x.with_dose} avec dose<br><span style="color:var(--muted);font-size:.72rem">${esc(x.statuses.join(', '))}</span></div>` : '<div class="na">non trouvé dans la source</div>'; }).join('')).join('');
+  ['fp-prod', 'fp-pays', 'fp-q', 'fp-dose'].forEach(i => $('#' + i).oninput = drawTable);
+  $('#csv').onclick = () => { const cols = Object.keys(shown[0] || {}); const csv = [cols.join(',')].concat(shown.map(r => cols.map(c => '"' + String(r[c] ?? '').replace(/"/g, '""') + '"').join(','))).join('\n'); const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv' })); a.download = 'comparatif_veille_reglementaire.csv'; a.click(); };
+  drawTable();
+}
+function drawTable() {
+  const p = $('#fp-prod').value, c = $('#fp-pays').value, q = $('#fp-q').value.toLowerCase(), d = $('#fp-dose').value;
+  shown = L.table.filter(r => (!p || r.product === p) && (!c || r.country === c) && (!d || r.dose_original) && (!q || [r.crop_original, r.target_original, r.crop_eppo, r.target_eppo].join(' ').toLowerCase().includes(q)));
+  $('#cnt').textContent = shown.length + ' ligne' + (shown.length > 1 ? 's' : '');
+  const more = $('#tbl-more'); more.hidden = shown.length <= 12; more.textContent = tableExpanded ? 'Réduire' : `Afficher les ${shown.length} lignes`;
+  more.onclick = () => { tableExpanded = !tableExpanded; drawTable(); };
+  $('#tbl').innerHTML = `<tr><th>Produit</th><th>Pays</th><th>Culture</th><th>EPPO</th><th>Cible</th><th>EPPO</th><th>Dose (originale)</th><th>Dose normalisée</th><th>Statut</th><th>Source</th></tr>` + shown.slice(0, tableExpanded ? 400 : 12).map(r => `<tr><td>${esc(r.product)}</td><td>${esc(r.country)}</td><td>${esc(r.crop_original) || '—'}</td><td class="n">${esc(r.crop_eppo) || '—'}</td><td>${esc(r.target_original) || '—'}</td><td class="n">${esc(r.target_eppo) || '—'}</td><td>${esc(r.dose_original) || '—'}</td><td class="n">${r.dose_norm_value != null ? esc(r.dose_norm_value + ' ' + r.dose_norm_unit) : '—'}</td><td>${statutPill(r.validation_status)}</td><td><a href="${esc(r.source_url)}" target="_blank" rel="noopener">${esc(r.source_id)}</a><br><span class="cap">${esc(r.collected_at)}</span></td></tr>`).join('');
+}
+function buildSisters() {
+  const rows = L.sisters;
+  $('#sis').innerHTML = rows.length ? `<tr><th>Produit A</th><th>Produit B</th><th>Confiance</th><th>Critères vérifiés</th><th>Justification</th><th>Statut</th></tr>` + rows.map(s => `<tr><td>${esc(s.product_a)}<br><span class="cap">${esc(PAYS[s.country_a])}</span></td><td>${esc(s.product_b)}<br><span class="cap">${esc(PAYS[s.country_b])}</span></td><td><div class="conf"><b class="${s.confidence >= .8 ? 'ok' : 'warn'}">${s.confidence.toFixed(2)}</b><div class="bar"><i style="width:${s.confidence * 100}%"></i></div></div></td><td>${Object.entries(s.features).map(([k, v]) => `<span class="feat ${v ? 't' : ''}">${v ? '✓' : '·'} ${esc(k.replace(/_/g, ' '))}</span>`).join('')}</td><td style="font-size:.78rem;max-width:380px">${esc(s.justification)}</td><td>${pill('warn', 'à confirmer')}</td></tr>`).join('') : '<tr><td>Aucune hypothèse au-dessus du seuil.</td></tr>';
+}
+function buildEval() {
+  const e = L.eval; if (!e) { $('#eval').innerHTML = '<div class="empty">Évaluation non exécutée (<code>python -m veille_reglementaire eval</code>).</div>'; return; }
+  const f = e.exactitude_par_champ, lab = { dose_value: 'Dose', dose_unit: 'Unité', max_applications: 'Applications max', pre_harvest_interval_days: 'Délai avant récolte', min_interval_days: 'Intervalle min.' };
+  $('#eval').innerHTML = `<div class="card"><span class="tag">Exactitude vs colonnes structurées e-Phy</span><h3>${e.records_evalues} enregistrements comparés</h3>${Object.entries(f).map(([k, v]) => `<div style="margin:7px 0"><div style="display:flex;justify-content:space-between;font-size:.84rem"><span>${lab[k]}</span><b class="${v >= .95 ? 'ok' : 'warn'}">${v == null ? '–' : Math.round(v * 100) + ' %'}</b></div><div class="bar"><i style="width:${(v || 0) * 100}%"></i></div></div>`).join('')}</div>
+   <div class="card"><span class="tag">Honnêteté</span><h3>${e.valeurs_inventees_publiees} valeur(s) publiée(s) sans exister dans la source</h3><p>Compte des cas où le modèle a publié un champ que la source structurée laisse vide. Toute valeur publiée a de plus passé le contrôle de citation mot à mot.</p></div>
+   <div class="card"><span class="tag">Boucle de contrôle</span><h3>Essais par passage</h3><p>${Object.entries(e.essais_par_passage).map(([k, v]) => `${v} passage(s) en ${k} essai(s)`).join(' · ')}</p><h3 style="margin-top:10px">Issues par source</h3><p>${Object.entries(e.issues).map(([k, v]) => `${esc(k)} : ${v}`).join('<br>')}</p><p style="margin-top:8px;font-size:.8rem">Limite : l'EPA n'a pas de colonne de dose structurée (PDF) : contrôle par échantillon manuel.</p></div>`;
+}
+function buildMethods() {
+  const H = L.holdout, E = L.eval, el = $('#methods');
+  const holdoutCard = H ? `<div class="card" style="border-color:var(--green)"><span class="tag">Test hors échantillon</span><h3>${H.passages} passages de ${H.products.length} produits jamais vus</h3>
+      <div class="kpis" style="margin:10px 0 0"><div class="kpi"><b>${H.passages ? Math.round(100 * H.published / H.passages) + ' %' : '–'}</b><span>publiés</span></div>
+      <div class="kpi"><b>${H.exactitude_par_champ.dose_value == null ? '–' : Math.round(100 * H.exactitude_par_champ.dose_value) + ' %'}</b><span>de doses exactes</span></div>
+      <div class="kpi"><b>${H.valeurs_inventees_publiees}</b><span>valeur inventée</span></div></div>
+      <p style="margin-top:8px;font-size:.82rem">Réglage : ${E ? Math.round(100 * E.exactitude_par_champ.dose_value) + ' %' : ''} de doses exactes. <code>./veille holdout</code></p>${codeDetails('holdout')}</div>`
+    : '<div class="empty">Test hors échantillon non exécuté (<code>./veille holdout</code>).</div>';
+  const rows = [
+    ['Une hypothèse = un nœud', 'Une règle de prompt ou un contrôle'],
+    ['Un exécuteur évalue l\'idée', '<code>./veille extract</code> puis <code>./veille eval</code>'],
+    ['L\'arbre garde les échecs', '<code>data/processed/history/</code> (liste plate)'],
+    ['Jeu dev, puis held-out', 'Évaluation e-Phy, puis <b>test hors échantillon</b>'],
+    ['Un humain promeut le tronc', 'Jamais au-dessus de « vérifié par le code »']];
+  el.innerHTML = `<div class="pad">
+  <div class="grid3" style="align-items:start"><div class="card"><span class="tag">Niveau 1 · par passage</span><h3>Générer → vérifier → réessayer</h3></div>
+    <div class="card"><span class="tag">Niveau 2 · par version du prompt</span><h3>Mesurer → corriger → remesurer</h3><p>${L.prompt_history.map(h => esc(h.version)).join(' → ')}</p></div>${holdoutCard}</div>
+  <h3 style="font-size:1rem;margin:18px 0 8px">Arbor (RUC-NLPIR) et nous</h3>
+  <div class="scroll"><table class="cmp"><tr><th>Arbor</th><th>Chez nous</th></tr>${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</table></div>
+  <div class="never"><b>Ce qui nous sépare :</b> Arbor est autonome et explore un arbre ; nous avons itéré à deux, en séquence. Nous avions d'abord réglé et mesuré sur les mêmes passages : le test hors échantillon corrige cela. Arbor n'est pas implémenté ici.</div>
+  <div class="scroll" style="margin-top:12px"><table class="cmp"><tr><th>Autre méthode</th><th>Lien avec nous</th></tr>
+    <tr><td><a href="https://arxiv.org/abs/2303.17651" target="_blank" rel="noopener">Self-Refine</a></td><td>Même boucle, mais le vérificateur est externe et déterministe</td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2303.11366" target="_blank" rel="noopener">Reflexion</a></td><td>Notre retour d'erreur ne dépasse pas un passage</td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2310.03714" target="_blank" rel="noopener">DSPy</a></td><td>Pydantic joue la signature ; prompts réglés à la main</td></tr>
+    <tr><td>OPRO</td><td>Ce que nous avons fait à la main de v1 à v3</td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2406.07496" target="_blank" rel="noopener">TextGrad</a></td><td>Nos motifs de refus jouent ce rôle</td></tr></table></div>
+  <p class="sub" style="margin-top:10px"><a href="https://github.com/RUC-NLPIR/Arbor" target="_blank" rel="noopener">Arbor</a> · arXiv:2606.11926 · comparaison conceptuelle, rien n'a été exécuté : <code>docs/METHODES_VOISINES.md</code></p></div>`;
+}
+function buildBench() {
+  const B = L.bench, el = $('#bench');
+  if (!B) { el.innerHTML = '<div class="empty">Comparatif non exécuté (<code>./veille bench</code>).</div>'; return; }
+  const sv = B.service, R = Object.values(B.results), st = B.storage, reco = B.recommendation;
+  const bestAccepted = Math.max(...R.map(r => r.accepted));
+  const gpuNames = [...new Set(B.gpu_table.map(g => g.gpu))];
+  el.innerHTML = `
+  <div class="card"><span class="tag">Où le modèle tourne</span><p><b class="ok">${esc(sv.accelerator)} ${esc(sv.gpu_declared || '')}</b> du service d'IA de l'essaim Astroport.ONE (relié par tunnel IPFS). Le poste client (${esc(sv.client.cpu)}) n'exécute pas le modèle. Les vitesses ci-dessous sont donc des <b>mesures sur cette carte</b>.</p></div>
+  <div class="card" style="margin-top:12px;border-color:var(--green)"><span class="tag">Recommandation</span><h3>${esc(reco.model)}</h3><p>Règle : ${esc(reco.rule)}. Il demande <b>${reco.vram_1_request_gb} Go de VRAM</b> pour une requête, <b>${reco.vram_4_parallel_gb} Go</b> pour quatre en parallèle : une carte de ${esc(reco.smallest_gpu || '—')} suffit.</p></div>
+  <h3 style="font-size:1rem;margin:18px 0 8px">1 · Qualité et vitesse <span class="pill ok">mesuré</span> · ${B.sample.passages} passages identiques pour chaque modèle</h3>
+  <div class="scroll"><table class="cmp"><tr><th>Modèle</th><th>Taille</th><th>Disque</th><th>Acceptés</th><th>Vers l'expert</th><th>Dose exacte</th><th>Valeurs inventées</th><th>s / passage</th><th>tokens/s</th></tr>
+  ${R.map(r => { const acc = r.accuracy_vs_structured.dose_value; return `<tr><td><b>${esc(r.model)}</b></td><td>${esc(r.facts.params)}</td><td>${r.facts.disk_gb} Go</td><td class="${r.accepted === bestAccepted ? 'n' : ''}">${r.accepted}/${r.passages}</td><td>${r.hitl}</td><td>${acc == null ? '–' : Math.round(acc * 100) + ' %'}</td><td class="${r.invented_values_published ? 'ko' : 'n'}">${r.invented_values_published}</td><td>${r.s_per_passage_mean}</td><td>${r.decode_tok_s ?? '–'}</td></tr>`; }).join('')}</table></div>
+  <h3 style="font-size:1rem;margin:22px 0 8px">2 · Mémoire GPU <span class="pill ok">mesurée</span> <span class="pill warn">estimée</span> <span class="cap" style="display:inline">poids + cache KV (contexte 4096) + 0,8 Go de marge</span></h3>
+  <div class="scroll"><table class="cmp"><tr><th>Modèle</th><th>Poids</th><th>VRAM mesurée (1 requête)</th><th>VRAM estimée · 1 requête</th><th>VRAM estimée · 4 en parallèle</th></tr>
+  ${R.map(r => `<tr><td><b>${esc(r.model)}</b></td><td>${r.facts.disk_gb} Go</td><td class="n">${r.memory_loaded.vram_gb ?? '–'} Go</td><td>${r.sizing['1 requête'].vram_gb} Go</td><td class="n">${r.sizing['4 requêtes parallèles'].vram_gb} Go</td></tr>`).join('')}</table></div>
+  <h3 style="font-size:1rem;margin:22px 0 8px">3 · Quelle carte ? <span class="pill warn">estimé</span> <span class="cap" style="display:inline">débit = efficacité mesurée (${sv.efficiency_measured ?? '–'}) × bande passante ÷ poids · à confirmer sur la carte</span></h3>
+  <div class="scroll"><table class="cmp"><tr><th>GPU</th>${R.map(r => `<th>${esc(r.model)}</th>`).join('')}</tr>
+  ${gpuNames.map(g => `<tr><td>${esc(g)}</td>${R.map(r => { const x = B.gpu_table.find(y => y.gpu === g && y.model === r.model); return `<td>${x.fits ? `<span class="ok">✓</span> ≈ ${x.est_passages_per_hour.toLocaleString('fr-FR')} passages/h` : `<span class="ko">✗</span> <span style="color:var(--dim)">${x.vram_needed_gb} Go requis</span>`}</td>`; }).join('')}</tr>`).join('')}</table></div>
+  <h3 style="font-size:1rem;margin:22px 0 8px">4 · Stockage</h3>
+  <div class="grid3"><div class="card"><span class="tag">Mesuré sur ce dépôt</span><p>Données brutes : <b>${st.raw_total_mb} Mo</b> (e-Phy ${st.raw_mb.ephy}, PMRA ${st.raw_mb.pmra}, EPA ${st.raw_mb.epa}).<br>Sorties et traces : <b>${st.processed_mb} Mo</b>. Cache IA : <b>${st.llm_cache_mb} Mo</b>.<br>${st.passages_now} passages indexés.</p></div>
+  <div class="card"><span class="tag">Extrapolation (linéaire)</span><p>${st.extrapolation.map(e => `${esc(e.scenario)} : <b>${e.qdrant_gb_est} Go</b> dans Qdrant`).join('<br>')}</p><p style="font-size:.78rem;margin-top:6px">${esc(st.note)}</p></div>
+  <div class="card"><span class="tag">Modèles à héberger</span><p>${R.map(r => `${esc(r.model)} : ${r.facts.disk_gb} Go`).join('<br>')}<br>Embedding ${esc(B.embedding.model)} : ${B.embedding.disk_gb} Go</p></div></div>
+  ${codeDetails('vram')}${codeDetails('calibrate')}<p class="sub" style="margin-top:14px">Rapport complet et méthode : <code>docs/BENCHMARK.md</code>. Rejouer sur une autre machine GPU : <code>VEILLE_GPU="nom de la carte" ./veille bench</code>.</p>`;
+}
+function buildCost() {
+  const C = L.cost, el = $('#cost');
+  if (!C) { el.innerHTML = '<div class="empty">Coût non calculé (<code>./veille cost</code>).</div>'; return; }
+  const money = v => v >= 0.01 ? v.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' $' : '< 0,01 $';
+  const names = C.scenarios.map(s => s.name);
+  const cheapestApi = Object.fromEntries(names.map(n => [n, Math.min(...C.options.filter(o => o.kind !== 'local').map(o => o.totals[n]))]));
+  const a = C.local_assumptions;
+  el.innerHTML = `
+  <div class="grid3">
+    <div class="card"><span class="tag">Volume mesuré</span><h3>${C.tokens_per_passage.prompt} + ${C.tokens_per_passage.generated} tokens</h3><p>lus + écrits par passage, avec les essais et les contrôles, mesurés avec <code>${esc(C.model_measured)}</code> (${C.seconds_per_passage} s par passage).</p></div>
+    <div class="card"><span class="tag">Coût local</span><h3>${money(C.options[0].per_passage * 1000)} les 1 000 passages</h3><p>Électricité seule. Avec l'amortissement de la carte : ${money(C.options[1].per_passage * 1000)}. Énergie : ${(C.local_per_passage.kwh * 1000).toFixed(2)} Wh par passage.</p></div>
+    <div class="card"><span class="tag">À retenir</span><h3>Le coût n'est pas la qualité</h3><p>Seuls les modèles locaux ont été mesurés sur cette tâche. Un modèle payant moins cher ou plus cher n'a pas été évalué ici.</p></div>
+  </div>
+  <h3 style="font-size:1rem;margin:22px 0 8px">Coût total par scénario <span class="pill warn">estimé</span> <span class="cap" style="display:inline">dollars US, hors taxes · tarifs relevés le ${esc(C.checked_on)}</span></h3>
+  <div class="scroll"><table class="cmp"><tr><th>Option</th>${C.scenarios.map(s => `<th>${esc(s.name)}<br><span style="font-weight:400">${s.passages.toLocaleString('fr-FR')} passages</span></th>`).join('')}</tr>
+  ${C.options.map(o => `<tr><td>${o.kind === 'local' ? '<b class="ok">' + esc(o.label) + '</b>' : esc(o.label)}${o.note ? `<br><span class="cap" style="margin:0">${esc(o.note)}</span>` : ''}</td>${names.map(n => `<td class="${o.kind === 'local' ? 'n' : (o.totals[n] === cheapestApi[n] ? 'n' : '')}">${money(o.totals[n])}</td>`).join('')}</tr>`).join('')}</table></div>
+  <div class="card" style="margin-top:12px;border-color:var(--amber)"><span class="tag" style="color:var(--amber)">Lecture honnête</span><p>${(() => { const big = C.scenarios[2].name, loc = C.options[0].totals[big], amort = C.options[1].totals[big], api = C.options.filter(o => o.kind !== 'local').reduce((m, o) => o.totals[big] < m.totals[big] ? o : m); return `Pour « ${esc(big)} » : le service local coûte <b>${money(loc)}</b> en électricité seule et <b>${money(amort)}</b> avec amortissement de la carte. L'option API la moins chère est <b>${esc(api.label)}</b> à <b>${money(api.totals[big])}</b> : ${api.totals[big] > amort ? `soit ${(api.totals[big] / amort).toFixed(1).replace('.', ',')} fois le coût local amorti` : `moins que le coût local amorti`}. Les modèles API haut de gamme coûtent des dizaines à des centaines de fois plus. L'avantage décisif du local n'est pas seulement le prix : aucune donnée ne quitte l'essaim, aucune clé, aucun plafond d'usage.`; })()}</p></div>
+  <p class="sub" style="margin-top:10px">Hypothèses locales (modifiables dans <code>config/local_cost_assumptions.json</code>) : carte ${a.gpu_purchase_usd} $ amortie sur ${a.lifetime_years} ans à ${Math.round(a.utilization * 100)} % d'utilisation, ${a.gpu_power_watts} W, électricité ${a.electricity_usd_per_kwh} $/kWh. En vert : le service local et l'API la moins chère de la colonne.</p>
+  <h3 style="font-size:1rem;margin:22px 0 8px">Et les forfaits ?</h3>
+  <div class="grid3"><div class="card"><span class="tag">Prix par personne et par mois</span><p>${C.subscriptions.map(s => `${esc(s.vendor)} · ${esc(s.plan)} : <b>${s.usd_per_month} $</b>`).join('<br>')}</p></div>
+  <div class="card" style="grid-column:span 2"><span class="tag">Pourquoi ce n'est pas comparable</span><p>${C.subscription_facts.map(f => esc(f)).join('<br><br>')}</p></div></div>
+  <h3 style="font-size:1rem;margin:22px 0 8px">Réserves</h3><ul style="margin-left:18px;color:var(--muted);font-size:.88rem">${C.caveats.map(c => `<li>${esc(c)}</li>`).join('')}</ul>
+  ${codeDetails('cost_local')}<p class="sub" style="margin-top:12px">Détail et sources : <code>docs/COUT.md</code>, <code>config/pricing.json</code>.</p>`;
+}
+function buildPrompts() {
+  const P = [['extractor.system.md', 'Extracteur', "Un rôle, des règles numérotées, une sortie fermée. Le passage est traité comme une donnée (protection contre l'injection de prompt)."], ['retry.user.md', "Retour d'erreur", "Le motif exact du refus est renvoyé : le modèle corrige ce qui est faux au lieu de recommencer au hasard."], ['critic.system.md', 'Critique', "Posture d'auditeur. Un champ null n'est jamais reproché. Son avis est indicatif : le contrôle en code a le dernier mot."], ['eppo.system.md', 'Normalisateur EPPO', "Choix fermé parmi des candidats : le modèle ne peut pas inventer un code, et le code vérifie qu'il est dans la liste."], ['query.system.md', 'Planificateur de requête', "Le modèle transforme la question en filtres. Il ne répond pas."]];
+  $('#ptabs').innerHTML = P.map((p, i) => `<button data-i="${i}">${esc(p[1])}</button>`).join('');
+  const show = i => { [...$('#ptabs').children].forEach((b, j) => b.classList.toggle('on', i === j)); $('#pcode').textContent = L.prompts[P[i][0]]; $('#pwhy').textContent = 'Pourquoi : ' + P[i][2]; };
+  $('#ptabs').onclick = e => { const b = e.target.closest('button'); if (b) show(+b.dataset.i); }; show(0);
+  $('#models').textContent = L.models_py || '';
+}
+function buildCoverage() {
+  const c = L.counts, R = (cls, t) => pill(cls, t);
+  const rows = [
+    ['3 sources officielles, 2 régions', R('ok', 'fait'), 'e-Phy, PMRA, EPA. Brésil non joignable.'],
+    ['Aucune donnée inventée', R('ok', 'fait'), 'Contrat + preuve mot à mot, testés.'],
+    ['Source, date, statut sur chaque ligne', R('ok', 'fait'), c.records + ' enregistrements cités.'],
+    ['Tableau produit × pays × usage', R('ok', 'fait'), 'Filtrable, export CSV, API.'],
+    ['Produits sœurs avec justification', R('ok', 'fait'), L.sisters.length + ' hypothèses « à confirmer ».'],
+    ['Modèle interchangeable, sans clé', R('ok', 'fait'), 'Variable VEILLE_MODEL.'],
+    ['Microsoft 365', R('warn', 'documenté'), 'API, OpenAPI, Dataverse. Non testé chez LPC.'],
+    ['Relance depuis le README', R('warn', 'à rejouer'), 'À valider sur machine vierge.'],
+    ['Alertes d\'expiration', R('info', 'non traité'), 'Choix de périmètre.']];
+  $('#cov').innerHTML = '<tr><th>Attendu</th><th>État</th><th>Détail</th></tr>' + rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td style="color:var(--muted)">${esc(r[2])}</td></tr>`).join('');
+}
+
+/* ───────── astuces ───────── */
+const frNumber = n => Number(n).toLocaleString('fr-FR');
+const percent = x => Math.round(x * 100) + ' %';
+
+function performanceFigures() {
+  const P = L.performance, H = L.prompt_history, B = L.bench, N = L.network;
+  const recommended = B ? B.results[B.recommendation.model] : null;
+  const firstVersion = H[0], lastVersion = H[H.length - 1];
+  return {
+    P, H, B, N, recommended, firstVersion, lastVersion,
+    caDoseNull: L.table.filter(r => r.country === 'CA' && r.dose_original == null).length,
+    usConverted: L.table.filter(r => r.country === 'US' && r.dose_norm_value != null).length,
+    inventedValues: L.eval ? L.eval.valeurs_inventees_publiees : null,
+    compared: L.eval ? L.eval.records_evalues : null,
+    doseAccuracy: L.eval ? L.eval.exactitude_par_champ.dose_value : null,
+  };
+}
+
+function trickGroups() {
+  const f = performanceFigures(), P = f.P, B = f.B, rec = f.recommended, H = L.holdout;
+  const results = B ? Object.values(B.results) : [];
+  const small = results.find(r => r.facts.params.startsWith('3')), big = results.find(r => r.facts.params.startsWith('12'));
+  return [
+    ['Fiabilité : jamais de valeur sans preuve', [
+      ['Texte source gardé tel quel', 'Un passage = une unité de preuve.', `${frNumber(P.published)} enregistrements cités`, ['passage']],
+      ['Contrat de données fermé', 'Pas de champ en trop, dose cohérente.', `${P.refused_by_pydantic} réponses refusées`, ['contract']],
+      ['Contrôle de preuve en code', 'Mot à mot, sans IA.', `${P.refused_by_proof_check} réponses refusées · ${f.inventedValues ?? '–'} valeur inventée`, ['proof_check', 'test_proof']],
+      ['Retry avec le motif exact', 'Le modèle corrige, pas au hasard.', `${P.rescued_by_retry} passages sauvés`, ['retry_prompt', 'loop']],
+      ['null plutôt qu\'inventer', 'Exigé, autorisé, vérifié.', `${f.caDoseNull} lignes canadiennes sans dose, zéro inventée`, ['prompt_extractor']],
+      ['Codes EPPO : choix fermé', 'Le modèle choisit, la table confirme.', 'un code inconnu reste inconnu', ['eppo']],
+      ['Second avis indicatif', 'Il dégrade le statut, ne publie jamais.', `${P.flagged_to_confirm} marqués à confirmer`, ['critic']],
+      ['Unités converties par calcul', 'lb/acre → kg/ha, jamais par l\'IA.', `${f.usConverted} doses américaines normalisées`, ['dose_norm']],
+    ]],
+    ['Qualité : on corrige ce qu\'on mesure', [
+      ['Prompt corrigé en mesurant', 'Trois versions, mêmes passages.', `renvois à l'expert : ${f.firstVersion.sent_to_expert} → ${f.lastVersion.sent_to_expert}`, ['prompt_extractor', 'evaluation']],
+      ['Vérité terrain', 'e-Phy structuré sert d\'étalon.', f.doseAccuracy == null ? '–' : `${percent(f.doseAccuracy)} de doses exactes (${f.compared})`, ['evaluation']],
+      ['Test hors échantillon', 'Des produits jamais vus.', H ? `${H.passages} passages · ${percent(H.exactitude_par_champ.dose_value)} de doses exactes` : '–', ['holdout']],
+      ['Cas difficiles isolés', 'EPA : seulement les lignes de dose.', `${L.counts.passages_by_source.epa} passages utiles`, ['epa_passages']],
+    ]],
+    ['Vitesse et coût : le bon outil', [
+      ['Le bon modèle, pas le plus gros', 'Trois testés, le 7B suffit.', big && small && rec ? `${rec.accepted}/${rec.passages} (7B) · ${big.accepted}/${big.passages} (12B, ${(big.s_per_passage_mean / rec.s_per_passage_mean).toFixed(1).replace('.', ',')}× plus lent) · ${small.accepted}/${small.passages} (3B)` : '–', ['recommend']],
+      ['Température 0, JSON forcé', 'Même réponse à chaque rejeu.', rec ? `${rec.s_per_passage_mean} s par passage` : '–', ['llm_call']],
+      ['Cache des réponses', 'Rejeu sans appel au modèle.', 'résultats reproductibles', ['llm_call']],
+    ]],
+    ['Sobriété : sources jamais surchargées', [
+      ['Données ouvertes en bloc', 'Un fichier par source.', f.N ? `${f.N.cold.total_requests} requêtes en tout` : '–', ['ephy_collect']],
+      ['Requêtes conditionnelles', 'Inchangé ? Rien à retélécharger.', f.N && f.N.warm ? `rejeu : ${f.N.warm.total_megabytes} Mo, ${f.N.warm.not_modified} « inchangé »` : '–', ['polite']],
+      ['Poli par construction', 'Pause, attente respectée, journal.', 'aucun contournement', ['send_request']],
+    ]],
+  ];
+}
+
+function buildTricks() {
+  const P = L.performance, f = performanceFigures();
+  $('#kpis').innerHTML = [
+    [percent(P.published_rate), `publiés avec preuve (${P.published}/${P.passages})`],
+    [f.doseAccuracy == null ? '–' : percent(f.doseAccuracy), `de doses exactes (${f.compared ?? '–'} comparées)`],
+    [f.inventedValues ?? '–', 'valeur inventée'],
+    [P.refused_by_pydantic + P.refused_by_proof_check, 'réponses fautives interceptées'],
+    [P.rescued_by_retry, 'passages sauvés par le retry'],
+  ].map(([v, t]) => `<div class="kpi"><b>${esc(v)}</b><span>${esc(t)}</span></div>`).join('');
+  $('#tricks').innerHTML = '<div class="pad">' + trickGroups().map(([title, tricks]) => `<div class="trick-group">${esc(title)}</div><div class="tricks">${tricks.map(([name, what, effect, keys]) => `<div class="trick"><h4>${esc(name)}</h4><p>${esc(what)}</p><div class="effect">→ ${esc(effect)}</div><div class="coderefs">${keys.map(codeLink).join('')}</div></div>`).join('')}</div>`).join('') + '</div>';
+}
+
+/* ───────── souveraineté et sobriété ───────── */
+function networkTable(N) {
+  if (!N) return '<div class="empty">Journal des requêtes absent (<code>./veille collect</code>).</div>';
+  const hosts = Object.keys(N.cold.per_host);
+  const cell = (run, host) => run && run.per_host[host] ? `${run.per_host[host].requests} req · ${run.per_host[host].megabytes} Mo${run.per_host[host].not_modified ? ' · ' + run.per_host[host].not_modified + '× inchangé' : ''}` : '–';
+  return `<div class="scroll"><table class="cmp"><tr><th>Serveur contacté</th><th>1ʳᵉ collecte</th><th>Rejeu</th></tr>
+    ${hosts.map(h => `<tr><td><code>${esc(h)}</code></td><td>${cell(N.cold, h)}</td><td>${cell(N.warm, h)}</td></tr>`).join('')}
+    <tr><td><b>Total</b></td><td class="n"><b>${N.cold.total_requests} requêtes · ${N.cold.total_megabytes} Mo</b></td><td class="n"><b>${N.warm ? N.warm.total_requests + ' requêtes · ' + N.warm.total_megabytes + ' Mo' : '–'}</b></td></tr></table></div>`;
+}
+
+function buildSovereignty() {
+  const N = L.network;
+  $('#sovereignty').innerHTML = `
+  <div class="pillars">
+    <div class="card"><span class="tag">IA</span><h3>Zéro appel à une IA cloud</h3><p>RTX 3090 de la constellation, en pair-à-pair. Aucune clé.</p></div>
+    <div class="card"><span class="tag">Données</span><h3>Mémoire et traces locales</h3><p>Qdrant local. Code libre, AGPL-3.0.</p></div>
+    <div class="card"><span class="tag">Sources</span><h3>${N ? N.cold.total_requests : '–'} requêtes pour tout collecter</h3><p>Au rejeu : ${N && N.warm ? `<b>${N.warm.total_megabytes} Mo</b>, ${N.warm.not_modified} réponses « inchangé »` : 'rien à retélécharger'}.</p></div>
+  </div>
+  ${networkTable(N)}
+  <div class="never"><b>Les seuls serveurs extérieurs sont les sources officielles.</b> Vérifiable : <code>./veille network</code>. Nous ne contournons rien : si un serveur demande d'attendre, nous attendons.</div>
+  ${codeDetails('polite')}`;
+}
+
+/* ───────── mode présentateur ───────── */
+const deck = { open: false, index: 0, notesVisible: true, startedAt: null, timerHandle: null, targetSeconds: 600 };
+
+function flowBox(kind, title, text) { return `<div class="node ${kind}"><b>${esc(title)}</b>${esc(text)}</div>`; }
+const arrow = '<div class="arrow">→</div>';
+
+function buildSlides() {
+  const f = performanceFigures(), P = f.P, B = f.B, C = L.cost, N = f.N;
+  const reco = B ? B.recommendation : null, rec = f.recommended;
+  const bigScenario = C ? C.scenarios[2].name : '';
+  const local = C ? C.options[0].totals[bigScenario] : null, localAmortized = C ? C.options[1].totals[bigScenario] : null;
+  const cheapestApi = C ? C.options.filter(o => o.kind !== 'local').reduce((m, o) => o.totals[bigScenario] < m.totals[bigScenario] ? o : m) : null;
+  const flagship = C ? C.options.find(o => o.kind === 'api' && o.tier === 'haut' && o.label.includes('Opus')) : null;
+  const gigabytes = v => v.toLocaleString('fr-FR', { maximumFractionDigits: 1 }) + ' Go';
+  const money = v => v == null ? '–' : (v >= 0.01 ? v.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' $' : '< 0,01 $');
+
+  return [
+    { kicker: 'Le défi', title: "Comparer des homologations prend des jours", seconds: 60, link: ['#promesse', ''],
+      message: "Les autorisations de produits sont dispersées dans des dizaines de bases nationales, dans des formats et des langues différents.",
+      body: `<div class="grid">${L.sources.map(s => `<div class="box"><h4>${esc(s.country)}</h4><p><b>${esc(s.name)}</b><br>${esc(s.format)} · ${esc(s.lang)} · ${esc(s.region)}</p></div>`).join('')}<div class="box"><h4>Le besoin</h4><p>Un référentiel mondial structuré, traçable, interrogeable : chaque valeur reliée à sa source, aucune donnée inventée.</p></div></div>`,
+      say: ["Trois sources officielles, deux grandes régions, trois formats : fichier CSV, API ouverte, étiquettes PDF.", "Aujourd'hui, un expert Regulatory compare à la main, pays par pays.", "Notre fil rouge : on ne publie que ce qu'on peut prouver."],
+      show: ["Les trois cartes de sources.", "Rien d'autre : poser le problème en une minute."] },
+    { kicker: 'Notre choix', title: "L'IA propose, le code décide", seconds: 70, link: ['#pas-a-pas', 'Voir la chaîne en détail'],
+      message: "Une IA maison (modèle local, mémoire Qdrant, contrat Pydantic) encadrée par des contrôles qui ne dépendent pas d'elle.",
+      body: `<div class="flow">${flowBox('', 'Sources officielles', 'passages gardés tels quels')}${arrow}${flowBox('', 'Qdrant', 'mémoire locale + filtres')}${arrow}${flowBox('ai', 'IA locale', 'extrait un JSON')}${arrow}${flowBox('code', 'Pydantic', 'impose la forme')}${arrow}${flowBox('code', 'Contrôle de preuve', 'mot à mot, en code')}${arrow}${flowBox('human', 'Publié ou expert', '3 échecs : un humain tranche')}</div><div class="grid"><div class="box"><h4>Bleu : l'IA</h4><p>Elle lit et propose. Elle n'a jamais le dernier mot.</p></div><div class="box"><h4>Vert : le code</h4><p>Il vérifie la forme et la preuve. Déterministe, testé.</p></div><div class="box"><h4>Orange : l'humain</h4><p>Seul un expert peut valider.</p></div></div>`,
+      say: ["Ce n'est pas un chatbot qui cherche sur le web : il ne peut s'appuyer que sur des textes officiels collectés.", "L'IA lit un passage et propose un JSON. Deux garde-fous écrits en code vérifient ce qu'elle propose.", "Si elle échoue trois fois, rien n'est publié : l'expert décide."],
+      show: ["Le schéma : bleu, vert, orange.", "Insister : le dernier mot est au code, puis à l'humain."] },
+    { kicker: 'Souveraineté', title: "Tout reste chez nous", seconds: 60, link: ['#souverainete', 'Voir les preuves'],
+      message: "Aucun texte réglementaire ou formulation n'est envoyé à un fournisseur d'IA cloud. Aucune clé personnelle.",
+      body: `<div class="grid"><div class="box"><div class="big">0</div><h4>appel à une IA cloud</h4><p>Le modèle tourne sur la RTX 3090 de la constellation, joint en pair-à-pair (IPFS).</p></div><div class="box"><div class="big">${N ? Object.keys(N.cold.per_host).length : '–'}</div><h4>serveurs extérieurs contactés</h4><p>Uniquement les sources officielles : ${N ? esc(Object.keys(N.cold.per_host).join(', ')) : '–'}.</p></div><div class="box"><div class="big">0</div><h4>clé d'API requise</h4><p>Un modèle se change par simple configuration.</p></div><div class="box"><div class="big">AGPL</div><h4>code libre</h4><p>Reprenable, modifiable et améliorable par LPC.</p></div></div>`,
+      say: ["Pour une entreprise de biocontrôle, les souches, formulations et dossiers sont sensibles : ils ne doivent pas partir chez un tiers.", "Ici tout reste dans la constellation : modèle, mémoire, traces.", "La preuve est le journal des requêtes sortantes : on peut le lire."],
+      show: ["Les quatre chiffres.", "Ouvrir la section « Souveraineté » et montrer le tableau des serveurs."] },
+    { kicker: 'Sobriété', title: "Les sources officielles ne sont pas surchargées", seconds: 60, link: ['#souverainete', 'Voir le journal'],
+      message: "Nous prenons les jeux de données ouverts en bloc, puis nous demandons seulement ce qui a changé.",
+      body: N ? `<div class="grid"><div class="box"><div class="big">${N.cold.total_requests}</div><h4>requêtes pour tout collecter</h4><p>${N.cold.total_megabytes} Mo, trois sources.</p></div><div class="box"><div class="big">${N.warm ? N.warm.total_megabytes : '–'} Mo</div><h4>reçus au rejeu</h4><p>${N.warm ? N.warm.not_modified + ' réponses « inchangé » (ETag, Last-Modified)' : ''}.</p></div><div class="box"><h4>Poli par construction</h4><ul style="margin-left:18px"><li>User-Agent honnête</li><li>2 s entre deux requêtes au même serveur</li><li>attente demandée par le serveur respectée</li></ul></div></div>` : '<div class="empty">Journal absent.</div>',
+      say: ["Le risque d'une veille automatique, c'est de martyriser les sites et d'être bloqué.", "Nous évitons le problème à la racine : un fichier par source au lieu d'une requête par produit, et des requêtes conditionnelles.", "Nous ne contournons rien. Si un serveur demande d'attendre, nous attendons."],
+      show: ["Les deux chiffres : requêtes à froid, mégaoctets au rejeu.", "Si on vous demande « et si on est banni ? » : voir les questions probables."] },
+    { kicker: 'Démonstration', title: "Suivre une valeur, de la source au résultat", seconds: 150, link: ['#pas-a-pas', 'Ouvrir la démonstration'],
+      message: "Un cas réel, neuf étapes : on voit le texte source, ce que Qdrant retrouve, le prompt, la réponse du modèle, les contrôles.",
+      body: `<div class="grid">${['La question', 'Les sources', 'Qdrant', 'Le prompt', 'Réponse du modèle', 'Contrat Pydantic', 'Contrôle de preuve', 'La boucle', 'Résultat'].map((s, i) => `<div class="box"><h4>${i + 1}. ${esc(s)}</h4></div>`).join('')}</div>`,
+      say: ["Je ferme ce mode et je déroule le cas « La boucle corrige le modèle » : on voit une vraie erreur du modèle, refusée, puis corrigée.", "À l'étape 6 : Pydantic refuse la forme. À l'étape 7 : le code cherche la citation mot à mot.", "À l'étape 9 : valeur d'origine, valeur normalisée, lien, date, statut."],
+      show: ["Cliquer « Ouvrir la démonstration », choisir le cas « retry ».", "Avancer avec les flèches, s'arrêter aux étapes 6, 7 et 9.", "Montrer ensuite le cas « arbitrage humain »."] },
+    { kicker: 'Performance', title: "Les astuces qui font la performance", seconds: 70, link: ['#resultats', 'Voir les astuces'],
+      message: "Chaque astuce supprime une cause d'erreur précise, et son effet est mesuré.",
+      body: `<div class="kpis">${[[percent(P.published_rate), `publiés avec leur preuve (${P.published}/${P.passages})`], [f.doseAccuracy == null ? '–' : percent(f.doseAccuracy), 'de doses exactes (vs source structurée)'], [f.inventedValues ?? '–', 'valeur inventée'], [P.refused_by_pydantic + P.refused_by_proof_check, 'réponses fautives interceptées'], [P.rescued_by_retry, 'passages sauvés par le retry']].map(([v, t]) => `<div class="kpi"><b>${esc(v)}</b><span>${esc(t)}</span></div>`).join('')}</div><div class="grid">${trickGroups().slice(0, 1)[0][1].slice(1, 4).map(([n, w, e]) => `<div class="box"><h4>${esc(n)}</h4><p>${esc(w)}</p><p class="ok" style="margin-top:6px"><b>→ ${esc(e)}</b></p></div>`).join('')}</div>`,
+      say: ["Pas de magie : un contrat de données fermé, un contrôle de preuve en code, un retry qui renvoie le motif exact du refus.", `Résultat : ${percent(P.published_rate)} publiés, des doses exactes à ${f.doseAccuracy == null ? '–' : percent(f.doseAccuracy)}, et ${f.inventedValues ?? '–'} valeur inventée.`, "Le prompt a été corrigé en mesurant ses échecs, pas en devinant."],
+      show: ["Les cinq chiffres clés.", "Citer l'historique du prompt : renvois à l'expert 30 → 17 avec un contrôle plus strict."] },
+    { kicker: 'Résultats', title: "Mesuré, y compris ce qui échoue", seconds: 50, link: ['#resultats', 'Voir les résultats'],
+      message: "Nous comparons l'IA à la source structurée d'e-Phy. Nous disons aussi où elle est moins bonne.",
+      body: `<table class="cmp"><tr><th>Version du prompt</th><th>Publiés</th><th>Vers l'expert</th><th>Réussis du 1ᵉʳ coup</th></tr>${f.H.map(h => `<tr><td><b>${esc(h.version)}</b> · ${esc(h.description)}</td><td>${h.published}</td><td>${h.sent_to_expert}</td><td>${h.first_try}</td></tr>`).join('')}</table><div class="never"><b>Limites assumées :</b> les étiquettes PDF américaines sont la source la plus difficile (${L.eval ? L.eval.issues['epa:hitl'] : '–'} passages renvoyés à l'expert) ; elles n'ont pas de vérité structurée, donc pas de mesure automatique.</div>`,
+      say: ["La première version a été mesurée, ses échecs lus, le prompt corrigé deux fois.", "Les rejets qui restent sont le garde-fou qui fait son travail : par exemple le modèle fusionne deux phrases en une restriction qui n'existe pas mot à mot.", "L'EPA est le point faible, nous le disons."],
+      show: ["Le tableau v1, v2, v3.", "La ligne « Limites assumées » : l'honnêteté fait la crédibilité."] },
+    { kicker: 'Méthode', title: "Une démarche, pas un coup de chance", seconds: 50, link: ['#plus', 'Voir la comparaison'],
+      message: "Mesurer, corriger, remesurer : la même discipline qu'Arbor, puis une validation sur des produits jamais vus.",
+      body: L.holdout ? `<div class="kpis"><div class="kpi"><b>${L.holdout.passages}</b><span>passages de ${L.holdout.products.length} produits jamais vus</span></div><div class="kpi"><b>${Math.round(100 * L.holdout.exactitude_par_champ.dose_value)} %</b><span>de doses exactes</span></div><div class="kpi"><b>${L.holdout.valeurs_inventees_publiees}</b><span>valeur inventée</span></div><div class="kpi"><b>${L.holdout.dose_oubliee}</b><span>dose oubliée</span></div></div><div class="grid"><div class="box"><h4>Niveau 1 · chaque passage</h4><p>générer, vérifier, réessayer avec le motif exact</p></div><div class="box"><h4>Niveau 2 · chaque version</h4><p>mesurer, lire les échecs, corriger une règle, remesurer</p></div><div class="box"><h4>Ce qui nous sépare d'Arbor</h4><p>nous itérons avec un humain, en séquence, sans arbre d'hypothèses</p></div></div>` : '<div class="empty">Test hors échantillon non exécuté.</div>',
+      say: ["Notre prompt a été corrigé en trois versions, chacune mesurée : une hypothèse, une mesure, on garde ce qui progresse. C'est la discipline d'Arbor, un agent de recherche autonome.", "Pour ne pas nous tromper nous-mêmes, nous avons testé sur des produits jamais regardés pendant le réglage : même exactitude.", "Limite : c'est e-Phy, un format homogène. Les PDF américains restent le point difficile."],
+      show: ["Les quatre chiffres hors échantillon.", "La section « Méthodes voisines » pour Self-Refine, Reflexion, DSPy, OPRO."] },
+    { kicker: 'Dimensionnement et coût', title: "Une carte de 8 Go suffit, et c'est peu cher", seconds: 70, link: ['#cout', 'Voir le coût détaillé'],
+      message: reco ? `Le modèle ${reco.model} (7 milliards de paramètres) suffit : environ ${gigabytes(reco.vram_1_request_gb)} de VRAM.` : '',
+      body: `<div class="grid"><div class="box"><h4>Modèle recommandé</h4><div class="big">${reco ? esc(reco.model.replace(':latest', '')) : '–'}</div><p>${rec ? `${rec.accepted}/${rec.passages} acceptés · ${rec.s_per_passage_mean} s par passage` : ''}</p></div><div class="box"><h4>VRAM</h4><div class="big">${reco ? gigabytes(reco.vram_1_request_gb) : '–'}</div><p>${reco ? `${gigabytes(reco.vram_4_parallel_gb)} pour 4 requêtes en parallèle · carte minimale : ${esc(reco.smallest_gpu)}` : ''}</p></div><div class="box"><h4>${esc(bigScenario)}</h4><p>Local : <b class="ok">${money(local)}</b> (électricité), <b>${money(localAmortized)}</b> avec amortissement<br>API la moins chère : <b>${cheapestApi ? esc(cheapestApi.label) + ' ' + money(cheapestApi.totals[bigScenario]) : '–'}</b><br>API haut de gamme : <b>${flagship ? esc(flagship.label) + ' ' + money(flagship.totals[bigScenario]) : '–'}</b></p></div></div><div class="never">Lecture honnête : face aux plus petits modèles API en lot, le local amorti est du même ordre de grandeur. Le vrai avantage est ailleurs : données qui ne sortent pas, pas de clé, pas de plafond d'usage. Et seule la qualité des modèles locaux a été mesurée.</div>`,
+      say: ["Trois modèles testés sur la même chaîne : le plus petit échoue trop, le plus gros n'apporte rien et est plus lent. Le 7 milliards est le bon choix.", "Il tient dans environ 6 Go : une carte de 8 Go suffit.", "Face aux IA payantes, le coût local est de quelques dollars pour tout un catalogue, mais je ne vends pas que le prix : je vends la souveraineté."],
+      show: ["Le modèle recommandé et sa VRAM.", "La phrase « lecture honnête » : ne pas survendre le coût."] },
+    { kicker: 'Couverture du défi', title: "Ce qui est fait, ce qui ne l'est pas", seconds: 50, link: ['#defi', 'Voir le tableau'],
+      message: "Nous avons choisi la profondeur plutôt que l'étendue : la fiabilité de l'extraction.",
+      body: `<div class="grid"><div class="box"><h4 class="ok">Fait</h4><ul style="margin-left:18px"><li>3 sources officielles, 2 régions</li><li>Valeur d'origine + normalisée, URL, date</li><li>Tableau produit × pays × usage</li><li>Produits sœurs avec score et justification</li><li>Modèle interchangeable, aucune clé</li></ul></div><div class="box"><h4 class="warn">Documenté, à tester</h4><ul style="margin-left:18px"><li>Microsoft 365 : API REST, OpenAPI, Dataverse, CSV</li><li>Reprise depuis le README (à rejouer sur machine vierge)</li></ul></div><div class="box"><h4 style="color:var(--dim)">Non traité</h4><ul style="margin-left:18px"><li>Brésil (AGROFIT) : source non joignable ici</li><li>Alertes d'expiration, détection de changements</li><li>Codes EPPO officiels (amorce vérifiée à la main)</li></ul></div></div>`,
+      say: ["Nous n'avons pas tout couvert, et c'est un choix assumé.", "Trois sources, deux régions, un modèle de données complet, la traçabilité, les produits sœurs.", "Microsoft 365 est documenté mais pas testé sur un tenant LPC : nous le disons."],
+      show: ["Les trois colonnes.", "Ne pas s'excuser : présenter comme un choix de périmètre."] },
+    { kicker: 'Et après ?', title: "LPC peut reprendre, modifier, améliorer", seconds: 40, link: ['#reproduire', 'Voir comment relancer'],
+      message: "Le dépôt se relance depuis le README, sous licence libre AGPL.",
+      body: `<div class="grid"><div class="box"><h4>Relancer</h4><pre class="code" style="max-height:none">pip install -r requirements.txt
+./run_all.sh
+./veille ask "…"</pre></div><div class="box"><h4>Brancher Microsoft 365</h4><p>API REST + contrat OpenAPI + schéma Dataverse prêts dans <code>m365/</code>.</p></div><div class="box"><h4>Prochaines étapes</h4><ul style="margin-left:18px"><li>Ajouter AGROFIT et les autres pays</li><li>Jeu EPPO officiel de LPC</li><li>Alertes de changement (le rejeu conditionnel s'y prête)</li></ul></div></div>`,
+      say: ["Tout est dans le dépôt : code, prompts, jeu d'évaluation, documentation, exports Microsoft 365.", "La licence AGPL garantit que le service reste libre, même modifié.", "Le rejeu conditionnel permet déjà de détecter qu'une source a changé : c'est la base des alertes."],
+      show: ["Les trois colonnes.", "Terminer sur la phrase : l'IA propose, le code décide."] },
+    { kicker: 'Préparation', title: "Questions probables du jury", seconds: 0, link: null,
+      message: 'Cliquez une question pour voir la réponse courte.',
+      body: [
+        ["Pourquoi pas ChatGPT ou Claude via une API ?", `Souveraineté (rien ne sort), pas de clé, pas de plafond d'usage, coût marginal quasi nul. Côté prix, les petits modèles API en lot sont du même ordre que le local amorti ; les modèles haut de gamme coûtent des dizaines de fois plus. Mais nous n'avons mesuré la qualité que des modèles locaux : nous ne prétendons pas qu'ils soient meilleurs.`],
+        ["Et les hallucinations ?", `Aucune valeur n'est publiée sans citation retrouvée mot à mot, par du code. Mesure : ${f.inventedValues ?? '–'} valeur inventée sur ${f.compared ?? '–'} comparées, ${P.refused_by_pydantic + P.refused_by_proof_check} réponses fautives interceptées. Limite : la mesure automatique ne couvre pas l'EPA (PDF), contrôlée par échantillon.`],
+        ["Et si on se fait bannir par les sources ?", `Le risque est traité à la racine : jeux ouverts pris en bloc (${N ? N.cold.total_requests : '–'} requêtes en tout), requêtes conditionnelles (${N && N.warm ? N.warm.total_megabytes + ' Mo' : '0 Mo'} au rejeu), User-Agent honnête, pause entre requêtes, attente respectée sur 429/503. Nous ne contournons aucune protection.`],
+        ["Que se passe-t-il quand le modèle se trompe ?", "Pydantic ou le contrôle de preuve refuse, le motif exact est renvoyé au modèle (3 essais). Après trois échecs, rien n'est publié et un expert reçoit le dossier. La page le montre en direct."],
+        ["De quel matériel a-t-on besoin ?", reco ? `Le modèle recommandé (${reco.model}) demande environ ${gigabytes(reco.vram_1_request_gb)} de VRAM, ${gigabytes(reco.vram_4_parallel_gb)} pour 4 requêtes en parallèle : une carte de 8 Go suffit. Stockage : quelques Go pour des catalogues complets (voir « GPU & stockage »).` : '–'],
+        ["Comment LPC reprend le projet ?", "Dépôt Git, README en quatre commandes, prompts versionnés, jeu d'évaluation, licence AGPL. Le modèle se change par configuration, sans clé personnelle."],
+        ["Qu'est-ce qui manque ?", "Le Brésil (AGROFIT, non joignable), les alertes d'expiration, le jeu EPPO officiel de LPC, un test sur un tenant Microsoft 365. Nous préférons une extraction fiable à une couverture large."],
+      ],
+      say: ["Garder une réponse courte et chiffrée.", "Ne jamais surpromettre : citer la limite avant qu'on la découvre.", "Revenir à la phrase clé : l'IA propose, le code décide."],
+      show: ["Cette page : ouvrir la question posée."] },
+  ];
+}
+
+let slides = [];
+const pad = n => String(n).padStart(2, '0');
+
+function slideBody(slide) {
+  if (Array.isArray(slide.body)) return slide.body.map(([q, a]) => `<details class="qa-item"><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('');
+  return slide.body;
+}
+
+function renderSlide() {
+  const slide = slides[deck.index];
+  $('#slide').innerHTML = `<div class="kicker">${esc(slide.kicker)}</div><h2>${esc(slide.title)}</h2><div class="message">${esc(slide.message)}</div>${slideBody(slide)}${slide.link ? `<a class="link" href="${slide.link[0]}" id="slide-link">${esc(slide.link[1] || 'Voir dans la page')} →</a>` : ''}`;
+  $('#notes').innerHTML = `<h4>À dire</h4><ul>${slide.say.map(t => `<li>${esc(t)}</li>`).join('')}</ul><h4>À montrer</h4><ul>${slide.show.map(t => `<li>${esc(t)}</li>`).join('')}</ul>`;
+  $('#deck-where').textContent = `${deck.index + 1} / ${slides.length}`;
+  const budget = slides.slice(0, deck.index + 1).reduce((s, x) => s + x.seconds, 0);
+  $('#deck-budget').textContent = `budget cumulé ${Math.floor(budget / 60)}:${pad(budget % 60)}`;
+  $('#dots').innerHTML = slides.map((_, i) => `<button class="${i === deck.index ? 'on' : (i < deck.index ? 'done' : '')}" data-i="${i}" title="${esc(slides[i].title)}"></button>`).join('');
+  $('#deck-prev').disabled = deck.index === 0; $('#deck-next').disabled = deck.index === slides.length - 1;
+  const link = $('#slide-link'); if (link) link.onclick = () => closeDeck();
+}
+
+function tickTimer() {
+  const seconds = Math.floor((Date.now() - deck.startedAt) / 1000), timer = $('#timer');
+  timer.textContent = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
+  timer.className = 'timer' + (seconds > deck.targetSeconds ? ' over' : seconds > deck.targetSeconds * 0.85 ? ' late' : '');
+}
+
+function openDeck() {
+  if (!slides.length) slides = buildSlides();
+  deck.open = true; deck.index = 0; $('#deck').hidden = false; document.body.style.overflow = 'hidden';
+  if (!deck.startedAt) { deck.startedAt = Date.now(); deck.timerHandle = setInterval(tickTimer, 1000); }
+  renderSlide();
+}
+function closeDeck() { deck.open = false; $('#deck').hidden = true; document.body.style.overflow = ''; }
+function moveSlide(step) { deck.index = Math.max(0, Math.min(slides.length - 1, deck.index + step)); renderSlide(); }
+
+function initPresenter() {
+  ['#present-detail'].forEach(id => { const el = $(id); if (el) el.onclick = openDeck; });
+  $('#deck-close').onclick = closeDeck; $('#deck-prev').onclick = () => moveSlide(-1); $('#deck-next').onclick = () => moveSlide(1);
+  $('#dots').onclick = e => { const b = e.target.closest('button'); if (b) { deck.index = +b.dataset.i; renderSlide(); } };
+  $('#deck-notes-toggle').onclick = () => { deck.notesVisible = !deck.notesVisible; $('#notes').style.display = deck.notesVisible ? '' : 'none'; $('#deck-body').classList.toggle('no-notes', !deck.notesVisible); };
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input,select,textarea')) return;
+    if (e.key === 'd' || e.key === 'D') { deck.open ? closeDeck() : openDeck(); return; }
+    if (!deck.open) return;
+    if (e.key === 'Escape') closeDeck();
+    else if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); moveSlide(1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') moveSlide(-1);
+    else if (e.key === 'Home') { deck.index = 0; renderSlide(); } else if (e.key === 'End') { deck.index = slides.length - 1; renderSlide(); }
+    else if (e.key === 'n' || e.key === 'N') $('#deck-notes-toggle').click();
+  });
+}
+
+if (!L) {
+  $('#app').innerHTML = '<div class="wrap"><div class="empty"><b>Données non générées.</b><br>Lancez <code>./run_all.sh</code> (ou <code>python -m veille_reglementaire web</code>) pour produire <code>web/data.js</code> à partir des vraies exécutions.</div></div>';
+} else { init(); initPresenter(); }
+</script>
+<script src="web/vendor/p5.min.js"></script>
+<script src="web/pechakucha.js"></script>
+</body>
+</html>

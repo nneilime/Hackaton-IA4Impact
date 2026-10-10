@@ -1,0 +1,31 @@
+Veille réglementaire PPP — agent IA « maison »
+Copyright (C) 2026 les auteurs du projet (Hackathon IA for Impact 2026, défi Lallemand Plant Care)
+
+Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la
+GNU Affero General Public License publiée par la Free Software Foundation, version 3 de la licence, ou
+(à votre choix) toute version ultérieure. Le texte complet est dans le fichier LICENSE.
+
+Ce programme est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE GARANTIE, sans même la garantie
+implicite de COMMERCIALISATION ou d'ADAPTATION À UN OBJET PARTICULIER. Voir la licence pour plus de détails.
+
+Pourquoi l'AGPL : le programme est aussi un SERVICE réseau (API REST). L'AGPL garantit que toute version
+modifiée et proposée comme service reste libre et que ses utilisateurs peuvent en obtenir le code source.
+
+──────────────────────────────────────────────────────────────────────────────
+Licences des DONNÉES (hors du périmètre de la licence du code ; non redistribuées dans ce dépôt)
+
+- e-Phy (ANSES), data.gouv.fr : « Licence Ouverte » (champ `license` = fr-lo sur data.gouv.fr).
+- PMRA / Santé Canada, registre des produits antiparasitaires : « Open Government Licence – Canada ».
+- EPA (États-Unis), dump APPRIL et étiquettes PPLS : licence à vérifier avant toute redistribution.
+  Le dépôt ne contient aucune de ces données brutes : les scripts de collecte les retéléchargent.
+
+Dépendances (licences permissives, compatibles avec l'AGPL-3.0) : pydantic, qdrant-client, requests, ollama,
+fastapi, uvicorn. `question.py` (Astroport.ONE) est utilisé s'il est présent sur la machine ; il n'est pas
+inclus dans ce dépôt et reste sous sa propre licence.
+
+Composant tiers embarqué : p5.js (web/vendor/p5.min.js, copie locale de UPlanet/earth), licence LGPL-2.1, https://p5js.org — utilisé pour les
+animations de la présentation Pecha Kucha, servi localement (aucun CDN à l'exécution).
+
+Fichiers audio de la présentation (web/audio/pk-NN.mp3) : générés par `./veille voice` avec le service de synthèse vocale Orpheus de la
+constellation (voix « amelie »). La licence d'utilisation du modèle de voix est à vérifier avant toute diffusion publique ;
+les fichiers se régénèrent à volonté.
