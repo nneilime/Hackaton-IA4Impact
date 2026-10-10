@@ -1,6 +1,9 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "git": {
+    "deploymentEnabled": false
+  },
   "functions": {
     "api/**/*.js": {
       "memory": 256,
