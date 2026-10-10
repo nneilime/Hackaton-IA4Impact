@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BâtIA · Pecha Kucha · Hackathon IA for Impact 2026</title>
+<script src="assets/p5.min.js"></script>
+<style>
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(assets/fonts/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8FqtjPQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_qU7NSg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(assets/fonts/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_d0nNSg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(assets/fonts/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_TknNSg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(assets/fonts/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_KUnNSg.ttf) format('truetype');
+}
+:root{
+  --bg:#0b1117; --card:rgba(18,26,36,.88); --line:rgba(255,255,255,.09);
+  --green:#2ed573; --blue:#4aa3ff; --amber:#ffb02e; --red:#ff5a68;
+  --text:#f1f2f6; --muted:#a9b4c2; --dim:#6b7888;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;display:flex;flex-direction:column;
+  background-image:radial-gradient(circle at 12% 8%,rgba(46,213,115,.08),transparent 38%),radial-gradient(circle at 88% 70%,rgba(74,163,255,.07),transparent 40%)}
+button{font-family:inherit}
+header.bar{display:flex;align-items:center;gap:14px;padding:10px 20px;border-bottom:1px solid var(--line);background:rgba(11,17,23,.92);flex-wrap:wrap}
+.badge{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green);border:1px solid var(--green);background:rgba(46,213,115,.1);padding:4px 12px;border-radius:99px;white-space:nowrap}
+header.bar .ttl{font-weight:800;font-size:.95rem;flex:1;min-width:160px}
+.ctrl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{cursor:pointer;background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:7px 14px;font:700 .82rem var(--sans)}
+.btn:hover{border-color:var(--green);color:var(--green)}
+.btn.primary{background:var(--green);border-color:var(--green);color:#06210f}
+.btn.primary:hover{background:#4be58a;color:#06210f}
+.btn.on{border-color:var(--green);color:var(--green)}
+.count{font:600 .85rem var(--mono);color:var(--muted);min-width:92px;text-align:center}
+.timer{height:4px;background:rgba(255,255,255,.07)}
+.timer i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--blue))}
+main{flex:1;min-height:0;display:flex;flex-direction:column;max-width:1320px;width:100%;margin:0 auto;padding:18px 20px 8px}
+.slide{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:22px;align-items:center;animation:sIn .5s both}
+@keyframes sIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.say .kick{font:600 .74rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.say h1{font-size:clamp(1.7rem,3.6vw,2.9rem);font-weight:800;letter-spacing:-.02em;line-height:1.12;margin-bottom:14px}
+.say p{color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem);max-width:520px}
+.say .big{display:inline-block;margin-top:16px;font:700 clamp(1.6rem,3vw,2.4rem) var(--mono);color:var(--green)}
+.vis{position:relative;width:100%;aspect-ratio:3/2;max-height:62vh;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.vis canvas{display:block}
+.vis svg{width:100%;height:100%;display:block}
+.notes{margin:10px 0 4px;border-left:3px solid var(--amber);background:rgba(255,176,46,.08);padding:9px 14px;border-radius:0 10px 10px 0;font-size:1rem;color:#e9dcc2;min-height:2.6em}
+.notes b{color:var(--amber);font-family:var(--mono);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;margin-right:8px}
+.notes.hide{display:none}
+.dots{display:flex;gap:5px;justify-content:center;padding:6px 0 12px;flex-wrap:wrap}
+.dots button{width:14px;height:14px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06);cursor:pointer;padding:0}
+.dots button.done{background:var(--blue);border-color:var(--blue)}
+.dots button.on{background:var(--green);border-color:var(--green);transform:scale(1.25)}
+
+.clair{margin-top:14px;max-width:520px;border-left:3px solid var(--blue);background:rgba(74,163,255,.09);padding:9px 14px;border-radius:0 10px 10px 0;font-size:.95rem;color:#d5e6fa}
+.clair b{color:var(--blue);font:700 .68rem var(--mono);letter-spacing:.07em;text-transform:uppercase;margin-right:8px}
+.refchips{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;font:600 .7rem var(--mono);color:var(--dim)}
+.refchips button{cursor:pointer;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:2px 9px;font:600 .72rem var(--mono)}
+.refchips button:hover{border-color:var(--green);color:var(--green)}
+#guide{position:fixed;inset:0;z-index:50;background:rgba(5,9,13,.86);display:none;align-items:center;justify-content:center;padding:18px}
+#guide.open{display:flex}
+#guide .panel{width:min(1100px,100%);max-height:100%;display:flex;flex-direction:column;background:#0f1822;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+#guide header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+#guide header h2{font-size:1.05rem;font-weight:800;flex:1;min-width:180px}
+#guide .tabs{display:flex;gap:6px;flex-wrap:wrap}
+#guide .tabs button{cursor:pointer;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:6px 14px;font:700 .8rem var(--sans)}
+#guide .tabs button.on{background:rgba(46,213,115,.14);border-color:var(--green);color:var(--green)}
+#guide .body{padding:18px 22px 26px;overflow-y:auto;font-size:.95rem;color:#d7dde6}
+#guide h3{font-size:1.1rem;margin:20px 0 8px;color:var(--text)} #guide h3:first-child{margin-top:0}
+#guide p{margin-bottom:10px;color:#c5cdd8} #guide p.warn{border-left:3px solid var(--amber);background:rgba(255,176,46,.08);padding:8px 12px;border-radius:0 8px 8px 0}
+#guide ol,#guide ul{margin:0 0 10px 22px;color:#c5cdd8} #guide li{margin-bottom:6px}
+#guide .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:10px 0}
+#guide .card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+#guide .card b{display:block;color:var(--green);margin-bottom:4px} #guide .card em{display:block;margin-top:6px;color:var(--blue);font-style:normal;font-size:.85rem}
+#guide table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:.9rem}
+#guide th,#guide td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left} #guide th{color:var(--muted);font:600 .72rem var(--mono);text-transform:uppercase}
+#guide td.n{font-family:var(--mono);color:var(--green);font-weight:700}
+#guide code{font-family:var(--mono);font-size:.84em;background:rgba(255,255,255,.07);padding:.08em .35em;border-radius:5px}
+#guide .ref{display:grid;grid-template-columns:44px 1fr;gap:6px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+#guide .ref .k{font:700 .82rem var(--mono);color:var(--green)} #guide .ref small{display:block;color:var(--dim);margin-top:2px}
+#guide .ref.hl{background:rgba(46,213,115,.1);outline:1px solid var(--green);border-radius:8px}
+#guide a{color:var(--blue)}
+#guide fieldset{border:1px solid var(--line);border-radius:10px;padding:8px 12px 10px;margin:0 0 10px}
+#guide legend{padding:0 6px;color:var(--green);font:700 .8rem var(--mono)}
+#guide .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 12px}
+#guide label{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.84rem;color:#c5cdd8;margin:4px 0}
+#guide input[type=number]{width:96px;background:#06090d;border:1px solid var(--line);border-radius:6px;color:var(--text);padding:3px 6px;font:600 .85rem var(--mono);text-align:right}
+#guide tr.tot td{border-top:2px solid var(--green);font-weight:700} #guide small{color:var(--dim)}
+@media(max-width:860px){
+  .slide{grid-template-columns:minmax(0,1fr);align-content:start;overflow-y:auto}
+  .vis{max-height:none}
+  header.bar .ttl{display:none}
+}
+/* SVG */
+svg text{font-family:var(--sans);fill:var(--text);font-size:14px}
+svg .m{fill:var(--muted)} svg .d{fill:var(--dim)} svg .mono{font-family:var(--mono)}
+svg .s{font-size:11.5px} svg .xs{font-size:10px} svg .L{font-size:18px;font-weight:800} svg .b{font-weight:700}
+svg .c{text-anchor:middle} svg .e{text-anchor:end}
+svg .g{fill:var(--green)} svg .bl{fill:var(--blue)} svg .am{fill:var(--amber)} svg .rd{fill:var(--red)}
+.fade{opacity:0;animation:fadeIn .6s calc(var(--i,0)*.16s) forwards}
+@keyframes fadeIn{to{opacity:1}}
+.grow{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);animation:gx .9s calc(var(--i,0)*.16s) cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes gx{to{transform:scaleX(1)}}
+.growy{transform-box:fill-box;transform-origin:center bottom;transform:scaleY(0);animation:gy .9s calc(var(--i,0)*.16s) cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes gy{to{transform:scaleY(1)}}
+.draw{stroke-dasharray:var(--len,700);stroke-dashoffset:var(--len,700);animation:dr 1.3s calc(var(--i,0)*.16s) ease forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pl 1.8s ease-in-out infinite}
+@keyframes pl{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.6}}
+.flow{stroke-dasharray:6 8;animation:fl 1s linear infinite}
+@keyframes fl{to{stroke-dashoffset:-14}}
+.slidein{transform:translateX(-30px);opacity:0;animation:si .9s calc(var(--i,0)*.16s) ease forwards}
+@keyframes si{to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  .fade,.grow,.growy,.draw,.slidein{animation:none;opacity:1;transform:none;stroke-dashoffset:0}
+  .pulse,.flow{animation:none}
+}
+
+/* ---------- Questions du jury & évolutions du SI (touche Q) ---------- */
+#qa{position:fixed;inset:0;z-index:50;background:#070b10;display:none;overflow-y:auto;padding:18px 20px 40px}
+#qa.open{display:block}
+#qa .wrap{max-width:1040px;margin:0 auto}
+#qa .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+#qa .top h2{flex:1;font-size:1.3rem;font-weight:800;min-width:200px}
+#qa .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+#qa .tabs .btn[aria-selected=true]{background:var(--green);border-color:var(--green);color:#06210f}
+#qa section{display:none}
+#qa section.on{display:block}
+#qa .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+#qa .card h3{font-size:1.02rem;font-weight:800;margin-bottom:6px}
+#qa .card p,#qa .card li{color:var(--muted);font-size:.95rem}
+#qa .card p+p{margin-top:8px}
+#qa .card ul{padding-left:20px;margin-top:6px}
+#qa .card b{color:var(--text)}
+#qa .tag{display:inline-block;font:600 .68rem var(--mono);letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:2px 10px;margin-right:6px;border:1px solid}
+#qa .t-ok{color:var(--green);border-color:var(--green)} #qa .t-gap{color:var(--amber);border-color:var(--amber)} #qa .t-idea{color:var(--blue);border-color:var(--blue)} #qa .t-risk{color:var(--red);border-color:var(--red)}
+#qa .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+#qa table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+#qa th,#qa td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted)}
+#qa th{color:var(--text);font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase}
+#qa td:first-child{color:var(--text);font-weight:700}
+#qa code{font-family:var(--mono);font-size:.82em;color:var(--green)}
+#qa .foot{font:.78rem var(--mono);color:var(--dim);margin-top:18px}
+</style>
+</head>
+<body>
+<header class="bar">
+  <span class="badge">Pecha Kucha · 20 × 20 s</span>
+  <span class="ttl">BâtIA · Hacker le bâtiment avant qu'il ne casse · In'li Sud-Ouest</span>
+  <div class="ctrl">
+    <button class="btn" id="prev" aria-label="Diapositive précédente">←</button>
+    <span class="count" id="count">1 / 20</span>
+    <button class="btn" id="next" aria-label="Diapositive suivante">→</button>
+    <button class="btn primary" id="play">▶ Lancer</button>
+    <button class="btn on" id="vbtn" title="Touche V" aria-pressed="true">🔊 Voix off</button>
+    <button class="btn on" id="nbtn" title="Touche S" aria-pressed="true">Sous-titres</button>
+    <button class="btn" id="gbtn" title="Touche G">📖 Guide &amp; références</button>
+    <button class="btn" id="fs" title="Touche F">Plein écran</button>
+    <button class="btn" id="qbtn" title="Touche Q">Questions &amp; SI</button>
+  </div>
+</header>
+<div class="timer"><i id="bar"></i></div>
+<main>
+  <section class="slide" id="slide"></section>
+  <div class="notes" id="notes"></div>
+  <nav class="dots" id="dots" aria-label="Diapositives"></nav>
+</main>
+
+
+<div id="qa" role="dialog" aria-modal="true" aria-label="Questions du jury et évolutions du système d'information">
+ <div class="wrap">
+  <div class="top"><h2>Questions du jury, atouts et feuille de route</h2><button class="btn" id="qclose">Fermer (Échap)</button></div>
+  <div class="tabs" role="tablist">
+   <button class="btn" role="tab" data-tab="q" aria-selected="true">1 · Questions</button>
+   <button class="btn" role="tab" data-tab="a" aria-selected="false">2 · Nos atouts</button>
+   <button class="btn" role="tab" data-tab="s" aria-selected="false">3 · Évolutions du SI</button>
+   <button class="btn" role="tab" data-tab="n" aria-selected="false">4 · Nostr · IPFS · Ẑen</button>
+  </div>
+
+  <section id="qa-q" class="on">
+   <div class="card"><h3>Faut-il rendre le logement et ses appareils « intelligents » ?</h3>
+    <p><span class="tag t-idea">Notre réponse</span><b>D'abord par l'information, ensuite par le capteur.</b> Un appareil devient intelligent quand on sait <b>qui il est</b> (identifiant stable), <b>ce qu'il a vécu</b> (mémoire), <b>ce qui est prévu pour lui</b> (agenda) et <b>à qui appartient la donnée</b>. C'est peu coûteux et ça sert tout de suite. Les capteurs viennent ensuite, là où une panne coûte cher : chaudières, pompes à chaleur, ballons, ascenseurs.</p></div>
+
+   <div class="card"><h3>Existe-t-il une base qui les référence, avec un agenda et une mémoire ?</h3>
+    <p><span class="tag t-ok">Déjà dans le kit</span>Oui, en grande partie : la chaîne <code>résidence → bâtiment → logement → équipement</code> donne à chaque appareil un identifiant (<code>EQP-…</code>) qui <b>reste le même quand on le remplace</b>. Sa <b>mémoire</b> est la table des <b>30 630 interventions</b> (symptôme, gravité, commentaire du technicien) et des 5 253 commandes.</p>
+    <p><span class="tag t-gap">Il manque</span>Un vrai <b>agenda</b> : le kit ne contient qu'un indicateur « visite annuelle prévue », pas de calendrier par appareil. Il manque aussi la <b>fiche de l'appareil</b> : modèle, numéro de série, garantie, notice.</p>
+    <p><span class="tag t-idea">Ne pas réinventer</span>Des vocabulaires ouverts existent pour décrire un bâtiment et ses équipements (par exemple Brick, RealEstateCore, IFC, SAREF, Matter pour les objets connectés ; et le carnet d'information du logement en droit français). Notre modèle doit pouvoir s'y raccorder. <i>Comparaison à vérifier avant de s'engager sur l'un d'eux.</i></p></div>
+
+   <div class="card"><h3>La déclaration de problème est-elle associée à une photo ou une vidéo ?</h3>
+    <p><span class="tag t-gap">Constat</span><b>Non, pas dans les données fournies.</b> Une demande locataire contient seulement du texte (<code>texte_demande</code>) et un canal : e-mail 2 629, téléphone 2 066, espace locataire en ligne 399, astreinte 141. Aucune colonne ne contient une photo ou une vidéo. Le score ne peut donc rien en tirer aujourd'hui.</p>
+    <p><span class="tag t-idea">Évolution proposée</span>Joindre à la déclaration <b>une photo ou 15 secondes de vidéo</b> : étiquette de l'appareil, manomètre de la chaudière, tache d'humidité, bruit. Une IA locale peut en extraire l'appareil, la marque et le symptôme visible ; <b>l'humain valide</b>. Cela réduit les allers-retours et prépare l'intervention : on sait quelle pièce apporter.</p>
+    <p><span class="tag t-risk">Précautions</span>Consentement, floutage des personnes, chiffrement, durée de conservation. Idée à tester, non réalisée.</p></div>
+  </section>
+
+  <section id="qa-a">
+   <div class="grid">
+    <div class="card"><h3>Explicable</h3><p>Chaque score se décompose en contributions lisibles : âge, pannes récentes, visites manquées. Un technicien sait quoi vérifier. Pas de boîte noire.</p></div>
+    <div class="card"><h3>L'IA recommande, l'humain décide</h3><p>L'IA générative explique et rédige, elle ne calcule jamais le score. Chaque note est relue avant diffusion.</p></div>
+    <div class="card"><h3>Honnête sur ses limites</h3><p>Données fictives, validation dans le passé (fin 2024 → 2025), distinction entre ce que les données prouvent et ce qu'elles ne prouvent pas.</p></div>
+    <div class="card"><h3>Simple à maintenir</h3><p>Trois couches : collecter, analyser, restituer. Une petite équipe peut la faire tourner, avec un prestataire en maîtrise d'œuvre.</p></div>
+    <div class="card"><h3>Données chez le bailleur</h3><p>Une IA locale peut tourner sur du matériel que le bailleur contrôle : aucune donnée de locataire n'a besoin de partir chez un tiers. Propriété des paramètres, export et réversibilité garantis.</p></div>
+    <div class="card"><h3>Le locataire, premier capteur</h3><p>Signaler tôt, faire le geste simple, envoyer une preuve : le circuit court raccourcit les six étapes qui séparent l'alerte du rendez-vous.</p></div>
+   </div>
+  </section>
+
+  <section id="qa-s">
+   <div class="card"><h3>Le système d'information en trois paliers</h3>
+    <p>Mêmes paliers que le déploiement MOA/MOE du dossier. Tout ce qui suit est une <b>proposition</b> : rien n'est réalisé.</p>
+    <table><tr><th>Palier</th><th>Ce qui change</th><th>Pourquoi</th></tr>
+     <tr><td>1 · Pilote<br><span style="font-weight:400">6–14 mois</span></td><td><b>Fiche numérique par appareil</b> (identifiant, modèle, série, pose, garantie, notice) · <b>agenda d'entretien</b> par appareil · <b>photo/vidéo</b> dans la déclaration · audit de qualité des données</td><td>Gains immédiats, sans capteur. Les dates de pose sont aujourd'hui de qualité variable (le kit en note l'origine).</td></tr>
+     <tr><td>2 · Région<br><span style="font-weight:400">14–30 mois</span></td><td><b>Capteurs ciblés</b> sur les équipements critiques · alertes vers l'agenda · <b>copilote</b> qui lit photos et rapports prestataires · tournées d'intervention groupées</td><td>Là où l'arrêt total coûte le plus cher. Moins de déplacements, moins d'urgences.</td></tr>
+     <tr><td>3 · Groupe<br><span style="font-weight:400">30–54 mois</span></td><td><b>Mutualisation</b> entre filiales, prestataires et locataires, sans plateforme unique obligatoire · attestations de compétence des prestataires</td><td>Comparer les parcs, négocier ensemble, continuer à fonctionner même si un nœud tombe.</td></tr></table></div>
+   <div class="card"><h3>Ce que ça change pour les équipes</h3>
+    <ul><li><b>Regulatory / patrimoine</b> : carnet de chaque logement à jour, DPE et interventions rattachés au même identifiant.</li>
+     <li><b>Maintenance</b> : l'agenda sort de la liste d'urgences ; les visites manquées (16 %) deviennent visibles.</li>
+     <li><b>Locataires</b> : un seul fil par problème, avec preuve et suivi.</li></ul></div>
+  </section>
+
+  <section id="qa-n">
+   <div class="card"><h3>Pourquoi Nostr et IPFS ?</h3>
+    <p><b>Nostr</b> : des messages signés, publiés sur <b>plusieurs relais</b>. Si l'un tombe, les autres gardent l'historique : pas de point de défaillance unique. Chaque déclaration, validation ou intervention porte la signature de son auteur : on sait <b>qui a dit quoi, et quand</b>.</p>
+    <p><b>IPFS</b> : un fichier est retrouvé par son <b>empreinte</b>. Une photo, une notice ou un rapport ne peut pas être modifié sans que l'empreinte change : preuve d'intégrité, et copie possible sur plusieurs machines.</p></div>
+
+   <div class="card"><h3>Comment un appareil y devient « intelligent »</h3>
+    <p>Le dépôt Astroport.ONE décrit déjà des <b>objets</b> (événement Nostr de type 30505) avec : état courant, <code>condition</code> (neuf, opérationnel, dégradé, maintenance à prévoir, retiré), <code>durability</code> de 0 à 100, <code>maintenance_interval</code> (par exemple <code>P6M</code>, soit tous les 6 mois), et un lien <code>doc</code> vers la notice sur IPFS. Un <b>journal append-only</b> (type 1505) garde chaque usage ou dégradation : c'est la <b>mémoire</b> de l'appareil.</p>
+    <p>La correspondance avec nos données est directe : équipement → objet · <code>duree_vie_reference_ans</code> → durabilité · intervention → ligne du journal · <code>visite_annuelle_prevue</code> → intervalle de maintenance. <span class="tag t-gap">À faire</span>L'agenda complet (calendrier Nostr) n'est pas intégré à ce jour.</p></div>
+
+   <div class="card"><h3>Toile de confiance : prestataires et locataires</h3>
+    <p>Le dispositif WoTx² de la constellation permet d'<b>attester une compétence</b> par des pairs (niveaux X1, X2…), et d'exiger un niveau pour utiliser un objet. Appliqué ici :</p>
+    <ul><li><b>Prestataires</b> : qualifications attestées (gaz, électricité, PAC) et interventions validées, visibles de tous les acteurs du parc. Le choix du prestataire se fait sur preuves, pas sur promesses.</li>
+     <li><b>Locataires</b> : des déclarations accompagnées de preuves, validées par un expert, construisent une confiance. <span class="tag t-risk">Garde-fou</span>Pas de notation des personnes : seulement des faits attestés, avec le consentement du locataire.</li>
+     <li><b>Litiges</b> : une médiation en cercles de pairs existe dans le dispositif, avant tout arbitrage.</li></ul></div>
+
+   <div class="card"><h3>Le Ẑen et la Ğ1 : coordonner à moindre coût</h3>
+    <p>Précision utile : la <b>Ğ1</b> est la monnaie libre et sa chaîne de blocs, fondée sur une toile de confiance. Le <b>Ẑen</b> est un <b>jeton utilitaire</b> adossé à elle : une unité de compte interne (≈ 1 €, non garanti), pas une blockchain en soi.</p>
+    <p>Usage envisagé : une <b>clé de répartition transparente</b> entre bailleur, prestataires et collectifs de locataires (tournées groupées, parties communes mutualisées), avec une trace publique des règles. Les paiements réels restent en euros, tant que le statut juridique du Ẑen n'est pas qualifié.</p></div>
+
+   <div class="card"><h3>Résilience et déploiement</h3>
+    <ul><li><b>Pas de point unique</b> : plusieurs relais, plusieurs copies IPFS, des clés détenues par les acteurs.</li>
+     <li><b>Hors ligne d'abord</b> : un technicien en cave peut consigner, la synchronisation se fait ensuite.</li>
+     <li><b>Déployable vite</b> : la suite s'installe sur un PC Linux ou en conteneur ; chaque résidence peut avoir sa station, reliée aux autres.</li>
+     <li><b>Code libre</b> (AGPL) : réversibilité, pas de dépendance à un éditeur.</li></ul></div>
+
+   <div class="card"><h3>Ce qu'il faut dire avec franchise</h3>
+    <ul><li><span class="tag t-risk">RGPD</span><b>Ne jamais publier de données de locataire en clair sur IPFS ou Nostr</b> : ce qui y est publié est copiable et difficile à effacer. On y met des empreintes, des références et des preuves chiffrées ; les données personnelles restent chez le bailleur.</li>
+     <li><span class="tag t-risk">Maturité</span>Ces briques sont jeunes et n'ont pas été éprouvées à l'échelle d'un bailleur de 80 000 logements : un pilote est le bon format.</li>
+     <li><span class="tag t-risk">Droit</span>Le statut du Ẑen dans la comptabilité d'un bailleur social reste à qualifier avec un juriste.</li>
+     <li><span class="tag t-idea">Proposition G1FabLab</span>Pilote sur une résidence : fiches d'appareils, agenda, photo dans la déclaration, relais et stockage hébergés chez le bailleur.</li></ul></div>
+  </section>
+  <p class="foot">Sources : kit de données BâtIA (tables 03 à 08, dictionnaire) · documentation Astroport.ONE (objets 30505, WoTx², médiation, économie Ẑen). Propositions et idées signalées comme telles.</p>
+ </div>
+</div>
+<div id="guide" role="dialog" aria-modal="true" aria-label="Guide et références"><div class="panel"><header><h2>Guide pour tout comprendre · code · publications</h2><div class="tabs" id="gtabs"></div><button class="btn" id="gclose">Fermer (Échap)</button></header><div class="body" id="gbody"></div></div></div>
+
+<script>
+const C={g:'#2ed573',b:'#4aa3ff',a:'#ffb02e',r:'#ff5a68',t:'#f1f2f6',m:'#a9b4c2',d:'#6b7888'};
+const SLIDE_MS=20000;
+
+/* ---------- helpers SVG ---------- */
+const svg=(inner,vb='0 0 600 400')=>`<svg viewBox="${vb}" role="img" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+const T=(x,y,txt,cls='',i=0)=>`<text x="${x}" y="${y}" class="${cls} fade" style="--i:${i}">${txt}</text>`;
+
+/* ---------- données réelles (table 08) ---------- */
+const OPS=[
+[430,170,'Étiquette DPE F/G'],[2400,170,'Interdiction de location étiquette G'],[113,60,'Demande gestion locative'],[140,160,'Plaintes locataires'],
+[140,170,'Demande gestion locative'],[240,138,'Pannes répétées'],[180,170,'Infiltrations'],[190,160,'Étiquette DPE D'],[310,150,'Étiquette DPE D/E'],
+[330,170,'Vétusté équipement'],[620,230,'Vétusté équipement'],[520,170,'Étiquette DPE F/G'],[48,60,'Pannes répétées'],[145,150,'Demande gestion locative'],
+[780,150,'Demande gestion locative'],[26,90,'Vétusté équipement'],[260,150,'Infiltrations'],[90,30,'Pannes répétées'],[375,230,'Infiltrations'],
+[85,15,'Pannes répétées'],[560,150,'Vétusté équipement'],[84,160,'Demande gestion locative'],[380,170,'Humidité / condensation'],[2900,230,'Étiquette DPE E/F'],
+[97,230,'Demande gestion locative'],[18,60,'Pannes répétées'],[1150,230,'Étiquette DPE E/F'],[190,20,'Pannes répétées'],[600,160,'Programmation long terme']
+].map(([c,n,o],i)=>({rang:i+1,cout:c,nb:n,orig:o}));
+const W_ORIG={'Étiquette DPE F/G':1,'Interdiction de location étiquette G':1,'Pannes répétées':.85,'Vétusté équipement':.8,'Infiltrations':.7,'Humidité / condensation':.7,
+ 'Étiquette DPE E/F':.55,'Étiquette DPE D/E':.45,'Étiquette DPE D':.4,'Plaintes locataires':.5,'Demande gestion locative':.2,'Programmation long terme':.1};
+
+/* ---------- sketches p5 (mode instance) ---------- */
+const SK={};
+
+SK.hero=(p,el)=>{
+  let W,H,cols=22,rows=13,rings=[],flash=[];
+  p.setup=()=>{W=el.clientWidth;H=el.clientHeight;p.createCanvas(W,H);p.noStroke();};
+  p.windowResized=()=>{W=el.clientWidth;H=el.clientHeight;p.resizeCanvas(W,H);};
+  p.draw=()=>{
+    p.clear();
+    const cw=W/cols,ch=H/rows;
+    if(p.frameCount%14===0){rings.push({c:p.floor(p.random(cols)),r:p.floor(p.random(rows)),t:0});}
+    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+      const n=p.noise(c*.18,r*.18,p.frameCount*.012);
+      p.fill(46,213,115,40+n*130);
+      p.circle(c*cw+cw/2,r*ch+ch/2,Math.min(cw,ch)*(.22+n*.28));
+    }
+    for(let k=rings.length-1;k>=0;k--){
+      const g=rings[k];g.t+=1;
+      const x=g.c*cw+cw/2,y=g.r*ch+ch/2;
+      p.noFill();p.stroke(255,90,104,255-g.t*5);p.strokeWeight(2);
+      p.circle(x,y,g.t*2.2);
+      p.noStroke();p.fill(255,90,104,255-g.t*3);p.circle(x,y,Math.min(cw,ch)*.5);
+      if(g.t>50){flash.push({x,y,t:0});rings.splice(k,1);}
+    }
+    for(let k=flash.length-1;k>=0;k--){
+      const f=flash[k];f.t+=1;p.fill(46,213,115,255-f.t*6);p.circle(f.x,f.y,Math.min(cw,ch)*.8);
+      if(f.t>40)flash.splice(k,1);
+    }
+  };
+};
+
+SK.gauss=(p,el)=>{
+  let W,H,bins=36,maxX=9,hist,n,mean,m2,over;
+  const reset=()=>{hist=new Array(bins).fill(0);n=0;mean=0;m2=0;over=0;};
+  p.setup=()=>{W=el.clientWidth;H=el.clientHeight;p.createCanvas(W,H);reset();p.textFont('JetBrains Mono');};
+  p.windowResized=()=>{W=el.clientWidth;H=el.clientHeight;p.resizeCanvas(W,H);};
+  p.draw=()=>{
+    p.clear();
+    if(n<3500){for(let k=0;k<9;k++){
+      const x=Math.exp(.85*p.randomGaussian());
+      n++;const d=x-mean;mean+=d/n;m2+=d*(x-mean);
+      const b=Math.min(bins-1,Math.floor(x/maxX*bins));hist[b]++;
+    }}else if(p.frameCount%240===0){reset();}
+    const sd=Math.sqrt(m2/Math.max(1,n-1)),lim=mean+3*sd;
+    const pl=34,pr=16,pt=40,pb=44,pw=W-pl-pr,ph=H-pt-pb,bw=pw/bins;
+    const peak=Math.max(...hist,1);
+    over=0;
+    p.noStroke();
+    for(let i=0;i<bins;i++){
+      const x0=i*maxX/bins,h=hist[i]/peak*ph*.92,isOver=x0>=lim;
+      if(isOver)over+=hist[i];
+      p.fill(isOver?p.color(255,90,104,230):p.color(74,163,255,170));
+      p.rect(pl+i*bw+1,pt+ph-h,bw-2,h,2);
+    }
+    p.noFill();p.stroke(46,213,115);p.strokeWeight(2.5);p.beginShape();
+    for(let i=0;i<=120;i++){
+      const x=i/120*maxX,pdf=Math.exp(-.5*((x-mean)/sd)**2)/(sd*Math.sqrt(2*Math.PI));
+      p.vertex(pl+x/maxX*pw,pt+ph-pdf*(maxX/bins)*n/peak*ph*.92);
+    }
+    p.endShape();
+    p.stroke(255,255,255,40);p.line(pl,pt+ph,pl+pw,pt+ph);
+    const lx=pl+Math.min(lim,maxX)/maxX*pw;
+    p.stroke(255,90,104,200);p.drawingContext.setLineDash([5,5]);p.line(lx,pt,lx,pt+ph);p.drawingContext.setLineDash([]);
+    p.noStroke();p.textSize(11);
+    p.fill(46,213,115);p.text('— cloche de Gauss ajustée',pl,20);
+    p.fill(74,163,255);p.text('■ pannes simulées (queue épaisse)',pl+170,20);
+    p.fill(255,90,104);p.text('■ au-delà de 3σ : « improbable » selon Gauss',pl,H-16);
+    p.fill(241,242,246);p.textAlign(p.RIGHT);p.text(over+' événements (' + (n?(over/n*100).toFixed(1):0)+' %)',W-pr,H-16);p.textAlign(p.LEFT);
+  };
+};
+
+SK.burst=(p,el)=>{
+  let W,H,poisson=[],obs=[];
+  const mk=()=>{
+    poisson=[];obs=[];
+    for(let i=0;i<190;i++)poisson.push(p.random());
+    while(obs.length<190){
+      const x=p.random();
+      const rate=.12+.88*(.5+.5*Math.cos((x*8-.0)*2*Math.PI));
+      if(p.random()<rate*.55){obs.push(x);if(p.random()<.4){const k=p.floor(p.random(2,5));for(let j=0;j<k;j++)obs.push(Math.min(1,x+p.random(.0005,.006)));}}
+    }
+  };
+  p.setup=()=>{W=el.clientWidth;H=el.clientHeight;p.createCanvas(W,H);mk();p.textFont('JetBrains Mono');};
+  p.windowResized=()=>{W=el.clientWidth;H=el.clientHeight;p.resizeCanvas(W,H);};
+  p.draw=()=>{
+    p.clear();
+    const pl=22,pr=22,pw=W-pl-pr,cyc=(p.frameCount%420)/360,sc=Math.min(1,cyc);
+    const lane=(y0,arr,col,label,val)=>{
+      p.noStroke();p.fill(169,180,194);p.textSize(11);p.text(label,pl,y0-52);
+      p.fill(col);p.textAlign(p.RIGHT);p.textSize(15);p.text(val,W-pr,y0-52);p.textAlign(p.LEFT);
+      p.stroke(255,255,255,35);p.line(pl,y0,pl+pw,y0);
+      p.stroke(col);p.strokeWeight(1.4);
+      for(const x of arr){if(x<=sc)p.line(pl+x*pw,y0-34,pl+x*pw,y0);}
+    };
+    lane(H*.36,poisson,p.color(74,163,255),'PROCESSUS DE POISSON (hypothèse « indépendant »)','dispersion = 1');
+    lane(H*.78,obs,p.color(255,90,104),'DÉPANNAGES OBSERVÉS (8 ans, 2018 → 2025)','dispersion = 2,32');
+    p.stroke(46,213,115,180);p.strokeWeight(1.5);p.line(pl+sc*pw,H*.08,pl+sc*pw,H*.9);
+    p.noStroke();p.fill(107,120,136);p.textSize(10);
+    for(let y=0;y<8;y++)p.text(2018+y,pl+y/8*pw+3,H-8);
+  };
+};
+
+SK.hawkes=(p,el)=>{
+  let W,H,t=0,events=[],hist=[];
+  const mu=.06,a=.8,c=.4,pw_=1.5,dt=.12,N=520;
+  const lam=()=>{let s=mu;for(const e of events)s+=a*Math.pow(1+(t-e)/c,-pw_);return s;};
+  p.setup=()=>{W=el.clientWidth;H=el.clientHeight;p.createCanvas(W,H);p.textFont('JetBrains Mono');p.frameRate(30);};
+  p.windowResized=()=>{W=el.clientWidth;H=el.clientHeight;p.resizeCanvas(W,H);};
+  p.draw=()=>{
+    p.clear();
+    for(let s=0;s<2;s++){
+      t+=dt;const l=lam();let ev=false;
+      if(p.random()<l*dt){ev=true;events.push(t);}
+      hist.push({l,ev});if(hist.length>N)hist.shift();
+      events=events.filter(e=>t-e<120);
+    }
+    const pl=20,pr=14,pt=46,pb=40,pw=W-pl-pr,ph=H-pt-pb,mx=2.2;
+    p.noStroke();p.fill(169,180,194);p.textSize(11);p.text('INTENSITÉ λ(t) : probabilité instantanée de panne',pl,22);
+    const y=v=>pt+ph-Math.min(v,mx)/mx*ph;
+    p.stroke(74,163,255,150);p.drawingContext.setLineDash([5,5]);p.line(pl,y(mu),pl+pw,y(mu));p.drawingContext.setLineDash([]);
+    p.noStroke();p.fill(74,163,255);p.textSize(10);p.text('niveau de base μ (modèle sans mémoire)',pl+4,y(mu)-5);
+    p.noFill();p.stroke(46,213,115);p.strokeWeight(2);p.beginShape();
+    hist.forEach((h,i)=>p.vertex(pl+i/N*pw,y(h.l)));p.endShape();
+    p.strokeWeight(2);
+    hist.forEach((h,i)=>{if(h.ev){const x=pl+i/N*pw;p.stroke(255,90,104);p.line(x,pt+ph,x,pt+ph+22);p.noStroke();p.fill(255,90,104);p.circle(x,y(h.l),7);}});
+    p.noStroke();p.fill(107,120,136);p.textSize(10);p.text('panne ↑ sursaut · décroissance en loi de puissance → grappes de pannes',pl,H-8);
+  };
+};
+
+SK.knap=(p,el)=>{
+  let W,H,items,order=[[],[]],picks=[new Set(),new Set()],mode=0,tot,budget=1500;
+  p.setup=()=>{
+    W=el.clientWidth;H=el.clientHeight;p.createCanvas(W,H);p.textFont('JetBrains Mono');
+    items=OPS.map(o=>({...o,val:(W_ORIG[o.orig]||.3)*o.nb,x:W/2,y:H/2}));
+    tot=items.reduce((s,o)=>s+o.val,0);
+    order[0]=[...items].sort((a,b)=>a.rang-b.rang);
+    order[1]=[...items].sort((a,b)=>b.val/b.cout-a.val/a.cout);
+    for(const m of [0,1]){let s=0;for(const o of order[m]){if(s+o.cout<=budget){s+=o.cout;picks[m].add(o.rang);}}}
+  };
+  p.windowResized=()=>{W=el.clientWidth;H=el.clientHeight;p.resizeCanvas(W,H);};
+  p.draw=()=>{
+    p.clear();
+    mode=Math.floor(p.frameCount/210)%2;
+    const cols=8,pl=14,pt=62,gw=(W-2*pl)/cols,gh=(H-pt-64)/4;
+    p.noStroke();p.fill(169,180,194);p.textSize(11);
+    p.text(mode===0?'ORDRE CHRONOLOGIQUE ACTUEL (rang 1 → 29)':'ORDRE PAR SCORE (valeur / coût)',pl,22);
+    p.fill(107,120,136);p.textSize(10);p.text('chaque bulle = 1 opération, surface ∝ coût · vert = financée dans 1,5 M€',pl,38);
+    let spent=0,cap=0;
+    order[mode].forEach((o,i)=>{
+      const tx=pl+(i%cols)*gw+gw/2,ty=pt+Math.floor(i/cols)*gh+gh/2;
+      o.x=p.lerp(o.x,tx,.1);o.y=p.lerp(o.y,ty,.1);
+      const r=Math.max(6,Math.min(gw*.46,Math.sqrt(o.cout)*.62));
+      const ok=picks[mode].has(o.rang);
+      if(ok){spent+=o.cout;cap+=o.val;}
+      if(ok){p.fill(46,213,115,200);p.noStroke();}else{p.noFill();p.stroke(107,120,136,160);p.strokeWeight(1.2);}
+      p.circle(o.x,o.y,r*2);
+      p.noStroke();p.fill(ok?p.color(6,33,15):p.color(169,180,194));p.textSize(9);p.textAlign(p.CENTER,p.CENTER);p.text(o.rang,o.x,o.y);p.textAlign(p.LEFT,p.BASELINE);
+    });
+    const by=H-40,bw=W-2*pl;
+    p.fill(255,255,255,18);p.rect(pl,by,bw,10,5);
+    p.fill(46,213,115);p.rect(pl,by,bw*Math.min(1,spent/budget),10,5);
+    p.fill(241,242,246);p.textSize(11);
+    p.text('enveloppe : '+(spent/1000).toFixed(2).replace('.',',')+' / 1,5 M€',pl,by-8);
+    p.textAlign(p.RIGHT);p.fill(46,213,115);p.textSize(13);
+    p.text('valeur captée (démo) : '+Math.round(cap/tot*100)+' %',W-pl,by-8);p.textAlign(p.LEFT);
+    p.fill(107,120,136);p.textSize(10);p.text('score de démonstration = pondération du motif × logements concernés ; coûts et rangs réels (table 08)',pl,H-10);
+  };
+};
+
+SK.end=(p,el)=>{
+  let W,H,pts=[];
+  p.setup=()=>{W=el.clientWidth;H=el.clientHeight;p.createCanvas(W,H);for(let i=0;i<70;i++)pts.push({x:p.random(W),y:p.random(H),vx:p.random(-.4,.4),vy:p.random(-.4,.4)});};
+  p.windowResized=()=>{W=el.clientWidth;H=el.clientHeight;p.resizeCanvas(W,H);};
+  p.draw=()=>{
+    p.clear();
+    for(const a of pts){a.x=(a.x+a.vx+W)%W;a.y=(a.y+a.vy+H)%H;}
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const d=p.dist(pts[i].x,pts[i].y,pts[j].x,pts[j].y);
+      if(d<110){p.stroke(46,213,115,(1-d/110)*120);p.strokeWeight(1);p.line(pts[i].x,pts[i].y,pts[j].x,pts[j].y);}
+    }
+    p.noStroke();
+    for(const a of pts){p.fill(74,163,255,200);p.circle(a.x,a.y,4);}
+    p.fill(241,242,246);p.textAlign(p.CENTER,p.CENTER);p.textFont('Plus Jakarta Sans');
+    p.textStyle(p.BOLD);p.textSize(Math.min(32,W/16));p.text(`L'IA recommande.`,W/2,H*.42);
+    p.fill(46,213,115);p.text(`L'humain décide.`,W/2,H*.42+Math.min(44,W/12));
+  };
+};
+
+/* ---------- visuels SVG ---------- */
+const V={};
+
+V.ladder=()=>{
+  const rows=[['Résidences',8,'RES-A → RES-H'],['Bâtiments',32,'cages d\'escalier'],['Logements',1100,'typologie · DPE'],['Équipements',4217,'1 285 dans le périmètre'],['Interventions',30630,'2018 → 2025'],['Demandes locataires',5235,'texte libre']];
+  const mx=Math.log10(30630);
+  return svg(rows.map(([n,v,s],i)=>{
+    const y=30+i*57,w=40+Math.log10(v)/mx*330;
+    return `<rect class="grow" style="--i:${i}" x="30" y="${y}" width="${w}" height="34" rx="8" fill="${[C.g,C.g,C.b,C.b,C.a,C.a][i]}" opacity=".85"/>`+
+      `<text x="40" y="${y+22}" class="b fade" style="--i:${i+1};fill:#06210f">${n}</text>`+
+      `<text x="${30+w+10}" y="${y+16}" class="mono b L fade" style="--i:${i+2}">${v.toLocaleString('fr-FR')}</text>`+
+      `<text x="${30+w+10}" y="${y+31}" class="m s fade" style="--i:${i+2}">${s}</text>`;
+  }).join('')+`<text x="30" y="392" class="d xs mono">échelle logarithmique · données fictives calibrées sur des statistiques réelles agrégées</text>`);
+};
+
+V.queue=()=>{
+  const bars=OPS.slice(0,10),mx=2500,bw=44,x0=44,base=330,H=250;
+  const ly=base-1500/mx*H;
+  return svg(
+    `<line x1="30" y1="${base}" x2="580" y2="${base}" stroke="#ffffff22"/>`+
+    bars.map((o,i)=>{const h=o.cout/mx*H,over=o.cout>1500;
+      return `<rect class="growy" style="--i:${i}" x="${x0+i*53}" y="${base-h}" width="${bw}" height="${h}" rx="5" fill="${over?C.r:C.b}" opacity=".9"/>`+
+        `<text class="fade c mono xs" style="--i:${i+1}" x="${x0+i*53+bw/2}" y="${base+16}">#${o.rang}</text>`+
+        (over?`<text class="fade c mono s b rd" style="--i:${i+2}" x="${x0+i*53+bw/2}" y="${base-h-8}">2,4 M€</text>`:'');}).join('')+
+    `<line class="draw" style="--i:5;--len:560" x1="30" y1="${ly}" x2="590" y2="${ly}" stroke="${C.a}" stroke-width="2" stroke-dasharray="7 6"/>`+
+    `<text x="330" y="${ly-8}" class="am mono s b fade" style="--i:6">enveloppe annuelle 1,5 M€</text>`+
+    `<text x="30" y="30" class="m s">coût estimé des 10 premières opérations, dans l'ordre chronologique</text>`+
+    `<text x="30" y="385" class="d xs mono">plan complet : 29 opérations · 13,4 M€ ≈ 9 années d'enveloppe</text>`);
+};
+
+V.duo=()=>svg(
+  `<g class="fade" style="--i:0"><rect x="20" y="30" width="270" height="340" rx="16" fill="#ffffff08" stroke="${C.g}" stroke-width="1.5"/></g>`+
+  T(40,68,'DÉFI 1','mono s g b',1)+T(40,98,'Détection précoce','L',1)+
+  T(40,124,'1 285 équipements','m',2)+T(40,144,'panne « Arrêt total »','m',2)+T(40,164,'01/01 → 30/09/2026','m mono s',2)+
+  `<rect class="grow" style="--i:3" x="40" y="196" width="230" height="1" fill="#ffffff33"/>`+
+  T(40,226,'Livrable','d mono xs',3)+T(40,246,'equipement_id, score_risque','mono s',3)+
+  T(40,280,'Jugé sur','d mono xs',4)+T(40,300,'AUC + top 10 %','b',4)+T(40,320,'vs baseline « âge seul »','m s',4)+
+  `<g class="fade" style="--i:2"><rect x="310" y="30" width="270" height="340" rx="16" fill="#ffffff08" stroke="${C.b}" stroke-width="1.5"/></g>`+
+  T(330,68,'DÉFI 2','mono s bl b',3)+T(330,98,'Priorisation','L',3)+
+  T(330,124,'29 opérations','m',4)+T(330,144,'enveloppe annuelle 1,5 M€','m',4)+T(330,164,'au lieu de l\'ordre chronologique','m s',4)+
+  `<rect class="grow" style="--i:5" x="330" y="196" width="230" height="1" fill="#ffffff33"/>`+
+  T(330,226,'Livrable','d mono xs',5)+T(330,246,'classement argumenté','mono s',5)+
+  T(330,280,'Jugé sur','d mono xs',6)+T(330,300,'explicabilité','b',6)+T(330,320,'lisible par une équipe non technique','m s',6)
+);
+
+V.recid=()=>{
+  const base=330,H=230;
+  const bar=(x,v,col,lab,sub,i)=>{const h=v/35*H;
+    return `<rect class="growy" style="--i:${i}" x="${x}" y="${base-h}" width="150" height="${h}" rx="8" fill="${col}"/>`+
+      `<text class="fade mono L c" style="--i:${i+2};fill:${col}" x="${x+75}" y="${base-h-12}">${v.toLocaleString('fr-FR')} %</text>`+
+      `<text class="fade c b" style="--i:${i+2}" x="${x+75}" y="${base+24}">${lab}</text>`+
+      `<text class="fade c m s" style="--i:${i+2}" x="${x+75}" y="${base+42}">${sub}</text>`;};
+  return svg(
+    `<line x1="40" y1="${base}" x2="570" y2="${base}" stroke="#ffffff22"/>`+
+    bar(100,22.7,C.b,'Si indépendantes','dates tirées au hasard',0)+
+    bar(350,30.9,C.r,'Observé','7 107 intervalles',2)+
+    `<path class="draw" style="--i:5;--len:200" d="M 250 150 C 300 110 330 110 410 120" fill="none" stroke="${C.a}" stroke-width="2"/>`+
+    `<text class="fade am mono b" style="--i:6" x="300" y="100">+8 pts</text>`+
+    `<text x="40" y="28" class="m s">part des dépannages suivis d'un nouveau dépannage de l'équipement sous 90 jours</text>`);
+};
+
+V.honest=()=>svg(
+  `<g class="fade" style="--i:0"><rect x="20" y="20" width="270" height="290" rx="16" fill="#2ed57312" stroke="${C.g}"/></g>`+
+  T(40,52,'LES DONNÉES MONTRENT','mono s g b',1)+
+  [['Récidive (31 % vs 23 %)',2],['Saisonnalité oct. → mars',3],['Rafales mensuelles (2,32)',4],['Signaux faibles avant fin de vie',5]].map(([t,i],k)=>
+    `<path class="draw" style="--i:${i};--len:30" d="M40 ${92+k*50} l8 9 l16 -18" fill="none" stroke="${C.g}" stroke-width="3"/>`+`<text class="fade" style="--i:${i}" x="78" y="${95+k*50}">${t}</text>`).join('')+
+  `<g class="fade" style="--i:2"><rect x="310" y="20" width="270" height="290" rx="16" fill="#ff5a6812" stroke="${C.r}"/></g>`+
+  T(330,52,'ELLES NE PROUVENT PAS','mono s rd b',3)+
+  [['Fractalité / bruit en 1/f',4],['Auto-organisation critique',5],['Hurst 0,77 sur 96 mois seulement',6],['Gains sur données réelles',7]].map(([t,i],k)=>
+    `<path class="draw" style="--i:${i};--len:40" d="M332 ${84+k*50} l18 18 m0 -18 l-18 18" fill="none" stroke="${C.r}" stroke-width="3"/>`+`<text class="fade" style="--i:${i}" x="368" y="${95+k*50}">${t}</text>`).join('')+
+  `<rect class="fade" style="--i:8" x="20" y="326" width="560" height="56" rx="12" fill="#ffb02e14" stroke="${C.a}"/>`+
+  T(36,350,'Jeu FICTIF : pannes tirées selon une loi de Weibull, 10 à 20 mois de signaux faibles.','s',8)+
+  T(36,370,'Un modèle retrouvera ces règles. La validation réelle reste l\'étape suivante.','s m',8)
+);
+
+V.feat=()=>{
+  const F=['Âge ÷ durée de vie','Dépannages 12 / 24 mois','Récidive (Hawkes)','Visites manquées','Commentaires « usure »','Demandes « eau tiède »','Contrat d\'entretien','Rotation locataires'];
+  const cx=300,cy=200,R=150;
+  return svg(F.map((f,i)=>{
+    const a=i/F.length*2*Math.PI-Math.PI/2,x=cx+R*Math.cos(a)*1.2,y=cy+R*Math.sin(a)*1.05;
+    const col=[C.g,C.g,C.r,C.a,C.b,C.b,C.g,C.a][i];
+    const tx=x,anchor=Math.cos(a)>.3?'start':Math.cos(a)<-.3?'end':'middle';
+    const lx=x+(Math.cos(a)>.3?12:Math.cos(a)<-.3?-12:0),ly=y+(Math.abs(Math.cos(a))<=.3?(Math.sin(a)>0?24:-14):4);
+    return `<line class="draw" style="--i:${i};--len:260" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${col}" stroke-width="1.5" opacity=".55"/>`+
+      `<circle class="fade" style="--i:${i+1}" cx="${x}" cy="${y}" r="9" fill="${col}"/>`+
+      `<text class="fade s" style="--i:${i+1};text-anchor:${anchor}" x="${lx}" y="${ly}">${f}</text>`;
+  }).join('')+
+  `<circle class="pulse" cx="${cx}" cy="${cy}" r="42" fill="#2ed57322" stroke="${C.g}" stroke-width="2"/>`+
+  `<text class="c b mono" x="${cx}" y="${cy-2}">SCORE</text><text class="c m xs mono" x="${cx}" y="${cy+14}">de risque</text>`);
+};
+
+V.valid=()=>{
+  const x=(y)=>40+(y-2018)/8.75*520;
+  const row=(y0,label,tr,te,ref,i,tail)=>
+    T(40,y0-26,label,'b s',i)+
+    `<rect class="grow" style="--i:${i}" x="${x(2018)}" y="${y0-14}" width="${x(tr)-x(2018)}" height="26" rx="6" fill="${C.b}" opacity=".85"/>`+
+    `<text class="xs fade" style="--i:${i+1};fill:#06210f" x="48" y="${y0+3}">historique utilisable (variables calculées ici)</text>`+
+    `<rect class="grow" style="--i:${i+2}" x="${x(tr)}" y="${y0-14}" width="${x(te)-x(tr)}" height="26" rx="6" fill="${C.a}"/>`+
+    `<line class="draw" style="--i:${i+2};--len:50" x1="${x(tr)}" y1="${y0-22}" x2="${x(tr)}" y2="${y0+22}" stroke="${C.r}" stroke-width="2.5"/>`+
+    T(x(tr)-4,y0+36,ref,'rd mono xs e',i+3)+
+    `<text class="xs b c fade" style="--i:${i+3};fill:#2a1a00" x="${(x(tr)+x(te))/2}" y="${y0+3}">${tail}</text>`;
+  const tile=(x0,big,col,l1,l2,l3,i)=>
+    `<g class="fade" style="--i:${i}"><rect x="${x0}" y="236" width="275" height="148" rx="14" fill="#ffffff08" stroke="${col}" stroke-width="1.6"/>`+
+    `<text class="mono b" x="${x0+16}" y="284" style="fill:${col};font-size:38px">${big}</text>`+
+    `<text class="b s" x="${x0+16}" y="308">${l1}</text>`+
+    `<text class="m xs" x="${x0+16}" y="330">${l2}</text><text class="m xs" x="${x0+16}" y="346">${l3[0]}</text><text class="m xs" x="${x0+16}" y="362">${l3[1]}</text></g>`;
+  return svg(
+    row(58,'VALIDATION DANS LE PASSÉ (résultats ci-dessous)',2024.99,2025.75,'31/12/2024',0,'test')+
+    row(160,'SOUMISSION AU JURY',2025.99,2026.75,'31/12/2025',3,'?')+
+    `<text x="40" y="112" class="m xs fade" style="--i:2">jan.–sept. 2025 : on connaît la réponse, on peut noter le modèle</text>`+
+    `<text x="40" y="228" class="rd mono xs fade" style="--i:5">règle d'or : aucune donnée postérieure à la ligne rouge</text>`+
+    tile(20,'AUC 0,85',C.g,`contre 0,78 avec l'âge seul`,'qualité du classement : une vraie panne passe',['devant une non-panne 85 fois sur 100','(hasard = 50 fois sur 100)'],6)+
+    tile(305,'28 %',C.a,'des équipements inspectés en tête','sont de vraies pannes (âge seul : 15 %).',['36 pannes repérées sur 76 en n\'inspectant','que 10 % du parc (hasard : 8)'],7)
+  );
+};
+
+const TOP5=[["EQP-01633", "pompe à chaleur", "RES-D", 99.8, ["signaux du technicien", "demandes de panne", "récidive de pannes"]], ["EQP-00642", "ballon électrique", "RES-B", 92.4, ["demandes de panne", "âge élevé"]], ["EQP-01533", "pompe à chaleur", "RES-D", 87.4, ["demandes de panne", "signaux du technicien", "type : pompe à chaleur"]], ["EQP-02949", "chaudière gaz", "RES-F", 79.6, ["demandes de panne", "plaintes eau tiède / froid", "âge élevé"]], ["EQP-03530", "ballon électrique", "RES-G", 78.2, ["demandes de panne", "plaintes eau tiède / froid", "âge élevé"]]];
+const TOPSTAT={"n": 1285, "top": 128, "seuil": 11, "gt50": 14};
+V.shap=()=>{
+  const tile=(x0,w,big,col,lab,i)=>`<g class="fade" style="--i:${i}"><rect x="${x0}" y="12" width="${w}" height="62" rx="10" fill="#ffffff08" stroke="${col}" stroke-width="1.4"/>`+
+    `<text class="mono b" x="${x0+12}" y="44" style="fill:${col};font-size:24px">${big}</text><text class="m xs" x="${x0+12}" y="62">${lab}</text></g>`;
+  const rows=TOP5.map(([id,fam,res,sc,why],i)=>{
+    const y=108+i*50,w=Math.max(6,sc/100*380),col=sc>=50?C.r:sc>=25?C.a:C.b;
+    return `<text class="fade b s" style="--i:${i+2}" x="20" y="${y}">#${i+1} · ${id}</text>`+
+      `<text class="fade m xs" style="--i:${i+2}" x="${20+(id.length+5)*7.4}" y="${y}">${fam} · ${res}</text>`+
+      `<rect class="grow" style="--i:${i+2}" x="20" y="${y+6}" width="${w}" height="11" rx="5" fill="${col}"/>`+
+      `<text class="fade mono s b" style="--i:${i+3};fill:${col}" x="${20+w+8}" y="${y+16}">${String(sc).replace('.',',')} %</text>`+
+      `<text class="fade d xs" style="--i:${i+3}" x="20" y="${y+34}">parce que : ${why.join(' · ')}</text>`;}).join('');
+  return svg(
+    tile(14,184,TOPSTAT.n.toLocaleString('fr-FR'),C.g,'équipements notés pour 2026',0)+
+    tile(208,184,TOPSTAT.top,C.a,`à inspecter d'abord (score ≥ ${TOPSTAT.seuil} %)`,1)+
+    tile(402,184,TOPSTAT.gt50,C.r,'au-dessus de 50 % de risque',2)+
+    rows+
+    `<text class="d xs mono fade" style="--i:8" x="20" y="388">scores livrés (livrables/defi1_explications.csv) · réponse détenue par le jury</text>`);
+};
+
+V.fam=()=>{
+  const D=[['Robinetterie / sanitaires',289,C.b],['Chaudières gaz indiv.',223,C.r],['Ballons ECS électriques',163,C.r],['Volets roulants',151,C.b],['Bouches VMC',145,C.b],['Pompes à chaleur',119,C.r]];
+  return svg(D.map(([n,v,c],i)=>{const w=v/289*300,y=50+i*48;
+    return `<text class="fade e s" style="--i:${i}" x="214" y="${y+19}">${n}</text>`+
+      `<rect class="grow" style="--i:${i}" x="224" y="${y}" width="${w}" height="28" rx="6" fill="${c}" opacity=".9"/>`+
+      `<text class="fade mono b" style="--i:${i+2}" x="${224+w+8}" y="${y+19}">${v}</text>`;}).join('')+
+    `<text x="30" y="28" class="m s">dépannages « Arrêt total » par famille d'équipement, 2018 → 2025</text>`+
+    `<rect x="40" y="350" width="12" height="12" rx="3" fill="${C.b}"/><text x="60" y="360" class="s m">gestes de premier niveau envisageables</text>`+
+    `<rect x="330" y="350" width="12" height="12" rx="3" fill="${C.r}"/><text x="350" y="360" class="s m">gaz / électrique : experts seulement</text>`);
+};
+
+V.radar=()=>{
+  const ax=['Réglementaire\n(DPE G/F)','Risque\nde panne','Gain\nénergétique','Coût\n(inversé)','Urgence\nsociale'];
+  const cx=300,cy=205,R=125;
+  const pt=(i,v)=>{const a=i/5*2*Math.PI-Math.PI/2;return [cx+R*v*Math.cos(a),cy+R*v*Math.sin(a)];};
+  const poly=(vals)=>vals.map((v,i)=>pt(i,v).join(',')).join(' ');
+  return svg(
+    [.25,.5,.75,1].map(r=>`<polygon points="${poly([r,r,r,r,r])}" fill="none" stroke="#ffffff1c"/>`).join('')+
+    ax.map((a,i)=>{const [x,y]=pt(i,1),[tx,ty]=pt(i,1.28);const l=a.split('\n');
+      return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#ffffff1c"/>`+
+        l.map((s,k)=>`<text class="c s ${k?'m':'b'}" x="${tx}" y="${ty+k*14-4}">${s}</text>`).join('');}).join('')+
+    `<polygon class="fade" style="--i:1" points="${poly([.9,.6,.35,.7,.6])}" fill="#2ed57333" stroke="${C.g}" stroke-width="2.5"/>`+
+    `<polygon class="fade" style="--i:3" points="${poly([.12,.2,.02,.9,.3])}" fill="#4aa3ff22" stroke="${C.b}" stroke-width="2.5"/>`+
+    `<rect x="26" y="352" width="12" height="12" rx="3" fill="${C.g}"/><text x="46" y="362" class="s">OPE-007 · ballons → thermodynamiques (F/G)</text>`+
+    `<rect x="26" y="374" width="12" height="12" rx="3" fill="${C.b}"/><text x="46" y="384" class="s">OPE-023 · réfection halls</text>`+
+    `<text x="580" y="384" class="d xs mono e">profils illustratifs · pondérations réglables par le métier</text>`);
+};
+
+V.flow=()=>{
+  const role=(y,ic,t,l1,l2,i)=>`<g class="slidein" style="--i:${i}"><rect x="8" y="${y}" width="172" height="62" rx="12" fill="#ffffff0a" stroke="${C.t}" stroke-width="1.5"/>`+
+    `<text class="b" x="20" y="${y+23}">${ic} ${t}</text><text class="m xs" x="20" y="${y+40}">${l1}</text><text class="m xs" x="20" y="${y+53}">${l2}</text></g>`;
+  const arrow=(x1,y,x2)=>`<line class="flow" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="#ffffff66" stroke-width="2"/><circle r="4" fill="${C.g}"><animateMotion dur="1.8s" repeatCount="indefinite" path="M${x1},${y} L${x2},${y}"/></circle>`;
+  return svg(
+    `<text class="am mono xs b" x="8" y="22">VISION · PALIER 3 · PROPOSITION D'ARCHITECTURE, NON RÉALISÉE</text>`+
+    role(36,'🏢','Direction','arbitrages, notes de cadrage','alertes de dérive du parc',0)+
+    role(108,'🔧','Prestataires','fiche d\'intervention, historique','diagnostic avant déplacement',1)+
+    role(180,'🏠','Locataires','signalement guidé, gestes','simples validés par un expert',2)+
+    arrow(182,67,212)+arrow(182,139,212)+arrow(182,211,212)+
+    `<g class="fade" style="--i:3"><rect x="212" y="36" width="190" height="206" rx="14" fill="#2ed57310" stroke="${C.g}" stroke-width="2"/>`+
+    `<text class="b g mono s" x="224" y="58">ORACLE LOCAL</text>`+
+    `<rect x="224" y="68" width="166" height="80" rx="10" fill="#4aa3ff18" stroke="${C.b}"/>`+
+    `<text class="b bl s" x="234" y="88">POIDS · savoir-faire</text><text class="m xs" x="234" y="106">ton pédagogique, vocabulaire</text><text class="m xs" x="234" y="120">métier, refus → expert</text><text class="d xs" x="234" y="136">figé, mis à jour rarement</text>`+
+    `<rect x="224" y="156" width="166" height="76" rx="10" fill="#2ed57318" stroke="${C.g}"/>`+
+    `<text class="b g s" x="234" y="176">MÉMOIRE · savoir-fait</text><text class="m xs" x="234" y="194">état du parc du jour,</text><text class="m xs" x="234" y="208">filtré par rôle</text><text class="d xs" x="234" y="224">actualisée chaque jour</text></g>`+
+    arrow(404,90,430)+arrow(404,190,430)+
+    `<g class="fade" style="--i:4"><rect x="430" y="36" width="162" height="100" rx="12" fill="#ffb02e12" stroke="${C.a}" stroke-width="1.6"/>`+
+    `<text class="b am s" x="442" y="58">OUTILS VÉRIFIABLES</text><text class="m xs" x="442" y="78">score de risque (Défi 1)</text><text class="m xs" x="442" y="93">sac à dos sous 1,5 M€</text><text class="m xs" x="442" y="108">règles DPE</text><text class="d xs" x="442" y="126">appelés, jamais imités</text></g>`+
+    `<g class="fade" style="--i:5"><rect x="430" y="148" width="162" height="94" rx="12" fill="#ffffff0a" stroke="${C.t}" stroke-width="1.6"/>`+
+    `<text class="b s" x="442" y="170">HUMAIN</text><text class="m xs" x="442" y="190">valide et décide</text><text class="m xs" x="442" y="205">expert technique,</text><text class="m xs" x="442" y="220">direction</text></g>`+
+    `<g class="fade" style="--i:6"><rect x="8" y="262" width="284" height="124" rx="12" fill="#ff5a6814" stroke="${C.r}"/>`+
+    `<text class="b rd" x="22" y="290">Il explique, il ne calcule jamais</text>`+
+    `<text class="m s" x="22" y="314">Les chiffres viennent d'outils</text><text class="m s" x="22" y="332">testables et auditables.</text>`+
+    `<text class="m s" x="22" y="356">Sans source : « je ne sais pas ».</text></g>`+
+    `<g class="fade" style="--i:7"><rect x="308" y="262" width="284" height="124" rx="12" fill="#2ed57312" stroke="${C.g}"/>`+
+    `<text class="b g" x="322" y="290">Aucune donnée perso dans les poids</text>`+
+    `<text class="m s" x="322" y="314">Accès filtré sur les données,</text><text class="m s" x="322" y="332">avant le modèle, par rôle.</text>`+
+    `<text class="m s" x="322" y="356">Journal : qui a demandé quoi.</text></g>`);
+};
+
+V.updown=()=>{
+  const node=(x,y,t,c,i)=>`<g class="fade" style="--i:${i}"><rect x="${x}" y="${y}" width="86" height="40" rx="10" fill="#ffffff0a" stroke="${c}"/><text class="c s b" x="${x+43}" y="${y+24}">${t}</text></g>`;
+  const arrow=(x1,y,x2,c,i)=>`<line class="draw" style="--i:${i};--len:60" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${c}" stroke-width="2" marker-end="url(#ar)"/>`;
+  const a1=['Locataire','Alerte','Bailleur','Devis','Prestataire','RDV'];
+  return svg(`<defs><marker id="ar" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#a9b4c2"/></marker></defs>`+
+    `<text x="20" y="30" class="mono s rd b">AUJOURD'HUI · TOP-DOWN</text>`+
+    a1.map((t,i)=>node(14+i*96,48,t,i===0?C.b:C.d,i)+(i<5?arrow(14+i*96+88,68,14+(i+1)*96-2,'#6b7888',i+1):'')).join('')+
+    `<text x="20" y="118" class="m s fade" style="--i:6">6 étapes · la panne bloquante arrive entre-temps</text>`+
+    `<line x1="20" y1="150" x2="580" y2="150" stroke="#ffffff1c"/>`+
+    `<text x="20" y="190" class="mono s g b">PROPOSÉ · BOTTOM-UP</text>`+
+    node(14,210,'Locataire',C.b,7)+arrow(104,230,142,C.g,8)+node(144,210,'Geste niv. 1',C.g,8)+arrow(234,230,272,C.g,9)+
+    node(274,210,'Preuve photo',C.a,9)+arrow(364,230,402,C.g,10)+node(404,210,'Expert valide',C.t,10)+arrow(494,230,520,C.g,11)+
+    `<circle class="pulse" cx="550" cy="230" r="14" fill="${C.g}"/><path d="M543 230 l5 6 l9 -11" fill="none" stroke="#06210f" stroke-width="3"/>`+
+    `<text x="20" y="288" class="m s fade" style="--i:11">le locataire est le premier capteur · l'expert reste le garant</text>`+
+    `<text x="20" y="360" class="d xs mono">Incitation en Ẑen (adossé à la Ğ1) : piste à tester en pilote, hors scoring.</text>`);
+};
+
+V.guard=()=>{
+  const col=(x,c,n,t,items,i)=>`<g class="slidein" style="--i:${i}"><rect x="${x}" y="30" width="178" height="236" rx="14" fill="#ffffff08" stroke="${c}" stroke-width="1.6"/>`+
+    `<text class="mono b" x="${x+14}" y="58" style="fill:${c}">NIVEAU ${n}</text><text class="b" x="${x+14}" y="84">${t}</text>`+
+    items.map((s,k)=>`<text class="m s" x="${x+14}" y="${116+k*24}">• ${s}</text>`).join('')+`</g>`;
+  return svg(
+    col(10,C.b,1,'Signaler',['bruit, perte de charge','purge radiateur','filtre, joint'],0)+
+    col(211,C.a,2,'Entraide + preuve',['réparations simples','photo / capteur','validation sous 48 h'],2)+
+    col(412,C.r,3,'Expert seul',['gaz, électricité','ascenseur','colonnes d\'eau'],4)+
+    `<g class="fade" style="--i:7"><rect x="10" y="288" width="580" height="92" rx="12" fill="#ffb02e14" stroke="${C.a}"/>`+
+    `<text class="mono L am" x="28" y="332">16 %</text>`+
+    `<text class="s" x="120" y="322">des visites d'entretien sont manquées (« logement absent »).</text>`+
+    `<text class="s m" x="120" y="344">La participation habitante est déjà le maillon faible :</text>`+
+    `<text class="s m" x="120" y="362">premier chantier = engagement, pas technologie.</text></g>`);
+};
+
+V.scale=()=>svg(
+  `<circle class="fade" style="--i:3" cx="300" cy="215" r="165" fill="#ffb02e0d" stroke="${C.a}" stroke-dasharray="4 6"/>`+
+  `<circle class="fade" style="--i:2" cx="300" cy="250" r="120" fill="#4aa3ff12" stroke="${C.b}" stroke-width="1.5"/>`+
+  `<circle class="fade" style="--i:1" cx="300" cy="290" r="78" fill="#2ed57320" stroke="${C.g}" stroke-width="2"/>`+
+  T(300,276,'Palier 1 · 2','c b g',2)+T(300,294,'6 000 logements','c m s',2)+T(300,312,'pilote : 1 100','c mono xs g',1)+
+  T(300,175,'Palier 3','c b bl',3)+T(300,192,'~80 000 logements','c m s',3)+T(300,207,'intermédiaires In\'li','c m s',3)+
+  T(300,76,'Horizon','c b am',4)+T(300,94,'1,2 M de logements','c m s',4)+T(300,109,'Action Logement','c m s',4)+
+  `<circle class="pulse" cx="300" cy="333" r="7" fill="${C.g}"/>`+
+  T(300,392,'mêmes données, mêmes critères, un copilote partagé','xs d c',5)
+);
+
+/* ---------- diaporama ---------- */
+const SLIDES=[
+ {k:'BâtIA · Hackathon IA for Impact 2026',t:`Hacker le bâtiment avant qu'il ne casse`,s:`Prédire les pannes, prioriser les rénovations, laisser l'humain décider.`,
+  n:`Bonjour. Nous vous présentons BâtIA : un assistant qui aide un bailleur à repérer les pannes avant qu'elles n'arrivent, et à choisir les bons travaux. Vingt images, vingt secondes chacune.`,p5:'hero'},
+ {k:'Le terrain',t:`8 résidences, 30 630 interventions`,s:`Un jeu fictif calibré sur In'li Sud-Ouest : 1 100 logements, de 2018 au 31/12/2025.`,r:[21],
+  n:`Notre terrain d'étude : huit résidences fictives, mais calibrées sur In'li Sud-Ouest. Mille cent logements, plus de quatre mille équipements, et trente mille passages de techniciens entre deux mille dix-huit et deux mille vingt-cinq.`,v:'ladder'},
+ {k:'Le constat',t:`Une file d'attente, pas une stratégie`,s:`Les rénovations suivent l'ordre chronologique. Le rang 2 du plan coûte 2,4 M€ : plus que l'enveloppe annuelle.`,
+  n:`Aujourd'hui, les travaux sont traités dans l'ordre d'arrivée des demandes. Résultat : le deuxième dossier coûte deux millions quatre cent mille euros, plus que le budget annuel d'un million cinq cent mille. Il bloque tout le reste.`,v:'queue'},
+ {k:'Deux défis',t:`Anticiper, puis arbitrer`,s:`Un score de panne par équipement, un classement des opérations. Le même moteur de données.`,c:`AUC = note de la qualité d'un classement (0,5 = hasard, 1 = parfait). Top 10 % = les 128 équipements jugés les plus à risque.`,r:[21, 17],
+  n:`Deux défis. Premier défi : dire, parmi mille deux cent quatre-vingt-cinq équipements, lesquels risquent de tomber complètement en panne en deux mille vingt-six. Second défi : classer vingt-neuf chantiers avec un budget limité.`,v:'duo'},
+ {k:'Hypothèse à abandonner',t:`La cloche de Gauss ment`,s:`Moyenne et écart-type rendent les ruptures « improbables ». Dans le bâtiment, la queue épaisse est la règle.`,c:`Une cloche, c'est « beaucoup de cas moyens, très peu d'extrêmes ». Ici les extrêmes sont fréquents : la moyenne trompe.`,r:[5, 6],
+  n:`Les méthodes classiques supposent des pannes indépendantes, réparties autour d'une durée de vie moyenne, comme une cloche. La réalité a une longue queue : les cas extrêmes, en rouge, arrivent bien plus souvent que prévu.`,p5:'gauss'},
+ {k:'Signal n°1',t:`Les pannes arrivent par rafales`,s:`Dispersion mensuelle : 2,32 observé pour 1 attendu si les pannes étaient indépendantes.`,c:`Des rafales : plusieurs pannes d'un coup, puis le calme. Comme des averses, pas comme un goutte-à-goutte régulier.`,r:[7],
+  n:`Premier signal : les pannes arrivent par rafales. En haut, des pannes tirées au hasard. En bas, les vraies : des grappes, surtout en hiver. Attention, une partie de cet effet vient simplement du chauffage.`,p5:'burst'},
+ {k:'Signal n°2',t:`Les pannes appellent les pannes`,s:`31 % de redépannage sous 90 jours sur un même équipement, contre 23 % si tout était indépendant.`,c:`Si votre chaudière vient de tomber en panne, elle risque de retomber bientôt. Les chiffres le confirment.`,r:[1, 2],
+  n:`Deuxième signal, plus solide : une panne en appelle une autre. Dans trente et un pour cent des cas, un équipement retombe en panne dans les trois mois. Si les pannes étaient indépendantes, ce serait vingt-trois pour cent.`,v:'recid'},
+ {k:'Le modèle',t:`Hawkes : chaque panne laisse une trace`,s:`Un niveau de base, un sursaut à chaque incident, une décroissance lente. Un score de récidive, explicable.`,c:`Comme les répliques après un séisme : chaque secousse relève le risque, qui s'atténue ensuite avec le temps.`,r:[1, 2, 3, 4],
+  n:`Pour en tenir compte, un modèle simple à raconter : chaque panne augmente le risque, puis il retombe lentement. Ce risque de rechute devient une variable du score, et reste entièrement explicable.`,p5:'hawkes'},
+ {k:'Honnêteté',t:`Ce que prouvent les données, et ce qu'elles ne prouvent pas`,s:`Les données sont fictives, fabriquées avec Weibull et des signaux faibles documentés.`,c:`« Fractal » : le même motif à toutes les échelles. Séduisant, mais nos données fictives ne permettent pas de le prouver.`,r:[5, 8, 9, 10, 11, 25],
+  n:`Soyons honnêtes : nos données sont fictives. Elles prouvent la rechute et la saisonnalité. Elles ne prouvent pas que le bâtiment serait fractal. C'est une piste de recherche, pas une promesse.`,v:'honest'},
+ {k:'Défi 1 · variables',t:`Huit familles de signaux`,s:`Âge rapporté à la durée de vie, dépannages, récidive, visites manquées, textes des techniciens et des locataires.`,c:`Le score est une note de 0 à 100 % bâtie avec des indices que le terrain reconnaît : âge, pannes, visites ratées.`,r:[12, 13, 14],
+  n:`Pour chaque équipement, le score combine huit familles de signaux : son âge par rapport à sa durée de vie, les pannes récentes, les rechutes, les visites manquées, et les mots des techniciens et des locataires.`,v:'feat'},
+ {k:'Défi 1 · validation',t:`Se placer dans le passé`,s:`Variables calculées avant le 31/12/2024, test sur janvier–septembre 2025 : AUC 0,85 contre 0,78 pour l'âge seul, précision 28 % contre 15 %.`,c:`On rejoue le match : on cache la fin à l'algorithme, puis on compare sa prédiction à ce qui s'est vraiment passé.`,r:[15, 16, 17, 18],
+  n:`On se place fin deux mille vingt-quatre et on prédit deux mille vingt-cinq, dont on connaît la réponse. Résultat : l'indice AUC, qui mesure la qualité du classement, atteint zéro virgule quatre-vingt-cinq, contre zéro virgule soixante-dix-huit avec l'âge seul. Et parmi le dixième le plus à risque, vingt-huit pour cent sont de vraies pannes, contre quinze.`,v:'valid'},
+ {k:'Défi 1 · résultats',t:`Les 128 équipements à inspecter d'abord`,s:`Fichier livré : 1 285 scores, chacun avec ses trois raisons. Le dixième en tête démarre à 11 % de risque ; 14 équipements dépassent 50 %.`,c:`Le score est une probabilité estimée. La liste est classée du plus au moins risqué, et chaque ligne dit pourquoi : le technicien sait quoi vérifier.`,r:[19, 20],
+  n:`Voici les résultats livrés pour le Défi un : mille deux cent quatre-vingt-cinq équipements notés pour deux mille vingt-six. Les cent vingt-huit premiers, soit dix pour cent, sont à inspecter d'abord. En tête, une pompe à chaleur à presque cent pour cent de risque, avec ses raisons : signaux du technicien, demandes de panne, récidive.`,v:'shap'},
+ {k:'Défi 1 · où ça casse',t:`Les arrêts totaux, par famille`,s:`Robinetterie en tête ; chaudières gaz, ballons et pompes à chaleur : les cas critiques.`,r:[21],
+  n:`Où ça casse ? En bleu, des équipements simples, comme la robinetterie, où des gestes de premier niveau sont envisageables. En rouge, chaudières à gaz, ballons électriques et pompes à chaleur : réservés aux experts.`,v:'fam'},
+ {k:'Défi 2 · arbitrage',t:`1,5 M€ : financer la valeur, pas le rang`,s:`Mêmes 29 opérations, mêmes coûts réels. Seul l'ordre change : par score plutôt que par date d'inscription.`,c:`Un sac à dos : budget limité, on choisit les chantiers qui apportent le plus de valeur pour leur prix.`,r:[22],
+  n:`Pour les travaux, mêmes vingt-neuf chantiers, mêmes coûts réels. En changeant seulement l'ordre, de la date d'arrivée vers un score de valeur, la part de valeur financée passe de vingt-huit à trente-quatre pour cent. Démonstration simplifiée.`,p5:'knap'},
+ {k:'Défi 2 · critères',t:`Cinq critères, des pondérations réglables`,s:`Calendrier réglementaire DPE, risque de panne, gain énergétique, coût, urgence sociale.`,c:`Chaque projet reçoit une note par critère ; les équipes décident combien compte chaque critère.`,r:[23],
+  n:`Le vrai score aura cinq critères : le calendrier réglementaire des étiquettes énergie, le risque de panne, le gain d'énergie, le coût et l'urgence sociale. Les équipes métier règlent les poids, et voient le classement bouger.`,v:'radar'},
+ {k:'Copilote GenAI · vision',t:`Un copilote local, trois profils`,s:`Un seul modèle pour la direction, les prestataires et les locataires. Les faits du jour restent dans une mémoire filtrée par rôle.`,c:`Poids = ce que le copilote sait faire (ton, vocabulaire, refus). Mémoire = ce qui se passe aujourd'hui. Les calculs restent des outils vérifiables.`,r:[26, 27, 28, 29],
+  n:`Notre vision : un copilote local, un seul modèle pour trois profils. La direction obtient des notes et des arbitrages, les prestataires une fiche d'intervention, les locataires un signalement guidé. Les faits du jour restent dans une mémoire filtrée par rôle, jamais dans les poids. Il explique, mais ne calcule jamais : les chiffres viennent d'outils vérifiables.`,v:'flow'},
+ {k:'La rupture',t:`Le locataire, premier capteur`,s:`Passer de six étapes descendantes à un circuit court : signaler, agir sur le simple, faire valider.`,r:[24],
+  n:`Notre idée de rupture : l'habitant devient le premier capteur. Il signale le premier bruit, fait un geste simple, envoie une preuve, et un expert valide. Aujourd'hui, six étapes séparent l'alerte du rendez-vous.`,v:'updown'},
+ {k:'Garde-fous',t:`Ce qu'on ne laisse jamais au hasard`,s:`Trois niveaux d'intervention, et un chiffre qui nous tempère : 16 % de visites manquées.`,r:[24],
+  n:`Des garde-fous clairs : gaz, électricité, ascenseurs et colonnes d'eau restent réservés aux experts. Et seize pour cent des visites d'entretien sont manquées : l'engagement des habitants reste à construire.`,v:'guard'},
+ {k:'Passage à l\'échelle',t:`De 1 100 à 80 000 logements`,s:`Un pilote local, puis le parc In'li Sud-Ouest, puis la mutualisation à l'échelle du groupe.`,
+  n:`Passage à l'échelle : un pilote, puis les six mille logements d'In'li Sud-Ouest, puis environ quatre-vingt mille logements intermédiaires du groupe, avec des critères d'arrêt ou de poursuite à chaque palier.`,v:'scale'},
+ {k:'Conclusion',t:`Anticiper, arbitrer, expliquer`,s:`Un score honnête sur ses limites, des arbitrages traçables, un habitant acteur.`,
+  n:`Pour conclure : les pannes ont de la mémoire, les budgets doivent suivre la valeur, et les habitants sont des alliés. L'intelligence artificielle recommande, l'humain décide. Merci.`,p5:'end'}
+];
+
+const $=id=>document.getElementById(id);
+const slideEl=$('slide'),notesEl=$('notes'),dotsEl=$('dots');
+let cur=0,playing=false,elapsed=0,last=0,inst=null,interacted=false,voiceOn=true,voiceTimer=null;
+try{if(localStorage.getItem('batia_voix')==='0')voiceOn=false;}catch(e){}
+const voice=new Audio();voice.preload='auto';
+const vsrc=i=>`assets/voix/${String(i+1).padStart(2,'0')}.mp3`;
+function stopVoice(){clearTimeout(voiceTimer);voice.pause();}
+function playVoice(delay=350){
+  stopVoice();
+  if(!voiceOn||!interacted)return;
+  voiceTimer=setTimeout(()=>{voice.src=vsrc(cur);voice.currentTime=0;voice.play().catch(()=>{});
+    if(cur<SLIDES.length-1){const nx=new Audio();nx.preload='auto';nx.src=vsrc(cur+1);}},delay);
+}
+function setVoiceBtn(){const b=$('vbtn');b.classList.toggle('on',voiceOn);b.setAttribute('aria-pressed',voiceOn);b.textContent=voiceOn?'🔊 Voix off':'🔇 Voix off';}
+
+SLIDES.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Diapositive '+(i+1));b.onclick=()=>{interacted=true;go(i);};dotsEl.appendChild(b);});
+
+function go(i){
+  cur=Math.max(0,Math.min(SLIDES.length-1,i));elapsed=0;last=performance.now();
+  if(inst){inst.remove();inst=null;}
+  const s=SLIDES[cur];
+  slideEl.innerHTML=`<div class="say"><div class="kick">${String(cur+1).padStart(2,'0')} · ${s.k}</div><h1>${s.t}</h1><p>${s.s}</p>${s.c?`<p class="clair"><b>En clair</b>${s.c}</p>`:''}${s.r?`<div class="refchips">Réf. ${s.r.map(n=>`<button data-ref="${n}" aria-label="Référence ${n}">[${n}]</button>`).join('')}</div>`:''}</div><div class="vis" id="vis"></div>`;
+  slideEl.querySelectorAll('[data-ref]').forEach(b=>b.onclick=()=>openGuide('pub',+b.dataset.ref));
+  slideEl.style.animation='none';void slideEl.offsetWidth;slideEl.style.animation='';
+  const vis=$('vis');
+  if(s.p5){inst=new p5(p=>SK[s.p5](p,vis),vis);}else{vis.innerHTML=V[s.v]();}
+  notesEl.innerHTML=`<b>Voix off</b>${s.n}`;
+  $('count').textContent=`${cur+1} / ${SLIDES.length}`;
+  [...dotsEl.children].forEach((d,k)=>{d.className=k===cur?'on':k<cur?'done':'';});
+  $('bar').style.width='0';
+  playVoice();
+}
+function tick(now){
+  if(playing){
+    elapsed+=now-last;
+    $('bar').style.width=Math.min(100,elapsed/SLIDE_MS*100)+'%';
+    if(elapsed>=SLIDE_MS){if(cur<SLIDES.length-1)go(cur+1);else setPlay(false);}
+  }
+  last=now;requestAnimationFrame(tick);
+}
+function setPlay(v){
+  playing=v;$('play').textContent=v?'❚❚ Pause':'▶ Lancer';last=performance.now();
+  if(v){interacted=true;if(voiceOn&&voice.src&&voice.paused&&voice.currentTime>0&&!voice.ended)voice.play().catch(()=>{});else if(voiceOn&&elapsed<1500)playVoice(0);}
+  else voice.pause();
+}
+$('play').onclick=()=>{if(!playing&&cur===SLIDES.length-1&&elapsed>=SLIDE_MS)go(0);setPlay(!playing);};
+$('prev').onclick=()=>{interacted=true;go(cur-1);};$('next').onclick=()=>{interacted=true;go(cur+1);};
+$('nbtn').onclick=()=>{notesEl.classList.toggle('hide');const on=!notesEl.classList.contains('hide');$('nbtn').classList.toggle('on',on);$('nbtn').setAttribute('aria-pressed',on);};
+$('vbtn').onclick=()=>{interacted=true;voiceOn=!voiceOn;try{localStorage.setItem('batia_voix',voiceOn?'1':'0');}catch(e){}setVoiceBtn();if(voiceOn)playVoice(0);else stopVoice();};
+setVoiceBtn();
+$('fs').onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();};
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('qa').classList.contains('open'))return;
+  interacted=true;
+  if($('guide').classList.contains('open')){if(e.key==='Escape'||e.key==='g'||e.key==='G')closeGuide();return;}
+  if(e.key==='g'||e.key==='G'){openGuide('comp');return;}
+  if(e.key==='ArrowRight'||e.key==='PageDown')go(cur+1);
+  else if(e.key==='ArrowLeft'||e.key==='PageUp')go(cur-1);
+  else if(e.key===' '){e.preventDefault();$('play').click();}
+  else if(e.key==='n'||e.key==='N'||e.key==='s'||e.key==='S')$('nbtn').click();
+  else if(e.key==='v'||e.key==='V')$('vbtn').click();
+  else if(e.key==='f'||e.key==='F')$('fs').click();
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(SLIDES.length-1);
+});
+
+/* ---------- Questions du jury & évolutions du SI ---------- */
+const qa=$('qa');
+function openQA(v){if(v)$('guide').classList.remove('open');qa.classList.toggle('open',v);if(v){playing&&setPlay(false);stopVoice();qa.scrollTop=0;}}
+$('qbtn').onclick=()=>openQA(true);$('qclose').onclick=()=>openQA(false);
+document.querySelectorAll('#qa .tabs [data-tab]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#qa .tabs [data-tab]').forEach(x=>x.setAttribute('aria-selected',x===b));
+  document.querySelectorAll('#qa section').forEach(x=>x.classList.toggle('on',x.id==='qa-'+b.dataset.tab));
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='q'||e.key==='Q')openQA(!qa.classList.contains('open'));
+  else if(e.key==='Escape')openQA(false);
+},true);
+
+/* ---------- guide, code et publications ---------- */
+const REFS=[
+[1,`Hawkes, A. G. (1971). Spectra of some self-exciting and mutually exciting point processes. <i>Biometrika</i>, 58(1), 83–90.`,`Origine du modèle où chaque événement augmente le risque du suivant (diapo 8).`],
+[2,`Ogata, Y. (1988). Statistical models for earthquake occurrences and residual analysis for point processes. <i>Journal of the American Statistical Association</i>, 83(401), 9–27.`,`Application aux répliques sismiques : l'analogie « séisme » de la diapo 8.`],
+[3,`Laub, P. J., Taimre, T., &amp; Pollett, P. K. (2015). Hawkes processes. arXiv:1507.02822.`,`Tutoriel accessible sur les processus de Hawkes.`],
+[4,`Bacry, E., Mastromatteo, I., &amp; Muzy, J.-F. (2015). Hawkes processes in finance. <i>Market Microstructure and Liquidity</i>, 1(1), 1550005.`,`Mise en œuvre sur données réelles.`],
+[5,`Weibull, W. (1951). A statistical distribution function of wide applicability. <i>Journal of Applied Mechanics</i>, 18(3), 293–297.`,`Loi de durée de vie utilisée pour fabriquer les pannes du jeu fictif (onglet HYPOTHESES du kit).`],
+[6,`Clauset, A., Shalizi, C. R., &amp; Newman, M. E. J. (2009). Power-law distributions in empirical data. <i>SIAM Review</i>, 51(4), 661–703.`,`Pourquoi les extrêmes sont plus fréquents qu'avec une cloche (« queues épaisses »).`],
+[7,`Goh, K.-I., &amp; Barabási, A.-L. (2008). Burstiness and memory in complex systems. <i>EPL</i>, 81(4), 48002.`,`Définit rafales et mémoire dans les événements (diapo 6).`],
+[8,`Hurst, H. E. (1951). Long-term storage capacity of reservoirs. <i>Transactions of the American Society of Civil Engineers</i>, 116, 770–799.`,`Exposant de Hurst, mesure de mémoire longue (diapo 9).`],
+[9,`Bak, P., Tang, C., &amp; Wiesenfeld, K. (1987). Self-organized criticality: an explanation of 1/f noise. <i>Physical Review Letters</i>, 59(4), 381–384.`,`Hypothèse de recherche écartée de nos affirmations (diapo 9).`],
+[10,`Peng, C.-K. et al. (1994). Mosaic organization of DNA nucleotides. <i>Physical Review E</i>, 49(2), 1685–1689.`,`Analyse de fluctuation sans tendance (DFA), piste pour détecter une mémoire longue.`],
+[11,`Scheffer, M. et al. (2009). Early-warning signals for critical transitions. <i>Nature</i>, 461, 53–59.`,`Signaux avant-coureurs d'un basculement : fondement des « signaux faibles ».`],
+[12,`Cox, D. R. (1958). The regression analysis of binary sequences. <i>Journal of the Royal Statistical Society B</i>, 20(2), 215–242.`,`Régression logistique : note de 0 à 100 % à partir d'indices (diapo 10).`],
+[13,`Hoerl, A. E., &amp; Kennard, R. W. (1970). Ridge regression: biased estimation for nonorthogonal problems. <i>Technometrics</i>, 12(1), 55–67.`,`Régularisation L2 : évite de sur-apprendre sur 76 pannes seulement.`],
+[14,`Liu, D. C., &amp; Nocedal, J. (1989). On the limited memory BFGS method for large scale optimization. <i>Mathematical Programming</i>, 45, 503–528.`,`Algorithme d'optimisation (L-BFGS) utilisé via scipy dans <code>fit()</code>.`],
+[15,`Kaufman, S., Rosset, S., Perlich, C., &amp; Stitelman, O. (2012). Leakage in data mining. <i>ACM Transactions on Knowledge Discovery from Data</i>, 6(4), art. 15.`,`La « fuite d'information » : tricher sans le vouloir en utilisant le futur (diapo 11).`],
+[16,`Bergmeir, C., &amp; Benítez, J. M. (2012). On the use of cross-validation for time series predictor evaluation. <i>Information Sciences</i>, 191, 192–213.`,`Valider dans le temps, pas au hasard : notre protocole « rejouer le match ».`],
+[17,`Hanley, J. A., &amp; McNeil, B. J. (1982). The meaning and use of the area under a receiver operating characteristic (ROC) curve. <i>Radiology</i>, 143(1), 29–36.`,`Sens de l'AUC : probabilité qu'une vraie panne soit classée avant une non-panne.`],
+[18,`Saito, T., &amp; Rehmsmeier, M. (2015). The precision-recall plot is more informative than the ROC plot when evaluating binary classifiers on imbalanced datasets. <i>PLoS ONE</i>, 10(3), e0118432.`,`Pourquoi on regarde aussi la précision sur le dixième en tête quand les pannes sont rares (5,9 %).`],
+[19,`Rudin, C. (2019). Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. <i>Nature Machine Intelligence</i>, 1, 206–215. arXiv:1811.10154.`,`Argument pour un modèle explicable plutôt qu'une boîte noire (diapo 12).`],
+[20,`Lundberg, S. M., &amp; Lee, S.-I. (2017). A unified approach to interpreting model predictions. <i>Advances in Neural Information Processing Systems</i>, 30. arXiv:1705.07874.`,`Décomposition d'un score en contributions (SHAP) : même esprit que nos « 3 raisons ».`],
+[21,`Jardine, A. K. S., Lin, D., &amp; Banjevic, D. (2006). A review on machinery diagnostics and prognostics implementing condition-based maintenance. <i>Mechanical Systems and Signal Processing</i>, 20(7), 1483–1510.`,`Cadre général de la maintenance prédictive.`],
+[22,`Kellerer, H., Pferschy, U., &amp; Pisinger, D. (2004). <i>Knapsack Problems</i>. Springer.`,`Le « sac à dos » : choisir sous budget (diapo 14).`],
+[23,`Saaty, T. L. (1980). <i>The Analytic Hierarchy Process</i>. McGraw-Hill.`,`Décision multicritère : pondérer et comparer des critères hétérogènes (diapo 15).`],
+[24,`Ostrom, E. (1990). <i>Governing the Commons</i>. Cambridge University Press.`,`Gestion collective par les usagers : fondement de l'idée « habitant acteur » (diapos 17-18).`],
+[25,`Mandelbrot, B. B. (1982). <i>The Fractal Geometry of Nature</i>. W. H. Freeman.`,`Référence du mot « fractal » (diapo 9).`]
+];
+const CODE=[
+['tools/defi1_score.py',44,'variables(ref)','construit 17 variables avec le seul passé (âge relatif, dépannages, récidive de Hawkes, visites manquées, signaux des techniciens, demandes locataires…)'],
+['tools/defi1_score.py',93,'cible(debut, fin)','la « vraie panne » : dépannage de gravité « Arrêt total » dans la fenêtre'],
+['tools/defi1_score.py',98,'auc(y, s)','AUC calculée par les rangs [17]'],
+['tools/defi1_score.py',104,'prec_top(y, s)','précision sur le dixième en tête [18]'],
+['tools/defi1_score.py',109,'fit(X, y, lam)','régression logistique L2 [12][13], optimisée par L-BFGS-B de scipy [14]'],
+['tools/defi1_score.py',130,'jeu(refs)','empile plusieurs années de référence pour l\'entraînement'],
+['tools/defi1_score.py',139,'étape 1','réglage de la régularisation sur 2023 → 2024, sans toucher au test'],
+['tools/defi1_score.py',145,'étape 2','validation : variables au 31/12/2024, test janvier–septembre 2025'],
+['tools/defi1_score.py',163,'étape 3','soumission : variables au 31/12/2025, génération du CSV et des explications'],
+['tools/defi1_score.py',188,'étape 4','contrôles de conformité du fichier (1 285 lignes, pas de NaN…)'],
+['tools/analyse_signaux.py',23,'hurst_rs(s)','exposant de Hurst par analyse R/S [8]'],
+['tools/analyse_signaux.py',40,'recidive(groupes)','part de redépannages sous 90 jours, observée contre tirage uniforme'],
+['index.html',343,'SK.gauss','animation : cloche contre queue épaisse (diapo 5) [6]'],
+['index.html',383,'SK.burst','animation : Poisson contre rafales observées (diapo 6) [7]'],
+['index.html',414,'SK.hawkes','simulation d\'un processus de Hawkes, décroissance en loi de puissance (diapo 8) [1]'],
+['index.html',441,'SK.knap','animation du sac à dos sous 1,5 M€ ; coûts réels de la table 08 (diapo 14) [22]'],
+['index.html',591,'V.valid','protocole de validation et résultats (diapo 11)'],
+['index.html',618,'V.shap','résultats livrés : top 5 réel avec scores et raisons, lus dans defi1_explications.csv (diapo 12) [20]'],
+['index.html',971,'costModel(p)','modèle de coûts sur 3 ans : interne central, interne distribué, cloud API, cloud GPU (onglet Oracle)'],
+['index.html',984,'breakEven(p)','nombre de logements à partir duquel l\'interne central coûte moins que le cloud API'],
+['index.html',1010,'initCalc()','calculateur interactif : hypothèses modifiables, résultats recalculés'],
+['index.html',1035,'archSVG()','schéma de l\'architecture logique de l\'Oracle local'],
+['tools/generer_voix.py',35,'boucle principale','voix off Orpheus « pierre » ; textes dans tools/voix_textes.json']
+];
+const GTABS=[['comp','Comprendre'],['code','Code'],['pub','Publications']];
+const L=(t,a)=>`<h3>${t}</h3>${a}`;
+const GUIDE={
+comp:()=>
+L(`L'enjeu`,`<p>In'li Sud-Ouest gère environ 6 000 logements. Deux problèmes reviennent : les <b>pannes sont découvertes tard, en urgence</b> (chaudière arrêtée en plein hiver), et les <b>rénovations suivent l'ordre d'arrivée des demandes</b>, pas leur utilité. Dans notre jeu de données, le plan compte 29 opérations pour 13,4 M€, soit environ 9 années d'une enveloppe de 1,5 M€ : il faut choisir, et pouvoir expliquer pourquoi.</p>
+<p><b>Objectif :</b> repérer à l'avance les équipements les plus susceptibles de tomber complètement en panne, et classer les chantiers selon leur valeur, avec un outil que les équipes comprennent et contrôlent.</p>`)+
+L(`Les méthodes, en langage simple`,`<div class="cards">
+<div class="card"><b>1 · Un score de risque</b>Une note de 0 à 100 % par équipement, calculée à partir de 17 indices (âge, pannes récentes, visites manquées, mots du technicien…). Technique : régression logistique [12][13].<em>Analogie : une note de santé construite avec les résultats d'analyses.</em></div>
+<div class="card"><b>2 · La mémoire des pannes</b>Quand un équipement tombe en panne, son risque monte puis redescend lentement. Technique : processus de Hawkes [1][2].<em>Analogie : les répliques après un séisme.</em></div>
+<div class="card"><b>3 · Valider dans le passé</b>On se place à une date, on cache la suite, puis on compare la prédiction à la réalité [15][16].<em>Analogie : rejouer un match dont on connaît le score, sans regarder le score.</em></div>
+<div class="card"><b>4 · Expliquer chaque note</b>Chaque score s'accompagne de ses trois raisons principales (fichier d'explications). Un modèle simple plutôt qu'une boîte noire [19][20].<em>Pour que le technicien sache quoi vérifier.</em></div>
+<div class="card"><b>5 · Prioriser sous budget</b>Comparer des chantiers très différents sur des critères communs, dans une enveloppe limitée [22][23].<em>Analogie : remplir un sac à dos qui ne peut pas tout contenir.</em></div>
+<div class="card"><b>6 · Un copilote d'IA générative</b>Il reformule et résume, mais ne calcule jamais le score. Un humain relit et décide.<em>Principe : « l'IA recommande, l'humain décide ».</em></div></div>`)+
+L(`Le protocole, étape par étape`,`<ol>
+<li><b>Données</b> : 8 résidences fictives, 4 217 équipements dont 1 285 à évaluer, 30 630 interventions, de 2018 à 2025.</li>
+<li><b>La cible</b> : une « panne bloquante » = dépannage de gravité « Arrêt total » entre le 1<sup>er</sup> janvier et le 30 septembre.</li>
+<li><b>Variables</b> : recalculées au 31 décembre de chaque année, uniquement avec ce qui était connu à cette date (aucune fuite d'information).</li>
+<li><b>Réglage</b> : la seule valeur à régler (la force de la régularisation) est choisie sur 2023 → 2024, jamais sur le test.</li>
+<li><b>Test</b> : entraînement avec les années 2020 à 2023, variables au 31/12/2024, prédiction de janvier–septembre 2025, que l'on connaît.</li>
+<li><b>Soumission</b> : même méthode avec les années jusqu'à 2024, variables au 31/12/2025, score pour 2026. Le jury détient la réponse.</li>
+<li><b>Contrôles</b> : 1 285 lignes, identifiants uniques, aucun NaN, scores entre 0 et 1, UTF-8, séparateur virgule.</li></ol>`)+
+L(`Les résultats, et ce qu'ils veulent dire`,`<table><tr><th>Mesure</th><th>Âge seul (référence)</th><th>BâtIA</th><th>En clair</th></tr>
+<tr><td>AUC</td><td class="n">0,78</td><td class="n">0,85</td><td>Si l'on prend au hasard une vraie panne et un équipement sans panne, la panne est classée en premier 85 fois sur 100 (50 = hasard) [17].</td></tr>
+<tr><td>Précision, 10 % en tête</td><td class="n">15 %</td><td class="n">28 %</td><td>Sur les 128 équipements en tête de liste, 28 % tombent vraiment en panne, presque deux fois plus qu'avec l'âge seul (hasard : 6 %) [18].</td></tr>
+<tr><td>Pannes repérées</td><td class="n">19 / 76</td><td class="n">36 / 76</td><td>En n'inspectant que 10 % du parc, on repère 47 % des pannes de la période, contre 25 %. Le hasard en trouverait 8.</td></tr></table>
+<p><b>Livrable :</b> 1 285 scores pour janvier–septembre 2026 ; le dixième en tête (128 équipements) démarre à 11 % de risque et 14 équipements dépassent 50 %. Chaque ligne du fichier d'explications dit pourquoi (par exemple, en tête : une pompe à chaleur à 99,8 %, à cause des signaux du technicien, des demandes de panne et de la récidive).</p><p><b>Avantage opérationnel :</b> à budget d'inspection égal, presque deux fois plus de pannes évitées ; chaque alerte est accompagnée de ses raisons.</p>
+<p class="warn"><b>Limites à dire franchement.</b> Les données sont <b>fictives</b> et fabriquées avec des règles documentées : un modèle les retrouve en partie. Le test repose sur <b>76 pannes</b> et un seul découpage : l'écart est net mais bruité. La validation sur données réelles reste l'étape suivante. Des mesures comme l'exposant de Hurst (0,77) sont des indices, pas des preuves de fractalité.</p>`),
+code:()=>
+`<p>Tout est reproductible avec Python (pandas, numpy, scipy) à partir des CSV du kit. Les chiffres de la page viennent de ces scripts, qui écrivent leurs résultats dans <code>livrables/</code>.</p>
+<pre style="background:#06090d;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:.8rem var(--mono);color:#d6dde6;overflow-x:auto;margin-bottom:12px">python3 tools/defi1_score.py   donnees/   # CSV à déposer + explications + validation
+python3 tools/analyse_signaux.py donnees/ # dispersion, récidive, Hurst
+python3 tools/generer_voix.py            # voix off (serveur Orpheus local, voix pierre)</pre>
+<h3>Sorties</h3><ul><li><code>livrables/defi1_soumission.csv</code> : <code>equipement_id,score_risque</code>, 1 285 lignes, le fichier du jury.</li><li><code>livrables/defi1_explications.csv</code> : trois raisons par équipement.</li><li><code>livrables/defi1_validation.txt</code> et <code>livrables/analyse_signaux.txt</code> : chiffres cités.</li></ul>
+<h3>Où se trouve chaque idée dans le code</h3><table><tr><th>Fichier : ligne</th><th>Élément</th><th>Rôle</th></tr>`+
+CODE.map(([f,l,n,d])=>`<tr><td><a href="${f}" target="_blank" rel="noopener"><code>${f}:${l}</code></a></td><td><code>${n}</code></td><td>${d.replace(/\[(\d+)\]/g,'<a href="#" data-goref="$1">[$1]</a>')}</td></tr>`).join('')+`</table>
+<p class="warn">Les numéros de ligne correspondent à la version livrée ; ils peuvent se décaler si les fichiers sont modifiés.</p>`,
+pub:()=>
+`<p>Ces publications donnent le <b>cadre méthodologique</b> : elles justifient le choix des outils (régression logistique, processus de Hawkes, validation temporelle, sac à dos…). Elles <b>ne valident pas nos résultats</b>, obtenus sur des données fictives.</p>`+
+REFS.map(([k,c,n])=>`<div class="ref" data-k="${k}"><span class="k">[${k}]</span><div>${c}<small>${n}</small></div></div>`).join('')+
+`<div class="ref"><span class="k">Kit</span><div>Hackathon IA for Impact 2026, défi In'li Sud-Ouest. <i>LISEZ-MOI_BatIA.pdf</i> et onglets DICTIONNAIRE et HYPOTHESES du classeur Excel (règles de fabrication des données).<small>Source des données et règles du jeu (fictif, calibré sur des statistiques agrégées).</small></div></div>`
+};
+let gTab='comp';
+function openGuide(tab='comp',ref=null){
+  setPlay(false);stopVoice();$('qa').classList.remove('open');gTab=tab;
+  $('gtabs').innerHTML=GTABS.map(([k,t])=>`<button data-t="${k}" class="${k===tab?'on':''}">${t}</button>`).join('');
+  $('gtabs').querySelectorAll('button').forEach(b=>b.onclick=()=>openGuide(b.dataset.t));
+  const body=$('gbody');body.innerHTML=GUIDE[tab]();
+  body.querySelectorAll('[data-goref]').forEach(a=>a.onclick=e=>{e.preventDefault();openGuide('pub',+a.dataset.goref);});
+  $('guide').classList.add('open');body.scrollTop=0;
+  if(ref){const el=body.querySelector(`.ref[data-k="${ref}"]`);if(el){el.classList.add('hl');el.scrollIntoView({block:'center'});}}
+}
+function closeGuide(){$('guide').classList.remove('open');}
+$('gbtn').onclick=()=>$('guide').classList.contains('open')?closeGuide():openGuide('comp');
+$('gclose').onclick=closeGuide;
+$('guide').addEventListener('click',e=>{if(e.target.id==='guide')closeGuide();});
+
+const CALC_DEF={L:6000,rpl:2.7,tin:3000,tout:400,pin:3,pout:15,fx:.92,kwh:.15,srv:12000,infra:1500,spare:0,cap:518,w:350,fibA:160,
+  node:2500,nodes:8,wnode:80,fibN:46,host:250,gpuh:1.5,hours:8760,etp:70000,etpA:.15,etpB:.35,etpC:.05,etpD:.1,maint:8,util:0};
+function costModel(p){
+  const req=p.L*p.rpl,tokIn=req*p.tin/1e6,tokOut=req*p.tout/1e6,tokM=tokIn+tokOut,Y=3,m=p.maint/100;
+  const A=(()=>{const n=Math.ceil(tokM/p.cap)+p.spare,capex=n*p.srv+p.infra;
+    return{n,capex,elec:n*p.w/1000*8760*p.kwh*1.3,net:p.fibA*12,mat:capex*m,util:p.util,cloud:0,pers:p.etpA*p.etp};})();
+  const B=(()=>{const capex=p.nodes*p.node+p.infra;
+    return{n:p.nodes,capex,elec:p.nodes*p.wnode/1000*8760*p.kwh*1.1,net:p.nodes*p.fibN*12,mat:capex*m,util:p.util*p.nodes,cloud:0,pers:p.etpB*p.etp};})();
+  const C={n:0,capex:0,elec:0,net:0,mat:0,util:0,cloud:(tokIn*p.pin+tokOut*p.pout)*p.fx*12+p.host*12,pers:p.etpC*p.etp};
+  const nD=Math.ceil(tokM/p.cap),D={n:nD,capex:0,elec:0,net:0,mat:0,util:0,cloud:nD*p.hours*p.gpuh*p.fx+p.host*12,pers:p.etpD*p.etp};
+  const out={};
+  for(const [k,o] of Object.entries({A,B,C,D})){
+    o.an=o.elec+o.net+o.mat+o.util+o.cloud+o.pers;o.tco=o.capex+Y*o.an;o.parReq=o.tco/(req*12*Y);out[k]=o;}
+  out.req=req;out.tokM=tokM;return out;
+}
+function breakEven(p){
+  for(let L=200;L<=400000;L=Math.ceil(L*1.02)){const r=costModel({...p,L});if(r.A.tco<r.C.tco)return L;}
+  return null;
+}
+
+
+/* ---------- Oracle local : références, architecture, coûts ---------- */
+REFS.push(
+[26,`Lewis, P. et al. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. <i>Advances in Neural Information Processing Systems</i>, 33. arXiv:2005.11401.`,`Principe du RAG : le modèle lit une mémoire externe à jour au lieu de tout « savoir » dans ses poids (diapo 16).`],
+[27,`Hu, E. J. et al. (2022). LoRA: Low-rank adaptation of large language models. <i>ICLR 2022</i>. arXiv:2106.09685.`,`Adapter un modèle avec peu de paramètres entraînés : ton, vocabulaire, refus (diapo 16).`],
+[28,`Kirkpatrick, J. et al. (2017). Overcoming catastrophic forgetting in neural networks. <i>Proceedings of the National Academy of Sciences</i>, 114(13), 3521–3526.`,`Risque d'oublier d'anciennes consignes (sécurité) en se réentraînant : d'où les tests de non-régression.`],
+[29,`Greshake, K. et al. (2023). Not what you've signed up for: compromising real-world LLM-integrated applications with indirect prompt injection. arXiv:2302.12173.`,`Un texte récupéré (ticket, demande) peut contenir des consignes malveillantes : il doit être traité comme une donnée.`]
+);
+GTABS.push(['oracle','Oracle local · coûts']);
+
+const CALC_FIELDS=[
+['Volume d\'usage',[['L','Logements couverts','',1],['rpl','Requêtes / logement / mois','',.1],['tin','Tokens lus par requête (question + mémoire)','',100],['tout','Tokens écrits par requête','',50]]],
+['Cloud : API d\'un modèle',[['pin','Prix entrée ($ / M tokens)','',.5],['pout','Prix sortie ($ / M tokens)','',1],['fx','€ pour 1 $','',.01],['host','Hébergement UE : base, app, suivi (€ / mois)','',10]]],
+['Interne : serveur central',[['srv','Serveur GPU 48 Go (€ HT)','',500],['infra','Onduleur, réseau, sauvegarde (€)','',100],['spare','Serveurs de secours','',1],['w','Puissance moyenne (W)','',10],['kwh','Électricité (€ / kWh HT)','',.01],['fibA','Fibre dédiée (€ / mois)','',10],['maint','Maintenance (% matériel / an)','',1],['cap','Capacité par serveur (M tokens / mois)','',10]]],
+['Interne : nœuds distribués',[['nodes','Nœuds (1 par résidence)','',1],['node','Prix d\'un nœud (€ HT)','',100],['wnode','Puissance moyenne (W)','',5],['fibN','Fibre pro par nœud (€ / mois)','',1]]],
+['Cloud : GPU à la demande',[['gpuh','Prix GPU 48 Go ($ / heure)','',.1],['hours','Heures allumées / an','',100]]],
+['Personnel et utilités',[['etp','Coût chargé d\'un ETP (€ / an)','',1000],['etpA','ETP : interne central','',.05],['etpB','ETP : interne distribué','',.05],['etpC','ETP : cloud API','',.05],['etpD','ETP : cloud GPU','',.05],['util','Eau + gaz (€ / an / site)','',50]]]
+];
+const COST_ROWS=[['capex','Investissement initial (matériel)',false],['elec','Électricité (refroidissement inclus)',true],['net','Accès Internet',true],['mat','Maintenance du matériel',true],['util','Eau, gaz',true],['cloud','Cloud (API, GPU, hébergement)',true],['pers','Personnel (administration, qualité)',true],['an','Total annuel',true],['tco','Coût total sur 3 ans',false],['parReq','Coût par requête (€)',false]];
+const OPT=[['A','Interne central',C.b],['B','Interne distribué',C.a],['C','Cloud API',C.g],['D','Cloud GPU à la demande',C.r]];
+const eur=v=>Math.round(v).toLocaleString('fr-FR')+' €';
+function initCalc(){
+  const host=$('calc');if(!host)return;
+  const P={...CALC_DEF};
+  host.querySelector('.fields').innerHTML=CALC_FIELDS.map(([g,fs])=>`<fieldset><legend>${g}</legend>${fs.map(([k,l,,st])=>`<label>${l}<input type="number" data-k="${k}" step="${st}" min="0" value="${P[k]}"></label>`).join('')}</fieldset>`).join('');
+  const out=host.querySelector('.res');
+  const run=()=>{
+    const r=costModel(P),be=breakEven(P);
+    const max=Math.max(...OPT.map(([k])=>r[k].tco));
+    out.innerHTML=
+     `<table><tr><th></th>${OPT.map(([k,n])=>`<th>${n}</th>`).join('')}</tr>`+
+     COST_ROWS.map(([f,l,pa])=>`<tr class="${f==='tco'?'tot':''}"><td>${l}${pa&&f!=='an'?' <small>/ an</small>':''}</td>${OPT.map(([k])=>`<td class="${f==='tco'?'n':''}">${f==='parReq'?r[k][f].toFixed(2).replace('.',','):eur(r[k][f])}</td>`).join('')}</tr>`).join('')+`</table>`+
+     `<svg viewBox="0 0 600 150" role="img" aria-label="Coût total sur 3 ans par option">`+OPT.map(([k,n,c],i)=>{const w=r[k].tco/max*360;
+        return `<text class="s" x="0" y="${24+i*34}" style="fill:#c5cdd8">${n}</text><rect x="170" y="${8+i*34}" width="${w}" height="22" rx="5" fill="${c}"/><text class="mono s b" x="${178+w}" y="${24+i*34}" style="fill:#f1f2f6">${Math.round(r[k].tco/1000)} k€</text>`;}).join('')+`</svg>`+
+     `<p><b>Volume :</b> ${Math.round(r.req).toLocaleString('fr-FR')} requêtes par mois, soit ${r.tokM.toFixed(0)} millions de tokens ; ${r.A.n} serveur(s) côté interne central. Le personnel représente ${Math.round(r.A.pers/r.A.an*100)} % du coût annuel interne central, contre ${Math.round(r.C.pers/r.C.an*100)} % pour le cloud API.</p>`+
+     `<p><b>Point d'équilibre interne central / cloud API :</b> ${be?`environ <b>${(be>=1000?Math.round(be/1000)*1000:be).toLocaleString('fr-FR')} logements</b> avec ces hypothèses`:'non atteint jusqu\'à 400 000 logements'}.</p>`;
+    const sp=$('be');if(sp)sp.textContent=be?`environ ${(Math.round(be/1000)*1000).toLocaleString('fr-FR')} logements`:'au-delà de 400 000 logements';
+    const sc=[6000,20000,80000].map(L=>({L,r:costModel({...P,L})}));
+    $('sens').innerHTML=`<table><tr><th>Logements couverts</th>${OPT.slice(0,1).concat(OPT.slice(2)).map(([k,n])=>`<th>${n}</th>`).join('')}<th>Moins cher</th></tr>`+
+      sc.map(({L,r})=>{const ks=['A','C','D'];const best=ks.reduce((a,b)=>r[a].tco<r[b].tco?a:b);return `<tr><td class="n">${L.toLocaleString('fr-FR')}</td>${ks.map(k=>`<td>${Math.round(r[k].tco/1000)} k€</td>`).join('')}<td class="n">${OPT.find(o=>o[0]===best)[1]}</td></tr>`;}).join('')+`</table>`;
+  };
+  host.querySelectorAll('input').forEach(i=>i.oninput=()=>{const v=parseFloat(i.value);if(!isNaN(v)&&v>=0){P[i.dataset.k]=v;run();}});
+  host.querySelector('.reset').onclick=()=>{Object.assign(P,CALC_DEF);host.querySelectorAll('input').forEach(i=>i.value=P[i.dataset.k]);run();};
+  run();
+}
+const box=(x,y,w,h,col,t,ls)=>`<g><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" fill="#ffffff08" stroke="${col}" stroke-width="1.5"/><text class="b" x="${x+10}" y="${y+19}" style="fill:${col};font-size:12px">${t}</text>${ls.map((l,i)=>`<text class="m" x="${x+10}" y="${y+36+i*14}" style="font-size:10.5px">${l}</text>`).join('')}</g>`;
+function archSVG(){
+  return `<svg viewBox="0 0 830 530" role="img" aria-label="Architecture logique de l'Oracle local" style="width:100%;height:auto;background:#0b1117;border:1px solid var(--line);border-radius:12px">`+
+   box(10,10,190,62,C.t,'Direction · web',['notes, arbitrages, alertes'])+box(210,10,190,62,C.t,'Prestataires · mobile',['fiche d\'intervention, GMAO'])+box(410,10,190,62,C.t,'Locataires · PWA',['signalement guidé, photo'])+
+   box(10,86,590,52,C.a,'Accès et gouvernance',['identité (OIDC) · rôle · périmètre · journal d\'audit : le filtre est posé ICI, avant le modèle'])+
+   box(10,152,590,66,C.g,'ORACLE · orchestrateur',['route la question, appelle les outils, exige des sources citées,','renvoie à l\'expert pour gaz / électricité / ascenseur, demande la validation humaine'])+
+   box(10,232,190,92,C.b,'Modèle de langage local',['8–14 milliards de paramètres,','quantifié (GGUF), servi par','Ollama puis vLLM'])+box(210,232,190,92,C.b,'Recherche sémantique',['embeddings multilingues,','reranker : retrouve les bons','passages, dans la partition du rôle'])+box(410,232,190,92,C.a,'Outils vérifiables',['score de risque (Défi 1),','sac à dos 1,5 M€ (Défi 2),','règles DPE : l\'IA les appelle'])+
+   box(10,338,190,88,C.g,'PostgreSQL + RLS',['état structuré : équipements,','interventions, budgets ;','sécurité au niveau des lignes'])+box(210,338,190,88,C.g,'Base vectorielle',['tickets, notices, guides ;','filtres par rôle et par','résidence sur chaque passage'])+box(410,338,190,88,C.g,'Stockage objets',['photos, rapports PDF,','pièces justificatives'])+
+   box(10,440,590,80,C.d,'Ingestion quotidienne',['GMAO prestataires · ERP (commandes, factures) · outil de demandes · DPE','→ nettoyage → anonymisation (noms, téléphones, adresses) → indexation'])+
+   box(620,86,200,434,C.r,'MLOps et qualité',['banc d\'essai métier en français','tests de non-régression :','  gestes de sécurité gaz,','  électricité, ascenseurs','versions du modèle signées,','  retour arrière possible','mesures : exactitude des','  sources, refus, latence','journal : qui a demandé quoi','retours des experts → cas','  d\'évaluation anonymisés'])+
+   `<g class="flow" style="stroke:#6b7888"><path d="M105 72V86M305 72V86M505 72V86M305 138V152M105 218V232M305 218V232M505 218V232M105 324V338M305 324V338M505 324V338M305 426V440" fill="none" stroke-width="1.5"/></g></svg>`;
+}
+GUIDE.oracle=()=>
+`<p class="warn"><b>Statut : vision de Palier 3, proposition d'architecture, non réalisée.</b> Aucun prototype n'existe à ce jour. Ce qui est réalisé et mesuré : le score de risque (Défi 1) et la priorisation (Défi 2). Ce chapitre décrit comment un copilote local pourrait les rendre utilisables par trois publics, et ce que cela coûterait.</p>`+
+L(`Le principe : ne pas tout figer dans le modèle`,`<p>Les <b>poids</b> du modèle portent le <i>savoir-faire</i> : ton pédagogique, vocabulaire du bâtiment, réflexe de renvoyer à un expert, refus d'inventer. Une <b>mémoire externe</b> (technique du RAG [26]) porte le <i>savoir-fait du jour</i> : état d'un équipement, solde de l'enveloppe, ticket du matin. Les données personnelles ne sont jamais écrites dans les poids.</p>
+<p>Deuxième règle : <b>l'IA ne calcule pas</b>. Le score, le classement sous budget et les règles DPE sont des outils déterministes, que l'on peut tester et auditer. L'Oracle les appelle et en explique le résultat.</p>
+<p><b>Démarche en deux étapes.</b> <i>Étape 1</i> : mémoire filtrée par rôle plus outils, sans aucun entraînement. <i>Étape 2</i>, seulement si des données réelles le justifient : une adaptation légère du modèle (LoRA [27]) pour le ton et les refus, avec tests avant chaque version [28]. Nos commentaires de techniciens ne comptent que 18 phrases distinctes : rien à entraîner avec ce jeu fictif.</p>`)+
+L(`Un modèle, trois profils`,`<table><tr><th>Profil</th><th>Ce que l'Oracle lit</th><th>Ce qu'il produit</th></tr>
+<tr><td><b>Direction</b></td><td>budgets, DPE, coûts d'urgence contre planifiés, cadre réglementaire</td><td>notes de cadrage, explication de l'arbitrage (calculé par l'outil), alertes de dérive</td></tr>
+<tr><td><b>Prestataires</b></td><td>historique de l'équipement, récidives, commentaires, notices</td><td>fiche d'intervention préremplie, diagnostic avant déplacement, validation des gestes de premier niveau</td></tr>
+<tr><td><b>Locataires</b></td><td>fiche simplifiée du logement, entretien annuel, guides pas à pas</td><td>aide au signalement avec photo, tutoriels de gestes simples ; hors gaz, électricité, ascenseurs</td></tr></table>
+<p>Toute incitation (déduction de charges, jetons Ẑen) relève du droit locatif : à faire valider par un juriste et à tester en pilote.</p>`)+
+L(`Architecture logique`,`<p>Le filtrage par rôle est posé <b>avant</b> le modèle, sur les données : même mal guidé, le modèle ne peut pas lire ce qui n'a pas été remonté pour ce profil.</p>`+archSVG())+
+L(`Architecture logicielle`,`<table><tr><th>Brique</th><th>Rôle</th><th>Choix proposé (licences à vérifier)</th></tr>
+<tr><td>Inférence</td><td>exécute le modèle en local</td><td>Ollama (démarrage, format GGUF), puis vLLM pour servir plusieurs utilisateurs à la fois</td></tr>
+<tr><td>Modèle de langage</td><td>comprend et rédige en français</td><td>modèle ouvert de 8 à 14 milliards de paramètres, quantifié ; choisi après un banc d'essai métier</td></tr>
+<tr><td>Embeddings</td><td>transforme les textes en vecteurs pour la recherche</td><td>BAAI/bge-m3 (multilingue), plus un reranker</td></tr>
+<tr><td>Base vectorielle</td><td>retrouve les passages pertinents</td><td>Qdrant : filtres sur chaque passage (rôle, résidence)</td></tr>
+<tr><td>Base relationnelle</td><td>état structuré du parc</td><td>PostgreSQL avec sécurité au niveau des lignes (RLS)</td></tr>
+<tr><td>Objets</td><td>photos, rapports, pièces</td><td>stockage compatible S3 (à choisir selon la licence)</td></tr>
+<tr><td>API et outils</td><td>expose score, sac à dos, règles</td><td>FastAPI ; le score reprend <code>tools/defi1_score.py</code>, le sac à dos : programmation dynamique ou OR-Tools</td></tr>
+<tr><td>Orchestrateur</td><td>boucle question → outils → réponse citée</td><td>code maison ou LangGraph ; lecture seule par défaut, toute écriture validée par un humain</td></tr>
+<tr><td>Identité</td><td>qui est qui, avec quel rôle</td><td>Keycloak (OIDC), rôles Direction, Prestataire, Locataire, Expert</td></tr>
+<tr><td>Anonymisation</td><td>retire les données personnelles du corpus</td><td>Microsoft Presidio plus règles françaises, relecture par échantillon</td></tr>
+<tr><td>Qualité et suivi</td><td>mesure et alerte</td><td>jeux de tests métier, Prometheus et Grafana, traces des requêtes auto-hébergées</td></tr>
+<tr><td>Déploiement</td><td>fait tourner l'ensemble</td><td>Docker Compose sur un hôte ; Kubernetes si plusieurs nœuds ; sauvegardes chiffrées</td></tr></table>`)+
+L(`Le trajet d'une question`,`<ol><li><b>Authentification</b> : l'utilisateur se connecte, son rôle et son périmètre sont connus.</li><li><b>Pré-filtre</b> : le périmètre (résidences, logements) est imposé à toutes les requêtes de données.</li><li><b>Recherche</b> : seuls les passages de sa partition sont retrouvés.</li><li><b>Outils</b> : si un chiffre est demandé (score, budget), l'Oracle appelle l'outil, il ne l'invente pas.</li><li><b>Réponse</b> avec sources citées ; sans source, il dit qu'il ne sait pas.</li><li><b>Garde-fous</b> : gaz, électricité, ascenseur, colonne d'eau : renvoi à l'expert.</li><li><b>Journal</b> : qui a demandé quoi, quelles sources, quelle version du modèle.</li><li><b>Validation humaine</b> avant toute action ou diffusion.</li></ol>`)+
+L(`Mise à jour sans repartir de zéro`,`<ul><li><b>Chaque jour</b> : ingestion, anonymisation, réindexation de la mémoire. Aucun entraînement.</li><li><b>À l'usage</b> : chaque panne résolue et validée par un expert devient un cas d'évaluation anonymisé.</li><li><b>Si, et seulement si, nécessaire</b> : adaptation LoRA trimestrielle, suivie d'un banc d'essai ; la version n'est mise en production que si les tests de sécurité sont intacts. Un enseignant externe est exclu tant que les données quittent le périmètre.</li></ul>`)+
+L(`Garde-fous`,`<ul><li><b>Accès</b> : filtrage sur les données, pas dans le texte d'instruction.</li><li><b>Injection de consignes</b> [29] : un ticket ou une demande est une donnée, jamais une instruction ; l'Oracle n'a aucun outil d'écriture sans validation.</li><li><b>Non-régression</b> [28] : tests de sécurité avant toute nouvelle version.</li><li><b>Principe constant</b> : « L'IA recommande, l'expert technique et la direction décident. »</li></ul>`)+
+L(`Coûts : interne (équipement local) ou cloud`,`<p>Quatre options, sur 3 ans, hors développement initial (commun aux options). Les montants sont des <b>ordres de grandeur modifiables</b> : changez les hypothèses ci-dessous, tout se recalcule.</p>
+<ul><li><b>Interne central</b> : un serveur GPU 48 Go hébergé par le bailleur, avec fibre dédiée. Électricité (+30 % pour refroidissement et onduleur) : prise en compte ; eau et gaz : 0 € car refroidissement par air, mais le champ existe.</li><li><b>Interne distribué</b> : un petit nœud par résidence (8), avec sa fibre, son électricité et un modèle plus petit.</li><li><b>Cloud API</b> : un modèle de classe intermédiaire payé à l'usage, hébergement européen de la mémoire.</li><li><b>Cloud GPU à la demande</b> : un modèle ouvert hébergé sur un GPU loué, allumé en continu par défaut (un assistant pour locataires doit répondre le soir et le week-end). Réglable : 2 640 h par an pour les seules heures ouvrées.</li></ul>
+<div id="calc"><div class="fields"></div><p><button class="btn reset" type="button">Revenir aux hypothèses par défaut</button></p><div class="res"></div></div>
+<h3>Sensibilité au nombre de logements</h3><div id="sens"></div>
+<p class="warn"><b>Lecture.</b> À notre taille, le cloud coûte environ moitié moins : le personnel domine le coût interne, pas le matériel. L'interne central devient moins cher que le cloud API vers <span id="be">…</span> avec ces hypothèses, ou plus tôt si l'on réduit le temps d'administration. Le GPU loué en continu se situe entre les deux. Le distribué est le plus cher : il se justifie par la résilience ou l'autonomie locale, pas par le prix. <b>Le choix ne se joue donc pas sur le prix mais sur la souveraineté</b> : des données de locataires peuvent exiger un hébergement maîtrisé, à valider avec le délégué à la protection des données.</p>
+<p><b>Recommandation.</b> Piloter sur un cloud européen (ou GPU à la demande) avec données pseudonymisées, en gardant des briques portables, puis internaliser au palier 3 si le volume ou la souveraineté le justifient.</p>
+<h3>D'où viennent les chiffres</h3>
+<ul><li>Électricité : environ 0,13 à 0,16 €/kWh HT pour de petits professionnels en 2026, défaut 0,15 (<a href="https://opera-energie.com/prix-electricite-professionnel/" target="_blank" rel="noopener">opera-energie</a>, <a href="https://www.fournisseurs-electricite.com/pro" target="_blank" rel="noopener">fournisseurs-electricite</a>, <a href="https://entreprises.selectra.info/energie/actualites/tarifs-reglementes-electricite-professionnels-aout-2026" target="_blank" rel="noopener">Selectra</a>).</li>
+<li>Serveur GPU 48 Go : carte L40S autour de 7 700 à 8 200 € en Europe mi-2026, serveur complet estimé à 12 000 € (<a href="https://modal.com/blog/nvidia-l40s-price-article" target="_blank" rel="noopener">Modal</a>, <a href="https://blog.premai.io/gpu-buying-guide-for-llms-rtx-5090-vs-h100-vs-h200-complete-comparison-2026" target="_blank" rel="noopener">PremAI</a>). Cartes grand public en forte hausse de prix fin 2026.</li>
+<li>GPU loué : environ 1 à 2 $ de l'heure pour un L40S, défaut 1,5 (<a href="https://modal.com/blog/nvidia-l40s-price-article" target="_blank" rel="noopener">Modal</a>).</li>
+<li>API : 3 $ / 15 $ par million de tokens (classe intermédiaire), 1 $ / 5 $ (classe économique) (<a href="https://benchlm.ai/anthropic/api-pricing" target="_blank" rel="noopener">BenchLM</a>), sans remise de cache ni de traitement différé, donc prudent.</li>
+<li>Internet : fibre pro mutualisée 35 à 80 € HT/mois, moyenne 46 (<a href="https://www.lafibreoptique.fr/offre-fibre/sosh/pro" target="_blank" rel="noopener">LaFibreOptique</a>) ; fibre dédiée 160 € HT/mois pour 100 Mb/s (<a href="https://www.ovhcloud.com/sites/default/files/external_files/brochure_tarifaire_fibre_dediee_standard.pdf" target="_blank" rel="noopener">OVHcloud</a>).</li>
+<li><b>Nos hypothèses, non sourcées</b> : 2,7 requêtes par logement et par mois ; 3 000 tokens lus et 400 écrits par requête ; capacité d'un serveur (518 millions de tokens par mois, à mesurer sur banc d'essai) ; 70 000 € par ETP chargé ; 0,15 / 0,35 / 0,05 / 0,10 ETP selon l'option ; hébergement cloud 250 € par mois ; nœud distribué 2 500 €.</li></ul>
+<p class="warn">Prix relevés fin 2026 sur ces pages, hors taxes, non vérifiés auprès des fournisseurs ; les prix des cartes et des API évoluent vite. Le développement initial de la plateforme (intégration, évaluation, sécurité) n'est pas compté.</p>`);
+const _openGuide=openGuide;
+openGuide=function(tab='comp',ref=null){_openGuide(tab,ref);if(tab==='oracle')initCalc();};
+
+go((parseInt(location.hash.slice(1))||1)-1);requestAnimationFrame(tick);
+</script>
+</body>
+</html>

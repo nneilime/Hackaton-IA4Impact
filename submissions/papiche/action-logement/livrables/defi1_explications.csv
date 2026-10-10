@@ -1,0 +1,1286 @@
+equipement_id,score_risque,raison_1,raison_2,raison_3
+EQP-01633,0.9982,signaux faibles dans les commentaires du technicien,demandes de panne du locataire,récidive de pannes (Hawkes)
+EQP-00642,0.9237,demandes de panne du locataire,âge élevé par rapport à la durée de vie,âge
+EQP-01533,0.874,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur
+EQP-02949,0.796,demandes de panne du locataire,"plaintes (eau tiède, froid…)",âge élevé par rapport à la durée de vie
+EQP-03530,0.7821,demandes de panne du locataire,"plaintes (eau tiède, froid…)",âge élevé par rapport à la durée de vie
+EQP-02397,0.7142,demandes de panne du locataire,"plaintes (eau tiède, froid…)",signaux faibles dans les commentaires du technicien
+EQP-01477,0.7045,signaux faibles dans les commentaires du technicien,demandes de panne du locataire,âge élevé par rapport à la durée de vie
+EQP-00676,0.6146,demandes de panne du locataire,âge élevé par rapport à la durée de vie,âge
+EQP-03973,0.6,demandes de panne du locataire,"plaintes (eau tiède, froid…)",signaux faibles dans les commentaires du technicien
+EQP-00005,0.5988,demandes de panne du locataire,"plaintes (eau tiède, froid…)",signaux faibles dans les commentaires du technicien
+EQP-01453,0.5709,signaux faibles dans les commentaires du technicien,demandes de panne du locataire,âge élevé par rapport à la durée de vie
+EQP-03150,0.5653,demandes de panne du locataire,âge élevé par rapport à la durée de vie,âge
+EQP-02945,0.5528,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00812,0.5011,demandes de panne du locataire,âge élevé par rapport à la durée de vie,signaux faibles dans les commentaires du technicien
+EQP-02645,0.4957,demandes de panne du locataire,âge élevé par rapport à la durée de vie,signaux faibles dans les commentaires du technicien
+EQP-01561,0.4443,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie
+EQP-00677,0.4096,demandes de panne du locataire,âge élevé par rapport à la durée de vie,âge
+EQP-01537,0.408,demandes de panne du locataire,récidive de pannes (Hawkes),signaux faibles dans les commentaires du technicien
+EQP-03921,0.3789,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie
+EQP-01785,0.3737,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-03957,0.356,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)"
+EQP-00896,0.3453,demandes de panne du locataire,"plaintes (eau tiède, froid…)",âge
+EQP-04093,0.3418,demandes de panne du locataire,âge élevé par rapport à la durée de vie,"plaintes (eau tiède, froid…)"
+EQP-01437,0.3415,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-01661,0.3365,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie
+EQP-04217,0.3344,famille production_ecs_solaire,âge élevé par rapport à la durée de vie,âge
+EQP-00836,0.3336,âge élevé par rapport à la durée de vie,âge,signaux faibles dans les commentaires du technicien
+EQP-00811,0.3237,âge élevé par rapport à la durée de vie,demandes de panne du locataire,âge
+EQP-04213,0.3182,famille production_ecs_solaire,âge élevé par rapport à la durée de vie,âge
+EQP-02933,0.3062,demandes de panne du locataire,récidive de pannes (Hawkes),"plaintes (eau tiède, froid…)"
+EQP-00937,0.3006,âge élevé par rapport à la durée de vie,signaux faibles dans les commentaires du technicien,âge
+EQP-02629,0.2969,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03993,0.2934,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)"
+EQP-01733,0.2885,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-03521,0.2812,demandes de panne du locataire,âge élevé par rapport à la durée de vie,âge
+EQP-03529,0.2811,demandes de panne du locataire,"plaintes (eau tiède, froid…)",remplacements passés
+EQP-00797,0.2731,demandes de panne du locataire,âge élevé par rapport à la durée de vie,âge
+EQP-02757,0.2706,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)"
+EQP-02357,0.2691,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)"
+EQP-03214,0.2689,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01457,0.2676,demandes de panne du locataire,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-01585,0.2553,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur
+EQP-01917,0.2359,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)"
+EQP-02621,0.2321,demandes de panne du locataire,"plaintes (eau tiède, froid…)",âge élevé par rapport à la durée de vie
+EQP-03106,0.2317,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-04166,0.2276,âge,âge élevé par rapport à la durée de vie,signaux faibles dans les commentaires du technicien
+EQP-03181,0.2234,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,âge
+EQP-02002,0.2164,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)"
+EQP-00265,0.2107,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)"
+EQP-03410,0.2083,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03306,0.2082,demandes de panne du locataire,âge élevé par rapport à la durée de vie,âge
+EQP-02396,0.207,demandes de panne du locataire,"plaintes (eau tiède, froid…)",remplacements passés
+EQP-02356,0.2056,demandes de panne du locataire,"plaintes (eau tiède, froid…)",remplacements passés
+EQP-02825,0.2028,demandes de panne du locataire,"plaintes (eau tiède, froid…)",récidive de pannes (Hawkes)
+EQP-02813,0.1969,demandes de panne du locataire,"plaintes (eau tiède, froid…)",âge élevé par rapport à la durée de vie
+EQP-02957,0.1955,âge élevé par rapport à la durée de vie,signaux faibles dans les commentaires du technicien,âge
+EQP-03613,0.1917,demandes de panne du locataire,âge élevé par rapport à la durée de vie,âge
+EQP-00237,0.1902,demandes de panne du locataire,"plaintes (eau tiède, froid…)",récidive de pannes (Hawkes)
+EQP-03585,0.1876,demandes de panne du locataire,"plaintes (eau tiède, froid…)",âge
+EQP-01409,0.1858,signaux faibles dans les commentaires du technicien,demandes de panne du locataire,famille pompe_a_chaleur
+EQP-04207,0.1841,âge,âge élevé par rapport à la durée de vie,récidive de pannes (Hawkes)
+EQP-01862,0.1832,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie
+EQP-01625,0.1823,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-04170,0.1802,récidive de pannes (Hawkes),signaux faibles dans les commentaires du technicien,âge
+EQP-01549,0.1796,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-04209,0.1742,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),âge
+EQP-02342,0.1737,demandes de panne du locataire,"plaintes (eau tiède, froid…)",âge élevé par rapport à la durée de vie
+EQP-02965,0.1726,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02412,0.1698,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie
+EQP-03049,0.1633,demandes de panne du locataire,"plaintes (eau tiède, froid…)",signaux faibles dans les commentaires du technicien
+EQP-03225,0.1627,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01545,0.1622,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-01793,0.1619,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-02477,0.1593,récidive de pannes (Hawkes),signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie
+EQP-03361,0.1581,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00931,0.1569,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00465,0.1546,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),remplacements passés
+EQP-00892,0.1545,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01842,0.1543,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,récidive de pannes (Hawkes)
+EQP-00761,0.1534,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00686,0.1529,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00716,0.1528,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01597,0.1516,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-00093,0.1514,demandes de panne du locataire,"plaintes (eau tiède, froid…)",remplacements passés
+EQP-00762,0.1505,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01717,0.1491,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-00652,0.1486,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02789,0.1479,récidive de pannes (Hawkes),signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie
+EQP-01421,0.1477,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,"plaintes (eau tiède, froid…)"
+EQP-04193,0.1474,âge élevé par rapport à la durée de vie,signaux faibles dans les commentaires du technicien,âge
+EQP-00791,0.1474,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-04142,0.1457,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00641,0.1455,demandes de panne du locataire,famille panneaux_rayonnants,dépannages sur 12 mois
+EQP-04205,0.1454,âge,âge élevé par rapport à la durée de vie,famille ascenseur
+EQP-03174,0.1427,demandes de panne du locataire,"plaintes (eau tiède, froid…)",famille ballon_ecs_electrique
+EQP-03358,0.1409,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00826,0.1408,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,âge
+EQP-01569,0.1374,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,récidive de pannes (Hawkes)
+EQP-03754,0.1337,âge élevé par rapport à la durée de vie,"plaintes (eau tiède, froid…)",âge
+EQP-00672,0.1316,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03297,0.1309,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02467,0.1275,demandes de panne du locataire,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-04161,0.1256,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-04212,0.124,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,âge
+EQP-01525,0.1232,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-02905,0.1223,signaux faibles dans les commentaires du technicien,demandes de panne du locataire,"plaintes (eau tiède, froid…)"
+EQP-02713,0.122,âge élevé par rapport à la durée de vie,signaux faibles dans les commentaires du technicien,âge
+EQP-00752,0.1216,demandes de panne du locataire,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique
+EQP-03037,0.1214,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,âge
+EQP-01729,0.1213,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur
+EQP-02482,0.1203,signaux faibles dans les commentaires du technicien,demandes de panne du locataire,"plaintes (eau tiède, froid…)"
+EQP-02873,0.1195,âge élevé par rapport à la durée de vie,âge,récidive de pannes (Hawkes)
+EQP-03285,0.119,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01781,0.1184,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-01461,0.1176,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-01589,0.1171,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-01629,0.116,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-03277,0.1145,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00857,0.1141,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03901,0.1133,âge élevé par rapport à la durée de vie,"plaintes (eau tiède, froid…)",âge
+EQP-02427,0.1126,signaux faibles dans les commentaires du technicien,demandes de panne du locataire,récidive de pannes (Hawkes)
+EQP-03158,0.1121,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01425,0.1115,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-00425,0.1112,demandes de panne du locataire,"plaintes (eau tiède, froid…)",remplacements passés
+EQP-03793,0.1106,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie,âge
+EQP-03885,0.1101,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,âge
+EQP-01725,0.1099,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-04125,0.1095,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie,âge
+EQP-01641,0.1093,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-02637,0.108,demandes de panne du locataire,"plaintes (eau tiède, froid…)",récidive de pannes (Hawkes)
+EQP-02437,0.1073,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie
+EQP-03877,0.107,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,âge
+EQP-03997,0.1062,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,âge
+EQP-01709,0.1058,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-02849,0.1058,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-01605,0.1057,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur,âge élevé par rapport à la durée de vie
+EQP-01613,0.1053,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-01773,0.1045,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-01481,0.1041,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,dépannages sur 12 mois
+EQP-01721,0.103,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-03609,0.1028,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01649,0.1014,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-01449,0.1006,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur,dépannages sur 12 mois
+EQP-01573,0.1002,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-00613,0.0998,signaux faibles dans les commentaires du technicien,demandes de panne du locataire,récidive de pannes (Hawkes)
+EQP-03805,0.0998,âge élevé par rapport à la durée de vie,âge,récidive de pannes (Hawkes)
+EQP-01413,0.0997,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-04159,0.0995,âge élevé par rapport à la durée de vie,récidive de pannes (Hawkes),âge
+EQP-01621,0.0989,récidive de pannes (Hawkes),famille pompe_a_chaleur,remplacements passés
+EQP-03313,0.0983,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03342,0.0968,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03110,0.0962,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03561,0.0958,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01657,0.0956,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,dépannages sur 12 mois
+EQP-00009,0.0948,récidive de pannes (Hawkes),remplacements passés,contrat d'entretien
+EQP-03202,0.0935,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03746,0.0928,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02761,0.0925,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01517,0.0916,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-03173,0.0911,demandes de panne du locataire,"plaintes (eau tiède, froid…)",âge
+EQP-01473,0.0905,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-00772,0.09,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02921,0.0893,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03929,0.0893,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01505,0.089,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-04013,0.0886,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03933,0.0882,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03162,0.0877,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-04129,0.0873,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-01445,0.0872,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-02212,0.0866,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03853,0.0864,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03254,0.0852,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03218,0.0851,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02829,0.0851,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,âge
+EQP-00897,0.0848,demandes de panne du locataire,"plaintes (eau tiède, froid…)",famille ballon_ecs_electrique
+EQP-00109,0.0846,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),remplacements passés
+EQP-01577,0.0842,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-01832,0.0838,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03309,0.0833,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03889,0.0829,âge élevé par rapport à la durée de vie,âge,récidive de pannes (Hawkes)
+EQP-02392,0.0816,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03398,0.0814,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-03985,0.0814,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03969,0.0813,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03146,0.0812,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03781,0.0812,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01469,0.081,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-03602,0.0808,demandes de panne du locataire,famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-03573,0.0806,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03449,0.0804,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02237,0.0802,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03142,0.0792,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-04169,0.0783,famille ascenseur,récidive de pannes (Hawkes),âge
+EQP-03785,0.0781,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03881,0.078,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03294,0.0778,demandes de panne du locataire,famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-04021,0.0777,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-04053,0.0775,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-04190,0.0769,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),famille ascenseur
+EQP-03897,0.0769,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-04097,0.0762,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02152,0.0761,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-04037,0.0756,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02247,0.0753,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02122,0.0752,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie,remplacements passés
+EQP-04133,0.075,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03941,0.0749,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03286,0.0744,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-03221,0.0744,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03869,0.0742,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02382,0.0742,"plaintes (eau tiède, froid…)",âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02869,0.0742,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie,remplacements passés
+EQP-04033,0.074,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00061,0.074,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-02501,0.0736,âge élevé par rapport à la durée de vie,âge,récidive de pannes (Hawkes)
+EQP-03105,0.0734,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02641,0.0733,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,âge
+EQP-02801,0.0733,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),"plaintes (eau tiède, froid…)"
+EQP-00796,0.073,demandes de panne du locataire,âge,âge élevé par rapport à la durée de vie
+EQP-02705,0.0729,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02142,0.0726,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03861,0.0725,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03665,0.0725,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03809,0.0722,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01967,0.0722,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00633,0.072,signaux faibles dans les commentaires du technicien,dépannages sur 12 mois,remplacements passés
+EQP-02292,0.072,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02067,0.0718,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03485,0.0717,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03845,0.0714,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02242,0.0714,"plaintes (eau tiède, froid…)",âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02605,0.0713,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00862,0.0713,"plaintes (eau tiède, froid…)",âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique
+EQP-03977,0.0712,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03833,0.0712,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00521,0.0711,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-01497,0.0711,famille pompe_a_chaleur,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02177,0.0708,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-04081,0.0705,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02633,0.0702,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-02442,0.0699,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03138,0.0698,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-02681,0.0697,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02417,0.0696,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02577,0.0696,signaux faibles dans les commentaires du technicien,demandes de panne du locataire,récidive de pannes (Hawkes)
+EQP-02202,0.0694,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03242,0.0694,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-01637,0.0692,âge élevé par rapport à la durée de vie,famille pompe_a_chaleur,âge
+EQP-03829,0.0691,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03865,0.0689,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00692,0.0689,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-02267,0.0686,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02569,0.0681,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-03789,0.0681,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-04089,0.068,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00217,0.0677,récidive de pannes (Hawkes),remplacements passés,contrat d'entretien
+EQP-03237,0.0664,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03001,0.0664,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-03141,0.0662,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02709,0.0656,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-03366,0.0655,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-03578,0.0655,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02785,0.0653,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-00782,0.0648,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-03494,0.0645,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-04216,0.0643,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-00832,0.0642,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-02127,0.0636,signaux faibles dans les commentaires du technicien,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03618,0.0634,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-00747,0.0627,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-00922,0.0619,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-03250,0.061,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-02809,0.0609,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-03777,0.0609,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02885,0.0606,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-01673,0.0602,famille pompe_a_chaleur,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-04172,0.0597,âge,famille ascenseur,âge élevé par rapport à la durée de vie
+EQP-00581,0.0596,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-02653,0.0588,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02857,0.0587,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-04201,0.0585,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),remplacements passés
+EQP-00545,0.0585,récidive de pannes (Hawkes),remplacements passés,contrat d'entretien
+EQP-03717,0.0584,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03266,0.0577,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-00807,0.0574,âge élevé par rapport à la durée de vie,âge,famille ballon_ecs_electrique
+EQP-02157,0.0574,âge élevé par rapport à la durée de vie,récidive de pannes (Hawkes),remplacements passés
+EQP-03126,0.0574,"plaintes (eau tiède, froid…)",âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique
+EQP-04175,0.0573,récidive de pannes (Hawkes),famille ascenseur,âge
+EQP-03210,0.0572,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)",dépannages sur 12 mois
+EQP-04195,0.0572,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-02985,0.0569,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-02167,0.0567,âge élevé par rapport à la durée de vie,récidive de pannes (Hawkes),remplacements passés
+EQP-03538,0.0562,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-00357,0.0559,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-04163,0.0557,famille ascenseur,âge,âge élevé par rapport à la durée de vie
+EQP-01669,0.0557,famille pompe_a_chaleur,récidive de pannes (Hawkes),dépannages sur 12 mois
+EQP-00589,0.055,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-00926,0.055,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02889,0.0549,âge élevé par rapport à la durée de vie,dépannages sur 12 mois,remplacements passés
+EQP-03581,0.0547,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03490,0.0547,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-02565,0.0546,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-02977,0.0544,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-03462,0.0544,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-03694,0.0543,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-03157,0.0534,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-04197,0.0532,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-03230,0.053,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-01997,0.0528,âge élevé par rapport à la durée de vie,récidive de pannes (Hawkes),remplacements passés
+EQP-03546,0.0527,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-04182,0.0526,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-00181,0.0525,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-02481,0.0524,demandes de panne du locataire,"plaintes (eau tiède, froid…)",remplacements passés
+EQP-02001,0.0524,demandes de panne du locataire,"plaintes (eau tiède, froid…)",remplacements passés
+EQP-00221,0.0522,récidive de pannes (Hawkes),remplacements passés,contrat d'entretien
+EQP-00361,0.0522,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-02685,0.0521,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-02341,0.0521,demandes de panne du locataire,"plaintes (eau tiède, froid…)",remplacements passés
+EQP-04155,0.0518,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-00841,0.0516,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-00401,0.0516,récidive de pannes (Hawkes),remplacements passés,contrat d'entretien
+EQP-02007,0.0515,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01887,0.051,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01892,0.0509,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02052,0.0508,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01916,0.0507,demandes de panne du locataire,"plaintes (eau tiède, froid…)",remplacements passés
+EQP-02462,0.0505,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03550,0.0504,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-03801,0.0502,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02893,0.0502,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-00441,0.0501,récidive de pannes (Hawkes),remplacements passés,contrat d'entretien
+EQP-00861,0.0501,"plaintes (eau tiède, froid…)",âge,âge élevé par rapport à la durée de vie
+EQP-03469,0.0501,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03633,0.05,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03466,0.05,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-03630,0.0497,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-03429,0.0496,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),âge
+EQP-03638,0.0496,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-00321,0.0495,signaux faibles dans les commentaires du technicien,remplacements passés,contrat d'entretien
+EQP-03621,0.0492,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-03081,0.049,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00249,0.0488,récidive de pannes (Hawkes),remplacements passés,contrat d'entretien
+EQP-01847,0.0485,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03589,0.0484,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01807,0.0484,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-04069,0.0484,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-02447,0.0484,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01987,0.0484,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01962,0.0484,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03206,0.0483,récidive de pannes (Hawkes),âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique
+EQP-02881,0.0482,âge élevé par rapport à la durée de vie,récidive de pannes (Hawkes),remplacements passés
+EQP-02227,0.048,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01817,0.0478,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02277,0.0478,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01837,0.0477,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02837,0.0477,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-02302,0.0477,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03334,0.0474,"plaintes (eau tiède, froid…)",famille ballon_ecs_electrique,remplacements passés
+EQP-03678,0.0473,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-02497,0.0472,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02387,0.0471,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03166,0.047,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-02207,0.0469,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01812,0.0469,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03234,0.0467,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-03670,0.0465,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-01872,0.0465,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02012,0.0465,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01957,0.0464,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02222,0.0464,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03518,0.0464,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-01852,0.0463,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03641,0.0463,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02217,0.0463,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01972,0.0462,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03069,0.0462,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-03709,0.0462,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-01937,0.0462,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02352,0.0456,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02062,0.0456,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02097,0.0456,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02297,0.0455,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01977,0.0454,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01932,0.0454,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02422,0.0452,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02677,0.045,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03726,0.045,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-02107,0.0449,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03061,0.0449,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-02087,0.0449,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03397,0.0448,âge élevé par rapport à la durée de vie,âge,équipement en fin de vie
+EQP-02172,0.0447,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02182,0.0447,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02092,0.0447,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02372,0.0446,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02022,0.0446,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01952,0.0446,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02042,0.0446,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01982,0.0442,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-01897,0.0442,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02037,0.0441,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03470,0.0439,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,âge
+EQP-01802,0.0438,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-04211,0.0437,famille ascenseur,âge,remplacements passés
+EQP-02047,0.0436,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02187,0.0435,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02793,0.0434,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02112,0.0433,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02137,0.0432,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02332,0.0432,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00932,0.0431,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-02307,0.0431,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00533,0.0431,récidive de pannes (Hawkes),remplacements passés,contrat d'entretien
+EQP-02337,0.0429,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02252,0.0429,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02032,0.0429,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03817,0.0427,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03606,0.0427,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-01877,0.0426,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03533,0.0424,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02272,0.0423,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-04215,0.0422,famille ascenseur,âge,récidive de pannes (Hawkes)
+EQP-02407,0.0422,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00737,0.0422,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-00802,0.0419,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-00505,0.0419,remplacements passés,contrat d'entretien,récidive de pannes (Hawkes)
+EQP-04184,0.0419,famille ascenseur,récidive de pannes (Hawkes),dépannages sur 12 mois
+EQP-03734,0.0419,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-03434,0.0419,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-04173,0.0417,âge,âge élevé par rapport à la durée de vie,récidive de pannes (Hawkes)
+EQP-02765,0.0416,âge élevé par rapport à la durée de vie,âge,remplacements passés
+EQP-02657,0.0415,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03245,0.0414,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03129,0.0414,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00702,0.0413,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-03414,0.0409,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-03249,0.0409,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02557,0.0408,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-04146,0.0406,remplacements passés,contrat d'entretien,récidive de pannes (Hawkes)
+EQP-03222,0.0402,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-02402,0.0402,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00661,0.0401,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03489,0.0399,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03246,0.0397,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-01857,0.0397,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00525,0.0396,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02017,0.0395,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00281,0.0393,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03369,0.0392,"plaintes (eau tiède, froid…)",âge,âge élevé par rapport à la durée de vie
+EQP-02316,0.0391,demandes de panne du locataire,remplacements passés,famille convecteurs_electriques
+EQP-03574,0.039,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-04025,0.039,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02973,0.0389,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00822,0.0388,famille ballon_ecs_electrique,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00687,0.0388,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-02287,0.0387,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00365,0.0387,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02993,0.0385,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00041,0.0385,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03178,0.0385,demandes de panne du locataire,famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-02362,0.0383,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00137,0.038,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00369,0.0375,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02925,0.0375,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-00149,0.0375,récidive de pannes (Hawkes),remplacements passés,contrat d'entretien
+EQP-03514,0.0375,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-00129,0.0373,remplacements passés,contrat d'entretien,récidive de pannes (Hawkes)
+EQP-00417,0.0372,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00911,0.0372,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00701,0.0372,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00169,0.0371,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00337,0.037,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00421,0.0369,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00397,0.0368,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00069,0.0368,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00629,0.0367,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00377,0.0367,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02072,0.0365,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03257,0.0365,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03226,0.0365,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-02426,0.0365,demandes de panne du locataire,remplacements passés,famille convecteurs_electriques
+EQP-00081,0.0364,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03626,0.0364,famille ballon_ecs_electrique,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00477,0.0364,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02466,0.0363,demandes de panne du locataire,remplacements passés,famille convecteurs_electriques
+EQP-00085,0.0362,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00625,0.0362,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00001,0.0361,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00691,0.036,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03729,0.0359,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00117,0.0359,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00389,0.0359,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03534,0.0358,famille ballon_ecs_electrique,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00341,0.0358,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00801,0.0358,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02929,0.0358,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-03282,0.0357,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-02741,0.0357,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00501,0.0357,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00057,0.0356,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00025,0.0356,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00205,0.0355,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00513,0.0355,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03841,0.0355,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03493,0.0355,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00245,0.0354,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00429,0.0354,remplacements passés,contrat d'entretien,récidive de pannes (Hawkes)
+EQP-00696,0.0354,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00197,0.0354,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00597,0.0353,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00033,0.0353,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03421,0.0353,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03118,0.0353,famille ballon_ecs_electrique,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02451,0.0352,demandes de panne du locataire,remplacements passés,famille convecteurs_electriques
+EQP-00301,0.0352,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00453,0.0351,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02317,0.0351,demandes de panne du locataire,contrat d'entretien,famille ballon_thermodynamique
+EQP-00101,0.035,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00021,0.035,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00461,0.0349,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03089,0.0349,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00349,0.0348,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00133,0.0348,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02076,0.0348,demandes de panne du locataire,remplacements passés,famille convecteurs_electriques
+EQP-00473,0.0346,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03702,0.0346,famille ballon_ecs_electrique,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-04045,0.0346,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03742,0.0346,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-03526,0.0345,âge élevé par rapport à la durée de vie,famille ballon_ecs_electrique,remplacements passés
+EQP-04121,0.0344,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-02509,0.0344,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00317,0.0344,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00617,0.0343,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02997,0.0342,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00637,0.0342,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00157,0.0341,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00605,0.0341,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00493,0.034,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00313,0.034,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00601,0.034,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00489,0.034,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-02593,0.034,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00569,0.034,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00165,0.034,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-03622,0.034,famille ballon_ecs_electrique,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00029,0.0339,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00257,0.0338,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00727,0.0338,famille ballon_ecs_electrique,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-00141,0.0338,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-01689,0.0337,famille pompe_a_chaleur,récidive de pannes (Hawkes),contrat d'entretien
+EQP-03177,0.0337,demandes de panne du locataire,remplacements passés,famille panneaux_rayonnants
+EQP-00433,0.0337,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-04137,0.0336,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00241,0.0335,dépannages sur 12 mois,remplacements passés,contrat d'entretien
+EQP-00373,0.0335,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00485,0.0335,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00413,0.0334,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00621,0.0334,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00445,0.0334,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00173,0.0334,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00585,0.0333,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-02865,0.0333,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)"
+EQP-00209,0.0332,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00097,0.0332,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02701,0.0332,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00409,0.0331,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00449,0.0331,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00105,0.0331,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00153,0.0331,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00517,0.0331,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00481,0.0331,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-03553,0.0331,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00229,0.033,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00269,0.033,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00213,0.033,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03149,0.0329,demandes de panne du locataire,récidive de pannes (Hawkes),dépannages sur 12 mois
+EQP-00285,0.0329,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00561,0.0327,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00073,0.0327,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00541,0.0327,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03774,0.0327,famille ballon_ecs_electrique,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00297,0.0327,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00549,0.0326,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00145,0.0325,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03506,0.0325,demandes de panne du locataire,famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-00201,0.0325,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00529,0.0325,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03502,0.0325,famille ballon_ecs_electrique,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00013,0.0324,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03686,0.0324,famille ballon_ecs_electrique,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-00353,0.0324,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00273,0.0322,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00469,0.0321,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00113,0.0321,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00553,0.0319,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00405,0.0318,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00856,0.0318,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00437,0.0318,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00393,0.0317,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00609,0.0317,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00161,0.0316,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03598,0.0316,famille ballon_ecs_electrique,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-03549,0.0315,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-04191,0.0314,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-02525,0.0314,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-03041,0.0312,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00497,0.0311,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03554,0.0311,famille ballon_ecs_electrique,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-00277,0.031,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00457,0.031,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00017,0.031,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02913,0.031,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00325,0.0309,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03646,0.0308,famille ballon_ecs_electrique,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-03298,0.0306,famille ballon_ecs_electrique,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-00565,0.0305,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00722,0.0305,famille ballon_ecs_electrique,remplacements passés,famille convecteurs_electriques
+EQP-00189,0.0305,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00381,0.0304,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03350,0.0303,famille ballon_ecs_electrique,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-04185,0.0301,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00593,0.03,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03205,0.03,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00089,0.0299,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-02737,0.0299,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-03021,0.0298,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-03405,0.0298,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03813,0.0297,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-03517,0.0297,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03193,0.0296,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00927,0.0296,famille ballon_ecs_electrique,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-04005,0.0295,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-02545,0.0294,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00065,0.0294,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03085,0.0294,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00261,0.0293,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-00233,0.0293,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-03586,0.029,demandes de panne du locataire,"plaintes (eau tiède, froid…)",famille ballon_ecs_electrique
+EQP-01501,0.0289,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur,contrat d'entretien
+EQP-00329,0.0288,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-03797,0.0288,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-03445,0.0287,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00777,0.0285,famille ballon_ecs_electrique,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-00817,0.0284,famille ballon_ecs_electrique,remplacements passés,famille convecteurs_electriques
+EQP-03925,0.0284,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-04176,0.0283,dépannages sur 12 mois,fonctionnement dégradé récent,remplacements passés
+EQP-03381,0.0283,"plaintes (eau tiède, froid…)",âge,remplacements passés
+EQP-03545,0.0278,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00721,0.0278,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02953,0.0277,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-04187,0.0277,famille ascenseur,remplacements passés,contrat d'entretien
+EQP-03677,0.0277,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03194,0.0276,famille ballon_ecs_electrique,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-02817,0.0275,signaux faibles dans les commentaires du technicien,dépannages sur 12 mois,contrat d'entretien
+EQP-02192,0.0271,âge élevé par rapport à la durée de vie,remplacements passés,contrat d'entretien
+EQP-02669,0.027,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-03065,0.0269,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00646,0.0267,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03765,0.0267,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03117,0.0265,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00886,0.0261,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-01581,0.0261,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur,récidive de pannes (Hawkes)
+EQP-03301,0.0259,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-01429,0.0256,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur,contrat d'entretien
+EQP-03661,0.0255,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03433,0.0254,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03457,0.025,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03593,0.025,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03725,0.0248,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-04164,0.0247,dépannages sur 12 mois,âge,âge élevé par rapport à la durée de vie
+EQP-03329,0.0244,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03753,0.024,"plaintes (eau tiède, froid…)",remplacements passés,famille panneaux_rayonnants
+EQP-02909,0.024,remplacements passés,contrat d'entretien,famille convecteurs_electriques
+EQP-00821,0.0239,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03233,0.0239,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03537,0.0238,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03685,0.0237,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03625,0.0236,remplacements passés,âge,récidive de pannes (Hawkes)
+EQP-00827,0.0234,demandes de panne du locataire,famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-03345,0.0231,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03681,0.0231,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03689,0.023,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03745,0.023,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02981,0.0229,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),contrat d'entretien
+EQP-00177,0.0228,remplacements passés,contrat d'entretien,âge élevé par rapport à la durée de vie
+EQP-01653,0.0228,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-01741,0.0225,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur,contrat d'entretien
+EQP-03601,0.0224,demandes de panne du locataire,récidive de pannes (Hawkes),famille panneaux_rayonnants
+EQP-01441,0.0224,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03837,0.0224,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-03325,0.0223,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-02077,0.0221,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,contrat d'entretien
+EQP-03382,0.022,"plaintes (eau tiède, froid…)",famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-01557,0.0218,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur,dépannages sur 12 mois
+EQP-03005,0.0216,"plaintes (eau tiède, froid…)",contrat d'entretien,famille convecteurs_electriques
+EQP-03261,0.0216,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-03497,0.0215,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-03354,0.0213,famille ballon_ecs_electrique,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-03637,0.0211,âge,âge élevé par rapport à la durée de vie,remplacements passés
+EQP-00712,0.021,"plaintes (eau tiède, froid…)",famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-01685,0.021,famille pompe_a_chaleur,récidive de pannes (Hawkes),contrat d'entretien
+EQP-03653,0.0209,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-04029,0.0209,récidive de pannes (Hawkes),contrat d'entretien,famille convecteurs_electriques
+EQP-03145,0.0209,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-03701,0.0208,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-01677,0.0206,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-01513,0.0205,famille pompe_a_chaleur,récidive de pannes (Hawkes),contrat d'entretien
+EQP-01693,0.0204,famille pompe_a_chaleur,"plaintes (eau tiède, froid…)",contrat d'entretien
+EQP-00816,0.0202,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-03605,0.02,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-03293,0.02,demandes de panne du locataire,famille panneaux_rayonnants,rotation des locataires
+EQP-03522,0.0199,demandes de panne du locataire,"plaintes (eau tiède, froid…)",famille ballon_ecs_electrique
+EQP-00666,0.0199,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-01609,0.0198,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-00846,0.0197,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-03565,0.0197,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-03693,0.0195,remplacements passés,âge,famille panneaux_rayonnants
+EQP-03137,0.0195,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-02673,0.0194,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-00851,0.0194,"plaintes (eau tiède, froid…)",remplacements passés,famille panneaux_rayonnants
+EQP-01601,0.0193,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-00891,0.0193,remplacements passés,âge,famille panneaux_rayonnants
+EQP-02241,0.0192,"plaintes (eau tiède, froid…)",remplacements passés,famille convecteurs_electriques
+EQP-03357,0.0192,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-01553,0.0191,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-01529,0.019,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-02529,0.0189,"plaintes (eau tiède, froid…)",contrat d'entretien,fonctionnement dégradé récent
+EQP-03645,0.0188,remplacements passés,âge,famille panneaux_rayonnants
+EQP-01617,0.0188,famille pompe_a_chaleur,récidive de pannes (Hawkes),contrat d'entretien
+EQP-01593,0.0187,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03417,0.0187,remplacements passés,âge,famille panneaux_rayonnants
+EQP-00876,0.0186,remplacements passés,âge,famille panneaux_rayonnants
+EQP-02901,0.0185,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-00852,0.0184,"plaintes (eau tiède, froid…)",famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-02553,0.0184,récidive de pannes (Hawkes),contrat d'entretien,dépannages sur 12 mois
+EQP-00746,0.0184,remplacements passés,âge,famille panneaux_rayonnants
+EQP-02381,0.0183,"plaintes (eau tiède, froid…)",remplacements passés,famille convecteurs_electriques
+EQP-03153,0.0183,remplacements passés,âge,famille panneaux_rayonnants
+EQP-03377,0.0182,remplacements passés,âge,famille panneaux_rayonnants
+EQP-01789,0.0181,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-01797,0.018,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-01665,0.0179,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03733,0.0179,remplacements passés,âge,famille panneaux_rayonnants
+EQP-01761,0.0178,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03374,0.0177,signaux faibles dans les commentaires du technicien,famille ballon_ecs_electrique,dépannages sur 12 mois
+EQP-01465,0.0177,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-01405,0.0174,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03525,0.0174,âge,remplacements passés,âge élevé par rapport à la durée de vie
+EQP-03697,0.0173,remplacements passés,âge,famille panneaux_rayonnants
+EQP-03721,0.0172,remplacements passés,âge,famille panneaux_rayonnants
+EQP-01765,0.0171,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-01701,0.017,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03213,0.017,remplacements passés,âge,famille panneaux_rayonnants
+EQP-01705,0.0168,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-02452,0.0167,demandes de panne du locataire,contrat d'entretien,famille ballon_thermodynamique
+EQP-04049,0.0167,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03705,0.0166,remplacements passés,âge,famille panneaux_rayonnants
+EQP-02276,0.0164,récidive de pannes (Hawkes),remplacements passés,famille convecteurs_electriques
+EQP-03409,0.0164,remplacements passés,âge,famille panneaux_rayonnants
+EQP-01401,0.0164,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03273,0.0163,remplacements passés,âge,famille panneaux_rayonnants
+EQP-03265,0.0163,remplacements passés,âge,famille panneaux_rayonnants
+EQP-00792,0.0162,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01433,0.0161,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03649,0.016,remplacements passés,âge,famille panneaux_rayonnants
+EQP-03393,0.016,remplacements passés,famille panneaux_rayonnants,âge
+EQP-04061,0.016,contrat d'entretien,dépannages sur 12 mois,famille convecteurs_electriques
+EQP-03133,0.0159,remplacements passés,âge,famille panneaux_rayonnants
+EQP-01565,0.0159,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-01757,0.0158,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-00741,0.0158,remplacements passés,âge,famille panneaux_rayonnants
+EQP-03893,0.0157,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03666,0.0157,récidive de pannes (Hawkes),famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-03749,0.0156,demandes de panne du locataire,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-03161,0.0155,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-01521,0.0153,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-02617,0.0153,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01753,0.0152,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur,contrat d'entretien
+EQP-03597,0.0152,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-01417,0.0152,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-01681,0.0151,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-02753,0.0151,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03341,0.0151,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-03198,0.0151,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01961,0.015,remplacements passés,récidive de pannes (Hawkes),famille convecteurs_electriques
+EQP-03710,0.015,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02517,0.0148,signaux faibles dans les commentaires du technicien,contrat d'entretien,dépannages sur 12 mois
+EQP-01769,0.0148,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03738,0.0148,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03961,0.0146,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-03102,0.0146,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00867,0.0146,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03057,0.0145,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01777,0.0144,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-02505,0.0144,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02322,0.0144,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-01509,0.0144,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03113,0.0144,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-03349,0.0143,remplacements passés,âge,famille panneaux_rayonnants
+EQP-03873,0.0143,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03509,0.0143,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-02665,0.0143,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02487,0.0142,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-02917,0.0142,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03093,0.014,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02717,0.014,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00877,0.0139,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00916,0.0139,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-03454,0.0138,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00766,0.0138,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-00847,0.0137,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02261,0.0137,remplacements passés,famille convecteurs_electriques,fonctionnement dégradé récent
+EQP-02745,0.0137,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04017,0.0137,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)",dépannages sur 12 mois
+EQP-00732,0.0136,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03097,0.0136,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01926,0.0136,remplacements passés,famille convecteurs_electriques,fonctionnement dégradé récent
+EQP-01737,0.0135,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-02513,0.0134,récidive de pannes (Hawkes),contrat d'entretien,famille convecteurs_electriques
+EQP-03441,0.0134,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-03473,0.0134,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-00871,0.0134,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-02821,0.0133,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00751,0.0133,demandes de panne du locataire,signaux faibles dans les commentaires du technicien,dépannages sur 12 mois
+EQP-03662,0.0132,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02853,0.0132,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02549,0.0132,signaux faibles dans les commentaires du technicien,"plaintes (eau tiède, froid…)",contrat d'entretien
+EQP-03909,0.0131,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03353,0.0131,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-02609,0.0131,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00787,0.013,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03281,0.0129,remplacements passés,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-03486,0.0129,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02961,0.0129,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04009,0.0129,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00537,0.0129,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03402,0.0129,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03025,0.0129,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04157,0.0129,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03426,0.0129,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00185,0.0129,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-02046,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-04041,0.0128,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-01976,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02201,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02196,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02221,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02301,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01966,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-03570,0.0128,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01806,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01831,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02386,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01886,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01801,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01891,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-03762,0.0128,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02326,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02321,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02091,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02051,0.0128,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-03770,0.0127,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01996,0.0127,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02006,0.0127,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01986,0.0127,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01811,0.0127,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-03370,0.0126,"plaintes (eau tiède, froid…)",famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-03510,0.0126,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03857,0.0126,récidive de pannes (Hawkes),contrat d'entretien,famille convecteurs_electriques
+EQP-02456,0.0126,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01816,0.0126,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02461,0.0126,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02011,0.0126,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02376,0.0126,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01871,0.0126,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02041,0.0126,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-03378,0.0125,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02492,0.0125,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-01821,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01826,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02441,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02431,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02271,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01851,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01861,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02471,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02496,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02351,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02336,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01936,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02291,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01846,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02251,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02256,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02146,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02086,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02061,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02056,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02111,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02116,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02131,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02141,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02151,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01956,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02156,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02026,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-04117,0.0124,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02176,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02216,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01971,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02236,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02845,0.0124,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02071,0.0124,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-03714,0.0123,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03302,0.0123,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03305,0.0123,demandes de panne du locataire,famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-01941,0.0123,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02161,0.0123,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02585,0.0123,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02486,0.0123,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02296,0.0122,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02206,0.0122,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02186,0.0122,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02147,0.0122,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-01922,0.0122,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-02096,0.0122,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01749,0.0122,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-02733,0.0121,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03905,0.0121,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03446,0.0121,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03438,0.0121,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02036,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02421,0.012,remplacements passés,famille convecteurs_electriques,arrêt total récent
+EQP-02081,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-00647,0.012,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02266,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01931,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01866,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02246,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02231,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02226,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01981,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02101,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02211,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01836,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02166,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02181,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01911,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02171,0.012,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-04113,0.012,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03849,0.0119,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02371,0.0119,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02597,0.0119,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03330,0.0119,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02937,0.0119,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01951,0.0119,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02306,0.0119,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01645,0.0119,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur,contrat d'entretien
+EQP-02136,0.0119,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02311,0.0119,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01901,0.0119,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01991,0.0119,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01882,0.0118,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-02366,0.0118,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01841,0.0118,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01896,0.0118,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02021,0.0118,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-00907,0.0118,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03594,0.0118,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02282,0.0117,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-02066,0.0117,remplacements passés,famille convecteurs_electriques,arrêt total récent
+EQP-03582,0.0117,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03442,0.0117,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00882,0.0117,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02989,0.0117,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03290,0.0117,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02416,0.0117,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02401,0.0116,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01881,0.0116,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02446,0.0116,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02491,0.0116,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02406,0.0116,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-03718,0.0116,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01856,0.0116,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02331,0.0116,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-01876,0.0115,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02541,0.0115,récidive de pannes (Hawkes),contrat d'entretien,famille convecteurs_electriques
+EQP-03674,0.0115,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02436,0.0115,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02191,0.0115,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-00293,0.0115,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02281,0.0115,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02031,0.0115,remplacements passés,famille convecteurs_electriques,arrêt total récent
+EQP-03386,0.0113,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01867,0.0113,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-00707,0.0113,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03418,0.0113,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03825,0.0113,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03238,0.0113,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02749,0.0113,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03274,0.0113,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03562,0.0113,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02361,0.0112,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02016,0.0112,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02106,0.0112,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02533,0.0112,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00726,0.0112,signaux faibles dans les commentaires du technicien,famille panneaux_rayonnants,fonctionnement dégradé récent
+EQP-01906,0.0112,remplacements passés,famille convecteurs_electriques,arrêt total récent
+EQP-02346,0.0112,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-02391,0.0112,remplacements passés,famille convecteurs_electriques,arrêt total récent
+EQP-03318,0.0111,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02367,0.0111,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-03045,0.011,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02286,0.011,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-03130,0.011,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02347,0.011,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-04178,0.0109,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03706,0.0109,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02561,0.0109,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02661,0.0109,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02969,0.0108,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01489,0.0108,signaux faibles dans les commentaires du technicien,famille pompe_a_chaleur,dépannages sur 12 mois
+EQP-00045,0.0107,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03558,0.0107,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03913,0.0107,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02457,0.0107,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-02897,0.0107,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02197,0.0107,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-02877,0.0107,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00657,0.0106,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02729,0.0106,récidive de pannes (Hawkes),contrat d'entretien,famille convecteurs_electriques
+EQP-03478,0.0106,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03394,0.0106,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00049,0.0105,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02117,0.0104,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille ballon_thermodynamique
+EQP-02082,0.0104,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-00872,0.0104,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03326,0.0104,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01912,0.0103,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-02805,0.0103,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03390,0.0103,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04077,0.0103,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00917,0.0103,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03009,0.0103,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01942,0.0102,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille ballon_thermodynamique
+EQP-02693,0.0102,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00289,0.0102,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02327,0.0102,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille ballon_thermodynamique
+EQP-00225,0.0101,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02262,0.0101,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-03362,0.0101,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03258,0.0101,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00193,0.01,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03422,0.01,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02797,0.01,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02613,0.0099,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03033,0.0099,contrat d'entretien,dépannages sur 12 mois,famille convecteurs_electriques
+EQP-03590,0.0099,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02581,0.0098,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),contrat d'entretien
+EQP-02573,0.0098,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03953,0.0098,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-03610,0.0098,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03566,0.0098,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02232,0.0098,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-02126,0.0097,remplacements passés,famille convecteurs_electriques,dépannages sur 24 mois
+EQP-03322,0.0097,récidive de pannes (Hawkes),famille ballon_ecs_electrique,dépannages sur 12 mois
+EQP-03122,0.0096,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03278,0.0095,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02027,0.0095,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-03134,0.0095,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03450,0.0095,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03029,0.0095,contrat d'entretien,dépannages sur 12 mois,famille convecteurs_electriques
+EQP-02777,0.0094,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01992,0.0094,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-02773,0.0093,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04101,0.0093,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02257,0.0092,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-04073,0.0092,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00757,0.0092,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02725,0.0092,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00912,0.0091,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03965,0.0091,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-02861,0.0091,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03498,0.009,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02649,0.009,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02132,0.009,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),contrat d'entretien
+EQP-00767,0.009,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04148,0.0089,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03182,0.0089,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02697,0.0089,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03730,0.0088,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04105,0.0088,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03778,0.0088,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04150,0.0088,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02721,0.0088,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03758,0.0088,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03125,0.0088,"plaintes (eau tiède, froid…)",famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-03013,0.0088,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03658,0.0088,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01697,0.0088,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-00667,0.0087,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00682,0.0087,signaux faibles dans les commentaires du technicien,famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-03750,0.0087,demandes de panne du locataire,famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-03482,0.0087,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03949,0.0087,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00697,0.0086,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03077,0.0086,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00333,0.0086,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01947,0.0086,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille ballon_thermodynamique
+EQP-03937,0.0085,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00717,0.0085,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00842,0.0085,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01493,0.0084,famille pompe_a_chaleur,contrat d'entretien,dépannages sur 12 mois
+EQP-03186,0.0084,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04154,0.0084,famille ascenseur,récidive de pannes (Hawkes),contrat d'entretien
+EQP-03634,0.0083,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03338,0.0083,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04188,0.0083,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-03722,0.0083,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03690,0.0082,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00345,0.0082,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02781,0.0082,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03650,0.0081,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04144,0.0081,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03310,0.0081,signaux faibles dans les commentaires du technicien,famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-02833,0.0081,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-00902,0.008,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03474,0.008,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04057,0.008,"plaintes (eau tiède, froid…)",contrat d'entretien,famille convecteurs_electriques
+EQP-00742,0.0079,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02472,0.0079,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille ballon_thermodynamique
+EQP-00887,0.0079,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00936,0.0079,"plaintes (eau tiède, froid…)",famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-00837,0.0079,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00053,0.0078,signaux faibles dans les commentaires du technicien,contrat d'entretien,récidive de pannes (Hawkes)
+EQP-03654,0.0078,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03190,0.0078,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03270,0.0077,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04085,0.0077,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-00577,0.0076,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02521,0.0075,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-03314,0.0075,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02689,0.0075,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-03262,0.0074,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00786,0.0073,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00557,0.0073,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-02941,0.0072,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-02411,0.0072,demandes de panne du locataire,récidive de pannes (Hawkes),famille convecteurs_electriques
+EQP-01902,0.0072,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille ballon_thermodynamique
+EQP-03185,0.0071,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03385,0.007,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00756,0.007,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-02841,0.0069,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-03614,0.0069,demandes de panne du locataire,famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-03453,0.0068,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-02312,0.0068,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille ballon_thermodynamique
+EQP-01827,0.0068,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-03917,0.0067,signaux faibles dans les commentaires du technicien,contrat d'entretien,famille convecteurs_electriques
+EQP-03017,0.0067,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01745,0.0066,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03121,0.0066,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03737,0.0066,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03321,0.0066,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00662,0.0065,signaux faibles dans les commentaires du technicien,famille ballon_ecs_electrique,dépannages sur 12 mois
+EQP-03389,0.0065,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03365,0.0063,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03229,0.0062,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00781,0.0062,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00711,0.0062,"plaintes (eau tiède, froid…)",famille panneaux_rayonnants,dépannages sur 24 mois
+EQP-00831,0.0062,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-02769,0.0061,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01713,0.0061,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-03053,0.0059,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),contrat d'entretien
+EQP-02625,0.0059,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01927,0.0059,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-00656,0.0058,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00573,0.0058,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03289,0.0058,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-02102,0.0058,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-00651,0.0058,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03713,0.0057,famille panneaux_rayonnants,arrêt total récent,anomalies constatées en visite
+EQP-02162,0.0057,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-00509,0.0057,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00121,0.0057,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03253,0.0056,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03481,0.0056,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03757,0.0056,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00736,0.0056,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00037,0.0056,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01921,0.0055,famille convecteurs_electriques,dépannages sur 24 mois,arrêt total récent
+EQP-03413,0.0055,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-02057,0.0055,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-00125,0.0055,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03425,0.0054,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-04167,0.0054,signaux faibles dans les commentaires du technicien,récidive de pannes (Hawkes),contrat d'entretien
+EQP-00077,0.0054,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00901,0.0053,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03557,0.0053,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00309,0.0053,dépannages sur 12 mois,contrat d'entretien,famille convecteurs_electriques
+EQP-03541,0.0053,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03669,0.0053,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-01541,0.0053,famille pompe_a_chaleur,contrat d'entretien,famille convecteurs_electriques
+EQP-00305,0.0053,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03505,0.0053,demandes de panne du locataire,dépannages sur 12 mois,famille panneaux_rayonnants
+EQP-03437,0.0053,famille panneaux_rayonnants,fonctionnement dégradé récent,arrêt total récent
+EQP-02601,0.0053,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01485,0.0053,famille pompe_a_chaleur,contrat d'entretien,dépannages sur 12 mois
+EQP-03981,0.0052,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03577,0.0052,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03682,0.0052,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03201,0.0051,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-04180,0.0051,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03406,0.0051,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03477,0.0051,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-04001,0.005,signaux faibles dans les commentaires du technicien,contrat d'entretien,dépannages sur 12 mois
+EQP-03114,0.005,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03945,0.005,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03769,0.0049,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03773,0.0049,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-01907,0.0049,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-03346,0.0049,signaux faibles dans les commentaires du technicien,famille ballon_ecs_electrique,famille convecteurs_electriques
+EQP-00681,0.0049,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00906,0.0049,famille panneaux_rayonnants,fonctionnement dégradé récent,arrêt total récent
+EQP-03241,0.0048,famille panneaux_rayonnants,arrêt total récent,rotation des locataires
+EQP-03169,0.0048,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-00771,0.0048,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-01822,0.0048,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-03101,0.0047,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03513,0.0046,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03165,0.0046,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03154,0.0046,famille ballon_ecs_electrique,dépannages sur 12 mois,famille convecteurs_electriques
+EQP-00253,0.0046,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00385,0.0046,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00671,0.0046,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03461,0.0046,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03189,0.0046,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03617,0.0045,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03337,0.0045,signaux faibles dans les commentaires du technicien,dépannages sur 12 mois,famille panneaux_rayonnants
+EQP-03217,0.0044,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03642,0.0044,famille ballon_ecs_electrique,famille convecteurs_electriques,récidive de pannes (Hawkes)
+EQP-00706,0.0044,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03741,0.0044,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03458,0.0043,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03761,0.0043,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-02589,0.0043,contrat d'entretien,famille convecteurs_electriques,récidive de pannes (Hawkes)
+EQP-03209,0.0043,"plaintes (eau tiède, froid…)",famille panneaux_rayonnants,rotation des locataires
+EQP-00731,0.0042,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03317,0.0042,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03333,0.0042,"plaintes (eau tiède, froid…)",famille panneaux_rayonnants,anomalies constatées en visite
+EQP-03629,0.0042,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03465,0.0042,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03269,0.0039,famille panneaux_rayonnants,dépannages sur 24 mois,arrêt total récent
+EQP-03073,0.0038,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03821,0.0038,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-01946,0.0038,famille convecteurs_electriques,dépannages sur 24 mois,arrêt total récent
+EQP-04199,0.0037,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02537,0.0037,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03430,0.0036,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02432,0.0035,récidive de pannes (Hawkes),contrat d'entretien,famille ballon_thermodynamique
+EQP-03569,0.0034,récidive de pannes (Hawkes),dépannages sur 12 mois,famille panneaux_rayonnants
+EQP-04203,0.0032,signaux faibles dans les commentaires du technicien,famille ascenseur,récidive de pannes (Hawkes)
+EQP-03673,0.0032,récidive de pannes (Hawkes),famille panneaux_rayonnants,rotation des locataires
+EQP-04152,0.0031,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02377,0.0029,contrat d'entretien,famille ballon_thermodynamique,famille convecteurs_electriques
+EQP-00921,0.0029,famille panneaux_rayonnants,rotation des locataires,anomalies constatées en visite
+EQP-04109,0.0029,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00881,0.0029,famille panneaux_rayonnants,fonctionnement dégradé récent,rotation des locataires
+EQP-03542,0.0028,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-00866,0.0027,famille panneaux_rayonnants,rotation des locataires,anomalies constatées en visite
+EQP-03373,0.0027,signaux faibles dans les commentaires du technicien,dépannages sur 12 mois,famille panneaux_rayonnants
+EQP-00806,0.0027,famille panneaux_rayonnants,fonctionnement dégradé récent,dépannages sur 12 mois
+EQP-03109,0.0026,famille panneaux_rayonnants,rotation des locataires,anomalies constatées en visite
+EQP-00776,0.0026,famille panneaux_rayonnants,anomalies constatées en visite,famille chaufferie_collective
+EQP-03197,0.0026,récidive de pannes (Hawkes),famille panneaux_rayonnants,dépannages sur 12 mois
+EQP-03657,0.0025,famille panneaux_rayonnants,anomalies constatées en visite,demandes réouvertes
+EQP-03501,0.0025,famille panneaux_rayonnants,récidive de pannes (Hawkes),fonctionnement dégradé récent
+EQP-03401,0.0025,famille panneaux_rayonnants,anomalies constatées en visite,demandes réouvertes
+EQP-03989,0.0025,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-02476,0.0024,famille convecteurs_electriques,rotation des locataires,anomalies constatées en visite
+EQP-02121,0.0024,famille convecteurs_electriques,anomalies constatées en visite,historique de dépannages
+EQP-03698,0.0023,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03170,0.002,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-04065,0.0019,contrat d'entretien,famille convecteurs_electriques,famille panneaux_rayonnants
+EQP-03766,0.0017,famille ballon_ecs_electrique,famille convecteurs_electriques,famille panneaux_rayonnants
