@@ -8,7 +8,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "node scripts/build-front.js"
+    "build:front": "node scripts/build-front.js"
   },
   "devDependencies": {
     "clean-css": "^5.3.3",

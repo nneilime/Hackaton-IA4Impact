@@ -38,7 +38,7 @@ jobs:
         run: npm ci
       - name: Minifier le front
         working-directory: team-app
-        run: npm run build
+        run: npm run build:front
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -86,7 +86,7 @@ build ; en local :
 ```bash
 cd team-app
 npm install
-npm run build   # génère team-app/dist/ (HTML/CSS/JS minifiés + assets)
+npm run build:front   # génère team-app/dist/ (HTML/CSS/JS minifiés + assets)
 ```
 
 `dist/` est généré et ignoré par git. Modifier les sources dans `front/` puis rebuilder.
