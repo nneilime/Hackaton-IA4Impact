@@ -267,8 +267,8 @@
       "owner": "mathieu-audo",
       "members": [
         {
-          "login": "mathieu-audo",
-          "status": "joined",
+          "login": null,
+          "status": "invited",
           "created_at": "2026-10-10T13:11:57.851Z"
         },
         {
