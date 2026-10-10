@@ -69,20 +69,25 @@ La même valeur doit être définie dans Vercel sous `EMAIL_SECRET_KEY`. **Ne ja
 ## Configuration
 
 - `front/config.js` : `apiBase` (URL Vercel), `owner`/`repo`, `eventCode` (optionnel).
-- GitHub OAuth App : **Authorization callback URL** →
-  `https://hackaton-ia4impact-team-app.vercel.app/api/auth/callback`.
+- **GitHub App** (recommandée, permissions fines limitées à un seul dépôt) :
+  - Callback URL : `https://hackaton-ia4impact-team-app.vercel.app/api/auth/callback`
+  - Permissions : *Repository → Contents: Read and write*, *Pull requests: Read and write*,
+    *Metadata: Read* (auto), *Account → Email addresses: Read*.
+  - Installer l'app sur le seul dépôt des travaux (accès « Only select repositories »).
+  - Décocher *Expire user authorization tokens* (tokens non expirants : pas de refresh à gérer).
 - Variables d'environnement Vercel :
   - `GH_OWNER`, `GH_REPO`, `GH_ADMIN_TOKEN`
-  - `OAUTH_CLIENT_ID`, `OAUTH_CLIENT_SECRET`
+  - `OAUTH_CLIENT_ID`, `OAUTH_CLIENT_SECRET` (ceux de la GitHub App)
+  - `GH_REPO_ID` (id numérique du dépôt ; restreint le token utilisateur à ce seul dépôt)
   - `FRONT_URL` (optionnel ; défaut : `https://nneilime.github.io/Hackaton-IA4Impact`)
   - `EMAIL_SECRET_KEY` (clé de chiffrement des emails)
-  - `OAUTH_SCOPES` (défaut : `public_repo user:email`)
   - `ALLOWED_ORIGIN`, `EVENT_CODE` (optionnel)
   - `STATE_SECRET` (optionnel ; sinon `GH_ADMIN_TOKEN` est utilisé pour signer le state OAuth)
 - L'URL de callback OAuth est **calculée depuis l'hôte de la requête** (`/api/auth/callback`) : elle
-  doit donc simplement être enregistrée telle quelle dans l'OAuth App
+  doit donc simplement être enregistrée telle quelle dans la GitHub App
   (`https://hackaton-ia4impact-team-app.vercel.app/api/auth/callback`). Aucune variable
-  `OAUTH_REDIRECT_URI` n'est nécessaire.
-- Le dépôt de `.zip` s'appuie sur le **scope OAuth `public_repo`** et sur le fait que le membre ait
-  **accepté l'invitation** au dépôt (le dépôt des travaux doit être **public**). Le front charge
-  **JSZip** depuis cdnjs.
+  `OAUTH_REDIRECT_URI` n'est nécessaire, et aucun `scope` n'est demandé (les permissions d'une
+  GitHub App sont définies dans l'app elle-même).
+- Le dépôt de `.zip` s'appuie sur la permission **Contents: Read and write** de la GitHub App
+  (accès limité au dépôt installé) et sur le fait que le membre ait **accepté l'invitation**.
+  Le front charge **JSZip** depuis cdnjs.

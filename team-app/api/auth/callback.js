@@ -74,6 +74,8 @@ module.exports = async (req, res) => {
       code,
       redirect_uri: redirectUri,
     });
+    // GitHub App : restreint le token utilisateur à un seul dépôt.
+    if (process.env.GH_REPO_ID) params.set("repository_id", process.env.GH_REPO_ID);
 
     const gh = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",

@@ -34,12 +34,12 @@ module.exports = async (req, res) => {
     // Toujours dériver l'URL de callback de l'hôte réel de la requête, pour
     // garantir qu'elle correspond exactement à la callback enregistrée.
     const redirectUri = `${origin(req)}/api/auth/callback`;
-    const scope = process.env.OAUTH_SCOPES || "public_repo user:email";
 
+    // GitHub App : les permissions viennent de l'app, pas de `scope`.
+    // (`scope` n'est pas envoyé ; seule la valeur `offline_access` serait acceptée.)
     const params = new URLSearchParams({
       client_id: clientId,
       redirect_uri: redirectUri,
-      scope,
       state: signState(secret),
       allow_signup: "true",
     });
