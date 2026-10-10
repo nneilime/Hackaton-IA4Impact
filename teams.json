@@ -226,6 +226,26 @@
       "created_by": "julies01"
     },
     {
+      "slug": "les-audo",
+      "name": "Les Audo",
+      "challenge": "action-logement",
+      "owner": "mathieu-audo",
+      "members": [
+        {
+          "login": "mathieu-audo",
+          "status": "joined",
+          "created_at": "2026-10-10T13:11:57.851Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:11:57.851Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:11:57.851Z",
+      "created_by": "mathieu-audo"
+    },
+    {
       "slug": "staff",
       "name": "Staff",
       "challenge": "enedis",
