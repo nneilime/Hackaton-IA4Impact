@@ -66,6 +66,36 @@
       "created_by": "Zalingu"
     },
     {
+      "slug": "groupe-26",
+      "name": "Groupe 26",
+      "challenge": "lallemand",
+      "owner": "julies01",
+      "members": [
+        {
+          "login": "julies01",
+          "status": "joined",
+          "created_at": "2026-10-10T12:48:18.887Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T12:48:18.887Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T12:48:18.887Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T12:48:18.887Z"
+        }
+      ],
+      "created_at": "2026-10-10T12:48:18.887Z",
+      "created_by": "julies01"
+    },
+    {
       "slug": "staff",
       "name": "Staff",
       "challenge": "enedis",
