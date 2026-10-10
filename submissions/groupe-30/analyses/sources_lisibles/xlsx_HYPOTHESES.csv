@@ -1,0 +1,23 @@
+thème,règle de génération,niveau de preuve,source / justification
+Périmètre,"8 résidences, 1 100 logements, métropole toulousaine (zone H2c)",Hypothèse,Taille choisie pour un hackathon de 30 h (≈ 1/6 du parc In'li Sud-Ouest)
+Périmètre,Résidences A et B calibrées sur deux résidences réelles (gaz individuel / électrique + ballon) ; C à H construites avec les familles d’équipements du contrat multiservices réel,Dérivé des données réelles,Structure du contrat multiservices (codes métiers réels)
+Équipements,Chaudières de la résidence A posées en 2016 (renouvellement complet),Fait réel transposé,Information de la direction du patrimoine
+Équipements,Autres dates de pose : simulées depuis l’année de construction avec des remplacements successifs,Hypothèse,Aucun inventaire réel disponible
+Équipements,"Durées de vie de référence : chaudière gaz 18 ans, PAC 16, ballon électrique 16, ballon thermodynamique 14, convecteurs 24, panneaux 28, caisson VMC 20, chaufferie 26, ascenseur 30 (modernisation)",Hypothèse,Ordres de grandeur usuels de la profession
+Pannes,Durée de vie réelle tirée selon une loi de Weibull (usure croissante avec l’âge),Hypothèse,Modèle classique de fiabilité
+Pannes,Durée de vie réduite si le logement est souvent absent aux visites d’entretien (jusqu’à -30 %) et pour les grands logements (usage),Hypothèse,Logique métier : un équipement non entretenu vieillit plus vite
+Pannes,"Avant une fin de vie : 10 à 20 mois de signaux faibles (dépannages plus fréquents, symptômes typiques, commentaires « usure avancée », anomalies en visite, demandes « eau tiède »)",Hypothèse,Ce que la maintenance prédictive cherche à détecter
+Pannes,Taux de dépannage des chaudières ≈ 13 % par trimestre d’hiver ; taux d’absence aux visites ≈ 25 %,Dérivé des données réelles,Rapport d’activité prestataire (ordres de grandeur agrégés)
+Pannes,Saisonnalité : dépannages de chauffage concentrés d’octobre à mars,Hypothèse,Logique métier
+Demandes,"Liste des motifs, canaux et priorités reprise de l’outil réel ; proportions et volumes calibrés (≈ 0,4 demande/logement/an pour A, ≈ 1,4 pour B)",Dérivé des données réelles,Export des demandes 2019-2026 (statistiques agrégées)
+Demandes,Historique à partir de février 2019 (mise en service de l’outil),Dérivé des données réelles,Première date observée dans l’export
+Demandes,Textes libres entièrement rédigés à partir de modèles : aucun texte réel réutilisé,Hypothèse,RGPD : les textes réels contiennent des données personnelles
+Demandes,Seule une partie des pannes donne lieu à une demande (le locataire appelle souvent le prestataire directement),Dérivé des données réelles,Écart observé entre demandes et dépannages prestataire
+Commandes,"Types, natures et corps d’état repris de l’ERP réel ; montants calibrés par nature (ex. cumulus 200 L ≈ 560-780 € TTC)",Dérivé des données réelles,Listes des commandes 2018-2026 (statistiques agrégées)
+Commandes,Dépannages sous contrat : pas de bon de commande ; hors contrat : bon de commande dans 65 % des cas,Hypothèse,Fonctionnement d’un contrat P2/P3
+Commandes,Écritures comptables non reprises,Choix RGPD,Elles contiennent les comptes locataires
+Plan d’investissement,"Opérations, coûts, gains et enveloppe annuelle de 1,5 M€ entièrement hypothétiques",Hypothèse,Plan Moyen Terme réel non communiqué
+DPE,"Consommations calibrées par résidence (A ≈ 150, B ≈ 155 kWh EP/m²/an) ; +12 % au dernier étage, +7 % au RDC, +10 % sous 40 m²",Dérivé des données réelles + hypothèse,Suivi DPE et base ADEME (moyennes)
+DPE,Seuils d’étiquettes 2021 (double seuil énergie / GES) ; ajustement petites surfaces de 2024 non appliqué,Hypothèse,Simplification
+Jeu de test,Les équipes reçoivent l’historique jusqu’au 31/12/2025. Les pannes du 01/01 au 30/09/2026 sont conservées par le jury,Choix de conception,Évaluation objective des prédictions
+Limite,Les données suivent les règles ci-dessus : un modèle les retrouvera en partie. La validation sur données réelles reste l’étape suivante,Limite assumée,—

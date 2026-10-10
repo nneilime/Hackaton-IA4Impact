@@ -1,0 +1,11 @@
+code_metier,libelle
+CHGAZ,Entretien chaudière murale gaz
+CHPAC,Entretien pompes à chaleur
+CHFRC,Maintenance ballon thermodynamique
+CHVBO,Entretien bouches VMC
+CHVCC,Entretien caissons VMC collectifs
+MUPPR,Multiservices parties privatives
+MUPCO,Multiservices parties communes
+PECSO,Production ECS solaire
+CHGCO,Chaufferie gaz collective
+ASC,Maintenance ascenseurs

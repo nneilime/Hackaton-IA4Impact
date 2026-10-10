@@ -1,0 +1,3980 @@
+{
+  "BatIA_Hackathon_Donnees_Fictives.xlsx": {
+    "LISEZMOI": {
+      "rows": 32,
+      "columns": 6,
+      "first_rows": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "BâtIA — Jeu de données FICTIF",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Hackathon IA for Impact 2026 · Défi In'li Sud-Ouest « Hacker le bâtiment avant qu'il ne casse »",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Ce que contient ce classeur",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "8 résidences fictives (A à H), 1 100 logements, environ 4 200 équipements, historique 2018 → 31/12/2025.",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Toutes les données sont FICTIVES. Elles sont calibrées sur des statistiques agrégées réelles d'In'li Sud-Ouest, mais aucune ligne ne correspond à un logement, un locataire ou un prestataire réel.",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Les mêmes tables existent au format CSV (UTF-8, séparateur virgule, dates AAAA-MM-JJ) pour le travail en Python / R.",
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "BâtIA — Jeu de données FICTIF",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Hackathon IA for Impact 2026 · Défi In'li Sud-Ouest « Hacker le bâtiment avant qu'il ne casse »",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Ce que contient ce classeur",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "8 résidences fictives (A à H), 1 100 logements, environ 4 200 équipements, historique 2018 → 31/12/2025.",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Toutes les données sont FICTIVES. Elles sont calibrées sur des statistiques agrégées réelles d'In'li Sud-Ouest, mais aucune ligne ne correspond à un logement, un locataire ou un prestataire réel.",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Les mêmes tables existent au format CSV (UTF-8, séparateur virgule, dates AAAA-MM-JJ) pour le travail en Python / R.",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Les deux défis",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "1) Scoring de priorisation des rénovations : tables 01 à 03, 07 et 08 (enveloppe annuelle plafonnée à 1,5 M€ — hypothèse).",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "2) Détection précoce de panne : prédire, pour chaque équipement où dans_perimetre_prediction = Oui, le risque de panne bloquante (dépannage « Arrêt total ») entre le 01/01/2026 et le 30/09/2026. Tables 04 à 06. Le jury détient la réponse.",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Comment relier les tables",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "residence_id → batiment_id → logement_id → equipement_id. Les interventions pointent vers equipement_id ; les demandes et commandes vers logement_id (vide pour les parties communes).",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Onglets",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Onglet / fichier",
+          "Famille",
+          "Grain",
+          "Contenu et usage",
+          "Équivalent réel chez In'li"
+        ],
+        [
+          null,
+          "01_residences",
+          "Patrimoine",
+          "1 ligne = 1 résidence",
+          "Carte d'identité des 8 résidences : époque, énergie, mode de chauffage, DPE moyen. Point d'entrée du scoring de rénovation.",
+          "Tableau de suivi DPE du patrimoine + base DPE ADEME"
+        ],
+        [
+          null,
+          "02_batiments",
+          "Patrimoine",
+          "1 ligne = 1 bâtiment / cage d'escalier",
+          "Niveau des parties communes (ascenseur, porte de hall, VMC collective, chaufferie).",
+          "Référentiel patrimoine (codes escaliers)"
+        ],
+        [
+          null,
+          "03_logements",
+          "Patrimoine",
+          "1 ligne = 1 logement",
+          "Typologie, surface, étage, DPE détaillé et rotation des locataires (sans aucune donnée personnelle).",
+          "Tableau de suivi DPE + base DPE ADEME + gestion locative"
+        ],
+        [
+          null,
+          "04_equipements",
+          "Équipements",
+          "1 ligne = 1 équipement (emplacement fonctionnel)",
+          "Inventaire avec date de pose, origine de cette date, durée de vie de référence, contrat d'entretien. Table centrale de la prédiction.",
+          "N'existe pas aujourd'hui sous cette forme : à constituer (GMAO prestataires + patrimoine)"
+        ],
+        [
+          null,
+          "05_demandes_locataires",
+          "Événements",
+          "1 ligne = 1 demande locataire",
+          "Voix du locataire : motif, texte libre (fictif), priorité, délais. Exploitable en analyse de texte.",
+          "Outil de relation client (export « Toutes les demandes »)"
+        ],
+        [
+          null,
+          "06_interventions",
+          "Événements",
+          "1 ligne = 1 passage technicien",
+          "Entretiens préventifs, dépannages (symptôme, gravité, commentaire), remplacements. Cœur de la maintenance prédictive.",
+          "Rapports et extraction GMAO des prestataires (contrat multiservices)"
+        ],
+        [
+          null,
+          "07_commandes",
+          "Événements",
+          "1 ligne = 1 bon de commande (facturation incluse)",
+          "Dimension coût : remplacements, réparations hors contrat, remises en état, parties communes.",
+          "ERP : listes des commandes et des factures"
+        ],
+        [
+          null,
+          "08_plan_investissement",
+          "Arbitrage",
+          "1 ligne = 1 opération envisagée",
+          "Opérations 2026-2031 avec coût, gain énergétique, rang chronologique actuel. Enveloppe annuelle plafonnée : le scoring doit arbitrer.",
+          "Plan Moyen Terme (PMT) — non communiqué, table HYPOTHÉTIQUE"
+        ],
+        [
+          null,
+          "09_prestataires",
+          "Référentiel",
+          "1 ligne = 1 prestataire fictif",
+          "Domaine et type de contrat.",
+          "Référentiel fournisseurs"
+        ],
+        [
+          null,
+          "10_ref_*",
+          "Référentiels",
+          "Tables de codes",
+          "Familles d’équipements (durées de vie, coûts), codes métiers, motifs de demandes, seuils DPE.",
+          "Référentiels métiers"
+        ],
+        [
+          null,
+          "DICTIONNAIRE",
+          "Documentation",
+          "1 ligne = 1 colonne",
+          "Définition de chaque colonne et équivalent réel",
+          null
+        ],
+        [
+          null,
+          "HYPOTHESES",
+          "Documentation",
+          "1 ligne = 1 règle",
+          "Registre des hypothèses avec leur niveau de preuve",
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "Contact référent : Guillaume Rougé, Responsable RSE & Innovation, In'li Sud-Ouest",
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "DICTIONNAIRE": {
+      "rows": 100,
+      "columns": 5,
+      "first_rows": [
+        [
+          "table",
+          "colonne",
+          "type",
+          "description",
+          "équivalent réel In'li (pour brancher les vraies données)"
+        ],
+        [
+          "01_residences",
+          "residence_id",
+          "texte",
+          "Identifiant de la résidence (clé)",
+          "Code programme"
+        ],
+        [
+          "01_residences",
+          "nom",
+          "texte",
+          "Nom anonymisé (Résidence A à H)",
+          "Libellé patrimoine"
+        ],
+        [
+          "01_residences",
+          "localisation",
+          "texte",
+          "Zone géographique volontairement imprécise",
+          "Adresse (retirée)"
+        ],
+        [
+          "01_residences",
+          "annee_construction",
+          "entier",
+          "Année de construction",
+          "Période de construction (ADEME)"
+        ],
+        [
+          "01_residences",
+          "nb_batiments",
+          "entier",
+          "Nombre de bâtiments / cages",
+          null
+        ],
+        [
+          "01_residences",
+          "nb_logements",
+          "entier",
+          "Nombre de logements",
+          null
+        ],
+        [
+          "01_residences",
+          "surface_habitable_totale_m2",
+          "décimal",
+          "Somme des surfaces habitables",
+          null
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          "table",
+          "colonne",
+          "type",
+          "description",
+          "équivalent réel In'li (pour brancher les vraies données)"
+        ],
+        [
+          "01_residences",
+          "residence_id",
+          "texte",
+          "Identifiant de la résidence (clé)",
+          "Code programme"
+        ],
+        [
+          "01_residences",
+          "nom",
+          "texte",
+          "Nom anonymisé (Résidence A à H)",
+          "Libellé patrimoine"
+        ],
+        [
+          "01_residences",
+          "localisation",
+          "texte",
+          "Zone géographique volontairement imprécise",
+          "Adresse (retirée)"
+        ],
+        [
+          "01_residences",
+          "annee_construction",
+          "entier",
+          "Année de construction",
+          "Période de construction (ADEME)"
+        ],
+        [
+          "01_residences",
+          "nb_batiments",
+          "entier",
+          "Nombre de bâtiments / cages",
+          null
+        ],
+        [
+          "01_residences",
+          "nb_logements",
+          "entier",
+          "Nombre de logements",
+          null
+        ],
+        [
+          "01_residences",
+          "surface_habitable_totale_m2",
+          "décimal",
+          "Somme des surfaces habitables",
+          null
+        ],
+        [
+          "01_residences",
+          "ascenseur",
+          "Oui/Non",
+          "Au moins un ascenseur dans la résidence",
+          null
+        ],
+        [
+          "01_residences",
+          "energie_chauffage",
+          "texte",
+          "Énergie principale de chauffage",
+          "Colonne « Chauffage » du suivi DPE"
+        ],
+        [
+          "01_residences",
+          "type_chauffage",
+          "texte",
+          "Individuel ou collectif",
+          "Type de chauffage (suivi DPE)"
+        ],
+        [
+          "01_residences",
+          "generateur_chauffage",
+          "texte",
+          "Type de générateur",
+          "Type d’énergie de chauffage"
+        ],
+        [
+          "01_residences",
+          "production_ecs",
+          "texte",
+          "Mode de production d’eau chaude sanitaire",
+          "type_installation_ecs (ADEME)"
+        ],
+        [
+          "01_residences",
+          "ventilation",
+          "texte",
+          "Type de ventilation",
+          "type_ventilation (ADEME)"
+        ],
+        [
+          "01_residences",
+          "etiquette_dpe_majoritaire",
+          "A-G",
+          "Étiquette DPE globale la plus fréquente",
+          null
+        ],
+        [
+          "01_residences",
+          "conso_ep_moyenne_kwh_m2_an",
+          "décimal",
+          "Consommation moyenne en énergie primaire",
+          "Consommation DPE moyenne"
+        ],
+        [
+          "01_residences",
+          "ges_moyen_kgco2_m2_an",
+          "décimal",
+          "Émissions moyennes de gaz à effet de serre",
+          "Émission GES DPE moyenne"
+        ],
+        [
+          "02_batiments",
+          "batiment_id",
+          "texte",
+          "Identifiant du bâtiment (clé)",
+          "Code escalier"
+        ],
+        [
+          "02_batiments",
+          "residence_id",
+          "texte",
+          "Résidence de rattachement",
+          null
+        ],
+        [
+          "02_batiments",
+          "nb_niveaux",
+          "entier",
+          "Nombre de niveaux (RDC inclus)",
+          "nombre_niveau_immeuble (ADEME)"
+        ],
+        [
+          "02_batiments",
+          "nb_logements",
+          "entier",
+          "Logements desservis",
+          null
+        ],
+        [
+          "02_batiments",
+          "ascenseur",
+          "Oui/Non",
+          "Présence d’un ascenseur",
+          null
+        ],
+        [
+          "03_logements",
+          "logement_id",
+          "texte",
+          "Identifiant du logement (clé). Pseudonyme sans lien avec un numéro réel",
+          "N° de lot"
+        ],
+        [
+          "03_logements",
+          "batiment_id / residence_id",
+          "texte",
+          "Rattachement",
+          null
+        ],
+        [
+          "03_logements",
+          "typologie",
+          "T1-T5",
+          "Nombre de pièces",
+          "Libellé du lot (« 3 pièces »)"
+        ],
+        [
+          "03_logements",
+          "surface_habitable_m2",
+          "décimal",
+          "Surface habitable",
+          "surface_habitable_logement (ADEME)"
+        ],
+        [
+          "03_logements",
+          "etage",
+          "entier",
+          "Étage (0 = rez-de-chaussée)",
+          "numero_etage_appartement (ADEME)"
+        ],
+        [
+          "03_logements",
+          "dpe_methode",
+          "texte",
+          "Ancien DPE (avant 07/2021, non comparable) ou nouveau DPE 3CL 2021",
+          "Méthode de DPE prépondérante"
+        ],
+        [
+          "03_logements",
+          "dpe_date",
+          "date",
+          "Date d’établissement du DPE",
+          "Date de DPE"
+        ],
+        [
+          "03_logements",
+          "dpe_conso_ep_kwh_m2_an",
+          "entier",
+          "Consommation en énergie primaire",
+          "conso_5_usages_par_m2_ep"
+        ],
+        [
+          "03_logements",
+          "dpe_ges_kgco2_m2_an",
+          "décimal",
+          "Émissions de GES",
+          "emission_ges_5_usages_par_m2"
+        ],
+        [
+          "03_logements",
+          "dpe_etiquette_energie / _ges / _globale",
+          "A-G",
+          "Étiquettes. La globale est la plus mauvaise des deux (double seuil)",
+          "etiquette_dpe / etiquette_ges"
+        ],
+        [
+          "03_logements",
+          "nb_changements_locataire_2018_2025",
+          "entier",
+          "Nombre de rotations de locataires sur la période",
+          "Gestion locative"
+        ],
+        [
+          "03_logements",
+          "date_entree_locataire_actuel",
+          "date",
+          "Date d’entrée du locataire actuel (ou « Avant 2018 »)",
+          "Gestion locative"
+        ],
+        [
+          "03_logements",
+          "statut_occupation",
+          "texte",
+          "Occupé / Vacant au 31/12/2025",
+          null
+        ],
+        [
+          "04_equipements",
+          "equipement_id",
+          "texte",
+          "Identifiant de l’emplacement fonctionnel (clé). Un remplacement garde le même identifiant, la date de pose change",
+          null
+        ],
+        [
+          "04_equipements",
+          "famille / libelle_famille",
+          "texte",
+          "Famille d’équipement (voir 10_ref_familles_equipements)",
+          "Libellé métier GMAO"
+        ],
+        [
+          "04_equipements",
+          "niveau_rattachement",
+          "texte",
+          "Logement ou Bâtiment (parties communes)",
+          null
+        ],
+        [
+          "04_equipements",
+          "residence_id / batiment_id / logement_id",
+          "texte",
+          "Localisation (logement vide pour les parties communes)",
+          null
+        ],
+        [
+          "04_equipements",
+          "date_pose",
+          "date",
+          "Date de pose de l’équipement en place au 31/12/2025",
+          "À constituer"
+        ],
+        [
+          "04_equipements",
+          "origine_date_pose",
+          "texte",
+          "Niveau de preuve de la date : fait réel transposé, remplacement tracé, ou hypothèse",
+          "—"
+        ],
+        [
+          "04_equipements",
+          "date_pose_precedente",
+          "date",
+          "Date de pose de l’équipement précédent (si remplacé depuis 2018)",
+          null
+        ],
+        [
+          "04_equipements",
+          "nb_remplacements_2018_2025",
+          "entier",
+          "Nombre de remplacements sur la période",
+          null
+        ],
+        [
+          "04_equipements",
+          "duree_vie_reference_ans",
+          "entier",
+          "Durée de vie de référence de la famille (hypothèse métier)",
+          "Référentiel"
+        ],
+        [
+          "04_equipements",
+          "sous_contrat_entretien",
+          "Oui/Non",
+          "Couvert par un contrat (dépannages sans bon de commande)",
+          "Contrat multiservices"
+        ],
+        [
+          "04_equipements",
+          "visite_annuelle_prevue",
+          "Oui/Non",
+          "Entretien préventif annuel prévu",
+          null
+        ],
+        [
+          "04_equipements",
+          "code_metier",
+          "texte",
+          "Code métier prestataire (voir 10_ref_codes_metiers)",
+          "Libellé métier (rapport prestataire)"
+        ],
+        [
+          "04_equipements",
+          "prestataire_id",
+          "texte",
+          "Prestataire en charge",
+          null
+        ],
+        [
+          "04_equipements",
+          "dans_perimetre_prediction",
+          "Oui/Non",
+          "Équipement à scorer pour le défi « détection précoce de panne »",
+          "—"
+        ],
+        [
+          "05_demandes_locataires",
+          "demande_id",
+          "texte",
+          "Identifiant de la demande (clé)",
+          "Référence"
+        ],
+        [
+          "05_demandes_locataires",
+          "date_creation / date_cloture",
+          "date-heure",
+          "Ouverture et clôture (clôture vide si encore ouverte au 31/12/2025)",
+          "Date de création / de clôture"
+        ],
+        [
+          "05_demandes_locataires",
+          "logement_id / batiment_id / residence_id",
+          "texte",
+          "Localisation",
+          "Lot / Escalier / Groupe"
+        ],
+        [
+          "05_demandes_locataires",
+          "parties",
+          "texte",
+          "Privatives ou Communes",
+          "Parties"
+        ],
+        [
+          "05_demandes_locataires",
+          "canal",
+          "texte",
+          "Canal d’entrée",
+          "Canal"
+        ],
+        [
+          "05_demandes_locataires",
+          "motif",
+          "texte",
+          "Motif normalisé (liste réelle de l’outil)",
+          "Motif"
+        ],
+        [
+          "05_demandes_locataires",
+          "objet",
+          "texte",
+          "Objet court saisi",
+          "Objet"
+        ],
+        [
+          "05_demandes_locataires",
+          "texte_demande",
+          "texte libre",
+          "Texte de la demande — ENTIÈREMENT FICTIF, sans nom ni coordonnée",
+          "Demande initiale (non communicable en réel)"
+        ],
+        [
+          "05_demandes_locataires",
+          "priorite",
+          "texte",
+          "Niveau de priorité",
+          "Priorité"
+        ],
+        [
+          "05_demandes_locataires",
+          "nb_echanges",
+          "entier",
+          "Nombre d’échanges avec le locataire",
+          "Nb total échanges"
+        ],
+        [
+          "05_demandes_locataires",
+          "demande_reouverte",
+          "Oui/Non",
+          "La demande a été rouverte",
+          "Demande réouverte"
+        ],
+        [
+          "05_demandes_locataires",
+          "delai_resolution_h",
+          "décimal",
+          "Délai de résolution en heures",
+          "Délai de résolution (H)"
+        ],
+        [
+          "06_interventions",
+          "intervention_id",
+          "texte",
+          "Identifiant (clé)",
+          "N° d’intervention GMAO"
+        ],
+        [
+          "06_interventions",
+          "date_intervention",
+          "date-heure",
+          "Date du passage",
+          null
+        ],
+        [
+          "06_interventions",
+          "residence_id / batiment_id / logement_id",
+          "texte",
+          "Localisation",
+          null
+        ],
+        [
+          "06_interventions",
+          "equipement_id",
+          "texte",
+          "Équipement concerné (clé vers 04_equipements)",
+          null
+        ],
+        [
+          "06_interventions",
+          "type_intervention",
+          "texte",
+          "Entretien préventif, Dépannage ou Remplacement",
+          "Maintenance préventive / corrective"
+        ],
+        [
+          "06_interventions",
+          "code_metier",
+          "texte",
+          "Code métier du contrat",
+          "Libellé métier"
+        ],
+        [
+          "06_interventions",
+          "prestataire_id",
+          "texte",
+          "Prestataire",
+          null
+        ],
+        [
+          "06_interventions",
+          "symptome",
+          "texte",
+          "Symptôme constaté (dépannages)",
+          null
+        ],
+        [
+          "06_interventions",
+          "gravite",
+          "texte",
+          "Gêne mineure / Fonctionnement dégradé / Arrêt total",
+          "—"
+        ],
+        [
+          "06_interventions",
+          "resultat",
+          "texte",
+          "Issue du passage (réparé, absent, anomalie constatée, remplacement nécessaire…)",
+          "Nombre d’absents (rapport)"
+        ],
+        [
+          "06_interventions",
+          "commentaire_technicien",
+          "texte libre",
+          "Commentaire court (fictif). Contient des signaux faibles",
+          "Compte rendu technicien"
+        ],
+        [
+          "06_interventions",
+          "demande_id_liee",
+          "texte",
+          "Demande locataire à l’origine du dépannage, si identifiée",
+          "—"
+        ],
+        [
+          "07_commandes",
+          "commande_id",
+          "texte",
+          "Identifiant (clé)",
+          "N° commande"
+        ],
+        [
+          "07_commandes",
+          "date_commande",
+          "date",
+          "Date d’enregistrement",
+          "Date enregistrement"
+        ],
+        [
+          "07_commandes",
+          "residence_id / logement_id",
+          "texte",
+          "Localisation (logement vide pour les parties communes)",
+          "Imputation"
+        ],
+        [
+          "07_commandes",
+          "libelle",
+          "texte",
+          "Libellé de la commande",
+          "Libellé"
+        ],
+        [
+          "07_commandes",
+          "type_commande",
+          "texte",
+          "Type (ENTRETIEN PPV H/EDL, TRV PPV REMONTE EN GAMME, ENTRETIEN PCO…)",
+          "Type"
+        ],
+        [
+          "07_commandes",
+          "nature",
+          "texte",
+          "Nature de dépense (PLOMBERIE, ELECTRICITE…)",
+          "Nature"
+        ],
+        [
+          "07_commandes",
+          "corps_etat",
+          "texte",
+          "Code corps d’état",
+          "Corps d’état"
+        ],
+        [
+          "07_commandes",
+          "prestataire_id",
+          "texte",
+          "Prestataire",
+          "Destinataire"
+        ],
+        [
+          "07_commandes",
+          "montant_ttc",
+          "décimal",
+          "Montant commandé (€ TTC)",
+          "Montant total TTC"
+        ],
+        [
+          "07_commandes",
+          "date_facture / montant_facture_ttc",
+          "date / décimal",
+          "Facturation (vide si non facturée au 31/12/2025)",
+          "Liste des factures"
+        ],
+        [
+          "07_commandes",
+          "statut",
+          "texte",
+          "Soldée ou En cours",
+          "Avancement"
+        ],
+        [
+          "08_plan_investissement",
+          "operation_id",
+          "texte",
+          "Identifiant (clé)",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "residence_id",
+          "texte",
+          "Résidence concernée",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "type_operation",
+          "texte",
+          "Nature de l’opération",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "perimetre",
+          "texte",
+          "Périmètre (résidence, bâtiments, lot de logements)",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "annee_souhaitee",
+          "entier",
+          "Année souhaitée par le demandeur",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "cout_estime_ttc",
+          "entier",
+          "Coût estimé (€ TTC) — hypothèse",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "gain_conso_ep_estime_kwh_m2_an",
+          "entier",
+          "Gain estimé de consommation (énergie primaire) — hypothèse",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "nb_logements_concernes",
+          "entier",
+          "Logements impactés",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "date_inscription_demande",
+          "date",
+          "Date à laquelle la demande a été inscrite",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "origine_demande",
+          "texte",
+          "Motif de la demande",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "statut",
+          "texte",
+          "Proposé (hypothétique)",
+          null
+        ],
+        [
+          "08_plan_investissement",
+          "rang_actuel_chronologique",
+          "entier",
+          "Rang si l’on traite « premier inscrit, premier servi » (pratique actuelle)",
+          null
+        ],
+        [
+          "09_prestataires",
+          "prestataire_id",
+          "texte",
+          "Identifiant (clé)",
+          null
+        ],
+        [
+          "09_prestataires",
+          "nom",
+          "texte",
+          "Nom fictif",
+          null
+        ],
+        [
+          "09_prestataires",
+          "domaine",
+          "texte",
+          "Domaine d’intervention",
+          null
+        ],
+        [
+          "09_prestataires",
+          "type_contrat",
+          "texte",
+          "Contrat ou marché",
+          null
+        ]
+      ]
+    },
+    "HYPOTHESES": {
+      "rows": 23,
+      "columns": 4,
+      "first_rows": [
+        [
+          "thème",
+          "règle de génération",
+          "niveau de preuve",
+          "source / justification"
+        ],
+        [
+          "Périmètre",
+          "8 résidences, 1 100 logements, métropole toulousaine (zone H2c)",
+          "Hypothèse",
+          "Taille choisie pour un hackathon de 30 h (≈ 1/6 du parc In'li Sud-Ouest)"
+        ],
+        [
+          "Périmètre",
+          "Résidences A et B calibrées sur deux résidences réelles (gaz individuel / électrique + ballon) ; C à H construites avec les familles d’équipements du contrat multiservices réel",
+          "Dérivé des données réelles",
+          "Structure du contrat multiservices (codes métiers réels)"
+        ],
+        [
+          "Équipements",
+          "Chaudières de la résidence A posées en 2016 (renouvellement complet)",
+          "Fait réel transposé",
+          "Information de la direction du patrimoine"
+        ],
+        [
+          "Équipements",
+          "Autres dates de pose : simulées depuis l’année de construction avec des remplacements successifs",
+          "Hypothèse",
+          "Aucun inventaire réel disponible"
+        ],
+        [
+          "Équipements",
+          "Durées de vie de référence : chaudière gaz 18 ans, PAC 16, ballon électrique 16, ballon thermodynamique 14, convecteurs 24, panneaux 28, caisson VMC 20, chaufferie 26, ascenseur 30 (modernisation)",
+          "Hypothèse",
+          "Ordres de grandeur usuels de la profession"
+        ],
+        [
+          "Pannes",
+          "Durée de vie réelle tirée selon une loi de Weibull (usure croissante avec l’âge)",
+          "Hypothèse",
+          "Modèle classique de fiabilité"
+        ],
+        [
+          "Pannes",
+          "Durée de vie réduite si le logement est souvent absent aux visites d’entretien (jusqu’à -30 %) et pour les grands logements (usage)",
+          "Hypothèse",
+          "Logique métier : un équipement non entretenu vieillit plus vite"
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          "thème",
+          "règle de génération",
+          "niveau de preuve",
+          "source / justification"
+        ],
+        [
+          "Périmètre",
+          "8 résidences, 1 100 logements, métropole toulousaine (zone H2c)",
+          "Hypothèse",
+          "Taille choisie pour un hackathon de 30 h (≈ 1/6 du parc In'li Sud-Ouest)"
+        ],
+        [
+          "Périmètre",
+          "Résidences A et B calibrées sur deux résidences réelles (gaz individuel / électrique + ballon) ; C à H construites avec les familles d’équipements du contrat multiservices réel",
+          "Dérivé des données réelles",
+          "Structure du contrat multiservices (codes métiers réels)"
+        ],
+        [
+          "Équipements",
+          "Chaudières de la résidence A posées en 2016 (renouvellement complet)",
+          "Fait réel transposé",
+          "Information de la direction du patrimoine"
+        ],
+        [
+          "Équipements",
+          "Autres dates de pose : simulées depuis l’année de construction avec des remplacements successifs",
+          "Hypothèse",
+          "Aucun inventaire réel disponible"
+        ],
+        [
+          "Équipements",
+          "Durées de vie de référence : chaudière gaz 18 ans, PAC 16, ballon électrique 16, ballon thermodynamique 14, convecteurs 24, panneaux 28, caisson VMC 20, chaufferie 26, ascenseur 30 (modernisation)",
+          "Hypothèse",
+          "Ordres de grandeur usuels de la profession"
+        ],
+        [
+          "Pannes",
+          "Durée de vie réelle tirée selon une loi de Weibull (usure croissante avec l’âge)",
+          "Hypothèse",
+          "Modèle classique de fiabilité"
+        ],
+        [
+          "Pannes",
+          "Durée de vie réduite si le logement est souvent absent aux visites d’entretien (jusqu’à -30 %) et pour les grands logements (usage)",
+          "Hypothèse",
+          "Logique métier : un équipement non entretenu vieillit plus vite"
+        ],
+        [
+          "Pannes",
+          "Avant une fin de vie : 10 à 20 mois de signaux faibles (dépannages plus fréquents, symptômes typiques, commentaires « usure avancée », anomalies en visite, demandes « eau tiède »)",
+          "Hypothèse",
+          "Ce que la maintenance prédictive cherche à détecter"
+        ],
+        [
+          "Pannes",
+          "Taux de dépannage des chaudières ≈ 13 % par trimestre d’hiver ; taux d’absence aux visites ≈ 25 %",
+          "Dérivé des données réelles",
+          "Rapport d’activité prestataire (ordres de grandeur agrégés)"
+        ],
+        [
+          "Pannes",
+          "Saisonnalité : dépannages de chauffage concentrés d’octobre à mars",
+          "Hypothèse",
+          "Logique métier"
+        ],
+        [
+          "Demandes",
+          "Liste des motifs, canaux et priorités reprise de l’outil réel ; proportions et volumes calibrés (≈ 0,4 demande/logement/an pour A, ≈ 1,4 pour B)",
+          "Dérivé des données réelles",
+          "Export des demandes 2019-2026 (statistiques agrégées)"
+        ],
+        [
+          "Demandes",
+          "Historique à partir de février 2019 (mise en service de l’outil)",
+          "Dérivé des données réelles",
+          "Première date observée dans l’export"
+        ],
+        [
+          "Demandes",
+          "Textes libres entièrement rédigés à partir de modèles : aucun texte réel réutilisé",
+          "Hypothèse",
+          "RGPD : les textes réels contiennent des données personnelles"
+        ],
+        [
+          "Demandes",
+          "Seule une partie des pannes donne lieu à une demande (le locataire appelle souvent le prestataire directement)",
+          "Dérivé des données réelles",
+          "Écart observé entre demandes et dépannages prestataire"
+        ],
+        [
+          "Commandes",
+          "Types, natures et corps d’état repris de l’ERP réel ; montants calibrés par nature (ex. cumulus 200 L ≈ 560-780 € TTC)",
+          "Dérivé des données réelles",
+          "Listes des commandes 2018-2026 (statistiques agrégées)"
+        ],
+        [
+          "Commandes",
+          "Dépannages sous contrat : pas de bon de commande ; hors contrat : bon de commande dans 65 % des cas",
+          "Hypothèse",
+          "Fonctionnement d’un contrat P2/P3"
+        ],
+        [
+          "Commandes",
+          "Écritures comptables non reprises",
+          "Choix RGPD",
+          "Elles contiennent les comptes locataires"
+        ],
+        [
+          "Plan d’investissement",
+          "Opérations, coûts, gains et enveloppe annuelle de 1,5 M€ entièrement hypothétiques",
+          "Hypothèse",
+          "Plan Moyen Terme réel non communiqué"
+        ],
+        [
+          "DPE",
+          "Consommations calibrées par résidence (A ≈ 150, B ≈ 155 kWh EP/m²/an) ; +12 % au dernier étage, +7 % au RDC, +10 % sous 40 m²",
+          "Dérivé des données réelles + hypothèse",
+          "Suivi DPE et base ADEME (moyennes)"
+        ],
+        [
+          "DPE",
+          "Seuils d’étiquettes 2021 (double seuil énergie / GES) ; ajustement petites surfaces de 2024 non appliqué",
+          "Hypothèse",
+          "Simplification"
+        ],
+        [
+          "Jeu de test",
+          "Les équipes reçoivent l’historique jusqu’au 31/12/2025. Les pannes du 01/01 au 30/09/2026 sont conservées par le jury",
+          "Choix de conception",
+          "Évaluation objective des prédictions"
+        ],
+        [
+          "Limite",
+          "Les données suivent les règles ci-dessus : un modèle les retrouvera en partie. La validation sur données réelles reste l’étape suivante",
+          "Limite assumée",
+          "—"
+        ]
+      ]
+    },
+    "01_residences": {
+      "rows": 9,
+      "columns": 16,
+      "first_rows": [
+        [
+          "residence_id",
+          "nom",
+          "localisation",
+          "annee_construction",
+          "nb_batiments",
+          "nb_logements",
+          "surface_habitable_totale_m2",
+          "ascenseur",
+          "energie_chauffage",
+          "type_chauffage",
+          "generateur_chauffage",
+          "production_ecs",
+          "ventilation",
+          "etiquette_dpe_majoritaire",
+          "conso_ep_moyenne_kwh_m2_an",
+          "ges_moyen_kgco2_m2_an"
+        ],
+        [
+          "RES-A",
+          "Résidence A",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          1985,
+          6,
+          160,
+          9072,
+          "Non",
+          "Gaz",
+          "Individuel",
+          "Chaudière gaz individuelle (mixte chauffage + ECS)",
+          "Gaz (chaudière mixte)",
+          "VMC simple flux autoréglable",
+          "D",
+          155,
+          34
+        ],
+        [
+          "RES-B",
+          "Résidence B",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          1992,
+          4,
+          60,
+          3529,
+          "Oui",
+          "Électricité",
+          "Individuel",
+          "Radiateurs électriques (convecteurs)",
+          "Ballon électrique individuel",
+          "VMC simple flux autoréglable",
+          "C",
+          159,
+          6.7
+        ],
+        [
+          "RES-C",
+          "Résidence C",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          1971,
+          5,
+          230,
+          14307,
+          "Oui",
+          "Gaz",
+          "Collectif",
+          "Chaufferie gaz collective",
+          "Collective (chaufferie gaz)",
+          "Ventilation naturelle + extracteurs",
+          "E",
+          272,
+          57.2
+        ],
+        [
+          "RES-D",
+          "Résidence D",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          2011,
+          3,
+          100,
+          6109,
+          "Non",
+          "Électricité",
+          "Individuel",
+          "Pompe à chaleur air/eau individuelle",
+          "Pompe à chaleur (ballon intégré)",
+          "VMC simple flux hygroréglable",
+          "B",
+          97,
+          4.4
+        ],
+        [
+          "RES-E",
+          "Résidence E",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          2016,
+          3,
+          140,
+          7584,
+          "Oui",
+          "Électricité",
+          "Individuel",
+          "Panneaux rayonnants électriques",
+          "Ballon thermodynamique individuel",
+          "VMC simple flux hygroréglable",
+          "B",
+          89,
+          3.9
+        ],
+        [
+          "RES-F",
+          "Résidence F",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          1978,
+          5,
+          150,
+          9048,
+          "Non",
+          "Gaz",
+          "Individuel",
+          "Chaudière gaz individuelle (mixte chauffage + ECS)",
+          "Gaz (chaudière mixte)",
+          "VMC simple flux autoréglable",
+          "E",
+          244,
+          50.9
+        ],
+        [
+          "RES-G",
+          "Résidence G",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          1968,
+          4,
+          170,
+          10324,
+          "Oui",
+          "Électricité",
+          "Individuel",
+          "Radiateurs électriques (convecteurs)",
+          "Ballon électrique individuel",
+          "Ventilation naturelle",
+          "F",
+          385,
+          16.7
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          "residence_id",
+          "nom",
+          "localisation",
+          "annee_construction",
+          "nb_batiments",
+          "nb_logements",
+          "surface_habitable_totale_m2",
+          "ascenseur",
+          "energie_chauffage",
+          "type_chauffage",
+          "generateur_chauffage",
+          "production_ecs",
+          "ventilation",
+          "etiquette_dpe_majoritaire",
+          "conso_ep_moyenne_kwh_m2_an",
+          "ges_moyen_kgco2_m2_an"
+        ],
+        [
+          "RES-A",
+          "Résidence A",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          1985,
+          6,
+          160,
+          9072,
+          "Non",
+          "Gaz",
+          "Individuel",
+          "Chaudière gaz individuelle (mixte chauffage + ECS)",
+          "Gaz (chaudière mixte)",
+          "VMC simple flux autoréglable",
+          "D",
+          155,
+          34
+        ],
+        [
+          "RES-B",
+          "Résidence B",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          1992,
+          4,
+          60,
+          3529,
+          "Oui",
+          "Électricité",
+          "Individuel",
+          "Radiateurs électriques (convecteurs)",
+          "Ballon électrique individuel",
+          "VMC simple flux autoréglable",
+          "C",
+          159,
+          6.7
+        ],
+        [
+          "RES-C",
+          "Résidence C",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          1971,
+          5,
+          230,
+          14307,
+          "Oui",
+          "Gaz",
+          "Collectif",
+          "Chaufferie gaz collective",
+          "Collective (chaufferie gaz)",
+          "Ventilation naturelle + extracteurs",
+          "E",
+          272,
+          57.2
+        ],
+        [
+          "RES-D",
+          "Résidence D",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          2011,
+          3,
+          100,
+          6109,
+          "Non",
+          "Électricité",
+          "Individuel",
+          "Pompe à chaleur air/eau individuelle",
+          "Pompe à chaleur (ballon intégré)",
+          "VMC simple flux hygroréglable",
+          "B",
+          97,
+          4.4
+        ],
+        [
+          "RES-E",
+          "Résidence E",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          2016,
+          3,
+          140,
+          7584,
+          "Oui",
+          "Électricité",
+          "Individuel",
+          "Panneaux rayonnants électriques",
+          "Ballon thermodynamique individuel",
+          "VMC simple flux hygroréglable",
+          "B",
+          89,
+          3.9
+        ],
+        [
+          "RES-F",
+          "Résidence F",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          1978,
+          5,
+          150,
+          9048,
+          "Non",
+          "Gaz",
+          "Individuel",
+          "Chaudière gaz individuelle (mixte chauffage + ECS)",
+          "Gaz (chaudière mixte)",
+          "VMC simple flux autoréglable",
+          "E",
+          244,
+          50.9
+        ],
+        [
+          "RES-G",
+          "Résidence G",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          1968,
+          4,
+          170,
+          10324,
+          "Oui",
+          "Électricité",
+          "Individuel",
+          "Radiateurs électriques (convecteurs)",
+          "Ballon électrique individuel",
+          "Ventilation naturelle",
+          "F",
+          385,
+          16.7
+        ],
+        [
+          "RES-H",
+          "Résidence H",
+          "Métropole toulousaine (31) - zone climatique H2c",
+          2009,
+          2,
+          90,
+          5568,
+          "Oui",
+          "Gaz",
+          "Individuel",
+          "Chaudière gaz individuelle à condensation",
+          "Solaire collectif + appoint gaz",
+          "VMC simple flux hygroréglable",
+          "C",
+          116,
+          20.2
+        ]
+      ]
+    },
+    "02_batiments": {
+      "rows": 33,
+      "columns": 5,
+      "first_rows": [
+        [
+          "batiment_id",
+          "residence_id",
+          "nb_niveaux",
+          "nb_logements",
+          "ascenseur"
+        ],
+        [
+          "BAT-A1",
+          "RES-A",
+          4,
+          27,
+          "Non"
+        ],
+        [
+          "BAT-A2",
+          "RES-A",
+          4,
+          27,
+          "Non"
+        ],
+        [
+          "BAT-A3",
+          "RES-A",
+          4,
+          27,
+          "Non"
+        ],
+        [
+          "BAT-A4",
+          "RES-A",
+          4,
+          27,
+          "Non"
+        ],
+        [
+          "BAT-A5",
+          "RES-A",
+          4,
+          26,
+          "Non"
+        ],
+        [
+          "BAT-A6",
+          "RES-A",
+          4,
+          26,
+          "Non"
+        ],
+        [
+          "BAT-B1",
+          "RES-B",
+          6,
+          15,
+          "Oui"
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          "batiment_id",
+          "residence_id",
+          "nb_niveaux",
+          "nb_logements",
+          "ascenseur"
+        ],
+        [
+          "BAT-A1",
+          "RES-A",
+          4,
+          27,
+          "Non"
+        ],
+        [
+          "BAT-A2",
+          "RES-A",
+          4,
+          27,
+          "Non"
+        ],
+        [
+          "BAT-A3",
+          "RES-A",
+          4,
+          27,
+          "Non"
+        ],
+        [
+          "BAT-A4",
+          "RES-A",
+          4,
+          27,
+          "Non"
+        ],
+        [
+          "BAT-A5",
+          "RES-A",
+          4,
+          26,
+          "Non"
+        ],
+        [
+          "BAT-A6",
+          "RES-A",
+          4,
+          26,
+          "Non"
+        ],
+        [
+          "BAT-B1",
+          "RES-B",
+          6,
+          15,
+          "Oui"
+        ],
+        [
+          "BAT-B2",
+          "RES-B",
+          4,
+          15,
+          "Non"
+        ],
+        [
+          "BAT-B3",
+          "RES-B",
+          4,
+          15,
+          "Non"
+        ],
+        [
+          "BAT-B4",
+          "RES-B",
+          3,
+          15,
+          "Non"
+        ],
+        [
+          "BAT-C1",
+          "RES-C",
+          9,
+          46,
+          "Oui"
+        ],
+        [
+          "BAT-C2",
+          "RES-C",
+          9,
+          46,
+          "Oui"
+        ],
+        [
+          "BAT-C3",
+          "RES-C",
+          9,
+          46,
+          "Oui"
+        ],
+        [
+          "BAT-C4",
+          "RES-C",
+          5,
+          46,
+          "Oui"
+        ],
+        [
+          "BAT-C5",
+          "RES-C",
+          5,
+          46,
+          "Oui"
+        ],
+        [
+          "BAT-D1",
+          "RES-D",
+          3,
+          34,
+          "Non"
+        ],
+        [
+          "BAT-D2",
+          "RES-D",
+          3,
+          33,
+          "Non"
+        ],
+        [
+          "BAT-D3",
+          "RES-D",
+          3,
+          33,
+          "Non"
+        ],
+        [
+          "BAT-E1",
+          "RES-E",
+          6,
+          47,
+          "Oui"
+        ],
+        [
+          "BAT-E2",
+          "RES-E",
+          6,
+          47,
+          "Oui"
+        ],
+        [
+          "BAT-E3",
+          "RES-E",
+          5,
+          46,
+          "Oui"
+        ],
+        [
+          "BAT-F1",
+          "RES-F",
+          5,
+          30,
+          "Non"
+        ],
+        [
+          "BAT-F2",
+          "RES-F",
+          5,
+          30,
+          "Non"
+        ],
+        [
+          "BAT-F3",
+          "RES-F",
+          5,
+          30,
+          "Non"
+        ],
+        [
+          "BAT-F4",
+          "RES-F",
+          5,
+          30,
+          "Non"
+        ],
+        [
+          "BAT-F5",
+          "RES-F",
+          5,
+          30,
+          "Non"
+        ],
+        [
+          "BAT-G1",
+          "RES-G",
+          7,
+          43,
+          "Oui"
+        ],
+        [
+          "BAT-G2",
+          "RES-G",
+          7,
+          43,
+          "Oui"
+        ],
+        [
+          "BAT-G3",
+          "RES-G",
+          7,
+          42,
+          "Oui"
+        ],
+        [
+          "BAT-G4",
+          "RES-G",
+          7,
+          42,
+          "Oui"
+        ],
+        [
+          "BAT-H1",
+          "RES-H",
+          5,
+          45,
+          "Oui"
+        ],
+        [
+          "BAT-H2",
+          "RES-H",
+          5,
+          45,
+          "Oui"
+        ]
+      ]
+    },
+    "03_logements": {
+      "rows": 1101,
+      "columns": 16,
+      "first_rows": [
+        [
+          "logement_id",
+          "batiment_id",
+          "residence_id",
+          "typologie",
+          "surface_habitable_m2",
+          "etage",
+          "dpe_methode",
+          "dpe_date",
+          "dpe_conso_ep_kwh_m2_an",
+          "dpe_ges_kgco2_m2_an",
+          "dpe_etiquette_energie",
+          "dpe_etiquette_ges",
+          "dpe_etiquette_globale",
+          "nb_changements_locataire_2018_2025",
+          "date_entree_locataire_actuel",
+          "statut_occupation"
+        ],
+        [
+          "LGT-A1-001",
+          "BAT-A1",
+          "RES-A",
+          "T3",
+          67.4,
+          0,
+          "Ancien DPE (avant 07/2021)",
+          "2017-11-06",
+          162,
+          45.1,
+          "C",
+          "D",
+          "D",
+          0,
+          "Avant 2018",
+          "Occupé"
+        ],
+        [
+          "LGT-A1-002",
+          "BAT-A1",
+          "RES-A",
+          "T3",
+          72.7,
+          0,
+          "Nouveau DPE (méthode 3CL 2021)",
+          "2021-12-18",
+          151,
+          46.7,
+          "C",
+          "D",
+          "D",
+          1,
+          "2019-04-21",
+          "Occupé"
+        ],
+        [
+          "LGT-A1-003",
+          "BAT-A1",
+          "RES-A",
+          "T4",
+          75.6,
+          0,
+          "Nouveau DPE (méthode 3CL 2021)",
+          "2022-12-15",
+          160,
+          48.2,
+          "C",
+          "D",
+          "D",
+          0,
+          "Avant 2018",
+          "Occupé"
+        ],
+        [
+          "LGT-A1-004",
+          "BAT-A1",
+          "RES-A",
+          "T4",
+          73,
+          0,
+          "Ancien DPE (avant 07/2021)",
+          "2016-06-20",
+          177,
+          40,
+          "C",
+          "D",
+          "D",
+          3,
+          "2025-12-30",
+          "Occupé"
+        ],
+        [
+          "LGT-A1-005",
+          "BAT-A1",
+          "RES-A",
+          "T2",
+          40.3,
+          0,
+          "Nouveau DPE (méthode 3CL 2021)",
+          "2022-01-23",
+          158,
+          44.9,
+          "C",
+          "D",
+          "D",
+          0,
+          "Avant 2018",
+          "Occupé"
+        ],
+        [
+          "LGT-A1-006",
+          "BAT-A1",
+          "RES-A",
+          "T3",
+          71.7,
+          0,
+          "Nouveau DPE (méthode 3CL 2021)",
+          "2022-03-17",
+          175,
+          47.5,
+          "C",
+          "D",
+          "D",
+          1,
+          "2018-08-16",
+          "Occupé"
+        ],
+        [
+          "LGT-A1-007",
+          "BAT-A1",
+          "RES-A",
+          "T3",
+          51.7,
+          0,
+          "Ancien DPE (avant 07/2021)",
+          "2018-11-17",
+          161,
+          45.7,
+          "C",
+          "D",
+          "D",
+          1,
+          "2025-01-29",
+          "Occupé"
+        ]
+      ],
+      "formulas": 0
+    },
+    "04_equipements": {
+      "rows": 4218,
+      "columns": 17,
+      "first_rows": [
+        [
+          "equipement_id",
+          "famille",
+          "libelle_famille",
+          "niveau_rattachement",
+          "residence_id",
+          "batiment_id",
+          "logement_id",
+          "date_pose",
+          "origine_date_pose",
+          "date_pose_precedente",
+          "nb_remplacements_2018_2025",
+          "duree_vie_reference_ans",
+          "sous_contrat_entretien",
+          "visite_annuelle_prevue",
+          "code_metier",
+          "prestataire_id",
+          "dans_perimetre_prediction"
+        ],
+        [
+          "EQP-00001",
+          "chaudiere_gaz_individuelle",
+          "Chaudière gaz individuelle",
+          "Logement",
+          "RES-A",
+          "BAT-A1",
+          "LGT-A1-001",
+          "2016-02-02",
+          "Fait réel transposé (renouvellement complet en 2016)",
+          null,
+          0,
+          18,
+          "Oui",
+          "Oui",
+          "CHGAZ",
+          "PRE01",
+          "Oui"
+        ],
+        [
+          "EQP-00002",
+          "bouches_vmc",
+          "Bouches VMC du logement",
+          "Logement",
+          "RES-A",
+          "BAT-A1",
+          "LGT-A1-001",
+          "1985-06-01",
+          "Hypothèse (équipement d'origine)",
+          null,
+          0,
+          40,
+          "Oui",
+          "Oui",
+          "CHVBO",
+          "PRE01",
+          "Non"
+        ],
+        [
+          "EQP-00003",
+          "robinetterie_sanitaires",
+          "Robinetterie et sanitaires",
+          "Logement",
+          "RES-A",
+          "BAT-A1",
+          "LGT-A1-001",
+          "2024-05-29",
+          "Remplacement tracé dans les interventions",
+          "1985-06-01",
+          1,
+          60,
+          "Oui",
+          "Oui",
+          "MUPPR",
+          "PRE01",
+          "Non"
+        ],
+        [
+          "EQP-00004",
+          "volets_roulants",
+          "Volets roulants du logement",
+          "Logement",
+          "RES-A",
+          "BAT-A1",
+          "LGT-A1-001",
+          "1985-06-01",
+          "Hypothèse (équipement d'origine)",
+          null,
+          0,
+          60,
+          "Non",
+          "Non",
+          "MUPPR",
+          "PRE06",
+          "Non"
+        ],
+        [
+          "EQP-00005",
+          "chaudiere_gaz_individuelle",
+          "Chaudière gaz individuelle",
+          "Logement",
+          "RES-A",
+          "BAT-A1",
+          "LGT-A1-002",
+          "2016-06-30",
+          "Fait réel transposé (renouvellement complet en 2016)",
+          null,
+          0,
+          18,
+          "Oui",
+          "Oui",
+          "CHGAZ",
+          "PRE01",
+          "Oui"
+        ],
+        [
+          "EQP-00006",
+          "bouches_vmc",
+          "Bouches VMC du logement",
+          "Logement",
+          "RES-A",
+          "BAT-A1",
+          "LGT-A1-002",
+          "1985-06-01",
+          "Hypothèse (équipement d'origine)",
+          null,
+          0,
+          40,
+          "Oui",
+          "Oui",
+          "CHVBO",
+          "PRE01",
+          "Non"
+        ],
+        [
+          "EQP-00007",
+          "robinetterie_sanitaires",
+          "Robinetterie et sanitaires",
+          "Logement",
+          "RES-A",
+          "BAT-A1",
+          "LGT-A1-002",
+          "1985-06-01",
+          "Hypothèse (équipement d'origine)",
+          null,
+          0,
+          60,
+          "Oui",
+          "Oui",
+          "MUPPR",
+          "PRE01",
+          "Non"
+        ]
+      ],
+      "formulas": 0
+    },
+    "05_demandes_locataires": {
+      "rows": 5236,
+      "columns": 15,
+      "first_rows": [
+        [
+          "demande_id",
+          "date_creation",
+          "date_cloture",
+          "logement_id",
+          "batiment_id",
+          "residence_id",
+          "parties",
+          "canal",
+          "motif",
+          "objet",
+          "texte_demande",
+          "priorite",
+          "nb_echanges",
+          "demande_reouverte",
+          "delai_resolution_h"
+        ],
+        [
+          "DEM-3100001",
+          "2019-02-01 09:50",
+          "2019-02-01 12:02",
+          "LGT-A3-010",
+          "BAT-A3",
+          "RES-A",
+          "Privatives",
+          "Email service client",
+          "demande de travaux partie privative",
+          "Travaux dans le logement",
+          "Bonjour, Je souhaiterais savoir s'il est possible de faire remplacer le meuble sous évier. Merci d'avance.",
+          "P2 - Résolution 48h",
+          5,
+          "Non",
+          2.2
+        ],
+        [
+          "DEM-3100002",
+          "2019-02-01 20:59",
+          "2019-02-05 20:05",
+          "LGT-F5-030",
+          "BAT-F5",
+          "RES-F",
+          "Privatives",
+          "Email service client",
+          "panne équipement individuel gaz (chauffe eau/chaudière, radiateur)",
+          "Problème de chauffage",
+          "Je vous signale que la pression de la chaudière baisse régulièrement, je dois la remettre en pression très souvent. Cordialement.",
+          "P4 - Résolution 5 jours",
+          3,
+          "Non",
+          95.1
+        ],
+        [
+          "DEM-3100003",
+          "2019-02-02 11:07",
+          "2019-02-02 14:25",
+          "LGT-C4-011",
+          "BAT-C4",
+          "RES-C",
+          "Privatives",
+          "Email service client",
+          "Réclamation travaux partie privative",
+          "Réclamation travaux",
+          "Bonjour, L'entreprise n'est pas venue au rendez-vous fixé.",
+          "P6 - Résolution 15 jours",
+          10,
+          "Non",
+          3.3
+        ],
+        [
+          "DEM-3100004",
+          "2019-02-03 14:18",
+          "2019-02-03 17:06",
+          "LGT-H1-045",
+          "BAT-H1",
+          "RES-H",
+          "Privatives",
+          "Email service client",
+          "demande de travaux partie privative",
+          "Demande de travaux",
+          "Bonjour, Le revêtement de sol est en mauvais état, pouvez-vous prévoir une intervention ? Je reste disponible pour un rendez-vous.",
+          "P2 - Résolution 48h",
+          26,
+          "Non",
+          2.8
+        ],
+        [
+          "DEM-3100005",
+          "2019-02-03 18:17",
+          "2019-02-03 20:11",
+          "LGT-C2-012",
+          "BAT-C2",
+          "RES-C",
+          "Privatives",
+          "Téléphone service client",
+          "Sans Motif",
+          "Demande d'information",
+          "Bonjour Madame, Monsieur, Pouvez-vous me rappeler concernant mon dossier ? Merci de faire le nécessaire.",
+          "P1 - Résolution 24h",
+          13,
+          "Non",
+          1.9
+        ],
+        [
+          "DEM-3100006",
+          "2019-02-03 22:13",
+          "2019-02-03 22:19",
+          "LGT-C5-024",
+          "BAT-C5",
+          "RES-C",
+          "Privatives",
+          "Email service client",
+          "demande de travaux partie privative",
+          "Demande de travaux",
+          "Madame, Monsieur, Je souhaiterais savoir s'il est possible de faire remplacer le plan de travail. Merci d'avance.",
+          "P6 - Résolution 15 jours",
+          7,
+          "Non",
+          0.1
+        ],
+        [
+          "DEM-3100007",
+          "2019-02-03 22:32",
+          "2019-02-04 04:08",
+          "LGT-C2-019",
+          "BAT-C2",
+          "RES-C",
+          "Privatives",
+          "Téléphone service client",
+          "Dysfonctionnement de la fenêtre",
+          "Fenêtre ne ferme plus",
+          "Bonjour Madame, Monsieur, La fenêtre de la chambre ne ferme plus correctement. Je reste disponible pour un rendez-vous.",
+          "P1 - Résolution 24h",
+          22,
+          "Non",
+          5.6
+        ]
+      ],
+      "formulas": 0
+    },
+    "06_interventions": {
+      "rows": 30631,
+      "columns": 14,
+      "first_rows": [
+        [
+          "intervention_id",
+          "date_intervention",
+          "residence_id",
+          "batiment_id",
+          "logement_id",
+          "equipement_id",
+          "type_intervention",
+          "code_metier",
+          "prestataire_id",
+          "symptome",
+          "gravite",
+          "resultat",
+          "commentaire_technicien",
+          "demande_id_liee"
+        ],
+        [
+          "INT-000001",
+          "2018-01-01 09:07",
+          "RES-H",
+          "BAT-H1",
+          "LGT-H1-022",
+          "EQP-03865",
+          "Dépannage",
+          "CHGAZ",
+          "PRE01",
+          "Défaut sonde / thermostat",
+          "Fonctionnement dégradé",
+          "Réparé",
+          "Contrôle effectué, RAS",
+          null
+        ],
+        [
+          "INT-000002",
+          "2018-01-01 11:09",
+          "RES-G",
+          "BAT-G1",
+          null,
+          "EQP-04203",
+          "Dépannage",
+          "ASC",
+          "PRE03",
+          "Ascenseur à l'arrêt",
+          "Fonctionnement dégradé",
+          "Réparé",
+          "Intervention réalisée, appareil fonctionnel",
+          null
+        ],
+        [
+          "INT-000003",
+          "2018-01-01 13:01",
+          "RES-H",
+          "BAT-H2",
+          "LGT-H2-033",
+          "EQP-04089",
+          "Dépannage",
+          "CHGAZ",
+          "PRE01",
+          "Défaut carte électronique",
+          "Fonctionnement dégradé",
+          "Réparé",
+          "Contrôle effectué, RAS",
+          null
+        ],
+        [
+          "INT-000004",
+          "2018-01-01 13:46",
+          "RES-F",
+          "BAT-F5",
+          "LGT-F5-006",
+          "EQP-03004",
+          "Dépannage",
+          "MUPPR",
+          "PRE06",
+          "Volet bloqué",
+          "Fonctionnement dégradé",
+          "Réparé",
+          "Réglage effectué",
+          null
+        ],
+        [
+          "INT-000005",
+          "2018-01-01 16:00",
+          "RES-G",
+          "BAT-G3",
+          "LGT-G3-035",
+          "EQP-03584",
+          "Dépannage",
+          "MUPPR",
+          "PRE06",
+          "Sangle cassée",
+          "Arrêt total",
+          "Remplacement nécessaire",
+          "Panne irréparable, remplacement à commander",
+          null
+        ],
+        [
+          "INT-000006",
+          "2018-01-02 09:01",
+          "RES-A",
+          "BAT-A2",
+          "LGT-A2-007",
+          "EQP-00133",
+          "Entretien préventif",
+          "CHGAZ",
+          "PRE01",
+          null,
+          null,
+          "Logement absent - visite non réalisée",
+          null,
+          null
+        ],
+        [
+          "INT-000007",
+          "2018-01-02 09:08",
+          "RES-F",
+          "BAT-F1",
+          "LGT-F1-016",
+          "EQP-02561",
+          "Entretien préventif",
+          "CHGAZ",
+          "PRE01",
+          null,
+          null,
+          "Visite réalisée - RAS",
+          "Entretien annuel réalisé",
+          null
+        ]
+      ],
+      "formulas": 0
+    },
+    "07_commandes": {
+      "rows": 5254,
+      "columns": 13,
+      "first_rows": [
+        [
+          "commande_id",
+          "date_commande",
+          "residence_id",
+          "logement_id",
+          "libelle",
+          "type_commande",
+          "nature",
+          "corps_etat",
+          "prestataire_id",
+          "montant_ttc",
+          "date_facture",
+          "montant_facture_ttc",
+          "statut"
+        ],
+        [
+          "CMD-060001",
+          "2018-01-03",
+          "RES-G",
+          "LGT-G3-035",
+          "REMPLACEMENT VOLETS ROULANTS",
+          "ENTRETIEN PPV H/EDL",
+          "MENUISERIES",
+          "L01",
+          "PRE06",
+          547.35,
+          "2018-02-21",
+          547.35,
+          "Soldée"
+        ],
+        [
+          "CMD-060002",
+          "2018-01-03",
+          "RES-G",
+          "LGT-G4-014",
+          "REMPLACEMENT THERMOSTAT RADIATEUR",
+          "ENTRETIEN PPV H/EDL",
+          "ELECTRICITE",
+          "A34",
+          "PRE05",
+          419.68,
+          "2018-03-03",
+          419.68,
+          "Soldée"
+        ],
+        [
+          "CMD-060003",
+          "2018-01-03",
+          "RES-G",
+          "LGT-G4-017",
+          "DPE",
+          "ENTRETIEN PPV EDL",
+          "DIAGNOSTIC",
+          "L01",
+          "PRE10",
+          55.43,
+          "2018-03-12",
+          55.43,
+          "Soldée"
+        ],
+        [
+          "CMD-060004",
+          "2018-01-05",
+          "RES-G",
+          "LGT-G4-017",
+          "NETTOYAGE APRES DEPART",
+          "ENTRETIEN PPV EDL",
+          "NETTOYAGE",
+          "L01",
+          "PRE09",
+          100.38,
+          "2018-02-25",
+          100.38,
+          "Soldée"
+        ],
+        [
+          "CMD-060005",
+          "2018-01-07",
+          "RES-G",
+          "LGT-G3-039",
+          "REMPLACEMENT VOLETS ROULANTS",
+          "ENTRETIEN PPV H/EDL",
+          "MENUISERIES",
+          "L01",
+          "PRE06",
+          411.71,
+          "2018-02-27",
+          411.71,
+          "Soldée"
+        ],
+        [
+          "CMD-060006",
+          "2018-01-07",
+          "RES-F",
+          "LGT-F5-016",
+          "DPE",
+          "ENTRETIEN PPV EDL",
+          "DIAGNOSTIC",
+          "L01",
+          "PRE10",
+          70.98,
+          "2018-03-15",
+          70.98,
+          "Soldée"
+        ],
+        [
+          "CMD-060007",
+          "2018-01-07",
+          "RES-G",
+          null,
+          "NETTOYAGE PARTIES COMMUNES COMPLEMENTAIRE",
+          "ENTRETIEN PCO",
+          "NETTOYAGE",
+          "A01",
+          "PRE09",
+          209.57,
+          "2018-02-05",
+          209.57,
+          "Soldée"
+        ]
+      ],
+      "formulas": 0
+    },
+    "08_plan_investissement": {
+      "rows": 30,
+      "columns": 12,
+      "first_rows": [
+        [
+          "operation_id",
+          "residence_id",
+          "type_operation",
+          "perimetre",
+          "annee_souhaitee",
+          "cout_estime_ttc",
+          "gain_conso_ep_estime_kwh_m2_an",
+          "nb_logements_concernes",
+          "date_inscription_demande",
+          "origine_demande",
+          "statut",
+          "rang_actuel_chronologique"
+        ],
+        [
+          "OPE-007",
+          "RES-G",
+          "Remplacement ballons électriques par ballons thermodynamiques",
+          "Résidence",
+          2027,
+          430000,
+          25,
+          170,
+          "2019-01-21",
+          "Étiquette DPE F/G",
+          "Proposé (hypothétique)",
+          1
+        ],
+        [
+          "OPE-005",
+          "RES-G",
+          "Isolation thermique par l'extérieur (ITE)",
+          "Résidence",
+          2026,
+          2400000,
+          130,
+          170,
+          "2019-03-29",
+          "Interdiction de location étiquette G (calendrier loi Climat)",
+          "Proposé (hypothétique)",
+          2
+        ],
+        [
+          "OPE-023",
+          "RES-B",
+          "Réfection halls et cages d'escalier",
+          "Résidence",
+          2029,
+          113000,
+          0,
+          60,
+          "2019-11-07",
+          "Demande gestion locative",
+          "Proposé (hypothétique)",
+          3
+        ],
+        [
+          "OPE-013",
+          "RES-A",
+          "Remplacement VMC (caissons + bouches)",
+          "Résidence",
+          2027,
+          140000,
+          8,
+          160,
+          "2020-01-16",
+          "Plaintes locataires",
+          "Proposé (hypothétique)",
+          4
+        ],
+        [
+          "OPE-026",
+          "RES-G",
+          "Réfection halls et cages d'escalier",
+          "Résidence",
+          2026,
+          140000,
+          0,
+          170,
+          "2020-01-28",
+          "Demande gestion locative",
+          "Proposé (hypothétique)",
+          5
+        ],
+        [
+          "OPE-004",
+          "RES-C",
+          "Modernisation ascenseurs (3 appareils)",
+          "Bâtiments C1-C3",
+          2027,
+          240000,
+          0,
+          138,
+          "2020-04-01",
+          "Pannes répétées",
+          "Proposé (hypothétique)",
+          6
+        ],
+        [
+          "OPE-029",
+          "RES-G",
+          "Réfection étanchéité toiture-terrasse",
+          "Résidence",
+          2026,
+          180000,
+          5,
+          170,
+          "2020-07-22",
+          "Infiltrations",
+          "Proposé (hypothétique)",
+          7
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          "operation_id",
+          "residence_id",
+          "type_operation",
+          "perimetre",
+          "annee_souhaitee",
+          "cout_estime_ttc",
+          "gain_conso_ep_estime_kwh_m2_an",
+          "nb_logements_concernes",
+          "date_inscription_demande",
+          "origine_demande",
+          "statut",
+          "rang_actuel_chronologique"
+        ],
+        [
+          "OPE-007",
+          "RES-G",
+          "Remplacement ballons électriques par ballons thermodynamiques",
+          "Résidence",
+          2027,
+          430000,
+          25,
+          170,
+          "2019-01-21",
+          "Étiquette DPE F/G",
+          "Proposé (hypothétique)",
+          1
+        ],
+        [
+          "OPE-005",
+          "RES-G",
+          "Isolation thermique par l'extérieur (ITE)",
+          "Résidence",
+          2026,
+          2400000,
+          130,
+          170,
+          "2019-03-29",
+          "Interdiction de location étiquette G (calendrier loi Climat)",
+          "Proposé (hypothétique)",
+          2
+        ],
+        [
+          "OPE-023",
+          "RES-B",
+          "Réfection halls et cages d'escalier",
+          "Résidence",
+          2029,
+          113000,
+          0,
+          60,
+          "2019-11-07",
+          "Demande gestion locative",
+          "Proposé (hypothétique)",
+          3
+        ],
+        [
+          "OPE-013",
+          "RES-A",
+          "Remplacement VMC (caissons + bouches)",
+          "Résidence",
+          2027,
+          140000,
+          8,
+          160,
+          "2020-01-16",
+          "Plaintes locataires",
+          "Proposé (hypothétique)",
+          4
+        ],
+        [
+          "OPE-026",
+          "RES-G",
+          "Réfection halls et cages d'escalier",
+          "Résidence",
+          2026,
+          140000,
+          0,
+          170,
+          "2020-01-28",
+          "Demande gestion locative",
+          "Proposé (hypothétique)",
+          5
+        ],
+        [
+          "OPE-004",
+          "RES-C",
+          "Modernisation ascenseurs (3 appareils)",
+          "Bâtiments C1-C3",
+          2027,
+          240000,
+          0,
+          138,
+          "2020-04-01",
+          "Pannes répétées",
+          "Proposé (hypothétique)",
+          6
+        ],
+        [
+          "OPE-029",
+          "RES-G",
+          "Réfection étanchéité toiture-terrasse",
+          "Résidence",
+          2026,
+          180000,
+          5,
+          170,
+          "2020-07-22",
+          "Infiltrations",
+          "Proposé (hypothétique)",
+          7
+        ],
+        [
+          "OPE-014",
+          "RES-A",
+          "Isolation des combles",
+          "Résidence",
+          2029,
+          190000,
+          20,
+          160,
+          "2020-07-27",
+          "Étiquette DPE D",
+          "Proposé (hypothétique)",
+          8
+        ],
+        [
+          "OPE-011",
+          "RES-F",
+          "Isolation des combles et planchers bas",
+          "Résidence",
+          2027,
+          310000,
+          40,
+          150,
+          "2021-02-14",
+          "Étiquette DPE D/E",
+          "Proposé (hypothétique)",
+          9
+        ],
+        [
+          "OPE-009",
+          "RES-G",
+          "Modernisation ascenseurs (4 appareils)",
+          "Bâtiments G1-G4",
+          2028,
+          330000,
+          0,
+          170,
+          "2021-07-07",
+          "Vétusté équipement",
+          "Proposé (hypothétique)",
+          10
+        ],
+        [
+          "OPE-001",
+          "RES-C",
+          "Remplacement chaufferie collective (chaudières condensation)",
+          "Résidence",
+          2026,
+          620000,
+          45,
+          230,
+          "2021-08-26",
+          "Vétusté équipement",
+          "Proposé (hypothétique)",
+          11
+        ],
+        [
+          "OPE-006",
+          "RES-G",
+          "Remplacement convecteurs par radiateurs à inertie + programmation",
+          "Résidence",
+          2026,
+          520000,
+          60,
+          170,
+          "2021-12-10",
+          "Étiquette DPE F/G",
+          "Proposé (hypothétique)",
+          12
+        ],
+        [
+          "OPE-016",
+          "RES-B",
+          "Remplacement programmé des ballons ECS électriques",
+          "Résidence",
+          2026,
+          48000,
+          5,
+          60,
+          "2022-03-27",
+          "Pannes répétées",
+          "Proposé (hypothétique)",
+          13
+        ],
+        [
+          "OPE-025",
+          "RES-F",
+          "Réfection halls et cages d'escalier",
+          "Résidence",
+          2027,
+          145000,
+          0,
+          150,
+          "2023-04-04",
+          "Demande gestion locative",
+          "Proposé (hypothétique)",
+          14
+        ],
+        [
+          "OPE-012",
+          "RES-F",
+          "Remplacement menuiseries extérieures",
+          "Résidence",
+          2029,
+          780000,
+          25,
+          150,
+          "2023-07-02",
+          "Demande gestion locative",
+          "Proposé (hypothétique)",
+          15
+        ],
+        [
+          "OPE-021",
+          "RES-H",
+          "Rénovation production ECS solaire",
+          "Résidence",
+          2027,
+          26000,
+          12,
+          90,
+          "2023-07-02",
+          "Vétusté équipement",
+          "Proposé (hypothétique)",
+          16
+        ],
+        [
+          "OPE-028",
+          "RES-F",
+          "Réfection étanchéité toiture-terrasse",
+          "Résidence",
+          2030,
+          260000,
+          5,
+          150,
+          "2023-08-22",
+          "Infiltrations",
+          "Proposé (hypothétique)",
+          17
+        ],
+        [
+          "OPE-020",
+          "RES-E",
+          "Remplacement ballons thermodynamiques (lot pilote)",
+          "30 logements",
+          2029,
+          90000,
+          5,
+          30,
+          "2023-09-02",
+          "Pannes répétées",
+          "Proposé (hypothétique)",
+          18
+        ],
+        [
+          "OPE-027",
+          "RES-C",
+          "Réfection étanchéité toiture-terrasse",
+          "Résidence",
+          2027,
+          375000,
+          5,
+          230,
+          "2023-11-10",
+          "Infiltrations",
+          "Proposé (hypothétique)",
+          19
+        ],
+        [
+          "OPE-018",
+          "RES-B",
+          "Modernisation ascenseur",
+          "Bâtiment B1",
+          2027,
+          85000,
+          0,
+          15,
+          "2024-06-15",
+          "Pannes répétées",
+          "Proposé (hypothétique)",
+          20
+        ],
+        [
+          "OPE-010",
+          "RES-F",
+          "Remplacement chaudières individuelles par chaudières condensation",
+          "Résidence",
+          2026,
+          560000,
+          35,
+          150,
+          "2024-11-18",
+          "Vétusté équipement",
+          "Proposé (hypothétique)",
+          21
+        ],
+        [
+          "OPE-022",
+          "RES-A",
+          "Réfection halls et cages d'escalier",
+          "Résidence",
+          2026,
+          84000,
+          0,
+          160,
+          "2024-11-19",
+          "Demande gestion locative",
+          "Proposé (hypothétique)",
+          22
+        ],
+        [
+          "OPE-008",
+          "RES-G",
+          "VMC hygroréglable (création)",
+          "Résidence",
+          2027,
+          380000,
+          15,
+          170,
+          "2025-03-02",
+          "Humidité / condensation",
+          "Proposé (hypothétique)",
+          23
+        ],
+        [
+          "OPE-002",
+          "RES-C",
+          "Isolation thermique par l'extérieur (ITE)",
+          "Résidence",
+          2027,
+          2900000,
+          95,
+          230,
+          "2025-04-27",
+          "Étiquette DPE E/F",
+          "Proposé (hypothétique)",
+          24
+        ],
+        [
+          "OPE-024",
+          "RES-C",
+          "Réfection halls et cages d'escalier",
+          "Résidence",
+          2027,
+          97000,
+          0,
+          230,
+          "2025-06-23",
+          "Demande gestion locative",
+          "Proposé (hypothétique)",
+          25
+        ],
+        [
+          "OPE-017",
+          "RES-B",
+          "Remplacement porte de hall + contrôle d'accès",
+          "Bâtiment B1",
+          2026,
+          18000,
+          0,
+          60,
+          "2025-09-06",
+          "Pannes répétées",
+          "Proposé (hypothétique)",
+          26
+        ],
+        [
+          "OPE-003",
+          "RES-C",
+          "Remplacement menuiseries extérieures",
+          "Résidence",
+          2028,
+          1150000,
+          30,
+          230,
+          "2025-09-26",
+          "Étiquette DPE E/F",
+          "Proposé (hypothétique)",
+          27
+        ],
+        [
+          "OPE-019",
+          "RES-D",
+          "Contrat de remplacement pompes à chaleur (lot pilote)",
+          "20 logements",
+          2028,
+          190000,
+          10,
+          20,
+          "2025-10-16",
+          "Pannes répétées",
+          "Proposé (hypothétique)",
+          28
+        ],
+        [
+          "OPE-015",
+          "RES-A",
+          "Remplacement chaudières individuelles (renouvellement anticipé)",
+          "Résidence",
+          2031,
+          600000,
+          15,
+          160,
+          "2025-10-25",
+          "Programmation long terme",
+          "Proposé (hypothétique)",
+          29
+        ]
+      ]
+    },
+    "09_prestataires": {
+      "rows": 15,
+      "columns": 4,
+      "first_rows": [
+        [
+          "prestataire_id",
+          "nom",
+          "domaine",
+          "type_contrat"
+        ],
+        [
+          "PRE01",
+          "Garonne Multiservices (fictif)",
+          "Multiservices / chauffage (contrat P2P3)",
+          "Contrat multiservices"
+        ],
+        [
+          "PRE02",
+          "Occitherm Maintenance (fictif)",
+          "Chauffage collectif (contrat P2P3)",
+          "Contrat chaufferies"
+        ],
+        [
+          "PRE03",
+          "Elev'Sud Ascenseurs (fictif)",
+          "Ascenseurs",
+          "Contrat ascenseurs"
+        ],
+        [
+          "PRE04",
+          "Pyrène Plomberie Confort (fictif)",
+          "Plomberie / sanitaires",
+          "Marché à bons de commande"
+        ],
+        [
+          "PRE05",
+          "Volt'Occitan Électricité (fictif)",
+          "Électricité",
+          "Marché à bons de commande"
+        ],
+        [
+          "PRE06",
+          "Menuiseries du Lauragais (fictif)",
+          "Menuiseries / serrurerie",
+          "Marché à bons de commande"
+        ],
+        [
+          "PRE07",
+          "Tolosa Rénovation TCE (fictif)",
+          "Tous corps d'état (remise en état)",
+          "Marché TCE"
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          "prestataire_id",
+          "nom",
+          "domaine",
+          "type_contrat"
+        ],
+        [
+          "PRE01",
+          "Garonne Multiservices (fictif)",
+          "Multiservices / chauffage (contrat P2P3)",
+          "Contrat multiservices"
+        ],
+        [
+          "PRE02",
+          "Occitherm Maintenance (fictif)",
+          "Chauffage collectif (contrat P2P3)",
+          "Contrat chaufferies"
+        ],
+        [
+          "PRE03",
+          "Elev'Sud Ascenseurs (fictif)",
+          "Ascenseurs",
+          "Contrat ascenseurs"
+        ],
+        [
+          "PRE04",
+          "Pyrène Plomberie Confort (fictif)",
+          "Plomberie / sanitaires",
+          "Marché à bons de commande"
+        ],
+        [
+          "PRE05",
+          "Volt'Occitan Électricité (fictif)",
+          "Électricité",
+          "Marché à bons de commande"
+        ],
+        [
+          "PRE06",
+          "Menuiseries du Lauragais (fictif)",
+          "Menuiseries / serrurerie",
+          "Marché à bons de commande"
+        ],
+        [
+          "PRE07",
+          "Tolosa Rénovation TCE (fictif)",
+          "Tous corps d'état (remise en état)",
+          "Marché TCE"
+        ],
+        [
+          "PRE08",
+          "Peintures & Sols Midi (fictif)",
+          "Peinture / sols",
+          "Marché TCE"
+        ],
+        [
+          "PRE09",
+          "Net'Résidence 31 (fictif)",
+          "Nettoyage",
+          "Contrat nettoyage"
+        ],
+        [
+          "PRE10",
+          "Diag'Habitat Sud (fictif)",
+          "Diagnostics (DPE, amiante...)",
+          "Marché diagnostics"
+        ],
+        [
+          "PRE11",
+          "Hygiène Services Sud (fictif)",
+          "Nuisibles (3D)",
+          "Marché à bons de commande"
+        ],
+        [
+          "PRE12",
+          "Jardins de l'Hers (fictif)",
+          "Espaces verts",
+          "Contrat espaces verts"
+        ],
+        [
+          "PRE13",
+          "Accès Contrôle Toulouse (fictif)",
+          "Portes / contrôle d'accès",
+          "Marché à bons de commande"
+        ],
+        [
+          "PRE14",
+          "Énergies Solaires Garonne (fictif)",
+          "Solaire thermique",
+          "Contrat maintenance"
+        ]
+      ]
+    },
+    "ref_codes_metiers": {
+      "rows": 11,
+      "columns": 2,
+      "first_rows": [
+        [
+          "code_metier",
+          "libelle"
+        ],
+        [
+          "CHGAZ",
+          "Entretien chaudière murale gaz"
+        ],
+        [
+          "CHPAC",
+          "Entretien pompes à chaleur"
+        ],
+        [
+          "CHFRC",
+          "Maintenance ballon thermodynamique"
+        ],
+        [
+          "CHVBO",
+          "Entretien bouches VMC"
+        ],
+        [
+          "CHVCC",
+          "Entretien caissons VMC collectifs"
+        ],
+        [
+          "MUPPR",
+          "Multiservices parties privatives"
+        ],
+        [
+          "MUPCO",
+          "Multiservices parties communes"
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          "code_metier",
+          "libelle"
+        ],
+        [
+          "CHGAZ",
+          "Entretien chaudière murale gaz"
+        ],
+        [
+          "CHPAC",
+          "Entretien pompes à chaleur"
+        ],
+        [
+          "CHFRC",
+          "Maintenance ballon thermodynamique"
+        ],
+        [
+          "CHVBO",
+          "Entretien bouches VMC"
+        ],
+        [
+          "CHVCC",
+          "Entretien caissons VMC collectifs"
+        ],
+        [
+          "MUPPR",
+          "Multiservices parties privatives"
+        ],
+        [
+          "MUPCO",
+          "Multiservices parties communes"
+        ],
+        [
+          "PECSO",
+          "Production ECS solaire"
+        ],
+        [
+          "CHGCO",
+          "Chaufferie gaz collective"
+        ],
+        [
+          "ASC",
+          "Maintenance ascenseurs"
+        ]
+      ]
+    },
+    "ref_familles_equipements": {
+      "rows": 15,
+      "columns": 10,
+      "first_rows": [
+        [
+          "famille",
+          "libelle",
+          "niveau",
+          "code_metier",
+          "duree_vie_reference_ans",
+          "sous_contrat_entretien",
+          "visite_annuelle",
+          "cout_remplacement_min_ttc",
+          "cout_remplacement_max_ttc",
+          "dans_perimetre_prediction"
+        ],
+        [
+          "chaudiere_gaz_individuelle",
+          "Chaudière gaz individuelle",
+          "Logement",
+          "CHGAZ",
+          18,
+          "Oui",
+          "Oui",
+          2600,
+          3900,
+          "Oui"
+        ],
+        [
+          "pompe_a_chaleur",
+          "Pompe à chaleur air/eau",
+          "Logement",
+          "CHPAC",
+          16,
+          "Oui",
+          "Oui",
+          7800,
+          10800,
+          "Oui"
+        ],
+        [
+          "ballon_thermodynamique",
+          "Ballon thermodynamique",
+          "Logement",
+          "CHFRC",
+          14,
+          "Oui",
+          "Oui",
+          2300,
+          3300,
+          "Oui"
+        ],
+        [
+          "ballon_ecs_electrique",
+          "Ballon ECS électrique (cumulus)",
+          "Logement",
+          "MUPPR",
+          16,
+          "Non",
+          "Non",
+          560,
+          780,
+          "Oui"
+        ],
+        [
+          "convecteurs_electriques",
+          "Ensemble convecteurs électriques",
+          "Logement",
+          "MUPPR",
+          24,
+          "Non",
+          "Non",
+          950,
+          1700,
+          "Oui"
+        ],
+        [
+          "panneaux_rayonnants",
+          "Ensemble panneaux rayonnants",
+          "Logement",
+          "MUPPR",
+          28,
+          "Non",
+          "Non",
+          1300,
+          2100,
+          "Oui"
+        ],
+        [
+          "bouches_vmc",
+          "Bouches VMC du logement",
+          "Logement",
+          "CHVBO",
+          40,
+          "Oui",
+          "Oui",
+          120,
+          260,
+          "Non"
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          "famille",
+          "libelle",
+          "niveau",
+          "code_metier",
+          "duree_vie_reference_ans",
+          "sous_contrat_entretien",
+          "visite_annuelle",
+          "cout_remplacement_min_ttc",
+          "cout_remplacement_max_ttc",
+          "dans_perimetre_prediction"
+        ],
+        [
+          "chaudiere_gaz_individuelle",
+          "Chaudière gaz individuelle",
+          "Logement",
+          "CHGAZ",
+          18,
+          "Oui",
+          "Oui",
+          2600,
+          3900,
+          "Oui"
+        ],
+        [
+          "pompe_a_chaleur",
+          "Pompe à chaleur air/eau",
+          "Logement",
+          "CHPAC",
+          16,
+          "Oui",
+          "Oui",
+          7800,
+          10800,
+          "Oui"
+        ],
+        [
+          "ballon_thermodynamique",
+          "Ballon thermodynamique",
+          "Logement",
+          "CHFRC",
+          14,
+          "Oui",
+          "Oui",
+          2300,
+          3300,
+          "Oui"
+        ],
+        [
+          "ballon_ecs_electrique",
+          "Ballon ECS électrique (cumulus)",
+          "Logement",
+          "MUPPR",
+          16,
+          "Non",
+          "Non",
+          560,
+          780,
+          "Oui"
+        ],
+        [
+          "convecteurs_electriques",
+          "Ensemble convecteurs électriques",
+          "Logement",
+          "MUPPR",
+          24,
+          "Non",
+          "Non",
+          950,
+          1700,
+          "Oui"
+        ],
+        [
+          "panneaux_rayonnants",
+          "Ensemble panneaux rayonnants",
+          "Logement",
+          "MUPPR",
+          28,
+          "Non",
+          "Non",
+          1300,
+          2100,
+          "Oui"
+        ],
+        [
+          "bouches_vmc",
+          "Bouches VMC du logement",
+          "Logement",
+          "CHVBO",
+          40,
+          "Oui",
+          "Oui",
+          120,
+          260,
+          "Non"
+        ],
+        [
+          "robinetterie_sanitaires",
+          "Robinetterie et sanitaires",
+          "Logement",
+          "MUPPR",
+          60,
+          "Oui",
+          "Oui",
+          150,
+          450,
+          "Non"
+        ],
+        [
+          "volets_roulants",
+          "Volets roulants du logement",
+          "Logement",
+          "MUPPR",
+          60,
+          "Non",
+          "Non",
+          250,
+          600,
+          "Non"
+        ],
+        [
+          "chaufferie_collective",
+          "Chaufferie gaz collective",
+          "Bâtiment",
+          "CHGCO",
+          26,
+          "Oui",
+          "Oui",
+          48000,
+          72000,
+          "Oui"
+        ],
+        [
+          "production_ecs_solaire",
+          "Production ECS solaire collective",
+          "Bâtiment",
+          "PECSO",
+          20,
+          "Oui",
+          "Oui",
+          9000,
+          15000,
+          "Oui"
+        ],
+        [
+          "caisson_vmc",
+          "Caisson VMC collectif",
+          "Bâtiment",
+          "CHVCC",
+          20,
+          "Oui",
+          "Oui",
+          2200,
+          3600,
+          "Oui"
+        ],
+        [
+          "ascenseur",
+          "Ascenseur",
+          "Bâtiment",
+          "ASC",
+          30,
+          "Oui",
+          "Oui",
+          62000,
+          95000,
+          "Oui"
+        ],
+        [
+          "porte_hall_interphonie",
+          "Porte de hall et interphonie",
+          "Bâtiment",
+          "MUPCO",
+          22,
+          "Non",
+          "Non",
+          3500,
+          7500,
+          "Non"
+        ]
+      ]
+    },
+    "ref_motifs_demandes": {
+      "rows": 33,
+      "columns": 3,
+      "first_rows": [
+        [
+          "motif",
+          "parties",
+          "nb_demandes_2019_2025"
+        ],
+        [
+          "demande de travaux partie privative",
+          "Privatives",
+          862
+        ],
+        [
+          "Sans Motif",
+          "Privatives",
+          667
+        ],
+        [
+          "Propreté résidence",
+          "Communes",
+          433
+        ],
+        [
+          "Panne équipement individuel électrique (chauffe eau, radiateur)",
+          "Privatives",
+          413
+        ],
+        [
+          "Nuisances sonores",
+          "Privatives",
+          318
+        ],
+        [
+          "Réclamation travaux partie privative",
+          "Privatives",
+          300
+        ],
+        [
+          "Résiliation de bail du logement",
+          "Privatives",
+          248
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          "motif",
+          "parties",
+          "nb_demandes_2019_2025"
+        ],
+        [
+          "demande de travaux partie privative",
+          "Privatives",
+          862
+        ],
+        [
+          "Sans Motif",
+          "Privatives",
+          667
+        ],
+        [
+          "Propreté résidence",
+          "Communes",
+          433
+        ],
+        [
+          "Panne équipement individuel électrique (chauffe eau, radiateur)",
+          "Privatives",
+          413
+        ],
+        [
+          "Nuisances sonores",
+          "Privatives",
+          318
+        ],
+        [
+          "Réclamation travaux partie privative",
+          "Privatives",
+          300
+        ],
+        [
+          "Résiliation de bail du logement",
+          "Privatives",
+          248
+        ],
+        [
+          "Souscription au TCE",
+          "Privatives",
+          171
+        ],
+        [
+          "Demande de clé / badge / émetteur supplémentaire",
+          "Communes",
+          169
+        ],
+        [
+          "panne équipement individuel gaz (chauffe eau/chaudière, radiateur)",
+          "Privatives",
+          167
+        ],
+        [
+          "Déclaration de sinistre",
+          "Privatives",
+          164
+        ],
+        [
+          "Contestation de l'état des lieux d'entrée",
+          "Privatives",
+          161
+        ],
+        [
+          "Fuite d'eau (inondation)",
+          "Privatives",
+          159
+        ],
+        [
+          "Panne électrique dans les parties communes",
+          "Communes",
+          121
+        ],
+        [
+          "Information visite annuelle",
+          "Privatives",
+          116
+        ],
+        [
+          "Demande d'un emplacement de stationnement",
+          "Privatives",
+          106
+        ],
+        [
+          "Dysfonctionnement de la fenêtre",
+          "Privatives",
+          81
+        ],
+        [
+          "Fuite d'eau (sans inondation)",
+          "Privatives",
+          72
+        ],
+        [
+          "Vandalisme dans les parties communes",
+          "Communes",
+          69
+        ],
+        [
+          "Cafards",
+          "Privatives",
+          68
+        ],
+        [
+          "Infiltration d'eau",
+          "Privatives",
+          58
+        ],
+        [
+          "Condensation dans le logement",
+          "Privatives",
+          55
+        ],
+        [
+          "Rat, souris",
+          "Communes",
+          51
+        ],
+        [
+          "Dysfonctionnement de la porte hall",
+          "Communes",
+          37
+        ],
+        [
+          "Température basse dans le logement",
+          "Privatives",
+          35
+        ],
+        [
+          "Problème de canalisation",
+          "Communes",
+          35
+        ],
+        [
+          "Dysfonctionnement du volet",
+          "Privatives",
+          33
+        ],
+        [
+          "Mauvaise réception TV",
+          "Communes",
+          32
+        ],
+        [
+          "VMC bruyante / Dysfonctionnement",
+          "Privatives",
+          13
+        ],
+        [
+          "Signalement d'une panne Ascenseur",
+          "Communes",
+          12
+        ],
+        [
+          "Absence de chauffage collectif",
+          "Communes",
+          5
+        ],
+        [
+          "VMC bruyante / Dysfonctionnement",
+          "Communes",
+          4
+        ]
+      ]
+    },
+    "ref_seuils_dpe": {
+      "rows": 8,
+      "columns": 3,
+      "first_rows": [
+        [
+          "classe",
+          "energie_primaire_kwh_m2_an",
+          "ges_kgco2_m2_an"
+        ],
+        [
+          "A",
+          "≤ 70",
+          "≤ 6"
+        ],
+        [
+          "B",
+          "71-110",
+          "7-11"
+        ],
+        [
+          "C",
+          "111-180",
+          "12-30"
+        ],
+        [
+          "D",
+          "181-250",
+          "31-50"
+        ],
+        [
+          "E",
+          "251-330",
+          "51-70"
+        ],
+        [
+          "F",
+          "331-420",
+          "71-100"
+        ],
+        [
+          "G",
+          "> 420",
+          "> 100"
+        ]
+      ],
+      "formulas": 0,
+      "all_rows": [
+        [
+          "classe",
+          "energie_primaire_kwh_m2_an",
+          "ges_kgco2_m2_an"
+        ],
+        [
+          "A",
+          "≤ 70",
+          "≤ 6"
+        ],
+        [
+          "B",
+          "71-110",
+          "7-11"
+        ],
+        [
+          "C",
+          "111-180",
+          "12-30"
+        ],
+        [
+          "D",
+          "181-250",
+          "31-50"
+        ],
+        [
+          "E",
+          "251-330",
+          "51-70"
+        ],
+        [
+          "F",
+          "331-420",
+          "71-100"
+        ],
+        [
+          "G",
+          "> 420",
+          "> 100"
+        ]
+      ]
+    }
+  }
+}

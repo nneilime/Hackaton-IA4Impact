@@ -1,0 +1,15 @@
+famille,libelle,niveau,code_metier,duree_vie_reference_ans,sous_contrat_entretien,visite_annuelle,cout_remplacement_min_ttc,cout_remplacement_max_ttc,dans_perimetre_prediction
+chaudiere_gaz_individuelle,Chaudière gaz individuelle,Logement,CHGAZ,18,Oui,Oui,2600,3900,Oui
+pompe_a_chaleur,Pompe à chaleur air/eau,Logement,CHPAC,16,Oui,Oui,7800,10800,Oui
+ballon_thermodynamique,Ballon thermodynamique,Logement,CHFRC,14,Oui,Oui,2300,3300,Oui
+ballon_ecs_electrique,Ballon ECS électrique (cumulus),Logement,MUPPR,16,Non,Non,560,780,Oui
+convecteurs_electriques,Ensemble convecteurs électriques,Logement,MUPPR,24,Non,Non,950,1700,Oui
+panneaux_rayonnants,Ensemble panneaux rayonnants,Logement,MUPPR,28,Non,Non,1300,2100,Oui
+bouches_vmc,Bouches VMC du logement,Logement,CHVBO,40,Oui,Oui,120,260,Non
+robinetterie_sanitaires,Robinetterie et sanitaires,Logement,MUPPR,60,Oui,Oui,150,450,Non
+volets_roulants,Volets roulants du logement,Logement,MUPPR,60,Non,Non,250,600,Non
+chaufferie_collective,Chaufferie gaz collective,Bâtiment,CHGCO,26,Oui,Oui,48000,72000,Oui
+production_ecs_solaire,Production ECS solaire collective,Bâtiment,PECSO,20,Oui,Oui,9000,15000,Oui
+caisson_vmc,Caisson VMC collectif,Bâtiment,CHVCC,20,Oui,Oui,2200,3600,Oui
+ascenseur,Ascenseur,Bâtiment,ASC,30,Oui,Oui,62000,95000,Oui
+porte_hall_interphonie,Porte de hall et interphonie,Bâtiment,MUPCO,22,Non,Non,3500,7500,Non

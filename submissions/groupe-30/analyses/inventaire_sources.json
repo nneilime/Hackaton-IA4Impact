@@ -1,0 +1,122 @@
+[
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\BatIA_Hackathon_Donnees_Fictives.xlsx",
+    "bytes": 3325050,
+    "sha256": "33eb2b5fc2113ff34acfa5dc46cea6088d7e489e6f5fecae72a4b14b6a725f4f"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\BatIA_notebook_demarrage.ipynb",
+    "bytes": 10733,
+    "sha256": "9910c5c20becb95d3239e86a5a1cf15c199f11b6eee9c536a94dd9716bb2e796"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\01_residences.csv",
+    "bytes": 2021,
+    "sha256": "f231b35ed833544852b55e035e634eb2634630ea61910d3796d591b4f8e362e5"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\02_batiments.csv",
+    "bytes": 763,
+    "sha256": "99dfbe66e5a7de411f3d48ae126c81aa8c3086dc0e3fa0464712f891ec048083"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\03_logements.csv",
+    "bytes": 121662,
+    "sha256": "6e75016f6e7c20aeb7485d4d69f82982f17859fc6ef7d91f55d0c8b0646491b2"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\04_equipements.csv",
+    "bytes": 732327,
+    "sha256": "f30a762ca30a75f8ee40df4223b4111a82e4f5fef2ab94aa79163337a78f6918"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\05_demandes_locataires.csv",
+    "bytes": 1553567,
+    "sha256": "03ca97f0d6b7e826adc643a420a56de6cdd8ef80f521ac7afb78f8467fbbccd8"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\06_interventions.csv",
+    "bytes": 4816767,
+    "sha256": "36b6be3ffea0a5a1528fa57595b99f37afcd3e77b5abef7e6c71a851fb82cd50"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\07_commandes.csv",
+    "bytes": 714176,
+    "sha256": "b239b1da8618ccb4782db7e499c2343409ce19b1668a91e0e0314bbd87cb6f82"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\08_plan_investissement.csv",
+    "bytes": 4515,
+    "sha256": "4f06cd5d0248a18be1d2128e31455ae1fd2028fdc973153fa9ad345b3092e021"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\09_prestataires.csv",
+    "bytes": 1189,
+    "sha256": "1b0cdec4584a1fd0cf15596d1b4c33065b0933f9bb7bb94529431120ded3e949"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\10_ref_codes_metiers.csv",
+    "bytes": 365,
+    "sha256": "517f31957b0fa88743ebf49646fc5e5092e7edef6481b4ae62fd47b054f03bae"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\10_ref_familles_equipements.csv",
+    "bytes": 1382,
+    "sha256": "915ad7ffe74803eb35307bd914612088a5e296302d103b2b39630e8d7b1278d5"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\10_ref_motifs_demandes.csv",
+    "bytes": 1501,
+    "sha256": "b699691d6a2c3d8e3d074a036e7f127ef7dbe086d8d1c21ee8fc5665fa3b207d"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\10_ref_seuils_dpe.csv",
+    "bytes": 158,
+    "sha256": "def96b197d96b6b083d802930db5cfb07268f54206eb604fbcae33f7d01597e2"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\LISEZ-MOI_BatIA.pdf",
+    "bytes": 96118,
+    "sha256": "ce4e2a1e7e35dba0c6b4f73f1652f6c4eab1f453b6b9f42ef6cbd9779f95a2b1"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\rapports_prestataire\\Rapport_activite_T2_2025_FICTIF.pdf",
+    "bytes": 45589,
+    "sha256": "fcf223b262afd396cd4a40caa73f6a3c0e89d0911e592525ae7d776128c5fbbc"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\rapports_prestataire\\Rapport_activite_T3_2025_FICTIF.pdf",
+    "bytes": 44663,
+    "sha256": "57eda4b28029f2619011fb56c9b6aea66c4a2a8eed80878c881061455bf1811b"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\rapports_prestataire\\Rapport_activite_T4_2025_FICTIF.pdf",
+    "bytes": 44371,
+    "sha256": "073becbe70f967dd76fda964c661b4618af39049f9d97b79dcdbafde249ffe60"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Logigramme_Donnees_ETUDIANTS.pdf",
+    "bytes": 130928,
+    "sha256": "aa4a24b953f6eecc762f934a01c5f5ef1f7bd9e9b0bc249a80a4d9a95ecb1b7e"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Logigramme_Donnees_ETUDIANTS.pptx",
+    "bytes": 72381,
+    "sha256": "70197938cd390ac7c9496667021492ef08edb5cb8ca2f4ca6a9d9870cf199773"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\DATA_MBA\\02_PHASE2_BatIA_INLISO.pdf",
+    "bytes": 695715,
+    "sha256": "b97b004b58b6e6b4b039e3c3adf5e0fc6ccd184acf035dbbe1e1d17bb99f98bb"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\DATA_MBA\\BatIA_Explication_Detaillee.pdf",
+    "bytes": 403413,
+    "sha256": "bbe5aa4ef60b9271209c45f4ab497b27bbd30d37ebb3227f5dceed28e5016e2f"
+  },
+  {
+    "path": "DATA 2 _le kit étudiants\\DATA_MBA\\BatIA_Logigramme_A3.pdf",
+    "bytes": 304390,
+    "sha256": "cc1e381665cb1926b99f63d83a04bef49ed8ab4d2c7b8fedda41b6da1bb3dbff"
+  }
+]

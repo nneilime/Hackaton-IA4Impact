@@ -1,0 +1,32 @@
+,,,,,
+,BâtIA — Jeu de données FICTIF,,,,
+,Hackathon IA for Impact 2026 · Défi In'li Sud-Ouest « Hacker le bâtiment avant qu'il ne casse »,,,,
+,,,,,
+,Ce que contient ce classeur,,,,
+,"8 résidences fictives (A à H), 1 100 logements, environ 4 200 équipements, historique 2018 → 31/12/2025.",,,,
+,"Toutes les données sont FICTIVES. Elles sont calibrées sur des statistiques agrégées réelles d'In'li Sud-Ouest, mais aucune ligne ne correspond à un logement, un locataire ou un prestataire réel.",,,,
+,"Les mêmes tables existent au format CSV (UTF-8, séparateur virgule, dates AAAA-MM-JJ) pour le travail en Python / R.",,,,
+,,,,,
+,Les deux défis,,,,
+,"1) Scoring de priorisation des rénovations : tables 01 à 03, 07 et 08 (enveloppe annuelle plafonnée à 1,5 M€ — hypothèse).",,,,
+,"2) Détection précoce de panne : prédire, pour chaque équipement où dans_perimetre_prediction = Oui, le risque de panne bloquante (dépannage « Arrêt total ») entre le 01/01/2026 et le 30/09/2026. Tables 04 à 06. Le jury détient la réponse.",,,,
+,,,,,
+,Comment relier les tables,,,,
+,residence_id → batiment_id → logement_id → equipement_id. Les interventions pointent vers equipement_id ; les demandes et commandes vers logement_id (vide pour les parties communes).,,,,
+,,,,,
+,Onglets,,,,
+,Onglet / fichier,Famille,Grain,Contenu et usage,Équivalent réel chez In'li
+,01_residences,Patrimoine,1 ligne = 1 résidence,"Carte d'identité des 8 résidences : époque, énergie, mode de chauffage, DPE moyen. Point d'entrée du scoring de rénovation.",Tableau de suivi DPE du patrimoine + base DPE ADEME
+,02_batiments,Patrimoine,1 ligne = 1 bâtiment / cage d'escalier,"Niveau des parties communes (ascenseur, porte de hall, VMC collective, chaufferie).",Référentiel patrimoine (codes escaliers)
+,03_logements,Patrimoine,1 ligne = 1 logement,"Typologie, surface, étage, DPE détaillé et rotation des locataires (sans aucune donnée personnelle).",Tableau de suivi DPE + base DPE ADEME + gestion locative
+,04_equipements,Équipements,1 ligne = 1 équipement (emplacement fonctionnel),"Inventaire avec date de pose, origine de cette date, durée de vie de référence, contrat d'entretien. Table centrale de la prédiction.",N'existe pas aujourd'hui sous cette forme : à constituer (GMAO prestataires + patrimoine)
+,05_demandes_locataires,Événements,1 ligne = 1 demande locataire,"Voix du locataire : motif, texte libre (fictif), priorité, délais. Exploitable en analyse de texte.",Outil de relation client (export « Toutes les demandes »)
+,06_interventions,Événements,1 ligne = 1 passage technicien,"Entretiens préventifs, dépannages (symptôme, gravité, commentaire), remplacements. Cœur de la maintenance prédictive.",Rapports et extraction GMAO des prestataires (contrat multiservices)
+,07_commandes,Événements,1 ligne = 1 bon de commande (facturation incluse),"Dimension coût : remplacements, réparations hors contrat, remises en état, parties communes.",ERP : listes des commandes et des factures
+,08_plan_investissement,Arbitrage,1 ligne = 1 opération envisagée,"Opérations 2026-2031 avec coût, gain énergétique, rang chronologique actuel. Enveloppe annuelle plafonnée : le scoring doit arbitrer.","Plan Moyen Terme (PMT) — non communiqué, table HYPOTHÉTIQUE"
+,09_prestataires,Référentiel,1 ligne = 1 prestataire fictif,Domaine et type de contrat.,Référentiel fournisseurs
+,10_ref_*,Référentiels,Tables de codes,"Familles d’équipements (durées de vie, coûts), codes métiers, motifs de demandes, seuils DPE.",Référentiels métiers
+,DICTIONNAIRE,Documentation,1 ligne = 1 colonne,Définition de chaque colonne et équivalent réel,
+,HYPOTHESES,Documentation,1 ligne = 1 règle,Registre des hypothèses avec leur niveau de preuve,
+,,,,,
+,"Contact référent : Guillaume Rougé, Responsable RSE & Innovation, In'li Sud-Ouest",,,,

@@ -1,0 +1,602 @@
+{
+  "scope": {
+    "equipments": 4217,
+    "to_score": 1285,
+    "families": {
+      "chaudiere_gaz_individuelle": 400,
+      "convecteurs_electriques": 230,
+      "ballon_ecs_electrique": 230,
+      "panneaux_rayonnants": 140,
+      "ballon_thermodynamique": 140,
+      "pompe_a_chaleur": 100,
+      "caisson_vmc": 23,
+      "ascenseur": 15,
+      "chaufferie_collective": 5,
+      "production_ecs_solaire": 2
+    },
+    "residences": {
+      "RES-G": 344,
+      "RES-E": 286,
+      "RES-A": 166,
+      "RES-F": 155,
+      "RES-B": 125,
+      "RES-D": 103,
+      "RES-H": 96,
+      "RES-C": 10
+    },
+    "levels": {
+      "Logement": 1240,
+      "B\u00e2timent (parties communes)": 45
+    }
+  },
+  "primary_keys": {
+    "01_residences": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "02_batiments": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "03_logements": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "04_equipements": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "05_demandes_locataires": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "06_interventions": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "07_commandes": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "08_plan_investissement": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "09_prestataires": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "10_ref_codes_metiers": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "10_ref_familles_equipements": {
+      "duplicates": 0,
+      "empty": 0
+    },
+    "10_ref_seuils_dpe": {
+      "duplicates": 0,
+      "empty": 0
+    }
+  },
+  "motifs_composite_key_duplicates": 0,
+  "foreign_keys": {
+    "01_residences": {},
+    "02_batiments": {
+      "residence_id": 0
+    },
+    "03_logements": {
+      "residence_id": 0,
+      "batiment_id": 0
+    },
+    "04_equipements": {
+      "residence_id": 0,
+      "batiment_id": 0,
+      "logement_id": 0,
+      "prestataire_id": 0,
+      "code_metier": 0,
+      "famille": 0
+    },
+    "05_demandes_locataires": {
+      "residence_id": 0,
+      "batiment_id": 0,
+      "logement_id": 0
+    },
+    "06_interventions": {
+      "residence_id": 0,
+      "batiment_id": 0,
+      "logement_id": 0,
+      "equipement_id": 0,
+      "prestataire_id": 0,
+      "demande_id_liee": 0,
+      "code_metier": 0
+    },
+    "07_commandes": {
+      "residence_id": 0,
+      "logement_id": 0,
+      "prestataire_id": 0
+    },
+    "08_plan_investissement": {
+      "residence_id": 0
+    },
+    "09_prestataires": {},
+    "10_ref_codes_metiers": {},
+    "10_ref_familles_equipements": {
+      "code_metier": 0
+    },
+    "10_ref_motifs_demandes": {},
+    "10_ref_seuils_dpe": {}
+  },
+  "location_consistency": {
+    "logements_batiments": {
+      "residence_id": 0
+    },
+    "equipements_logements": {
+      "residence_id": 0,
+      "batiment_id": 0
+    },
+    "interventions_equipements": {
+      "residence_id": 0,
+      "batiment_id": 0,
+      "logement_id": 0,
+      "code_metier": 0
+    },
+    "demandes_logements": {
+      "residence_id": 0,
+      "batiment_id": 0
+    }
+  },
+  "xlsx_csv_comparison": {
+    "01_residences": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "02_batiments": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "03_logements": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "04_equipements": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "05_demandes_locataires": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "06_interventions": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "07_commandes": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "08_plan_investissement": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "09_prestataires": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "10_ref_codes_metiers": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "10_ref_familles_equipements": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "10_ref_motifs_demandes": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    },
+    "10_ref_seuils_dpe": {
+      "headers_identical": true,
+      "rows_identical": true,
+      "different_cells": 0
+    }
+  },
+  "requests": {
+    "communal_requests": 968,
+    "communal_requests_with_housing": 968,
+    "linked_corrective": 368,
+    "all_corrective": 9955,
+    "distinct_linked_requests": 362,
+    "housing_with_multiple_scored_equipment": 370,
+    "technical_texts": 1623,
+    "technician_texts_nonempty": 18
+  },
+  "replacement": {
+    "events": 866,
+    "affected_ids": 846,
+    "multiple_replacements_ids": 20,
+    "multiple_replacements_scored_ids": 12,
+    "current_pose_differs_from_last_replacement_day": 0
+  },
+  "date_quality": {
+    "dpe_after_2024": 135,
+    "occupant_entry_non_date_values": {
+      "Avant 2018": 347
+    },
+    "request_closure_before_creation": 0,
+    "interventions_after_2025": 0,
+    "requests_after_2025": 0
+  },
+  "notebook_cutoff_audits": {
+    "2017": {
+      "negative_age_ids": [
+        "EQP-00851",
+        "EQP-00871",
+        "EQP-01669",
+        "EQP-02126",
+        "EQP-02377",
+        "EQP-02432",
+        "EQP-03170",
+        "EQP-03346",
+        "EQP-03458",
+        "EQP-03501",
+        "EQP-03542",
+        "EQP-03614",
+        "EQP-03698",
+        "EQP-03766",
+        "EQP-03981",
+        "EQP-03989",
+        "EQP-03993"
+      ],
+      "events_excluded_on_dec31": 0,
+      "current_replacement_count_leaks_future_ids": 459,
+      "requests_open_at_cutoff_with_future_closure": 0,
+      "old_lifetime_corrective_events_in_12m_feature": 0,
+      "old_lifetime_equipment_ids": 0
+    },
+    "2018": {
+      "negative_age_ids": [
+        "EQP-02377",
+        "EQP-02432",
+        "EQP-03346",
+        "EQP-03542",
+        "EQP-03698",
+        "EQP-03766",
+        "EQP-03989",
+        "EQP-03993"
+      ],
+      "events_excluded_on_dec31": 5,
+      "current_replacement_count_leaks_future_ids": 430,
+      "requests_open_at_cutoff_with_future_closure": 0,
+      "old_lifetime_corrective_events_in_12m_feature": 63,
+      "old_lifetime_equipment_ids": 33
+    },
+    "2019": {
+      "negative_age_ids": [
+        "EQP-02377",
+        "EQP-03542"
+      ],
+      "events_excluded_on_dec31": 6,
+      "current_replacement_count_leaks_future_ids": 374,
+      "requests_open_at_cutoff_with_future_closure": 2,
+      "old_lifetime_corrective_events_in_12m_feature": 103,
+      "old_lifetime_equipment_ids": 60
+    },
+    "2020": {
+      "negative_age_ids": [
+        "EQP-02377"
+      ],
+      "events_excluded_on_dec31": 6,
+      "current_replacement_count_leaks_future_ids": 322,
+      "requests_open_at_cutoff_with_future_closure": 1,
+      "old_lifetime_corrective_events_in_12m_feature": 107,
+      "old_lifetime_equipment_ids": 53
+    },
+    "2021": {
+      "negative_age_ids": [],
+      "events_excluded_on_dec31": 3,
+      "current_replacement_count_leaks_future_ids": 266,
+      "requests_open_at_cutoff_with_future_closure": 2,
+      "old_lifetime_corrective_events_in_12m_feature": 117,
+      "old_lifetime_equipment_ids": 56
+    },
+    "2022": {
+      "negative_age_ids": [],
+      "events_excluded_on_dec31": 2,
+      "current_replacement_count_leaks_future_ids": 204,
+      "requests_open_at_cutoff_with_future_closure": 3,
+      "old_lifetime_corrective_events_in_12m_feature": 119,
+      "old_lifetime_equipment_ids": 61
+    },
+    "2023": {
+      "negative_age_ids": [],
+      "events_excluded_on_dec31": 5,
+      "current_replacement_count_leaks_future_ids": 144,
+      "requests_open_at_cutoff_with_future_closure": 1,
+      "old_lifetime_corrective_events_in_12m_feature": 90,
+      "old_lifetime_equipment_ids": 59
+    },
+    "2024": {
+      "negative_age_ids": [],
+      "events_excluded_on_dec31": 9,
+      "current_replacement_count_leaks_future_ids": 79,
+      "requests_open_at_cutoff_with_future_closure": 0,
+      "old_lifetime_corrective_events_in_12m_feature": 137,
+      "old_lifetime_equipment_ids": 61
+    },
+    "2025": {
+      "negative_age_ids": [],
+      "events_excluded_on_dec31": 6,
+      "current_replacement_count_leaks_future_ids": 0,
+      "requests_open_at_cutoff_with_future_closure": 0,
+      "old_lifetime_corrective_events_in_12m_feature": 136,
+      "old_lifetime_equipment_ids": 75
+    }
+  },
+  "target_history": {
+    "2018": {
+      "blocking_events": 39,
+      "equipment_with_blocking_event": 34,
+      "prevalence": 0.026459143968871595,
+      "notebook_target_omits_ids": 1
+    },
+    "2019": {
+      "blocking_events": 69,
+      "equipment_with_blocking_event": 57,
+      "prevalence": 0.0443579766536965,
+      "notebook_target_omits_ids": 0
+    },
+    "2020": {
+      "blocking_events": 64,
+      "equipment_with_blocking_event": 54,
+      "prevalence": 0.04202334630350195,
+      "notebook_target_omits_ids": 1
+    },
+    "2021": {
+      "blocking_events": 64,
+      "equipment_with_blocking_event": 52,
+      "prevalence": 0.04046692607003891,
+      "notebook_target_omits_ids": 1
+    },
+    "2022": {
+      "blocking_events": 76,
+      "equipment_with_blocking_event": 60,
+      "prevalence": 0.04669260700389105,
+      "notebook_target_omits_ids": 0
+    },
+    "2023": {
+      "blocking_events": 64,
+      "equipment_with_blocking_event": 59,
+      "prevalence": 0.045914396887159536,
+      "notebook_target_omits_ids": 0
+    },
+    "2024": {
+      "blocking_events": 75,
+      "equipment_with_blocking_event": 64,
+      "prevalence": 0.049805447470817124,
+      "notebook_target_omits_ids": 1
+    },
+    "2025": {
+      "blocking_events": 86,
+      "equipment_with_blocking_event": 76,
+      "prevalence": 0.05914396887159533,
+      "notebook_target_omits_ids": 0
+    }
+  },
+  "notebook_baselines_reproduced": {
+    "target_positives": 76,
+    "age_relative": {
+      "auc": 0.7771810108397544,
+      "top_k": 129,
+      "hits": 16,
+      "precision_top10": 0.12403100775193798,
+      "recall_top10": 0.21052631578947367,
+      "lift_top10": 2.097103223174215
+    },
+    "logistic_2_features": "Non ex\u00e9cut\u00e9e : scikit-learn absent du runtime. Aucun paquet install\u00e9 pour cet audit de cadrage.",
+    "warning": "Reproduction du notebook avec ses limites temporelles ; aucune performance finale ni preuve terrain."
+  },
+  "age_baseline_full_days": {
+    "auc": 0.7771810108397544,
+    "top_k": 129,
+    "hits": 16,
+    "precision_top10": 0.12403100775193798,
+    "recall_top10": 0.21052631578947367,
+    "lift_top10": 2.097103223174215
+  },
+  "target_2025_by_family": {
+    "ascenseur": {
+      "n": 15,
+      "positive": 1
+    },
+    "ballon_ecs_electrique": {
+      "n": 230,
+      "positive": 10
+    },
+    "ballon_thermodynamique": {
+      "n": 140,
+      "positive": 10
+    },
+    "caisson_vmc": {
+      "n": 23,
+      "positive": 2
+    },
+    "chaudiere_gaz_individuelle": {
+      "n": 400,
+      "positive": 29
+    },
+    "chaufferie_collective": {
+      "n": 5,
+      "positive": 2
+    },
+    "convecteurs_electriques": {
+      "n": 230,
+      "positive": 8
+    },
+    "panneaux_rayonnants": {
+      "n": 140,
+      "positive": 0
+    },
+    "pompe_a_chaleur": {
+      "n": 100,
+      "positive": 14
+    },
+    "production_ecs_solaire": {
+      "n": 2,
+      "positive": 0
+    }
+  },
+  "report_cross_checks": {
+    "2": {
+      "corrective_events": 225,
+      "blocking_events": 39,
+      "by_trade": {
+        "CHFRC": 15,
+        "CHGAZ": 33,
+        "CHPAC": 28,
+        "CHVBO": 20,
+        "CHVCC": 4,
+        "MUPPR": 125
+      },
+      "alert_equipment_ids": [
+        "EQP-01449",
+        "EQP-01533",
+        "EQP-01585",
+        "EQP-01437",
+        "EQP-01561",
+        "EQP-01657",
+        "EQP-03323",
+        "EQP-03957",
+        "EQP-03965",
+        "EQP-01501",
+        "EQP-01581",
+        "EQP-01633",
+        "EQP-01729",
+        "EQP-02517"
+      ],
+      "alert_ids_outside_prediction_scope": [
+        "EQP-03323"
+      ],
+      "alert_ids_with_replacement_in_quarter": [],
+      "alert_ids_with_replacement_in_prior_9_months": [
+        "EQP-01449",
+        "EQP-01501",
+        "EQP-01581",
+        "EQP-02517"
+      ],
+      "codes_absent_from_report": [
+        "ASC",
+        "CHGCO",
+        "PECSO",
+        "MUPCO"
+      ]
+    },
+    "3": {
+      "corrective_events": 223,
+      "blocking_events": 32,
+      "by_trade": {
+        "CHFRC": 15,
+        "CHGAZ": 29,
+        "CHPAC": 16,
+        "CHVBO": 22,
+        "MUPPR": 141
+      },
+      "alert_equipment_ids": [
+        "EQP-01409",
+        "EQP-01449",
+        "EQP-01633",
+        "EQP-01437",
+        "EQP-04017",
+        "EQP-01729",
+        "EQP-02817",
+        "EQP-04001",
+        "EQP-00309",
+        "EQP-01581",
+        "EQP-02517",
+        "EQP-02577",
+        "EQP-02801",
+        "EQP-01461"
+      ],
+      "alert_ids_outside_prediction_scope": [],
+      "alert_ids_with_replacement_in_quarter": [],
+      "alert_ids_with_replacement_in_prior_9_months": [
+        "EQP-00309",
+        "EQP-01409",
+        "EQP-01449",
+        "EQP-01581",
+        "EQP-02517",
+        "EQP-02817",
+        "EQP-04001",
+        "EQP-04017"
+      ],
+      "codes_absent_from_report": [
+        "ASC",
+        "CHGCO",
+        "PECSO",
+        "MUPCO"
+      ]
+    },
+    "4": {
+      "corrective_events": 276,
+      "blocking_events": 25,
+      "by_trade": {
+        "CHFRC": 19,
+        "CHGAZ": 71,
+        "CHPAC": 30,
+        "CHVBO": 15,
+        "CHVCC": 6,
+        "MUPPR": 135
+      },
+      "alert_equipment_ids": [
+        "EQP-01633",
+        "EQP-01533",
+        "EQP-02357",
+        "EQP-02482",
+        "EQP-01561",
+        "EQP-00265",
+        "EQP-01409",
+        "EQP-02801",
+        "EQP-01477",
+        "EQP-01481",
+        "EQP-01625",
+        "EQP-01669",
+        "EQP-03957",
+        "EQP-00633"
+      ],
+      "alert_ids_outside_prediction_scope": [],
+      "alert_ids_with_replacement_in_quarter": [],
+      "alert_ids_with_replacement_in_prior_9_months": [
+        "EQP-01409",
+        "EQP-01533",
+        "EQP-02357",
+        "EQP-02482",
+        "EQP-03957"
+      ],
+      "codes_absent_from_report": [
+        "ASC",
+        "CHGCO",
+        "PECSO",
+        "MUPCO"
+      ]
+    }
+  },
+  "source_hashes_unchanged": true,
+  "validation": {
+    "integrity_and_scope": "PASS",
+    "auc_pairwise_vs_ranks": "PASS",
+    "pdf_quarterly_totals": "PASS",
+    "original_source_hashes": "PASS"
+  }
+}

@@ -1,0 +1,2518 @@
+{
+  "01_residences": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\01_residences.csv",
+    "delimiter": ",",
+    "rows": 8,
+    "columns": {
+      "residence_id": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "RES-A",
+          "RES-B",
+          "RES-C",
+          "RES-D",
+          "RES-E",
+          "RES-F"
+        ],
+        "counts": {
+          "RES-A": 1,
+          "RES-B": 1,
+          "RES-C": 1,
+          "RES-D": 1,
+          "RES-E": 1,
+          "RES-F": 1,
+          "RES-G": 1,
+          "RES-H": 1
+        }
+      },
+      "nom": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "Résidence A",
+          "Résidence B",
+          "Résidence C",
+          "Résidence D",
+          "Résidence E",
+          "Résidence F"
+        ],
+        "counts": {
+          "Résidence A": 1,
+          "Résidence B": 1,
+          "Résidence C": 1,
+          "Résidence D": 1,
+          "Résidence E": 1,
+          "Résidence F": 1,
+          "Résidence G": 1,
+          "Résidence H": 1
+        }
+      },
+      "localisation": {
+        "empty": 0,
+        "unique": 1,
+        "examples": [
+          "Métropole toulousaine (31) - zone climatique H2c"
+        ],
+        "counts": {
+          "Métropole toulousaine (31) - zone climatique H2c": 8
+        }
+      },
+      "annee_construction": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "1985",
+          "1992",
+          "1971",
+          "2011",
+          "2016",
+          "1978"
+        ],
+        "counts": {
+          "1985": 1,
+          "1992": 1,
+          "1971": 1,
+          "2011": 1,
+          "2016": 1,
+          "1978": 1,
+          "1968": 1,
+          "2009": 1
+        }
+      },
+      "nb_batiments": {
+        "empty": 0,
+        "unique": 5,
+        "examples": [
+          "6",
+          "4",
+          "5",
+          "3",
+          "2"
+        ],
+        "counts": {
+          "4": 2,
+          "5": 2,
+          "3": 2,
+          "6": 1,
+          "2": 1
+        }
+      },
+      "nb_logements": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "160",
+          "60",
+          "230",
+          "100",
+          "140",
+          "150"
+        ],
+        "counts": {
+          "160": 1,
+          "60": 1,
+          "230": 1,
+          "100": 1,
+          "140": 1,
+          "150": 1,
+          "170": 1,
+          "90": 1
+        }
+      },
+      "surface_habitable_totale_m2": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "9072",
+          "3529",
+          "14307",
+          "6109",
+          "7584",
+          "9048"
+        ],
+        "counts": {
+          "9072": 1,
+          "3529": 1,
+          "14307": 1,
+          "6109": 1,
+          "7584": 1,
+          "9048": 1,
+          "10324": 1,
+          "5568": 1
+        }
+      },
+      "ascenseur": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Non",
+          "Oui"
+        ],
+        "counts": {
+          "Oui": 5,
+          "Non": 3
+        }
+      },
+      "energie_chauffage": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Gaz",
+          "Électricité"
+        ],
+        "counts": {
+          "Gaz": 4,
+          "Électricité": 4
+        }
+      },
+      "type_chauffage": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Individuel",
+          "Collectif"
+        ],
+        "counts": {
+          "Individuel": 7,
+          "Collectif": 1
+        }
+      },
+      "generateur_chauffage": {
+        "empty": 0,
+        "unique": 6,
+        "examples": [
+          "Chaudière gaz individuelle (mixte chauffage + ECS)",
+          "Radiateurs électriques (convecteurs)",
+          "Chaufferie gaz collective",
+          "Pompe à chaleur air/eau individuelle",
+          "Panneaux rayonnants électriques",
+          "Chaudière gaz individuelle à condensation"
+        ],
+        "counts": {
+          "Chaudière gaz individuelle (mixte chauffage + ECS)": 2,
+          "Radiateurs électriques (convecteurs)": 2,
+          "Chaufferie gaz collective": 1,
+          "Pompe à chaleur air/eau individuelle": 1,
+          "Panneaux rayonnants électriques": 1,
+          "Chaudière gaz individuelle à condensation": 1
+        }
+      },
+      "production_ecs": {
+        "empty": 0,
+        "unique": 6,
+        "examples": [
+          "Gaz (chaudière mixte)",
+          "Ballon électrique individuel",
+          "Collective (chaufferie gaz)",
+          "Pompe à chaleur (ballon intégré)",
+          "Ballon thermodynamique individuel",
+          "Solaire collectif + appoint gaz"
+        ],
+        "counts": {
+          "Gaz (chaudière mixte)": 2,
+          "Ballon électrique individuel": 2,
+          "Collective (chaufferie gaz)": 1,
+          "Pompe à chaleur (ballon intégré)": 1,
+          "Ballon thermodynamique individuel": 1,
+          "Solaire collectif + appoint gaz": 1
+        }
+      },
+      "ventilation": {
+        "empty": 0,
+        "unique": 4,
+        "examples": [
+          "VMC simple flux autoréglable",
+          "Ventilation naturelle + extracteurs",
+          "VMC simple flux hygroréglable",
+          "Ventilation naturelle"
+        ],
+        "counts": {
+          "VMC simple flux autoréglable": 3,
+          "VMC simple flux hygroréglable": 3,
+          "Ventilation naturelle + extracteurs": 1,
+          "Ventilation naturelle": 1
+        }
+      },
+      "etiquette_dpe_majoritaire": {
+        "empty": 0,
+        "unique": 5,
+        "examples": [
+          "D",
+          "C",
+          "E",
+          "B",
+          "F"
+        ],
+        "counts": {
+          "C": 2,
+          "E": 2,
+          "B": 2,
+          "D": 1,
+          "F": 1
+        }
+      },
+      "conso_ep_moyenne_kwh_m2_an": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "155",
+          "159",
+          "272",
+          "97",
+          "89",
+          "244"
+        ],
+        "counts": {
+          "155": 1,
+          "159": 1,
+          "272": 1,
+          "97": 1,
+          "89": 1,
+          "244": 1,
+          "385": 1,
+          "116": 1
+        }
+      },
+      "ges_moyen_kgco2_m2_an": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "34.0",
+          "6.7",
+          "57.2",
+          "4.4",
+          "3.9",
+          "50.9"
+        ],
+        "counts": {
+          "34.0": 1,
+          "6.7": 1,
+          "57.2": 1,
+          "4.4": 1,
+          "3.9": 1,
+          "50.9": 1,
+          "16.7": 1,
+          "20.2": 1
+        }
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "02_batiments": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\02_batiments.csv",
+    "delimiter": ",",
+    "rows": 32,
+    "columns": {
+      "batiment_id": {
+        "empty": 0,
+        "unique": 32,
+        "examples": [
+          "BAT-A1",
+          "BAT-A2",
+          "BAT-A3",
+          "BAT-A4",
+          "BAT-A5",
+          "BAT-A6"
+        ]
+      },
+      "residence_id": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "RES-A",
+          "RES-B",
+          "RES-C",
+          "RES-D",
+          "RES-E",
+          "RES-F"
+        ],
+        "counts": {
+          "RES-A": 6,
+          "RES-C": 5,
+          "RES-F": 5,
+          "RES-B": 4,
+          "RES-G": 4,
+          "RES-D": 3,
+          "RES-E": 3,
+          "RES-H": 2
+        }
+      },
+      "nb_niveaux": {
+        "empty": 0,
+        "unique": 6,
+        "examples": [
+          "4",
+          "6",
+          "3",
+          "9",
+          "5",
+          "7"
+        ],
+        "counts": {
+          "5": 10,
+          "4": 8,
+          "3": 4,
+          "7": 4,
+          "6": 3,
+          "9": 3
+        }
+      },
+      "nb_logements": {
+        "empty": 0,
+        "unique": 11,
+        "examples": [
+          "27",
+          "26",
+          "15",
+          "46",
+          "34",
+          "33"
+        ],
+        "counts": {
+          "46": 6,
+          "30": 5,
+          "27": 4,
+          "15": 4,
+          "26": 2,
+          "33": 2,
+          "47": 2,
+          "43": 2,
+          "42": 2,
+          "45": 2,
+          "34": 1
+        }
+      },
+      "ascenseur": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Non",
+          "Oui"
+        ],
+        "counts": {
+          "Non": 17,
+          "Oui": 15
+        }
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "03_logements": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\03_logements.csv",
+    "delimiter": ",",
+    "rows": 1100,
+    "columns": {
+      "logement_id": {
+        "empty": 0,
+        "unique": 1100,
+        "examples": [
+          "LGT-A1-001",
+          "LGT-A1-002",
+          "LGT-A1-003",
+          "LGT-A1-004",
+          "LGT-A1-005",
+          "LGT-A1-006"
+        ]
+      },
+      "batiment_id": {
+        "empty": 0,
+        "unique": 32,
+        "examples": [
+          "BAT-A1",
+          "BAT-A2",
+          "BAT-A3",
+          "BAT-A4",
+          "BAT-A5",
+          "BAT-A6"
+        ]
+      },
+      "residence_id": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "RES-A",
+          "RES-B",
+          "RES-C",
+          "RES-D",
+          "RES-E",
+          "RES-F"
+        ],
+        "counts": {
+          "RES-C": 230,
+          "RES-G": 170,
+          "RES-A": 160,
+          "RES-F": 150,
+          "RES-E": 140,
+          "RES-D": 100,
+          "RES-H": 90,
+          "RES-B": 60
+        }
+      },
+      "typologie": {
+        "empty": 0,
+        "unique": 5,
+        "examples": [
+          "T3",
+          "T4",
+          "T2",
+          "T1",
+          "T5"
+        ],
+        "counts": {
+          "T3": 428,
+          "T2": 310,
+          "T4": 223,
+          "T1": 104,
+          "T5": 35
+        }
+      },
+      "surface_habitable_m2": {
+        "empty": 0,
+        "unique": 531,
+        "examples": [
+          "67.4",
+          "72.7",
+          "75.6",
+          "73.0",
+          "40.3",
+          "71.7"
+        ]
+      },
+      "etage": {
+        "empty": 0,
+        "unique": 9,
+        "examples": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "counts": {
+          "0": 230,
+          "2": 221,
+          "1": 218,
+          "3": 174,
+          "4": 133,
+          "5": 55,
+          "6": 39,
+          "7": 15,
+          "8": 15
+        }
+      },
+      "dpe_methode": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Ancien DPE (avant 07/2021)",
+          "Nouveau DPE (méthode 3CL 2021)"
+        ],
+        "counts": {
+          "Nouveau DPE (méthode 3CL 2021)": 617,
+          "Ancien DPE (avant 07/2021)": 483
+        }
+      },
+      "dpe_date": {
+        "empty": 0,
+        "unique": 954,
+        "examples": [
+          "2017-11-06",
+          "2021-12-18",
+          "2022-12-15",
+          "2016-06-20",
+          "2022-01-23",
+          "2022-03-17"
+        ],
+        "date_min": "2012-01-06 00:00:00",
+        "date_max": "2025-12-14 00:00:00",
+        "invalid_dates": 0
+      },
+      "dpe_conso_ep_kwh_m2_an": {
+        "empty": 0,
+        "unique": 356,
+        "examples": [
+          "162",
+          "151",
+          "160",
+          "177",
+          "158",
+          "175"
+        ]
+      },
+      "dpe_ges_kgco2_m2_an": {
+        "empty": 0,
+        "unique": 506,
+        "examples": [
+          "45.1",
+          "46.7",
+          "48.2",
+          "40.0",
+          "44.9",
+          "47.5"
+        ]
+      },
+      "dpe_etiquette_energie": {
+        "empty": 0,
+        "unique": 7,
+        "examples": [
+          "C",
+          "B",
+          "D",
+          "F",
+          "E",
+          "A"
+        ],
+        "counts": {
+          "C": 264,
+          "B": 253,
+          "E": 240,
+          "D": 167,
+          "F": 124,
+          "G": 39,
+          "A": 13
+        }
+      },
+      "dpe_etiquette_ges": {
+        "empty": 0,
+        "unique": 6,
+        "examples": [
+          "D",
+          "C",
+          "E",
+          "A",
+          "B",
+          "F"
+        ],
+        "counts": {
+          "C": 305,
+          "A": 258,
+          "D": 243,
+          "E": 212,
+          "B": 48,
+          "F": 34
+        }
+      },
+      "dpe_etiquette_globale": {
+        "empty": 0,
+        "unique": 7,
+        "examples": [
+          "D",
+          "C",
+          "E",
+          "F",
+          "B",
+          "A"
+        ],
+        "counts": {
+          "E": 270,
+          "D": 217,
+          "B": 213,
+          "C": 198,
+          "F": 150,
+          "G": 39,
+          "A": 13
+        }
+      },
+      "nb_changements_locataire_2018_2025": {
+        "empty": 0,
+        "unique": 7,
+        "examples": [
+          "0",
+          "1",
+          "3",
+          "2",
+          "4",
+          "6"
+        ],
+        "counts": {
+          "1": 412,
+          "0": 347,
+          "2": 225,
+          "3": 87,
+          "4": 21,
+          "5": 7,
+          "6": 1
+        }
+      },
+      "date_entree_locataire_actuel": {
+        "empty": 0,
+        "unique": 653,
+        "examples": [
+          "Avant 2018",
+          "2019-04-21",
+          "2025-12-30",
+          "2018-08-16",
+          "2025-01-29",
+          "2022-10-30"
+        ],
+        "date_min": "2018-01-03 00:00:00",
+        "date_max": "2025-12-31 00:00:00",
+        "invalid_dates": 347
+      },
+      "statut_occupation": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Occupé",
+          "Vacant"
+        ],
+        "counts": {
+          "Occupé": 1069,
+          "Vacant": 31
+        }
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "04_equipements": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\04_equipements.csv",
+    "delimiter": ",",
+    "rows": 4217,
+    "columns": {
+      "equipement_id": {
+        "empty": 0,
+        "unique": 4217,
+        "examples": [
+          "EQP-00001",
+          "EQP-00002",
+          "EQP-00003",
+          "EQP-00004",
+          "EQP-00005",
+          "EQP-00006"
+        ]
+      },
+      "famille": {
+        "empty": 0,
+        "unique": 14,
+        "examples": [
+          "chaudiere_gaz_individuelle",
+          "bouches_vmc",
+          "robinetterie_sanitaires",
+          "volets_roulants",
+          "convecteurs_electriques",
+          "ballon_ecs_electrique"
+        ],
+        "counts": {
+          "robinetterie_sanitaires": 1100,
+          "volets_roulants": 1100,
+          "bouches_vmc": 700,
+          "chaudiere_gaz_individuelle": 400,
+          "convecteurs_electriques": 230,
+          "ballon_ecs_electrique": 230,
+          "panneaux_rayonnants": 140,
+          "ballon_thermodynamique": 140,
+          "pompe_a_chaleur": 100,
+          "porte_hall_interphonie": 32,
+          "caisson_vmc": 23,
+          "ascenseur": 15,
+          "chaufferie_collective": 5,
+          "production_ecs_solaire": 2
+        }
+      },
+      "libelle_famille": {
+        "empty": 0,
+        "unique": 14,
+        "examples": [
+          "Chaudière gaz individuelle",
+          "Bouches VMC du logement",
+          "Robinetterie et sanitaires",
+          "Volets roulants du logement",
+          "Ensemble convecteurs électriques",
+          "Ballon ECS électrique (cumulus)"
+        ],
+        "counts": {
+          "Robinetterie et sanitaires": 1100,
+          "Volets roulants du logement": 1100,
+          "Bouches VMC du logement": 700,
+          "Chaudière gaz individuelle": 400,
+          "Ensemble convecteurs électriques": 230,
+          "Ballon ECS électrique (cumulus)": 230,
+          "Ensemble panneaux rayonnants": 140,
+          "Ballon thermodynamique": 140,
+          "Pompe à chaleur air/eau": 100,
+          "Porte de hall et interphonie": 32,
+          "Caisson VMC collectif": 23,
+          "Ascenseur": 15,
+          "Chaufferie gaz collective": 5,
+          "Production ECS solaire collective": 2
+        }
+      },
+      "niveau_rattachement": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Logement",
+          "Bâtiment (parties communes)"
+        ],
+        "counts": {
+          "Logement": 4140,
+          "Bâtiment (parties communes)": 77
+        }
+      },
+      "residence_id": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "RES-A",
+          "RES-B",
+          "RES-C",
+          "RES-D",
+          "RES-E",
+          "RES-F"
+        ],
+        "counts": {
+          "RES-E": 709,
+          "RES-G": 688,
+          "RES-A": 652,
+          "RES-F": 610,
+          "RES-C": 475,
+          "RES-D": 406,
+          "RES-H": 368,
+          "RES-B": 309
+        }
+      },
+      "batiment_id": {
+        "empty": 0,
+        "unique": 32,
+        "examples": [
+          "BAT-A1",
+          "BAT-A2",
+          "BAT-A3",
+          "BAT-A4",
+          "BAT-A5",
+          "BAT-A6"
+        ]
+      },
+      "logement_id": {
+        "empty": 77,
+        "unique": 1100,
+        "examples": [
+          "LGT-A1-001",
+          "LGT-A1-002",
+          "LGT-A1-003",
+          "LGT-A1-004",
+          "LGT-A1-005",
+          "LGT-A1-006"
+        ]
+      },
+      "date_pose": {
+        "empty": 0,
+        "unique": 1844,
+        "examples": [
+          "2016-02-02",
+          "1985-06-01",
+          "2024-05-29",
+          "2016-06-30",
+          "2016-03-04",
+          "1998-06-21"
+        ],
+        "date_min": "1968-06-01 00:00:00",
+        "date_max": "2025-12-31 00:00:00",
+        "invalid_dates": 0
+      },
+      "origine_date_pose": {
+        "empty": 0,
+        "unique": 4,
+        "examples": [
+          "Fait réel transposé (renouvellement complet en 2016)",
+          "Hypothèse (équipement d'origine)",
+          "Remplacement tracé dans les interventions",
+          "Hypothèse (simulation depuis la construction)"
+        ],
+        "counts": {
+          "Hypothèse (équipement d'origine)": 2124,
+          "Hypothèse (simulation depuis la construction)": 1111,
+          "Remplacement tracé dans les interventions": 846,
+          "Fait réel transposé (renouvellement complet en 2016)": 136
+        }
+      },
+      "date_pose_precedente": {
+        "empty": 3371,
+        "unique": 403,
+        "examples": [
+          "1985-06-01",
+          "1987-08-31",
+          "2005-09-19",
+          "2016-03-24",
+          "2016-03-07",
+          "2016-03-22"
+        ],
+        "date_min": "1968-06-01 00:00:00",
+        "date_max": "2021-09-30 00:00:00",
+        "invalid_dates": 0
+      },
+      "nb_remplacements_2018_2025": {
+        "empty": 0,
+        "unique": 3,
+        "examples": [
+          "0",
+          "1",
+          "2"
+        ],
+        "counts": {
+          "0": 3371,
+          "1": 826,
+          "2": 20
+        }
+      },
+      "duree_vie_reference_ans": {
+        "empty": 0,
+        "unique": 11,
+        "examples": [
+          "18",
+          "40",
+          "60",
+          "24",
+          "16",
+          "28"
+        ],
+        "counts": {
+          "60": 2200,
+          "40": 700,
+          "18": 400,
+          "16": 330,
+          "24": 230,
+          "28": 140,
+          "14": 140,
+          "22": 32,
+          "20": 25,
+          "30": 15,
+          "26": 5
+        }
+      },
+      "sous_contrat_entretien": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Oui",
+          "Non"
+        ],
+        "counts": {
+          "Oui": 2485,
+          "Non": 1732
+        }
+      },
+      "visite_annuelle_prevue": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Oui",
+          "Non"
+        ],
+        "counts": {
+          "Oui": 2485,
+          "Non": 1732
+        }
+      },
+      "code_metier": {
+        "empty": 0,
+        "unique": 10,
+        "examples": [
+          "CHGAZ",
+          "CHVBO",
+          "MUPPR",
+          "CHPAC",
+          "CHFRC",
+          "MUPCO"
+        ],
+        "counts": {
+          "MUPPR": 2800,
+          "CHVBO": 700,
+          "CHGAZ": 400,
+          "CHFRC": 140,
+          "CHPAC": 100,
+          "MUPCO": 32,
+          "CHVCC": 23,
+          "ASC": 15,
+          "CHGCO": 5,
+          "PECSO": 2
+        }
+      },
+      "prestataire_id": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "PRE01",
+          "PRE06",
+          "PRE05",
+          "PRE04",
+          "PRE13",
+          "PRE03"
+        ],
+        "counts": {
+          "PRE01": 2463,
+          "PRE06": 1100,
+          "PRE05": 370,
+          "PRE04": 230,
+          "PRE13": 32,
+          "PRE03": 15,
+          "PRE02": 5,
+          "PRE14": 2
+        }
+      },
+      "dans_perimetre_prediction": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Oui",
+          "Non"
+        ],
+        "counts": {
+          "Non": 2932,
+          "Oui": 1285
+        }
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "05_demandes_locataires": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\05_demandes_locataires.csv",
+    "delimiter": ",",
+    "rows": 5235,
+    "columns": {
+      "demande_id": {
+        "empty": 0,
+        "unique": 5235,
+        "examples": [
+          "DEM-3100001",
+          "DEM-3100002",
+          "DEM-3100003",
+          "DEM-3100004",
+          "DEM-3100005",
+          "DEM-3100006"
+        ]
+      },
+      "date_creation": {
+        "empty": 0,
+        "unique": 5202,
+        "examples": [
+          "2019-02-01 09:50",
+          "2019-02-01 20:59",
+          "2019-02-02 11:07",
+          "2019-02-03 14:18",
+          "2019-02-03 18:17",
+          "2019-02-03 22:13"
+        ],
+        "date_min": "2019-02-01 09:50:00",
+        "date_max": "2025-12-31 23:30:00",
+        "invalid_dates": 0
+      },
+      "date_cloture": {
+        "empty": 5,
+        "unique": 5227,
+        "examples": [
+          "2019-02-01 12:02",
+          "2019-02-05 20:05",
+          "2019-02-02 14:25",
+          "2019-02-03 17:06",
+          "2019-02-03 20:11",
+          "2019-02-03 22:19"
+        ],
+        "date_min": "2019-02-01 12:02:00",
+        "date_max": "2025-12-31 22:37:00",
+        "invalid_dates": 0
+      },
+      "logement_id": {
+        "empty": 0,
+        "unique": 1078,
+        "examples": [
+          "LGT-A3-010",
+          "LGT-F5-030",
+          "LGT-C4-011",
+          "LGT-H1-045",
+          "LGT-C2-012",
+          "LGT-C5-024"
+        ]
+      },
+      "batiment_id": {
+        "empty": 0,
+        "unique": 32,
+        "examples": [
+          "BAT-A3",
+          "BAT-F5",
+          "BAT-C4",
+          "BAT-H1",
+          "BAT-C2",
+          "BAT-C5"
+        ]
+      },
+      "residence_id": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "RES-A",
+          "RES-F",
+          "RES-C",
+          "RES-H",
+          "RES-D",
+          "RES-G"
+        ],
+        "counts": {
+          "RES-G": 1119,
+          "RES-C": 892,
+          "RES-F": 701,
+          "RES-E": 599,
+          "RES-B": 598,
+          "RES-A": 458,
+          "RES-D": 442,
+          "RES-H": 426
+        }
+      },
+      "parties": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Privatives",
+          "Communes"
+        ],
+        "counts": {
+          "Privatives": 4267,
+          "Communes": 968
+        }
+      },
+      "canal": {
+        "empty": 0,
+        "unique": 4,
+        "examples": [
+          "Email service client",
+          "Téléphone service client",
+          "Espace locataire en ligne",
+          "Téléphone astreinte"
+        ],
+        "counts": {
+          "Email service client": 2629,
+          "Téléphone service client": 2066,
+          "Espace locataire en ligne": 399,
+          "Téléphone astreinte": 141
+        }
+      },
+      "motif": {
+        "empty": 0,
+        "unique": 31,
+        "examples": [
+          "demande de travaux partie privative",
+          "panne équipement individuel gaz (chauffe eau/chaudière, radiateur)",
+          "Réclamation travaux partie privative",
+          "Sans Motif",
+          "Dysfonctionnement de la fenêtre",
+          "Déclaration de sinistre"
+        ]
+      },
+      "objet": {
+        "empty": 0,
+        "unique": 78,
+        "examples": [
+          "Travaux dans le logement",
+          "Problème de chauffage",
+          "Réclamation travaux",
+          "Demande de travaux",
+          "Demande d'information",
+          "Fenêtre ne ferme plus"
+        ]
+      },
+      "texte_demande": {
+        "empty": 0,
+        "unique": 1623,
+        "examples": [
+          "Bonjour, Je souhaiterais savoir s'il est possible de faire remplacer le meuble sous évier. Merci d'avance.",
+          "Je vous signale que la pression de la chaudière baisse régulièrement, je dois la remettre en pression très souvent. Cordialement.",
+          "Bonjour, L'entreprise n'est pas venue au rendez-vous fixé.",
+          "Bonjour, Le revêtement de sol est en mauvais état, pouvez-vous prévoir une intervention ? Je reste disponible pour un rendez-vous.",
+          "Bonjour Madame, Monsieur, Pouvez-vous me rappeler concernant mon dossier ? Merci de faire le nécessaire.",
+          "Madame, Monsieur, Je souhaiterais savoir s'il est possible de faire remplacer le plan de travail. Merci d'avance."
+        ]
+      },
+      "priorite": {
+        "empty": 0,
+        "unique": 4,
+        "examples": [
+          "P2 - Résolution 48h",
+          "P4 - Résolution 5 jours",
+          "P6 - Résolution 15 jours",
+          "P1 - Résolution 24h"
+        ],
+        "counts": {
+          "P4 - Résolution 5 jours": 1806,
+          "P1 - Résolution 24h": 1777,
+          "P2 - Résolution 48h": 927,
+          "P6 - Résolution 15 jours": 725
+        }
+      },
+      "nb_echanges": {
+        "empty": 0,
+        "unique": 42,
+        "examples": [
+          "5",
+          "3",
+          "10",
+          "26",
+          "13",
+          "7"
+        ]
+      },
+      "demande_reouverte": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Non",
+          "Oui"
+        ],
+        "counts": {
+          "Non": 3163,
+          "Oui": 2072
+        }
+      },
+      "delai_resolution_h": {
+        "empty": 5,
+        "unique": 739,
+        "examples": [
+          "2.2",
+          "95.1",
+          "3.3",
+          "2.8",
+          "1.9",
+          "0.1"
+        ]
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "06_interventions": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\06_interventions.csv",
+    "delimiter": ",",
+    "rows": 30630,
+    "columns": {
+      "intervention_id": {
+        "empty": 0,
+        "unique": 30630,
+        "examples": [
+          "INT-000001",
+          "INT-000002",
+          "INT-000003",
+          "INT-000004",
+          "INT-000005",
+          "INT-000006"
+        ]
+      },
+      "date_intervention": {
+        "empty": 0,
+        "unique": 30075,
+        "examples": [
+          "2018-01-01 09:07",
+          "2018-01-01 11:09",
+          "2018-01-01 13:01",
+          "2018-01-01 13:46",
+          "2018-01-01 16:00",
+          "2018-01-02 09:01"
+        ],
+        "date_min": "2018-01-01 09:07:00",
+        "date_max": "2025-12-31 17:10:00",
+        "invalid_dates": 0
+      },
+      "residence_id": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "RES-H",
+          "RES-G",
+          "RES-F",
+          "RES-A",
+          "RES-D",
+          "RES-C"
+        ],
+        "counts": {
+          "RES-F": 5455,
+          "RES-A": 5331,
+          "RES-E": 4308,
+          "RES-D": 3694,
+          "RES-C": 3649,
+          "RES-G": 3362,
+          "RES-H": 3105,
+          "RES-B": 1726
+        }
+      },
+      "batiment_id": {
+        "empty": 0,
+        "unique": 32,
+        "examples": [
+          "BAT-H1",
+          "BAT-G1",
+          "BAT-H2",
+          "BAT-F5",
+          "BAT-G3",
+          "BAT-A2"
+        ]
+      },
+      "logement_id": {
+        "empty": 1622,
+        "unique": 1100,
+        "examples": [
+          "LGT-H1-022",
+          "LGT-H2-033",
+          "LGT-F5-006",
+          "LGT-G3-035",
+          "LGT-A2-007",
+          "LGT-F1-016"
+        ]
+      },
+      "equipement_id": {
+        "empty": 0,
+        "unique": 3362,
+        "examples": [
+          "EQP-03865",
+          "EQP-04203",
+          "EQP-04089",
+          "EQP-03004",
+          "EQP-03584",
+          "EQP-00133"
+        ]
+      },
+      "type_intervention": {
+        "empty": 0,
+        "unique": 3,
+        "examples": [
+          "Dépannage",
+          "Entretien préventif",
+          "Remplacement"
+        ],
+        "counts": {
+          "Entretien préventif": 19809,
+          "Dépannage": 9955,
+          "Remplacement": 866
+        }
+      },
+      "code_metier": {
+        "empty": 0,
+        "unique": 10,
+        "examples": [
+          "CHGAZ",
+          "ASC",
+          "MUPPR",
+          "CHPAC",
+          "CHVBO",
+          "CHGCO"
+        ],
+        "counts": {
+          "MUPPR": 14917,
+          "CHVBO": 6164,
+          "CHGAZ": 4782,
+          "CHPAC": 1659,
+          "CHFRC": 1486,
+          "ASC": 643,
+          "MUPCO": 505,
+          "CHVCC": 273,
+          "CHGCO": 165,
+          "PECSO": 36
+        }
+      },
+      "prestataire_id": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "PRE01",
+          "PRE03",
+          "PRE06",
+          "PRE05",
+          "PRE02",
+          "PRE04"
+        ],
+        "counts": {
+          "PRE01": 27385,
+          "PRE06": 873,
+          "PRE03": 643,
+          "PRE04": 578,
+          "PRE13": 505,
+          "PRE05": 445,
+          "PRE02": 165,
+          "PRE14": 36
+        }
+      },
+      "symptome": {
+        "empty": 20675,
+        "unique": 60,
+        "examples": [
+          "Défaut sonde / thermostat",
+          "Ascenseur à l'arrêt",
+          "Défaut carte électronique",
+          "Volet bloqué",
+          "Sangle cassée",
+          "Fuite circuit hydraulique"
+        ]
+      },
+      "gravite": {
+        "empty": 20675,
+        "unique": 3,
+        "examples": [
+          "Fonctionnement dégradé",
+          "Arrêt total",
+          "Gêne mineure"
+        ],
+        "counts": {
+          "": 20675,
+          "Fonctionnement dégradé": 5241,
+          "Gêne mineure": 3350,
+          "Arrêt total": 1364
+        }
+      },
+      "resultat": {
+        "empty": 0,
+        "unique": 7,
+        "examples": [
+          "Réparé",
+          "Remplacement nécessaire",
+          "Logement absent - visite non réalisée",
+          "Visite réalisée - RAS",
+          "Pièce commandée - second passage",
+          "Équipement remplacé"
+        ],
+        "counts": {
+          "Visite réalisée - RAS": 13282,
+          "Réparé": 6818,
+          "Logement absent - visite non réalisée": 4955,
+          "Pièce commandée - second passage": 2263,
+          "Anomalie constatée": 1572,
+          "Remplacement nécessaire": 874,
+          "Équipement remplacé": 866
+        }
+      },
+      "commentaire_technicien": {
+        "empty": 4955,
+        "unique": 18,
+        "examples": [
+          "Contrôle effectué, RAS",
+          "Intervention réalisée, appareil fonctionnel",
+          "Réglage effectué",
+          "Panne irréparable, remplacement à commander",
+          "Entretien annuel réalisé",
+          "Pièce remplacée, essais OK"
+        ],
+        "counts": {
+          "Entretien annuel réalisé": 13282,
+          "": 4955,
+          "Nettoyage et remise en service": 1197,
+          "Remise en service après réarmement": 1174,
+          "Réglage effectué": 1138,
+          "Intervention réalisée, appareil fonctionnel": 1136,
+          "Pièce remplacée, essais OK": 1130,
+          "Purge et remise en pression": 1127,
+          "Contrôle effectué, RAS": 1088,
+          "Pose d'un équipement neuf, mise en service OK": 866,
+          "Nombreux redémarrages enregistrés": 470,
+          "Traces de corrosion visibles sur l'appareil": 457,
+          "Usure avancée constatée, pièce à surveiller": 449,
+          "Pièce de rechange difficile à obtenir": 436,
+          "Appareil vieillissant, remplacement à prévoir": 426,
+          "Réparation provisoire, fiabilité incertaine": 425,
+          "Panne irréparable, remplacement à commander": 299,
+          "Appareil hors service, réparation non rentable": 296,
+          "Défaillance majeure, appareil en fin de vie": 279
+        }
+      },
+      "demande_id_liee": {
+        "empty": 30262,
+        "unique": 362,
+        "examples": [
+          "DEM-3100014",
+          "DEM-3100012",
+          "DEM-3100025",
+          "DEM-3100021",
+          "DEM-3100084",
+          "DEM-3100088"
+        ]
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "07_commandes": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\07_commandes.csv",
+    "delimiter": ",",
+    "rows": 5253,
+    "columns": {
+      "commande_id": {
+        "empty": 0,
+        "unique": 5253,
+        "examples": [
+          "CMD-060001",
+          "CMD-060002",
+          "CMD-060003",
+          "CMD-060004",
+          "CMD-060005",
+          "CMD-060006"
+        ]
+      },
+      "date_commande": {
+        "empty": 0,
+        "unique": 2462,
+        "examples": [
+          "2018-01-03",
+          "2018-01-05",
+          "2018-01-07",
+          "2018-01-08",
+          "2018-01-09",
+          "2018-01-10"
+        ],
+        "date_min": "2018-01-03 00:00:00",
+        "date_max": "2025-12-31 00:00:00",
+        "invalid_dates": 0
+      },
+      "residence_id": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "RES-G",
+          "RES-F",
+          "RES-C",
+          "RES-B",
+          "RES-H",
+          "RES-A"
+        ],
+        "counts": {
+          "RES-G": 1099,
+          "RES-C": 858,
+          "RES-F": 737,
+          "RES-A": 726,
+          "RES-E": 562,
+          "RES-B": 462,
+          "RES-D": 450,
+          "RES-H": 359
+        }
+      },
+      "logement_id": {
+        "empty": 919,
+        "unique": 1002,
+        "examples": [
+          "LGT-G3-035",
+          "LGT-G4-014",
+          "LGT-G4-017",
+          "LGT-G3-039",
+          "LGT-F5-016",
+          "LGT-C3-016"
+        ]
+      },
+      "libelle": {
+        "empty": 0,
+        "unique": 40,
+        "examples": [
+          "REMPLACEMENT VOLETS ROULANTS",
+          "REMPLACEMENT THERMOSTAT RADIATEUR",
+          "DPE",
+          "NETTOYAGE APRES DEPART",
+          "NETTOYAGE PARTIES COMMUNES COMPLEMENTAIRE",
+          "REPARATION VOLET ROULANT"
+        ]
+      },
+      "type_commande": {
+        "empty": 0,
+        "unique": 5,
+        "examples": [
+          "ENTRETIEN PPV H/EDL",
+          "ENTRETIEN PPV EDL",
+          "ENTRETIEN PCO",
+          "TRV PPV REMONTE EN GAMME",
+          "GROS ENTRETIEN"
+        ],
+        "counts": {
+          "ENTRETIEN PPV H/EDL": 1857,
+          "ENTRETIEN PPV EDL": 1819,
+          "ENTRETIEN PCO": 916,
+          "TRV PPV REMONTE EN GAMME": 658,
+          "GROS ENTRETIEN": 3
+        }
+      },
+      "nature": {
+        "empty": 0,
+        "unique": 14,
+        "examples": [
+          "MENUISERIES",
+          "ELECTRICITE",
+          "DIAGNOSTIC",
+          "NETTOYAGE",
+          "PLOMBERIE",
+          "SERRURERIE"
+        ],
+        "counts": {
+          "NETTOYAGE": 1376,
+          "ELECTRICITE": 738,
+          "MENUISERIES": 693,
+          "PLOMBERIE": 689,
+          "SERRURERIE": 326,
+          "003 Ent. Courant EDL": 294,
+          "DIAGNOSTIC": 278,
+          "SECURITE": 204,
+          "CHAUFFAGE": 201,
+          "PEINTURE": 171,
+          "TRAVAUX DIVERS": 131,
+          "NUISIBLES": 92,
+          "ESPACES VERTS": 58,
+          "ASCENSEURS": 2
+        }
+      },
+      "corps_etat": {
+        "empty": 0,
+        "unique": 4,
+        "examples": [
+          "L01",
+          "A34",
+          "A01",
+          "A19"
+        ],
+        "counts": {
+          "L01": 3333,
+          "A01": 1405,
+          "A34": 270,
+          "A19": 245
+        }
+      },
+      "prestataire_id": {
+        "empty": 0,
+        "unique": 13,
+        "examples": [
+          "PRE06",
+          "PRE05",
+          "PRE10",
+          "PRE09",
+          "PRE04",
+          "PRE13"
+        ],
+        "counts": {
+          "PRE09": 1376,
+          "PRE05": 942,
+          "PRE07": 614,
+          "PRE06": 530,
+          "PRE01": 520,
+          "PRE04": 343,
+          "PRE13": 326,
+          "PRE10": 278,
+          "PRE08": 171,
+          "PRE11": 92,
+          "PRE12": 58,
+          "PRE03": 2,
+          "PRE02": 1
+        }
+      },
+      "montant_ttc": {
+        "empty": 0,
+        "unique": 5006,
+        "examples": [
+          "547.35",
+          "419.68",
+          "55.43",
+          "100.38",
+          "411.71",
+          "70.98"
+        ]
+      },
+      "date_facture": {
+        "empty": 93,
+        "unique": 2428,
+        "examples": [
+          "2018-02-21",
+          "2018-03-03",
+          "2018-03-12",
+          "2018-02-25",
+          "2018-02-27",
+          "2018-03-15"
+        ],
+        "date_min": "2018-01-24 00:00:00",
+        "date_max": "2025-12-31 00:00:00",
+        "invalid_dates": 0
+      },
+      "montant_facture_ttc": {
+        "empty": 93,
+        "unique": 4932,
+        "examples": [
+          "547.35",
+          "419.68",
+          "55.43",
+          "100.38",
+          "411.71",
+          "70.98"
+        ]
+      },
+      "statut": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Soldée",
+          "En cours"
+        ],
+        "counts": {
+          "Soldée": 5160,
+          "En cours": 93
+        }
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "08_plan_investissement": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\08_plan_investissement.csv",
+    "delimiter": ",",
+    "rows": 29,
+    "columns": {
+      "operation_id": {
+        "empty": 0,
+        "unique": 29,
+        "examples": [
+          "OPE-007",
+          "OPE-005",
+          "OPE-023",
+          "OPE-013",
+          "OPE-026",
+          "OPE-004"
+        ],
+        "counts": {
+          "OPE-007": 1,
+          "OPE-005": 1,
+          "OPE-023": 1,
+          "OPE-013": 1,
+          "OPE-026": 1,
+          "OPE-004": 1,
+          "OPE-029": 1,
+          "OPE-014": 1,
+          "OPE-011": 1,
+          "OPE-009": 1,
+          "OPE-001": 1,
+          "OPE-006": 1,
+          "OPE-016": 1,
+          "OPE-025": 1,
+          "OPE-012": 1,
+          "OPE-021": 1,
+          "OPE-028": 1,
+          "OPE-020": 1,
+          "OPE-027": 1,
+          "OPE-018": 1,
+          "OPE-010": 1,
+          "OPE-022": 1,
+          "OPE-008": 1,
+          "OPE-002": 1,
+          "OPE-024": 1,
+          "OPE-017": 1,
+          "OPE-003": 1,
+          "OPE-019": 1,
+          "OPE-015": 1
+        }
+      },
+      "residence_id": {
+        "empty": 0,
+        "unique": 8,
+        "examples": [
+          "RES-G",
+          "RES-B",
+          "RES-A",
+          "RES-C",
+          "RES-F",
+          "RES-H"
+        ],
+        "counts": {
+          "RES-G": 7,
+          "RES-C": 6,
+          "RES-F": 5,
+          "RES-B": 4,
+          "RES-A": 4,
+          "RES-H": 1,
+          "RES-E": 1,
+          "RES-D": 1
+        }
+      },
+      "type_operation": {
+        "empty": 0,
+        "unique": 21,
+        "examples": [
+          "Remplacement ballons électriques par ballons thermodynamiques",
+          "Isolation thermique par l'extérieur (ITE)",
+          "Réfection halls et cages d'escalier",
+          "Remplacement VMC (caissons + bouches)",
+          "Modernisation ascenseurs (3 appareils)",
+          "Réfection étanchéité toiture-terrasse"
+        ],
+        "counts": {
+          "Réfection halls et cages d'escalier": 5,
+          "Réfection étanchéité toiture-terrasse": 3,
+          "Isolation thermique par l'extérieur (ITE)": 2,
+          "Remplacement menuiseries extérieures": 2,
+          "Remplacement ballons électriques par ballons thermodynamiques": 1,
+          "Remplacement VMC (caissons + bouches)": 1,
+          "Modernisation ascenseurs (3 appareils)": 1,
+          "Isolation des combles": 1,
+          "Isolation des combles et planchers bas": 1,
+          "Modernisation ascenseurs (4 appareils)": 1,
+          "Remplacement chaufferie collective (chaudières condensation)": 1,
+          "Remplacement convecteurs par radiateurs à inertie + programmation": 1,
+          "Remplacement programmé des ballons ECS électriques": 1,
+          "Rénovation production ECS solaire": 1,
+          "Remplacement ballons thermodynamiques (lot pilote)": 1,
+          "Modernisation ascenseur": 1,
+          "Remplacement chaudières individuelles par chaudières condensation": 1,
+          "VMC hygroréglable (création)": 1,
+          "Remplacement porte de hall + contrôle d'accès": 1,
+          "Contrat de remplacement pompes à chaleur (lot pilote)": 1,
+          "Remplacement chaudières individuelles (renouvellement anticipé)": 1
+        }
+      },
+      "perimetre": {
+        "empty": 0,
+        "unique": 6,
+        "examples": [
+          "Résidence",
+          "Bâtiments C1-C3",
+          "Bâtiments G1-G4",
+          "30 logements",
+          "Bâtiment B1",
+          "20 logements"
+        ],
+        "counts": {
+          "Résidence": 23,
+          "Bâtiment B1": 2,
+          "Bâtiments C1-C3": 1,
+          "Bâtiments G1-G4": 1,
+          "30 logements": 1,
+          "20 logements": 1
+        }
+      },
+      "annee_souhaitee": {
+        "empty": 0,
+        "unique": 6,
+        "examples": [
+          "2027",
+          "2026",
+          "2029",
+          "2028",
+          "2030",
+          "2031"
+        ],
+        "counts": {
+          "2027": 11,
+          "2026": 9,
+          "2029": 4,
+          "2028": 3,
+          "2030": 1,
+          "2031": 1
+        }
+      },
+      "cout_estime_ttc": {
+        "empty": 0,
+        "unique": 27,
+        "examples": [
+          "430000",
+          "2400000",
+          "113000",
+          "140000",
+          "240000",
+          "180000"
+        ],
+        "counts": {
+          "140000": 2,
+          "190000": 2,
+          "430000": 1,
+          "2400000": 1,
+          "113000": 1,
+          "240000": 1,
+          "180000": 1,
+          "310000": 1,
+          "330000": 1,
+          "620000": 1,
+          "520000": 1,
+          "48000": 1,
+          "145000": 1,
+          "780000": 1,
+          "26000": 1,
+          "260000": 1,
+          "90000": 1,
+          "375000": 1,
+          "85000": 1,
+          "560000": 1,
+          "84000": 1,
+          "380000": 1,
+          "2900000": 1,
+          "97000": 1,
+          "18000": 1,
+          "1150000": 1,
+          "600000": 1
+        }
+      },
+      "gain_conso_ep_estime_kwh_m2_an": {
+        "empty": 0,
+        "unique": 15,
+        "examples": [
+          "25",
+          "130",
+          "0",
+          "8",
+          "5",
+          "20"
+        ],
+        "counts": {
+          "0": 9,
+          "5": 5,
+          "25": 2,
+          "15": 2,
+          "130": 1,
+          "8": 1,
+          "20": 1,
+          "40": 1,
+          "45": 1,
+          "60": 1,
+          "12": 1,
+          "35": 1,
+          "95": 1,
+          "30": 1,
+          "10": 1
+        }
+      },
+      "nb_logements_concernes": {
+        "empty": 0,
+        "unique": 10,
+        "examples": [
+          "170",
+          "60",
+          "160",
+          "138",
+          "150",
+          "230"
+        ],
+        "counts": {
+          "170": 7,
+          "150": 5,
+          "230": 5,
+          "160": 4,
+          "60": 3,
+          "138": 1,
+          "90": 1,
+          "30": 1,
+          "15": 1,
+          "20": 1
+        }
+      },
+      "date_inscription_demande": {
+        "empty": 0,
+        "unique": 28,
+        "examples": [
+          "2019-01-21",
+          "2019-03-29",
+          "2019-11-07",
+          "2020-01-16",
+          "2020-01-28",
+          "2020-04-01"
+        ],
+        "counts": {
+          "2023-07-02": 2,
+          "2019-01-21": 1,
+          "2019-03-29": 1,
+          "2019-11-07": 1,
+          "2020-01-16": 1,
+          "2020-01-28": 1,
+          "2020-04-01": 1,
+          "2020-07-22": 1,
+          "2020-07-27": 1,
+          "2021-02-14": 1,
+          "2021-07-07": 1,
+          "2021-08-26": 1,
+          "2021-12-10": 1,
+          "2022-03-27": 1,
+          "2023-04-04": 1,
+          "2023-08-22": 1,
+          "2023-09-02": 1,
+          "2023-11-10": 1,
+          "2024-06-15": 1,
+          "2024-11-18": 1,
+          "2024-11-19": 1,
+          "2025-03-02": 1,
+          "2025-04-27": 1,
+          "2025-06-23": 1,
+          "2025-09-06": 1,
+          "2025-09-26": 1,
+          "2025-10-16": 1,
+          "2025-10-25": 1
+        },
+        "date_min": "2019-01-21 00:00:00",
+        "date_max": "2025-10-25 00:00:00",
+        "invalid_dates": 0
+      },
+      "origine_demande": {
+        "empty": 0,
+        "unique": 12,
+        "examples": [
+          "Étiquette DPE F/G",
+          "Interdiction de location étiquette G (calendrier loi Climat)",
+          "Demande gestion locative",
+          "Plaintes locataires",
+          "Pannes répétées",
+          "Infiltrations"
+        ],
+        "counts": {
+          "Demande gestion locative": 6,
+          "Pannes répétées": 6,
+          "Vétusté équipement": 4,
+          "Infiltrations": 3,
+          "Étiquette DPE F/G": 2,
+          "Étiquette DPE E/F": 2,
+          "Interdiction de location étiquette G (calendrier loi Climat)": 1,
+          "Plaintes locataires": 1,
+          "Étiquette DPE D": 1,
+          "Étiquette DPE D/E": 1,
+          "Humidité / condensation": 1,
+          "Programmation long terme": 1
+        }
+      },
+      "statut": {
+        "empty": 0,
+        "unique": 1,
+        "examples": [
+          "Proposé (hypothétique)"
+        ],
+        "counts": {
+          "Proposé (hypothétique)": 29
+        }
+      },
+      "rang_actuel_chronologique": {
+        "empty": 0,
+        "unique": 29,
+        "examples": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "counts": {
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 1,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 1,
+          "10": 1,
+          "11": 1,
+          "12": 1,
+          "13": 1,
+          "14": 1,
+          "15": 1,
+          "16": 1,
+          "17": 1,
+          "18": 1,
+          "19": 1,
+          "20": 1,
+          "21": 1,
+          "22": 1,
+          "23": 1,
+          "24": 1,
+          "25": 1,
+          "26": 1,
+          "27": 1,
+          "28": 1,
+          "29": 1
+        }
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "09_prestataires": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\09_prestataires.csv",
+    "delimiter": ",",
+    "rows": 14,
+    "columns": {
+      "prestataire_id": {
+        "empty": 0,
+        "unique": 14,
+        "examples": [
+          "PRE01",
+          "PRE02",
+          "PRE03",
+          "PRE04",
+          "PRE05",
+          "PRE06"
+        ],
+        "counts": {
+          "PRE01": 1,
+          "PRE02": 1,
+          "PRE03": 1,
+          "PRE04": 1,
+          "PRE05": 1,
+          "PRE06": 1,
+          "PRE07": 1,
+          "PRE08": 1,
+          "PRE09": 1,
+          "PRE10": 1,
+          "PRE11": 1,
+          "PRE12": 1,
+          "PRE13": 1,
+          "PRE14": 1
+        }
+      },
+      "nom": {
+        "empty": 0,
+        "unique": 14,
+        "examples": [
+          "Garonne Multiservices (fictif)",
+          "Occitherm Maintenance (fictif)",
+          "Elev'Sud Ascenseurs (fictif)",
+          "Pyrène Plomberie Confort (fictif)",
+          "Volt'Occitan Électricité (fictif)",
+          "Menuiseries du Lauragais (fictif)"
+        ],
+        "counts": {
+          "Garonne Multiservices (fictif)": 1,
+          "Occitherm Maintenance (fictif)": 1,
+          "Elev'Sud Ascenseurs (fictif)": 1,
+          "Pyrène Plomberie Confort (fictif)": 1,
+          "Volt'Occitan Électricité (fictif)": 1,
+          "Menuiseries du Lauragais (fictif)": 1,
+          "Tolosa Rénovation TCE (fictif)": 1,
+          "Peintures & Sols Midi (fictif)": 1,
+          "Net'Résidence 31 (fictif)": 1,
+          "Diag'Habitat Sud (fictif)": 1,
+          "Hygiène Services Sud (fictif)": 1,
+          "Jardins de l'Hers (fictif)": 1,
+          "Accès Contrôle Toulouse (fictif)": 1,
+          "Énergies Solaires Garonne (fictif)": 1
+        }
+      },
+      "domaine": {
+        "empty": 0,
+        "unique": 14,
+        "examples": [
+          "Multiservices / chauffage (contrat P2P3)",
+          "Chauffage collectif (contrat P2P3)",
+          "Ascenseurs",
+          "Plomberie / sanitaires",
+          "Électricité",
+          "Menuiseries / serrurerie"
+        ],
+        "counts": {
+          "Multiservices / chauffage (contrat P2P3)": 1,
+          "Chauffage collectif (contrat P2P3)": 1,
+          "Ascenseurs": 1,
+          "Plomberie / sanitaires": 1,
+          "Électricité": 1,
+          "Menuiseries / serrurerie": 1,
+          "Tous corps d'état (remise en état)": 1,
+          "Peinture / sols": 1,
+          "Nettoyage": 1,
+          "Diagnostics (DPE, amiante...)": 1,
+          "Nuisibles (3D)": 1,
+          "Espaces verts": 1,
+          "Portes / contrôle d'accès": 1,
+          "Solaire thermique": 1
+        }
+      },
+      "type_contrat": {
+        "empty": 0,
+        "unique": 9,
+        "examples": [
+          "Contrat multiservices",
+          "Contrat chaufferies",
+          "Contrat ascenseurs",
+          "Marché à bons de commande",
+          "Marché TCE",
+          "Contrat nettoyage"
+        ],
+        "counts": {
+          "Marché à bons de commande": 5,
+          "Marché TCE": 2,
+          "Contrat multiservices": 1,
+          "Contrat chaufferies": 1,
+          "Contrat ascenseurs": 1,
+          "Contrat nettoyage": 1,
+          "Marché diagnostics": 1,
+          "Contrat espaces verts": 1,
+          "Contrat maintenance": 1
+        }
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "10_ref_codes_metiers": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\10_ref_codes_metiers.csv",
+    "delimiter": ",",
+    "rows": 10,
+    "columns": {
+      "code_metier": {
+        "empty": 0,
+        "unique": 10,
+        "examples": [
+          "CHGAZ",
+          "CHPAC",
+          "CHFRC",
+          "CHVBO",
+          "CHVCC",
+          "MUPPR"
+        ],
+        "counts": {
+          "CHGAZ": 1,
+          "CHPAC": 1,
+          "CHFRC": 1,
+          "CHVBO": 1,
+          "CHVCC": 1,
+          "MUPPR": 1,
+          "MUPCO": 1,
+          "PECSO": 1,
+          "CHGCO": 1,
+          "ASC": 1
+        }
+      },
+      "libelle": {
+        "empty": 0,
+        "unique": 10,
+        "examples": [
+          "Entretien chaudière murale gaz",
+          "Entretien pompes à chaleur",
+          "Maintenance ballon thermodynamique",
+          "Entretien bouches VMC",
+          "Entretien caissons VMC collectifs",
+          "Multiservices parties privatives"
+        ],
+        "counts": {
+          "Entretien chaudière murale gaz": 1,
+          "Entretien pompes à chaleur": 1,
+          "Maintenance ballon thermodynamique": 1,
+          "Entretien bouches VMC": 1,
+          "Entretien caissons VMC collectifs": 1,
+          "Multiservices parties privatives": 1,
+          "Multiservices parties communes": 1,
+          "Production ECS solaire": 1,
+          "Chaufferie gaz collective": 1,
+          "Maintenance ascenseurs": 1
+        }
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "10_ref_familles_equipements": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\10_ref_familles_equipements.csv",
+    "delimiter": ",",
+    "rows": 14,
+    "columns": {
+      "famille": {
+        "empty": 0,
+        "unique": 14,
+        "examples": [
+          "chaudiere_gaz_individuelle",
+          "pompe_a_chaleur",
+          "ballon_thermodynamique",
+          "ballon_ecs_electrique",
+          "convecteurs_electriques",
+          "panneaux_rayonnants"
+        ],
+        "counts": {
+          "chaudiere_gaz_individuelle": 1,
+          "pompe_a_chaleur": 1,
+          "ballon_thermodynamique": 1,
+          "ballon_ecs_electrique": 1,
+          "convecteurs_electriques": 1,
+          "panneaux_rayonnants": 1,
+          "bouches_vmc": 1,
+          "robinetterie_sanitaires": 1,
+          "volets_roulants": 1,
+          "chaufferie_collective": 1,
+          "production_ecs_solaire": 1,
+          "caisson_vmc": 1,
+          "ascenseur": 1,
+          "porte_hall_interphonie": 1
+        }
+      },
+      "libelle": {
+        "empty": 0,
+        "unique": 14,
+        "examples": [
+          "Chaudière gaz individuelle",
+          "Pompe à chaleur air/eau",
+          "Ballon thermodynamique",
+          "Ballon ECS électrique (cumulus)",
+          "Ensemble convecteurs électriques",
+          "Ensemble panneaux rayonnants"
+        ],
+        "counts": {
+          "Chaudière gaz individuelle": 1,
+          "Pompe à chaleur air/eau": 1,
+          "Ballon thermodynamique": 1,
+          "Ballon ECS électrique (cumulus)": 1,
+          "Ensemble convecteurs électriques": 1,
+          "Ensemble panneaux rayonnants": 1,
+          "Bouches VMC du logement": 1,
+          "Robinetterie et sanitaires": 1,
+          "Volets roulants du logement": 1,
+          "Chaufferie gaz collective": 1,
+          "Production ECS solaire collective": 1,
+          "Caisson VMC collectif": 1,
+          "Ascenseur": 1,
+          "Porte de hall et interphonie": 1
+        }
+      },
+      "niveau": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Logement",
+          "Bâtiment"
+        ],
+        "counts": {
+          "Logement": 9,
+          "Bâtiment": 5
+        }
+      },
+      "code_metier": {
+        "empty": 0,
+        "unique": 10,
+        "examples": [
+          "CHGAZ",
+          "CHPAC",
+          "CHFRC",
+          "MUPPR",
+          "CHVBO",
+          "CHGCO"
+        ],
+        "counts": {
+          "MUPPR": 5,
+          "CHGAZ": 1,
+          "CHPAC": 1,
+          "CHFRC": 1,
+          "CHVBO": 1,
+          "CHGCO": 1,
+          "PECSO": 1,
+          "CHVCC": 1,
+          "ASC": 1,
+          "MUPCO": 1
+        }
+      },
+      "duree_vie_reference_ans": {
+        "empty": 0,
+        "unique": 11,
+        "examples": [
+          "18",
+          "16",
+          "14",
+          "24",
+          "28",
+          "40"
+        ],
+        "counts": {
+          "16": 2,
+          "60": 2,
+          "20": 2,
+          "18": 1,
+          "14": 1,
+          "24": 1,
+          "28": 1,
+          "40": 1,
+          "26": 1,
+          "30": 1,
+          "22": 1
+        }
+      },
+      "sous_contrat_entretien": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Oui",
+          "Non"
+        ],
+        "counts": {
+          "Oui": 9,
+          "Non": 5
+        }
+      },
+      "visite_annuelle": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Oui",
+          "Non"
+        ],
+        "counts": {
+          "Oui": 9,
+          "Non": 5
+        }
+      },
+      "cout_remplacement_min_ttc": {
+        "empty": 0,
+        "unique": 14,
+        "examples": [
+          "2600",
+          "7800",
+          "2300",
+          "560",
+          "950",
+          "1300"
+        ],
+        "counts": {
+          "2600": 1,
+          "7800": 1,
+          "2300": 1,
+          "560": 1,
+          "950": 1,
+          "1300": 1,
+          "120": 1,
+          "150": 1,
+          "250": 1,
+          "48000": 1,
+          "9000": 1,
+          "2200": 1,
+          "62000": 1,
+          "3500": 1
+        }
+      },
+      "cout_remplacement_max_ttc": {
+        "empty": 0,
+        "unique": 14,
+        "examples": [
+          "3900",
+          "10800",
+          "3300",
+          "780",
+          "1700",
+          "2100"
+        ],
+        "counts": {
+          "3900": 1,
+          "10800": 1,
+          "3300": 1,
+          "780": 1,
+          "1700": 1,
+          "2100": 1,
+          "260": 1,
+          "450": 1,
+          "600": 1,
+          "72000": 1,
+          "15000": 1,
+          "3600": 1,
+          "95000": 1,
+          "7500": 1
+        }
+      },
+      "dans_perimetre_prediction": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Oui",
+          "Non"
+        ],
+        "counts": {
+          "Oui": 10,
+          "Non": 4
+        }
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "10_ref_motifs_demandes": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\10_ref_motifs_demandes.csv",
+    "delimiter": ",",
+    "rows": 32,
+    "columns": {
+      "motif": {
+        "empty": 0,
+        "unique": 31,
+        "examples": [
+          "demande de travaux partie privative",
+          "Sans Motif",
+          "Propreté résidence",
+          "Panne équipement individuel électrique (chauffe eau, radiateur)",
+          "Nuisances sonores",
+          "Réclamation travaux partie privative"
+        ]
+      },
+      "parties": {
+        "empty": 0,
+        "unique": 2,
+        "examples": [
+          "Privatives",
+          "Communes"
+        ],
+        "counts": {
+          "Privatives": 21,
+          "Communes": 11
+        }
+      },
+      "nb_demandes_2019_2025": {
+        "empty": 0,
+        "unique": 31,
+        "examples": [
+          "862",
+          "667",
+          "433",
+          "413",
+          "318",
+          "300"
+        ]
+      }
+    },
+    "exact_duplicate_rows": 0
+  },
+  "10_ref_seuils_dpe": {
+    "path": "DATA 2 _le kit étudiants\\BatIA_Kit_Hackathon\\donnees\\10_ref_seuils_dpe.csv",
+    "delimiter": ",",
+    "rows": 7,
+    "columns": {
+      "classe": {
+        "empty": 0,
+        "unique": 7,
+        "examples": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F"
+        ],
+        "counts": {
+          "A": 1,
+          "B": 1,
+          "C": 1,
+          "D": 1,
+          "E": 1,
+          "F": 1,
+          "G": 1
+        }
+      },
+      "energie_primaire_kwh_m2_an": {
+        "empty": 0,
+        "unique": 7,
+        "examples": [
+          "≤ 70",
+          "71-110",
+          "111-180",
+          "181-250",
+          "251-330",
+          "331-420"
+        ],
+        "counts": {
+          "≤ 70": 1,
+          "71-110": 1,
+          "111-180": 1,
+          "181-250": 1,
+          "251-330": 1,
+          "331-420": 1,
+          "> 420": 1
+        }
+      },
+      "ges_kgco2_m2_an": {
+        "empty": 0,
+        "unique": 7,
+        "examples": [
+          "≤ 6",
+          "7-11",
+          "12-30",
+          "31-50",
+          "51-70",
+          "71-100"
+        ],
+        "counts": {
+          "≤ 6": 1,
+          "7-11": 1,
+          "12-30": 1,
+          "31-50": 1,
+          "51-70": 1,
+          "71-100": 1,
+          "> 100": 1
+        }
+      }
+    },
+    "exact_duplicate_rows": 0
+  }
+}
