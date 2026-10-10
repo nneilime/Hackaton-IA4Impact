@@ -1,6 +1,41 @@
 {
   "teams": [
     {
+      "slug": "group-6",
+      "name": "Group 6",
+      "challenge": "enedis",
+      "owner": "ATAE0",
+      "members": [
+        {
+          "login": "ATAE0",
+          "status": "joined",
+          "created_at": "2026-10-10T13:06:55.237Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:06:55.237Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:06:55.237Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:06:55.237Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:06:55.237Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:06:55.237Z",
+      "created_by": "ATAE0"
+    },
+    {
       "slug": "groupe-1",
       "name": "Groupe 1",
       "challenge": "sncf",
