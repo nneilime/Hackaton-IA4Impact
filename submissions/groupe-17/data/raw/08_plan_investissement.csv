@@ -1,0 +1,30 @@
+operation_id,residence_id,type_operation,perimetre,annee_souhaitee,cout_estime_ttc,gain_conso_ep_estime_kwh_m2_an,nb_logements_concernes,date_inscription_demande,origine_demande,statut,rang_actuel_chronologique
+OPE-007,RES-G,Remplacement ballons électriques par ballons thermodynamiques,Résidence,2027,430000,25,170,2019-01-21,Étiquette DPE F/G,Proposé (hypothétique),1
+OPE-005,RES-G,Isolation thermique par l'extérieur (ITE),Résidence,2026,2400000,130,170,2019-03-29,Interdiction de location étiquette G (calendrier loi Climat),Proposé (hypothétique),2
+OPE-023,RES-B,Réfection halls et cages d'escalier,Résidence,2029,113000,0,60,2019-11-07,Demande gestion locative,Proposé (hypothétique),3
+OPE-013,RES-A,Remplacement VMC (caissons + bouches),Résidence,2027,140000,8,160,2020-01-16,Plaintes locataires,Proposé (hypothétique),4
+OPE-026,RES-G,Réfection halls et cages d'escalier,Résidence,2026,140000,0,170,2020-01-28,Demande gestion locative,Proposé (hypothétique),5
+OPE-004,RES-C,Modernisation ascenseurs (3 appareils),Bâtiments C1-C3,2027,240000,0,138,2020-04-01,Pannes répétées,Proposé (hypothétique),6
+OPE-029,RES-G,Réfection étanchéité toiture-terrasse,Résidence,2026,180000,5,170,2020-07-22,Infiltrations,Proposé (hypothétique),7
+OPE-014,RES-A,Isolation des combles,Résidence,2029,190000,20,160,2020-07-27,Étiquette DPE D,Proposé (hypothétique),8
+OPE-011,RES-F,Isolation des combles et planchers bas,Résidence,2027,310000,40,150,2021-02-14,Étiquette DPE D/E,Proposé (hypothétique),9
+OPE-009,RES-G,Modernisation ascenseurs (4 appareils),Bâtiments G1-G4,2028,330000,0,170,2021-07-07,Vétusté équipement,Proposé (hypothétique),10
+OPE-001,RES-C,Remplacement chaufferie collective (chaudières condensation),Résidence,2026,620000,45,230,2021-08-26,Vétusté équipement,Proposé (hypothétique),11
+OPE-006,RES-G,Remplacement convecteurs par radiateurs à inertie + programmation,Résidence,2026,520000,60,170,2021-12-10,Étiquette DPE F/G,Proposé (hypothétique),12
+OPE-016,RES-B,Remplacement programmé des ballons ECS électriques,Résidence,2026,48000,5,60,2022-03-27,Pannes répétées,Proposé (hypothétique),13
+OPE-025,RES-F,Réfection halls et cages d'escalier,Résidence,2027,145000,0,150,2023-04-04,Demande gestion locative,Proposé (hypothétique),14
+OPE-012,RES-F,Remplacement menuiseries extérieures,Résidence,2029,780000,25,150,2023-07-02,Demande gestion locative,Proposé (hypothétique),15
+OPE-021,RES-H,Rénovation production ECS solaire,Résidence,2027,26000,12,90,2023-07-02,Vétusté équipement,Proposé (hypothétique),16
+OPE-028,RES-F,Réfection étanchéité toiture-terrasse,Résidence,2030,260000,5,150,2023-08-22,Infiltrations,Proposé (hypothétique),17
+OPE-020,RES-E,Remplacement ballons thermodynamiques (lot pilote),30 logements,2029,90000,5,30,2023-09-02,Pannes répétées,Proposé (hypothétique),18
+OPE-027,RES-C,Réfection étanchéité toiture-terrasse,Résidence,2027,375000,5,230,2023-11-10,Infiltrations,Proposé (hypothétique),19
+OPE-018,RES-B,Modernisation ascenseur,Bâtiment B1,2027,85000,0,15,2024-06-15,Pannes répétées,Proposé (hypothétique),20
+OPE-010,RES-F,Remplacement chaudières individuelles par chaudières condensation,Résidence,2026,560000,35,150,2024-11-18,Vétusté équipement,Proposé (hypothétique),21
+OPE-022,RES-A,Réfection halls et cages d'escalier,Résidence,2026,84000,0,160,2024-11-19,Demande gestion locative,Proposé (hypothétique),22
+OPE-008,RES-G,VMC hygroréglable (création),Résidence,2027,380000,15,170,2025-03-02,Humidité / condensation,Proposé (hypothétique),23
+OPE-002,RES-C,Isolation thermique par l'extérieur (ITE),Résidence,2027,2900000,95,230,2025-04-27,Étiquette DPE E/F,Proposé (hypothétique),24
+OPE-024,RES-C,Réfection halls et cages d'escalier,Résidence,2027,97000,0,230,2025-06-23,Demande gestion locative,Proposé (hypothétique),25
+OPE-017,RES-B,Remplacement porte de hall + contrôle d'accès,Bâtiment B1,2026,18000,0,60,2025-09-06,Pannes répétées,Proposé (hypothétique),26
+OPE-003,RES-C,Remplacement menuiseries extérieures,Résidence,2028,1150000,30,230,2025-09-26,Étiquette DPE E/F,Proposé (hypothétique),27
+OPE-019,RES-D,Contrat de remplacement pompes à chaleur (lot pilote),20 logements,2028,190000,10,20,2025-10-16,Pannes répétées,Proposé (hypothétique),28
+OPE-015,RES-A,Remplacement chaudières individuelles (renouvellement anticipé),Résidence,2031,600000,15,160,2025-10-25,Programmation long terme,Proposé (hypothétique),29
