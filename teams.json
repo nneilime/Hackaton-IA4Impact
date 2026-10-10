@@ -516,6 +516,21 @@
       "created_by": "mathieu-audo"
     },
     {
+      "slug": "groupe-3",
+      "name": "Groupe  3",
+      "challenge": "sncf",
+      "owner": "tahassaine-lgtm",
+      "members": [
+        {
+          "login": "tahassaine-lgtm",
+          "status": "joined",
+          "created_at": "2026-10-10T13:22:12.519Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:22:12.519Z",
+      "created_by": "tahassaine-lgtm"
+    },
+    {
       "slug": "groupe-8",
       "name": "Groupe 8",
       "challenge": "enedis",
