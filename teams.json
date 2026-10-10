@@ -1,3 +1,20 @@
 {
-  "teams": []
+  "teams": [
+    {
+      "slug": "staff",
+      "name": "Staff",
+      "challenge": "enedis",
+      "owner": "2chaynz",
+      "members": [
+        {
+          "email_hash": "6b08c86058d9c154e67a23a7e68b4a5037e6cbb88b69bb0d74d8764d1ad0343e",
+          "email_enc": "v1:ejrAtlVoydvY38/E:cLpMgChftbOCb71JTunMRg==:qc8OcLPrfS6rTx5uEEe7jkje",
+          "login": "2chaynz",
+          "joined": true
+        }
+      ],
+      "created_at": "2026-10-10T09:41:27.843Z",
+      "created_by": "2chaynz"
+    }
+  ]
 }
