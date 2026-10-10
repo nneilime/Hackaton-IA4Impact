@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Raccourci : ./veille ask "..."  équivaut à  python -m veille_reglementaire ask "..."
+cd "$(dirname "$0")"
+PY="${VEILLE_PYTHON:-python3}"
+[ -x "$HOME/.astro/bin/python3" ] && [ -z "${VEILLE_PYTHON:-}" ] && PY="$HOME/.astro/bin/python3"
+exec "$PY" -m veille_reglementaire "$@"

@@ -1,0 +1,32 @@
+{
+  "_note": "Tarifs publics en USD pour 1 million de tokens, relevés le 2026-10-10 sur les pages officielles indiquées. Les prix changent souvent : vérifier avant toute décision. Aucune valeur n'est estimée ici ; une ligne absente signifie « non relevé ».",
+  "checked_on": "2026-10-10",
+  "batch_discount": 0.5,
+  "batch_discount_source": "Anthropic : Message Batches à 50 % du prix ; OpenAI : prix Batch = moitié du standard (relevé page) ; Google : « Batch API (50% cost reduction) ».",
+  "api_models": [
+    {"vendor": "Anthropic", "model": "Claude Haiku 5.5",  "input": 0.10, "output": 0.50,  "tier": "petit", "note": "prompts jusqu'à 100 000 tokens", "source": "https://platform.claude.com/docs/en/about-claude/pricing"},
+    {"vendor": "Anthropic", "model": "Claude Sonnet 5.5", "input": 2.00, "output": 10.00, "tier": "milieu", "source": "https://platform.claude.com/docs/en/about-claude/pricing"},
+    {"vendor": "Anthropic", "model": "Claude Opus 5.5",   "input": 4.00, "output": 20.00, "tier": "haut", "source": "https://platform.claude.com/docs/en/about-claude/pricing"},
+    {"vendor": "OpenAI", "model": "gpt-5-nano",   "input": 0.05, "output": 0.40,  "tier": "petit",  "source": "https://developers.openai.com/api/docs/pricing"},
+    {"vendor": "OpenAI", "model": "gpt-5-mini",   "input": 0.25, "output": 2.00,  "tier": "milieu", "source": "https://developers.openai.com/api/docs/pricing"},
+    {"vendor": "OpenAI", "model": "gpt-5.5",      "input": 5.00, "output": 30.00, "tier": "haut",   "note": "contexte < 272 000", "source": "https://developers.openai.com/api/docs/pricing"},
+    {"vendor": "Google", "model": "gemini-2.5-flash-lite", "input": 0.10, "output": 0.40,  "tier": "petit",  "source": "https://ai.google.dev/gemini-api/docs/pricing"},
+    {"vendor": "Google", "model": "gemini-2.5-flash",      "input": 0.30, "output": 2.50,  "tier": "milieu", "source": "https://ai.google.dev/gemini-api/docs/pricing"},
+    {"vendor": "Google", "model": "gemini-3.1-pro-preview", "input": 2.00, "output": 12.00, "tier": "haut",   "note": "prompts ≤ 200 000 tokens", "source": "https://ai.google.dev/gemini-api/docs/pricing"},
+    {"vendor": "Mistral", "model": "Mistral Large", "input": 0.50, "output": 1.50, "tier": "haut", "note": "seul modèle dont la page publie un prix par token", "source": "https://mistral.ai/pricing"}
+  ],
+  "subscriptions": [
+    {"vendor": "Anthropic", "plan": "Claude Pro",          "usd_per_month": 20,  "note": "17 $/mois en facturation annuelle", "source": "https://claude.com/pricing"},
+    {"vendor": "Anthropic", "plan": "Claude Max",          "usd_per_month": 100, "note": "« à partir de 100 $ »", "source": "https://claude.com/pricing"},
+    {"vendor": "Anthropic", "plan": "Claude Team (siège standard)", "usd_per_month": 25, "note": "20 $ en annuel", "source": "https://claude.com/pricing"},
+    {"vendor": "OpenAI",    "plan": "ChatGPT Business (siège standard)", "usd_per_month": 25, "note": "20 $ en annuel ; 2 sièges minimum", "source": "https://openai.com/business/pricing/"},
+    {"vendor": "OpenAI",    "plan": "ChatGPT Pro",         "usd_per_month": 100, "note": "paliers 100 / 200 / 500 $", "source": "https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers"},
+    {"vendor": "Mistral",   "plan": "Le Chat Pro",         "usd_per_month": 14.99, "source": "https://mistral.ai/pricing"},
+    {"vendor": "Mistral",   "plan": "Le Chat Team",        "usd_per_month": 24.99, "note": "par utilisateur", "source": "https://mistral.ai/pricing"}
+  ],
+  "subscription_facts": [
+    "Les forfaits sont des abonnements par personne pour un usage interactif, avec des limites d'usage (fenêtre glissante de 5 heures et plafonds hebdomadaires chez Anthropic).",
+    "Au-delà des limites, Anthropic renvoie vers des crédits facturés « aux tarifs API standard » ; l'offre Enterprise est « siège + usage aux tarifs API ». Un forfait ne fournit donc pas un accès API de traitement en masse.",
+    "Un pipeline automatisé se facture donc au token (colonne API), pas au forfait."
+  ]
+}

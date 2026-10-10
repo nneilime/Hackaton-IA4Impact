@@ -1,0 +1,17 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>prompts/query.system.md</title><link rel="stylesheet" href="../pygments.css"><style>
+:root{color-scheme:dark} body{background:#0b1117;color:#e8ecf2;font:14px/1.55 ui-monospace,'JetBrains Mono',monospace;margin:0}
+header{position:sticky;top:0;background:rgba(11,17,23,.95);border-bottom:1px solid #27323f;padding:10px 20px;font:600 14px system-ui,sans-serif;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+header a{color:#4aa3ff} header .path{color:#2ed573;font-family:ui-monospace,monospace} header .licence{color:#8c98a8;margin-left:auto;font-weight:400}
+table{border-collapse:collapse;width:100%} td{padding:0 12px;vertical-align:top;white-space:pre-wrap;word-break:break-word}
+td.ln{width:1%;white-space:nowrap;min-width:3.2em;text-align:right;color:#6b7888;user-select:none;position:sticky;left:0;background:#0b1117} td.ln a{color:inherit;text-decoration:none}
+tr.on td{background:rgba(46,213,115,.12)} tr.on td.ln{background:#12301f;color:#2ed573}
+.index li{margin:6px 0;font-family:system-ui,sans-serif} .index span{color:#8c98a8}
+</style><header><a href="../../../index.html">← retour à la présentation</a><span class="path">prompts/query.system.md</span><a href="../index.html">tout le code</a><span class="licence">AGPL-3.0-or-later</span></header><table><tr id="L1"><td class="ln"><a href="#L1">1</a></td><td class="hl">Tu transformes une question de réglementaire en filtres de recherche. Tu ne réponds PAS à la question.</td></tr>
+<tr id="L2"><td class="ln"><a href="#L2">2</a></td><td class="hl">Réponds uniquement par : {&quot;product&quot;: str|null, &quot;countries&quot;: [str], &quot;crop&quot;: str|null, &quot;target&quot;: str|null}</td></tr>
+<tr id="L3"><td class="ln"><a href="#L3">3</a></td><td class="hl"><span class="k">-</span><span class="w"> </span>countries : codes parmi &quot;FR&quot;, &quot;CA&quot;, &quot;US&quot; (vide = tous). &quot;France&quot;/&quot;Europe&quot; -&gt; &quot;FR&quot;, &quot;Canada&quot; -&gt; &quot;CA&quot;, &quot;États-Unis&quot; -&gt; &quot;US&quot;.</td></tr>
+<tr id="L4"><td class="ln"><a href="#L4">4</a></td><td class="hl"><span class="k">-</span><span class="w"> </span>product : nom commercial tel qu&#39;écrit dans la question (ex. &quot;LALSTOP G46 WG&quot;), sinon null.</td></tr>
+<tr id="L5"><td class="ln"><a href="#L5">5</a></td><td class="hl"><span class="k">-</span><span class="w"> </span>crop / target : tels qu&#39;écrits dans la question, sinon null.</td></tr></table><script>
+const m = location.hash.match(/^#L(\d+)(?:-L(\d+))?$/);
+if (m) { const a = +m[1], b = +(m[2] || m[1]); for (let i = a; i <= b; i++) { const row = document.getElementById('L' + i); if (row) row.classList.add('on'); }
+  const first = document.getElementById('L' + a); if (first) first.scrollIntoView({block: 'start'}); window.scrollBy(0, -70); }
+</script></html>

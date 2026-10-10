@@ -1,0 +1,25 @@
+{
+  "_note": "Texte dit par la voix, une entrée par diapositive Pecha Kucha (20 s chacune, 45 mots au plus). Les {chiffres} sont recalculés à chaque `./veille web` à partir des vraies exécutions. Modifier ici, puis relancer `./veille web` (et `./veille voice` pour régénérer l'audio).",
+  "slides": [
+    "Bonjour. Notre solution tient en une phrase : l'IA propose, le code décide. Une intelligence artificielle maison, locale, qui lit les bases d'homologation et ne publie que ce qu'elle peut prouver.",
+    "Le problème : les autorisations de produits sont dispersées dans des dizaines de bases nationales, en PDF, en tableurs, en bases web, dans toutes les langues. Comparer deux marchés prend des jours de recherche manuelle.",
+    "Notre choix : trois briques maison. Un modèle de langage local, sur une carte graphique de la constellation. Une mémoire vectorielle Qdrant. Et un contrat de données Pydantic qui impose la forme de chaque réponse.",
+    "Voici la chaîne. Un texte officiel entre, l'IA propose une valeur, deux contrôles la vérifient. En vert, le passage est publié. En orange, le modèle recommence avec le motif du refus. En rouge, un expert tranche.",
+    "Trois sources officielles, deux grandes régions. e-Phy pour la France, le registre de Santé Canada, et l'agence américaine EPA avec ses étiquettes en PDF. Trois formats, trois langues, un seul modèle de données.",
+    "Comment retrouver le bon passage ? Chaque texte devient un vecteur. La proximité se mesure par un angle : le cosinus. Plus l'angle est petit, plus les sens sont proches. Qdrant retrouve ainsi les passages utiles, en local.",
+    "Le prompt tient en quatre règles. Rester dans le passage. Copier mot à mot. Mettre null plutôt qu'inventer. Et traiter le texte source comme une donnée, jamais comme une instruction.",
+    "Premier garde-fou : Pydantic. Le contrat refuse un champ en trop, un nombre écrit en texte, une unité absente de la source. {pydantic_refused} réponses du modèle ont été refusées avant toute publication.",
+    "Second garde-fou, écrit en code : la preuve. La citation doit se retrouver mot à mot dans le texte source. Une citation inventée ne se trouve pas, la réponse est refusée. {proof_refused} cas ont été interceptés.",
+    "Quand une réponse est refusée, le modèle reçoit le motif exact et recommence. Sur {passages} passages, {first_pct} pour cent réussissent du premier coup, et {rescued} sont rattrapés par un deuxième ou un troisième essai.",
+    "Au total, {attempts} réponses du modèle. {refused} étaient fautives et ont été arrêtées avant publication. Ce qui est publié ne contient que des réponses qui ont passé les deux contrôles.",
+    "Les résultats. {published_pct} pour cent des passages sont publiés avec leur preuve. Les doses sont exactes à {dose_pct} pour cent face à la source structurée. Et aucune valeur n'a été inventée.",
+    "Le prompt a été amélioré comme dans la méthode Arbor : une hypothèse, une mesure, on garde ce qui progresse. Les renvois vers l'expert passent de {v1_expert} à {v3_expert}. Et sur {holdout_passages} passages de produits jamais vus, {holdout_dose_pct} pour cent de doses exactes.",
+    "Souveraineté : tout reste chez nous. Le modèle tourne sur la carte graphique de la constellation, joint en pair à pair. Aucun appel à une IA cloud, aucune clé, aucun texte envoyé à un tiers.",
+    "Sobriété : nous ne surchargeons pas les sources. {requests} requêtes suffisent à tout collecter. Au rejeu, les requêtes conditionnelles évitent de retélécharger : {warm_mb} mégaoctets au lieu de {cold_mb}. Nous ne contournons rien.",
+    "Quelle carte graphique ? La mémoire nécessaire, c'est le poids du modèle, plus le cache d'attention, qui grandit avec le contexte et le nombre de requêtes, plus une marge. Pour notre modèle : environ {vram} gigaoctets.",
+    "La vitesse suit une loi simple : tokens par seconde égale efficacité fois bande passante, divisée par la taille du modèle. Mesure et formule concordent. Le modèle de sept milliards suffit ; le plus gros est plus lent, sans gain.",
+    "Le coût, en échelle logarithmique, pour {passages_big} passages. En local : {local_cost} dollars d'électricité. L'API la moins chère : {cheapest_cost} dollars. Un modèle haut de gamme : {flagship_cost} dollars. Et les données restent chez nous.",
+    "Ce qui reste à faire, nous le disons. Le Brésil n'est pas intégré. Les alertes d'expiration non plus. Les codes EPPO officiels et le test Microsoft 365 restent à faire. Le code est libre, sous licence AGPL.",
+    "L'IA propose, le code décide. Des réponses sourcées, vérifiées, souveraines, et un dépôt que Lallemand Plant Care peut relancer, modifier et améliorer. Merci. Nous sommes prêts pour vos questions."
+  ]
+}

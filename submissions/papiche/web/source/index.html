@@ -1,0 +1,53 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tout le code</title><style>
+:root{color-scheme:dark} body{background:#0b1117;color:#e8ecf2;font:14px/1.55 ui-monospace,'JetBrains Mono',monospace;margin:0}
+header{position:sticky;top:0;background:rgba(11,17,23,.95);border-bottom:1px solid #27323f;padding:10px 20px;font:600 14px system-ui,sans-serif;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+header a{color:#4aa3ff} header .path{color:#2ed573;font-family:ui-monospace,monospace} header .licence{color:#8c98a8;margin-left:auto;font-weight:400}
+table{border-collapse:collapse;width:100%} td{padding:0 12px;vertical-align:top;white-space:pre-wrap;word-break:break-word}
+td.ln{width:1%;white-space:nowrap;min-width:3.2em;text-align:right;color:#6b7888;user-select:none;position:sticky;left:0;background:#0b1117} td.ln a{color:inherit;text-decoration:none}
+tr.on td{background:rgba(46,213,115,.12)} tr.on td.ln{background:#12301f;color:#2ed573}
+.index li{margin:6px 0;font-family:system-ui,sans-serif} .index span{color:#8c98a8}
+</style><header><a href="../../index.html">← retour à la présentation</a><span class="path">tout le code · 45 fichiers</span><span class="licence">AGPL-3.0-or-later</span></header><ul class="index" style="padding:14px 34px"><li><a href="veille_reglementaire/__init__.py.html">veille_reglementaire/__init__.py</a> <span>Veille réglementaire PPP : agent IA maison de veille réglementaire (Ollama + Qdrant + Pydantic).</span></li>
+<li><a href="veille_reglementaire/__main__.py.html">veille_reglementaire/__main__.py</a> <span></span></li>
+<li><a href="veille_reglementaire/admin_api.py.html">veille_reglementaire/admin_api.py</a> <span>Interface d&#x27;administration pour l&#x27;humain : voir l&#x27;état, relire, gérer les sources, lancer les traitements.</span></li>
+<li><a href="veille_reglementaire/api.py.html">veille_reglementaire/api.py</a> <span>API REST (contrat OpenAPI auto-généré sur /openapi.json) — base d&#x27;un connecteur personnalisé Power Platform.</span></li>
+<li><a href="veille_reglementaire/cli.py.html">veille_reglementaire/cli.py</a> <span>Interface en ligne de commande : python -m veille_reglementaire &lt;commande&gt;</span></li>
+<li><a href="veille_reglementaire/comparison_table.py.html">veille_reglementaire/comparison_table.py</a> <span>Tableau comparatif produit × pays × usage, avec retour à la source (URL + date de collecte).</span></li>
+<li><a href="veille_reglementaire/config.py.html">veille_reglementaire/config.py</a> <span>Configuration : tout se règle par variables d&#x27;environnement, aucune clé personnelle requise.</span></li>
+<li><a href="veille_reglementaire/cost_estimate.py.html">veille_reglementaire/cost_estimate.py</a> <span>Estimation du coût : service d&#x27;IA local (RTX 3090) comparé aux API payantes au token et aux forfaits.</span></li>
+<li><a href="veille_reglementaire/eppo_codes.py.html">veille_reglementaire/eppo_codes.py</a> <span>Normalisation EPPO : le LLM propose, la table confirme. Code inconnu -&gt; null, jamais deviné.</span></li>
+<li><a href="veille_reglementaire/evaluation.py.html">veille_reglementaire/evaluation.py</a> <span>Évaluation : compare l&#x27;extraction de l&#x27;IA aux colonnes STRUCTURÉES de la source (vérité terrain e-Phy).</span></li>
+<li><a href="veille_reglementaire/extraction_loop.py.html">veille_reglementaire/extraction_loop.py</a> <span>Boucle de contrôle : extraire (IA) → valider la forme (Pydantic) → vérifier la preuve (code) → recommencer.</span></li>
+<li><a href="veille_reglementaire/holdout_test.py.html">veille_reglementaire/holdout_test.py</a> <span>Test hors échantillon : le prompt a-t-il appris la tâche, ou seulement nos 197 passages de réglage ?</span></li>
+<li><a href="veille_reglementaire/llm.py.html">veille_reglementaire/llm.py</a> <span>Adaptateur LLM : délègue à question.py (Astroport.ONE/IA) s&#x27;il est présent, sinon Ollama direct.</span></li>
+<li><a href="veille_reglementaire/microsoft365_export.py.html">veille_reglementaire/microsoft365_export.py</a> <span>Exports pour l&#x27;écosystème Microsoft 365 : contrat OpenAPI (connecteur Power Platform / Copilot Studio),</span></li>
+<li><a href="veille_reglementaire/model_benchmark.py.html">veille_reglementaire/model_benchmark.py</a> <span>Comparatif de modèles d&#x27;IA sur la MÊME chaîne d&#x27;extraction, pour dimensionner GPU et stockage.</span></li>
+<li><a href="veille_reglementaire/models.py.html">veille_reglementaire/models.py</a> <span>Contrat de données canonique (Pydantic). Le LLM propose, ce contrat dispose.</span></li>
+<li><a href="veille_reglementaire/narration.py.html">veille_reglementaire/narration.py</a> <span>Voix de la présentation Pecha Kucha : le texte dit (avec les vrais chiffres) et la génération audio locale.</span></li>
+<li><a href="veille_reglementaire/pipeline.py.html">veille_reglementaire/pipeline.py</a> <span>Chaîne complète : collecte -&gt; passages -&gt; Qdrant -&gt; extraction (boucle de contrôle) -&gt; enregistrements.</span></li>
+<li><a href="veille_reglementaire/polite_http.py.html">veille_reglementaire/polite_http.py</a> <span>Client HTTP sobre et respectueux pour interroger les sources officielles.</span></li>
+<li><a href="veille_reglementaire/qdrant_store.py.html">veille_reglementaire/qdrant_store.py</a> <span>Mémoire vectorielle Qdrant (mode embarqué par défaut : aucun serveur, aucune clé).</span></li>
+<li><a href="veille_reglementaire/question_answering.py.html">veille_reglementaire/question_answering.py</a> <span>Question en langage naturel -&gt; réponse SOURCÉE.</span></li>
+<li><a href="veille_reglementaire/review.py.html">veille_reglementaire/review.py</a> <span>Relecture humaine : les sources que l&#x27;IA ne tranche pas, et ce que l&#x27;expert peut en faire.</span></li>
+<li><a href="veille_reglementaire/review_cli.py.html">veille_reglementaire/review_cli.py</a> <span>Commandes de relecture : ./veille review | confirm | correct | dismiss</span></li>
+<li><a href="veille_reglementaire/sister_products.py.html">veille_reglementaire/sister_products.py</a> <span>Détection de produits sœurs : mêmes souche et substance active sous des noms commerciaux différents.</span></li>
+<li><a href="veille_reglementaire/source_scaffold.py.html">veille_reglementaire/source_scaffold.py</a> <span>Crée le squelette d&#x27;une nouvelle source à partir du modèle `sources/_template.py`.</span></li>
+<li><a href="veille_reglementaire/source_viewer.py.html">veille_reglementaire/source_viewer.py</a> <span>Rend le code concret : extraits exacts (fichier, fonction, lignes) pour la page, et pages de source navigables.</span></li>
+<li><a href="veille_reglementaire/sources/__init__.py.html">veille_reglementaire/sources/__init__.py</a> <span></span></li>
+<li><a href="veille_reglementaire/sources/_template.py.html">veille_reglementaire/sources/_template.py</a> <span>Source __NAME__ (__COUNTRY__, __REGION__) — modèle généré par `./veille new-source`.</span></li>
+<li><a href="veille_reglementaire/sources/epa.py.html">veille_reglementaire/sources/epa.py</a> <span>Source 3 — US EPA : registre APPRIL (dump public xlsx, sans clé) + étiquettes PDF officielles (PPLS).</span></li>
+<li><a href="veille_reglementaire/sources/ephy.py.html">veille_reglementaire/sources/ephy.py</a> <span>Source 1 — e-Phy (ANSES, France / Europe). Open data data.gouv.fr, licence ouverte, CSV.</span></li>
+<li><a href="veille_reglementaire/sources/pmra.py.html">veille_reglementaire/sources/pmra.py</a> <span>Source 2 — Santé Canada / PMRA, Pesticide Product Information Database (open data, CSV, sans clé).</span></li>
+<li><a href="veille_reglementaire/storyboard.py.html">veille_reglementaire/storyboard.py</a> <span>Storyboard vidéo de la présentation, au format de `generate_scene.sh` (Astroport.ONE/IA/generators).</span></li>
+<li><a href="veille_reglementaire/web_data.py.html">veille_reglementaire/web_data.py</a> <span>Fabrique web/data.js : tout ce que la page didactique affiche vient de VRAIES exécutions (traces, Qdrant, réponses).</span></li>
+<li><a href="tests/test_loop.py.html">tests/test_loop.py</a> <span>Tests de la boucle de contrôle avec un FAUX modèle : on prouve que le code rejette les erreurs du LLM.</span></li>
+<li><a href="tests/test_review.py.html">tests/test_review.py</a> <span>La relecture humaine suit les mêmes règles que l&#x27;IA : une valeur sans preuve dans la source est refusée.</span></li>
+<li><a href="tests/test_sources.py.html">tests/test_sources.py</a> <span>Une nouvelle source se branche sans toucher au reste du code : découverte automatique et squelette valide.</span></li>
+<li><a href="prompts/critic.system.md.html">prompts/critic.system.md</a> <span></span></li>
+<li><a href="prompts/eppo.system.md.html">prompts/eppo.system.md</a> <span></span></li>
+<li><a href="prompts/extractor.system.md.html">prompts/extractor.system.md</a> <span></span></li>
+<li><a href="prompts/query.system.md.html">prompts/query.system.md</a> <span></span></li>
+<li><a href="prompts/retry.user.md.html">prompts/retry.user.md</a> <span></span></li>
+<li><a href="config/scope.json.html">config/scope.json</a> <span></span></li>
+<li><a href="config/pricing.json.html">config/pricing.json</a> <span></span></li>
+<li><a href="config/narration_fr.json.html">config/narration_fr.json</a> <span></span></li>
+<li><a href="web/pechakucha.js.html">web/pechakucha.js</a> <span></span></li></ul></html>

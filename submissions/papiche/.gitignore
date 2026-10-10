@@ -1,0 +1,7 @@
+data/raw/
+data/qdrant/
+data/cache/
+__pycache__/
+*.pyc
+.venv/
+web/audio/*.wav
