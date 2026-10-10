@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Compass: prototype design tokens. Colors from Banque Populaire's chart
+   (banquepopulaire.fr, html.banque-populaire, read in October 2026): navy
+   primary, "bleu électrique" buttons, sky-blue secondary, their neutral and
+   status families. Amounts in French format, white surfaces, navy typography.
+--------------------------------------------------------------------------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-navy: var(--navy);
+  --color-navy-2: var(--navy-2);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-muted-ink: var(--muted-ink);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-info-soft: var(--info-soft);
+  --color-border: var(--line);
+}
+
+:root {
+  --brand: #062499; /* BP buttons and links (bleu électrique) */
+  --brand-strong: #051d7a; /* their hover */
+  --brand-soft: #e9ecf9; /* primary surface, discrete */
+  --navy: #051b71; /* BP primary brand */
+  --navy-2: #000c3c; /* its hover */
+  --surface: #f9f9fb;
+  --line: #e1e1e1;
+  --muted-ink: #666666;
+  --ok: #008234; /* 4.6:1 on --ok-soft: WCAG AA for the small status pills */
+  --ok-soft: #f0f9f4;
+  --warn: #af4000;
+  --warn-soft: #fff5e6;
+  --info-soft: #eaf7ff;
+
+  --background: #ffffff;
+  --foreground: #080d34; /* BP headings */
+  color-scheme: light;
+}
+
+/* High-contrast mode (Profil > Accessibilité) */
+html[data-contrast="high"] {
+  --muted-ink: #333333;
+  --line: #808080;
+  --surface: #ffffff;
+  --brand: #04165c;
+  --ok: #005a24;
+}
+html[data-contrast="high"] .hc-outline {
+  outline: 2px solid var(--navy);
+  outline-offset: -2px;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  :focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  html[data-contrast="high"] :focus-visible {
+    outline: 4px solid #000;
+    box-shadow: 0 0 0 6px #ffd400;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Desktop presentation backdrop */
+.stage-bg {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, transparent 70%),
+    linear-gradient(180deg, #e6f0f7 0%, #e9ecf9 100%);
+}
+
+/* Assistant highlight of a UI element (subtle, accessible, motion-safe) */
+@keyframes compass-ring {
+  0% { box-shadow: 0 0 0 0 rgba(6, 36, 153, 0.45); }
+  70% { box-shadow: 0 0 0 10px rgba(6, 36, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(6, 36, 153, 0); }
+}
+[data-highlighted="true"] {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  animation: compass-ring 1.4s ease-out 3;
+  border-radius: 14px;
+  position: relative;
+}
+html[data-motion="reduce"] [data-highlighted="true"] {
+  animation: none;
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #efefef;
+  border-radius: 10px;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes typing {
+  0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-2px); }
+}
+.typing-dot {
+  animation: typing 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+html[data-motion="reduce"] *,
+html[data-motion="reduce"] *::before,
+html[data-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
