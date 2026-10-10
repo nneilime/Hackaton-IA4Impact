@@ -193,26 +193,35 @@ function csvCell(value) {
 }
 
 // Registre de tous les participants (y compris les membres invités non encore rejoints).
+// Les emails ne sont stockés que sous forme hashée + chiffrée.
 function buildParticipantsCsv(store) {
-  const header = ["email", "login", "team_slug", "team_name", "challenge", "status", "created_at"];
+  const header = [
+    "email_hash",
+    "email_enc",
+    "login",
+    "team_slug",
+    "team_name",
+    "challenge",
+    "status",
+    "created_at",
+  ];
   const rows = [header.join(",")];
   const teams = ((store && store.teams) || [])
     .slice()
     .sort((a, b) => String(a.slug).localeCompare(String(b.slug)));
   for (const team of teams) {
-    const members = (team.members || [])
-      .slice()
-      .sort((a, b) =>
-        String(typeof a === "string" ? a : a.email).localeCompare(
-          String(typeof b === "string" ? b : b.email)
-        )
-      );
+    const members = (team.members || []).slice().sort((a, b) => {
+      const ea = typeof a === "string" ? a : a.email_hash || a.email || "";
+      const eb = typeof b === "string" ? b : b.email_hash || b.email || "";
+      return String(ea).localeCompare(String(eb));
+    });
     for (const m of members) {
       const isObj = m && typeof m === "object";
       const joined = !!(isObj && m.joined && m.login);
       rows.push(
         [
-          csvCell(isObj ? m.email : m),
+          csvCell(isObj ? m.email_hash || "" : ""),
+          csvCell(isObj ? m.email_enc || "" : ""),
           csvCell(isObj ? m.login || "" : ""),
           csvCell(team.slug),
           csvCell(team.name),

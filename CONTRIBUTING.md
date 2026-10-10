@@ -23,7 +23,8 @@ connexion GitHub, choix du défi, emails des membres. Elle crée le dossier
 
 Une fois membre confirmé, vous pouvez aussi **déposer votre projet au format `.zip` directement
 depuis le site** : son contenu est extrait dans votre dossier d'équipe (aucune connaissance de git
-requise). Les adresses email de tous les membres déclarés sont conservées dans `participants.csv`.
+requise). Les adresses email de tous les membres déclarés sont conservées dans `participants.csv`,
+sous forme **hashée et chiffrée** (jamais en clair).
 
 ## Créer votre dossier et déposer votre travail
 

@@ -7,6 +7,7 @@ const {
   inviteCollaborator,
   buildParticipantsCsv,
 } = require("../_lib/github");
+const { hashEmail, encryptEmail } = require("../_lib/emailCrypto");
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const CHALLENGES = ["enedis", "sncf", "bpce-si", "lallemand", "action-logement", "imsa"];
@@ -14,6 +15,17 @@ const CHALLENGES = ["enedis", "sncf", "bpce-si", "lallemand", "action-logement",
 function cleanEmails(list) {
   if (!Array.isArray(list)) return [];
   return [...new Set(list.map((e) => String(e).trim().toLowerCase()).filter((e) => EMAIL_RE.test(e)))];
+}
+
+// Retire les valeurs chiffrées avant d'exposer l'équipe.
+function publicTeam(team) {
+  return {
+    ...team,
+    members: (team.members || []).map((m) => {
+      if (!m || typeof m !== "object") return { email_hash: "", login: null, joined: false };
+      return { email_hash: m.email_hash || "", login: m.login || null, joined: !!m.joined };
+    }),
+  };
 }
 
 function teamReadme(team) {
@@ -27,7 +39,11 @@ function teamReadme(team) {
     "",
     "## Membres",
     "",
-    ...team.members.map((m) => `- ${m.email}${m.login ? ` (@${m.login})` : " (en attente de connexion)"}`),
+    ...team.members.map((m) => {
+      const who = m.login ? `@${m.login}` : "en attente de connexion";
+      const hash = m.email_hash ? ` — \`${m.email_hash.slice(0, 12)}…\`` : "";
+      return `- ${who}${hash}`;
+    }),
     "",
     "## Le projet",
     "",
@@ -45,7 +61,7 @@ module.exports = async (req, res) => {
 
     if (req.method === "GET") {
       const store = await readTeams();
-      return send(res, 200, store);
+      return send(res, 200, { teams: (store.teams || []).map(publicTeam) });
     }
 
     if (req.method !== "POST") return send(res, 405, { error: "Méthode non autorisée" });
@@ -70,23 +86,36 @@ module.exports = async (req, res) => {
 
     const { user, token } = auth;
     const creatorEmails = await getUserEmails(token);
-    const primaryEmail =
-      (user.email && user.email.toLowerCase()) || creatorEmails[0] || `${user.login}@users.noreply.github.com`;
+    if (user.email) creatorEmails.push(user.email.toLowerCase());
+    const creatorEmailSet = new Set(creatorEmails);
+    const primaryEmail = creatorEmails[0] || `${user.login}@users.noreply.github.com`;
+    const primaryHash = hashEmail(primaryEmail);
 
     const declared = cleanEmails(body.members);
     const members = [];
     const seen = new Set();
     for (const email of declared) {
-      if (seen.has(email)) continue;
-      seen.add(email);
-      const isCreator = creatorEmails.includes(email) || email === primaryEmail;
-      members.push({ email, login: isCreator ? user.login : null, joined: isCreator });
+      const hash = hashEmail(email);
+      if (!hash || seen.has(hash)) continue;
+      seen.add(hash);
+      const isCreator = creatorEmailSet.has(email) || hash === primaryHash;
+      members.push({
+        email_hash: hash,
+        email_enc: encryptEmail(email),
+        login: isCreator ? user.login : null,
+        joined: isCreator,
+      });
     }
-    if (!members.some((m) => m.email === primaryEmail)) {
-      members.unshift({ email: primaryEmail, login: user.login, joined: true });
+    if (!members.some((m) => m.email_hash === primaryHash)) {
+      members.unshift({
+        email_hash: primaryHash,
+        email_enc: encryptEmail(primaryEmail),
+        login: user.login,
+        joined: true,
+      });
     }
     // Le créateur est toujours membre confirmé
-    const creatorEntry = members.find((m) => m.email === primaryEmail);
+    const creatorEntry = members.find((m) => m.email_hash === primaryHash);
     if (creatorEntry) {
       creatorEntry.login = user.login;
       creatorEntry.joined = true;
@@ -96,7 +125,7 @@ module.exports = async (req, res) => {
       slug,
       name,
       challenge: challenge || null,
-      owner: primaryEmail,
+      owner: user.login,
       members,
       created_at: new Date().toISOString(),
       created_by: user.login,
@@ -116,7 +145,7 @@ module.exports = async (req, res) => {
 
     await inviteCollaborator(user.login);
 
-    return send(res, 201, { team, invited: user.login });
+    return send(res, 201, { team: publicTeam(team), invited: user.login });
   } catch (err) {
     return handleError(res, err);
   }

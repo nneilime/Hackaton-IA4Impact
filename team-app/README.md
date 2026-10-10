@@ -13,42 +13,73 @@ team-app/
 │   ├── index.html
 │   ├── style.css
 │   ├── app.js
-│   ├── config.js             # à renseigner : URL backend + client_id OAuth
+│   ├── config.js             # à renseigner : URL backend, owner/repo
 │   ├── data/challenges.json  # galerie des défis
 │   └── assets/logos/         # logos des partenaires
 ├── api/                      # fonctions serverless (hébergées sur Vercel)
-│   ├── device/{code,token}.js   # relais OAuth device flow
-│   ├── me.js                    # profil + emails vérifiés
+│   ├── auth/{login,callback}.js # OAuth web GitHub (redirection)
+│   ├── me.js                    # profil + empreintes d'emails
 │   ├── teams/{index,join,leave}.js
-│   └── _lib/                    # helpers (GitHub, CORS, auth)
+│   └── _lib/                    # helpers (GitHub, CORS, auth, chiffrement)
+├── scripts/email-key.js      # gestion de la clé de chiffrement des emails
 ├── vercel.json
 └── package.json
 ```
 
 ## Fonctionnement
 
-1. Le participant se connecte avec GitHub (**device flow**) depuis le site Pages.
-2. Le backend Vercel lit son **login** et ses **emails vérifiés**.
-3. Il crée une équipe (`teams.json`) avec les **emails** des membres choisis, crée le dossier
-   `submissions/<équipe>/` et invite le créateur comme collaborateur.
-4. Un coéquipier rejoint l'équipe quand son **email GitHub** correspond à un email déclaré ;
-   son login est alors enregistré et il est invité comme collaborateur.
+1. Le participant se connecte avec GitHub via le **flow OAuth web** : le site redirige vers
+   GitHub, puis le backend échange le code contre un token. **Aucun code à copier-coller.**
+2. Le backend Vercel lit son **login** et ses **emails vérifiés**, et n'expose plus que des
+   **empreintes** (`email_hash`).
+3. Il crée une équipe (`teams.json`), crée le dossier `submissions/<équipe>/` et invite le
+   créateur comme collaborateur. Les emails déclarés sont stockés **hashés + chiffrés**, jamais en clair.
+4. Un coéquipier rejoint l'équipe quand l'empreinte de son **email GitHub** correspond à un email
+   déclaré ; son login est alors enregistré et il est invité comme collaborateur.
 5. Un membre confirmé peut **déposer un `.zip`** depuis le site : l'archive est décompressée
    dans le navigateur (JSZip) puis poussée directement sur `main` (API Git Data GitHub, token
    de l'utilisateur) dans `submissions/<équipe>/`. Si `main` est protégée, une Pull Request est
    ouverte automatiquement.
 
-Le backend tient aussi à jour un registre `participants.csv` (email, login, équipe, défi, statut
-`joined`/`invited`) qui contient **tous les emails déclarés**, y compris les membres invités qui
-n'ont pas encore rejoint l'équipe.
+Le backend tient aussi à jour un registre `participants.csv` (`email_hash`, `email_enc`, login,
+équipe, défi, statut `joined`/`invited`) qui couvre **tous les participants déclarés**, y compris
+les membres invités qui n'ont pas encore rejoint l'équipe.
 
 Aucun email n'est envoyé par l'application.
 
+## Emails : chiffrement et clé
+
+Les emails ne sont jamais stockés en clair. Chaque email donne :
+
+- un **hash** HMAC-SHA256 (déterministe, utilisé pour le matching et affiché tronqué sur le site) ;
+- une valeur **chiffrée** AES-256-GCM (permet aux organisateurs de retrouver l'email).
+
+La clé (32 octets) vit **hors du dépôt**, dans le dossier parent :
+
+```
+../hackathon-email.key
+```
+
+- Générer/afficher la clé : `node team-app/scripts/email-key.js init`
+- Exporter les emails en clair : `node team-app/scripts/email-key.js export`
+- Calculer l'empreinte d'un email : `node team-app/scripts/email-key.js hash <email>`
+
+La même valeur doit être définie dans Vercel sous `EMAIL_SECRET_KEY`. **Ne jamais committer la clé.**
+
 ## Configuration
 
-- `front/config.js` : `apiBase` (URL Vercel), `clientId` (OAuth App), `eventCode` (optionnel).
-- Variables d'environnement Vercel : `GH_OWNER`, `GH_REPO`, `GH_ADMIN_TOKEN`, `OAUTH_CLIENT_ID`,
-  `ALLOWED_ORIGIN`, `EVENT_CODE` (optionnel).
-- Le dépôt de `.zip` s'appuie sur le **scope OAuth `repo`** (compris dans `OAUTH_SCOPES` par défaut)
-  et sur le fait que le membre ait **accepté l'invitation** au dépôt. Le front charge **JSZip** depuis
-  cdnjs.
+- `front/config.js` : `apiBase` (URL Vercel), `owner`/`repo`, `eventCode` (optionnel).
+- GitHub OAuth App : **Authorization callback URL** →
+  `https://hackaton-ia4impact-team-app.vercel.app/api/auth/callback`.
+- Variables d'environnement Vercel :
+  - `GH_OWNER`, `GH_REPO`, `GH_ADMIN_TOKEN`
+  - `OAUTH_CLIENT_ID`, `OAUTH_CLIENT_SECRET`
+  - `OAUTH_REDIRECT_URI` (ex. `https://hackaton-ia4impact-team-app.vercel.app/api/auth/callback`)
+  - `FRONT_URL` (ex. `https://nneilime.github.io/Hackaton-IA4Impact`)
+  - `EMAIL_SECRET_KEY` (clé de chiffrement des emails)
+  - `OAUTH_SCOPES` (défaut : `public_repo user:email`)
+  - `ALLOWED_ORIGIN`, `EVENT_CODE` (optionnel)
+  - `STATE_SECRET` (optionnel ; sinon `GH_ADMIN_TOKEN` est utilisé pour signer le state OAuth)
+- Le dépôt de `.zip` s'appuie sur le **scope OAuth `public_repo`** et sur le fait que le membre ait
+  **accepté l'invitation** au dépôt (le dépôt des travaux doit être **public**). Le front charge
+  **JSZip** depuis cdnjs.

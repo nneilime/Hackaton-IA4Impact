@@ -69,7 +69,7 @@
     if (id) closeModal(id);
   });
 
-  /* --------------------------- Auth (device flow) ------------------ */
+  /* --------------------------- Auth (OAuth) ------------------------ */
   function setToken(token) {
     state.token = token;
     if (token) localStorage.setItem(TOKEN_KEY, token);
@@ -93,53 +93,29 @@
     if (notify !== false) toast("Déconnecté.");
   }
 
-  async function startLogin() {
-    openModal("loginModal");
-    $("#loginStep1").classList.remove("hidden");
-    $("#loginStepDone").classList.add("hidden");
-    $("#deviceCode").textContent = "…";
-    $("#loginStatus").textContent = "Demande du code…";
-    try {
-      const data = await api("/api/device/code", { method: "POST", auth: false });
-      if (data.error) throw new Error(data.error_description || data.error);
-      $("#deviceCode").textContent = data.user_code;
-      $("#deviceLink").href = data.verification_uri || "https://github.com/login/device";
-      $("#loginStatus").textContent = "En attente de l'autorisation…";
-      pollToken(data.device_code, data.interval || 5);
-    } catch (err) {
-      $("#loginStatus").textContent = err.message;
-      toast(err.message, "error");
+  function startLogin() {
+    if (!CFG.apiBase) {
+      toast("Le backend n'est pas encore configuré.", "error");
+      return;
     }
+    window.location.href = CFG.apiBase.replace(/\/$/, "") + "/api/auth/login";
   }
 
-  async function pollToken(deviceCode, interval) {
-    let wait = interval;
-    const loop = async () => {
-      let data;
-      try {
-        data = await api("/api/device/token", { method: "POST", auth: false, body: { device_code: deviceCode } });
-      } catch {
-        setTimeout(loop, wait * 1000);
-        return;
-      }
-      if (data.access_token) {
-        setToken(data.access_token);
-        $("#loginStep1").classList.add("hidden");
-        $("#loginStepDone").classList.remove("hidden");
-        await refreshUser();
-        await loadTeams();
-        setTimeout(() => closeModal("loginModal"), 600);
-        toast("Bonjour @" + state.user.login + " !", "success");
-        return;
-      }
-      if (data.error === "slow_down") wait += 5;
-      if (data.error && data.error !== "authorization_pending" && data.error !== "slow_down") {
-        $("#loginStatus").textContent = "Erreur : " + data.error;
-        return;
-      }
-      setTimeout(loop, wait * 1000);
-    };
-    loop();
+  // Récupère le token renvoyé par le callback OAuth dans le fragment d'URL.
+  function consumeAuthRedirect() {
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash) return false;
+    const params = new URLSearchParams(hash);
+    const token = params.get("access_token");
+    const error = params.get("error");
+    if (!token && !error) return false;
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+    if (token) {
+      setToken(token);
+      return true;
+    }
+    toast("Connexion GitHub échouée : " + error, "error");
+    return false;
   }
 
   /* ----------------------------- Render ---------------------------- */
@@ -185,19 +161,24 @@
     });
   }
 
+  function shortHash(hash) {
+    const s = String(hash || "");
+    return s ? s.slice(0, 10) + "…" : "";
+  }
+
   function memberView(m) {
     const pending = !m.joined;
     return `<li>
       <span class="dot ${pending ? "dot--pending" : ""}"></span>
-      <span>${esc(m.email)}</span>
-      ${m.login ? `<span class="muted">@${esc(m.login)}</span>` : '<span class="muted">en attente</span>'}
+      <span>${m.login ? "@" + esc(m.login) : "en attente"}</span>
+      ${m.email_hash ? `<span class="muted hash" title="${esc(m.email_hash)}">${esc(shortHash(m.email_hash))}</span>` : ""}
     </li>`;
   }
 
   function teamCard(team) {
     const challenge = state.challenges.find((c) => c.slug === team.challenge);
-    const myEmails = (state.user && state.user.emails) || [];
-    const me = (team.members || []).find((m) => myEmails.includes(String(m.email).toLowerCase()));
+    const myHashes = (state.user && state.user.email_hashes) || [];
+    const me = (team.members || []).find((m) => myHashes.includes(String(m.email_hash || "").toLowerCase()));
     const iAmMember = !!me;
     const joined = !!(me && me.joined && me.login);
 
@@ -619,9 +600,11 @@
     bind();
     renderEmailInputs([]);
     await loadChallenges();
+    const justLogged = consumeAuthRedirect();
     if (state.token) await refreshUser();
     renderAuth();
     await loadTeams();
+    if (justLogged && state.user) toast("Bonjour @" + state.user.login + " !", "success");
   }
 
   init();

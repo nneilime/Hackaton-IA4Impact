@@ -172,6 +172,7 @@ code {
 .team__members .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); flex: none; }
 .team__members .dot--pending { background: var(--muted); opacity: 0.6; }
 .team__members .muted { color: var(--muted); font-size: 12.5px; }
+.team__members .hash { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
 .team__actions { display: flex; gap: 8px; margin-top: 4px; }
 
 .teams__toolbar { display: flex; gap: 12px; align-items: center; }
@@ -236,11 +237,6 @@ code {
 .modal__card h3 { margin: 0 0 16px; }
 .modal__close { position: absolute; top: 12px; right: 14px; border: none; background: none; font-size: 22px; color: var(--muted); cursor: pointer; }
 .modal__actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }
-.devicecode {
-  font-size: 30px; font-weight: 800; letter-spacing: 0.18em; text-align: center;
-  background: var(--surface-2); border-radius: 12px; padding: 14px; margin: 14px 0;
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
 
 /* Toasts */
 .toasts { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 200; }

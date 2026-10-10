@@ -1,1 +1,1 @@
-email,login,team_slug,team_name,challenge,status,created_at
+email_hash,email_enc,login,team_slug,team_name,challenge,status,created_at
