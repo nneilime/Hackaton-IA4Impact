@@ -1,0 +1,30 @@
+# Environnements et dépendances
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+frontend/node_modules/
+frontend/dist/
+
+# Données générées au premier lancement (recréées automatiquement)
+data/corpus/
+data/imports/
+data/test_aveugle/
+data/backups/
+data/sentinel.db
+data/sentinel.db-*
+
+# Corpus du défi et lectures OCR dérivées : données de santé, JAMAIS versionnées (version 3.0).
+# L'utilisateur dépose localement l'archive autorisée General-main.zip dans data/.
+data/General-main.zip
+data/cache/
+data/diagnostic/
+data/test_robustesse/
+data/e2e_zones.json
+data/e2e_parcours_simple.json
+
+# Système
+.DS_Store
+Thumbs.db
+*.log
