@@ -1,0 +1,8 @@
+# Clés API (OPENAI_API_KEY du chatbot) : jamais versionnées
+.env
+*.env
+
+# Environnement et cache Python pour l'Indicateur de Confiance
+indice-confiance/.venv/
+indice-confiance/__pycache__/
+indice-confiance/.pytest_cache/

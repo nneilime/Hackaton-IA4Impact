@@ -1,0 +1,31 @@
+/* BâtIA · données réelles — ce que le monde réel ajoute à la feuille de BâtIA (app/app.css).
+   Le panneau et la fiche portent les classes du kit (.panneau.file, .panneau.fiche, .cat, .ligne, .bloc, .plus-infos) :
+   ils en prennent la forme. Ici, seulement ce qui change d'un monde à l'autre. */
+
+/* ── En données réelles, le kit se retire entièrement : un monde ou l'autre ── */
+body.monde-reel :is(#file, #fiche, .outils, .lentilles, #page, #annonce) { display: none !important; }
+body.monde-reel #carte .rv { display: none !important; }
+body.monde-reel .marque { background-color: var(--papier); width: auto; padding-right: 18px; }
+body.monde-reel .marque-nom { border-right: 0; padding-right: 0; }
+body.monde-reel.liste-fermee .re-panneau.arrive { transform: none; }
+
+/* ── Le panneau du parc réel : la file du kit ── */
+.re-panneau { visibility: hidden; }
+body.monde-reel .re-panneau { visibility: visible; }
+.re-panneau .compte em { margin-left: auto; font-style: normal; font-weight: 600; font-size: 13px; color: var(--encre-3); white-space: nowrap; }
+.re-panneau .bandes .cat:not([data-vive]) { height: 30px; }
+.re-panneau .bandes button.cat:not([data-vive])[aria-pressed="true"] { background: var(--encre); color: var(--papier); box-shadow: none; }
+.re-fiche.re-arrive { animation: glisse-droite .32s cubic-bezier(.2, .8, .2, 1); }
+
+/* ── La fiche : l'étiquette énergie à côté de la catégorie, avec sa source ── */
+.re-etiquette { display: inline-flex; align-items: center; gap: 7px; }
+.re-source { font-size: 13px; color: var(--encre-3); font-weight: 600; }
+.re-rep { display: inline-flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
+.re-rep small { margin-left: 3px; font-weight: 600; color: var(--encre-2); }
+.re-sources-raisons li { font-size: 14px; }
+.re-sources-raisons li small { display: block; font-size: 12.5px; color: var(--encre-3); margin-top: 2px; }
+.re-sources { list-style: none; margin: 0 0 8px; padding: 0; font-size: 13px; display: flex; flex-direction: column; gap: 4px; }
+.re-sources li { display: flex; justify-content: space-between; gap: 10px; }
+.re-sources li span { color: var(--encre-3); white-space: nowrap; }
+.re-manque, .re-ids { font-size: 13px; color: var(--encre-3); margin: 0 0 8px; }
+.re-ids { word-break: break-all; }

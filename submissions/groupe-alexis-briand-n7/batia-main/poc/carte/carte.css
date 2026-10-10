@@ -1,0 +1,97 @@
+/* Carte d'Assise — repères et contrôles. Les variables reprennent la palette d'Assise, avec des valeurs de repli. */
+.carte-assise {
+  --c-encre: var(--encre, #2B1D15);
+  --c-encre-2: var(--encre-2, #5B4738);
+  --c-encre-3: var(--encre-3, #86705E);
+  --c-papier: var(--papier, #FBF7F0);
+  --c-trait: var(--trait, #DCCBAF);
+  --c-cuite: var(--brique-cuite, #8A2F14);
+  --c-claire: var(--brique-claire, #DA9563);
+  --c-froid: var(--froid, #245A73);
+  --c-terre: #F3ECDF;
+  position: relative; overflow: hidden; background: #EDE4D3; /* le mortier, le temps que le fond arrive */
+  font-family: var(--sans, 'Source Sans 3', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif);
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+.carte-assise .maplibregl-canvas { outline: none; }
+/* un filet de joint autour de la carte, comme le bord d'une plaque murale */
+.carte-assise::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(43, 29, 21, .1), inset 0 0 28px rgba(43, 29, 21, .05); }
+.carte-assise .maplibregl-canvas-container { opacity: 0; transition: opacity .5s ease; }
+.carte-assise.carte-prete .maplibregl-canvas-container { opacity: 1; }
+
+/* ── Le repère : une brique posée, la base remplie selon ce qui reste à faire ── */
+.rv { width: max-content; z-index: 2; }
+.rv-bouton {
+  position: relative; display: block; padding: 0; margin: 0; border: 0; background: none; cursor: pointer; font: inherit; color: inherit;
+  transition: transform .55s cubic-bezier(.2, .9, .25, 1.15), opacity .35s ease;
+  transition-delay: calc(var(--rang, 0) * 55ms);
+}
+.rv-bouton:focus-visible { outline: none; }
+.rv-bouton:focus-visible .rv-brique { outline: 3px solid var(--c-froid); outline-offset: 3px; }
+.rv-brique {
+  box-sizing: border-box; position: relative; display: block; width: max(20px, calc(var(--cote) * var(--k, 1))); height: max(20px, calc(var(--cote) * var(--k, 1))); overflow: hidden;
+  background: var(--c-papier); border: 1.5px solid var(--c-encre); border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(43, 29, 21, .18), 0 7px 14px -8px rgba(43, 29, 21, .55);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.rv-bouton:hover .rv-brique { transform: translateY(-2px); box-shadow: 0 1px 0 rgba(43, 29, 21, .18), 0 12px 18px -9px rgba(43, 29, 21, .6); }
+.rv-remplissage { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; }
+.rv-surveiller { background: var(--c-claire); }
+.rv-visiter-barre { background: var(--c-cuite); }
+.rv-lettre {
+  position: absolute; left: 0; right: 0; top: 0; height: 64%; display: grid; place-items: center;
+  font-family: var(--serif, 'Source Serif 4', Georgia, serif); font-weight: 600; font-size: max(10px, calc(var(--cote) * var(--k, 1) * .44)); line-height: 1; color: var(--c-encre);
+  padding-top: calc(var(--cote) * var(--k, 1) * .06);
+}
+.rv-texte {
+  position: absolute; top: 0; left: calc(100% + 8px);
+  white-space: nowrap; line-height: 1.2; text-align: left; pointer-events: none;
+  text-shadow: 0 0 1px var(--c-terre), 0 0 2px var(--c-terre), 0 0 3px var(--c-terre), 0 0 6px var(--c-terre), 0 0 10px var(--c-terre);
+  transition: opacity .25s ease;
+}
+.rv-texte b { display: block; font-weight: 700; font-size: 14.5px; color: var(--c-encre); letter-spacing: .005em; }
+.rv-sous, .rv-alerte { display: block; font-size: 12.5px; color: var(--c-encre-2); }
+.rv-visiter { color: var(--c-cuite); font-weight: 600; }
+.rv[data-etiquette="gauche"] .rv-texte { text-align: right; }
+.rv[data-etiquette="dessous"] .rv-texte, .rv[data-etiquette="dessus"] .rv-texte { text-align: center; }
+.rv[data-etiquette="muette"] .rv-texte { opacity: 0; }
+.rv[data-etiquette="muette"]:hover .rv-texte, .rv[data-etiquette="muette"]:focus-within .rv-texte { opacity: 1; z-index: 3; }
+.rv:hover, .rv:focus-within { z-index: 4; }
+
+/* La métropole de loin : un seul repère, qui cède la place aux huit briques quand on s'approche. */
+.rv-metro .rv-brique { border-width: 2px; }
+.rv-metro .rv-brique { width: var(--cote); height: var(--cote); }
+.rv-metro .rv-lettre { font-size: calc(var(--cote) * .4); }
+.rv-metro .rv-texte b { font-family: var(--serif, 'Source Serif 4', Georgia, serif); font-weight: 600; font-size: 15.5px; }
+.carte-assise .rv:not(.rv-metro) .rv-bouton { opacity: 1; transform: none; }
+.carte-assise.carte-loin .rv:not(.rv-metro) { pointer-events: none; }
+.carte-assise.carte-loin .rv:not(.rv-metro) .rv-bouton { opacity: 0; transform: scale(.35) translateY(10px); transition-delay: 0s; }
+.carte-assise .rv-metro { pointer-events: none; }
+.carte-assise .rv-metro .rv-bouton { opacity: 0; transform: scale(1.6); transition-delay: 0s; }
+.carte-assise.carte-loin .rv-metro { pointer-events: auto; }
+.carte-assise.carte-loin .rv-metro .rv-bouton { opacity: 1; transform: none; }
+
+/* ── Contrôles, au ton de l'appli ── */
+.carte-assise .maplibregl-ctrl-group { background: var(--c-papier); border: 1.5px solid var(--c-trait); border-radius: 10px; box-shadow: none; overflow: hidden; }
+.carte-assise .maplibregl-ctrl-group:not(:empty) { box-shadow: 0 4px 12px -8px rgba(43, 29, 21, .5); }
+.carte-assise .maplibregl-ctrl-group button { width: 34px; height: 34px; }
+.carte-assise .maplibregl-ctrl-group button + button { border-top: 1px solid var(--c-trait); }
+.carte-assise .maplibregl-ctrl-group button:focus-visible { box-shadow: inset 0 0 0 3px var(--c-froid); }
+.carte-assise .maplibregl-ctrl-attrib {
+  background: rgba(251, 247, 240, .88); color: var(--c-encre-2); font-size: 11px; padding: 2px 7px; border-top-left-radius: 6px;
+}
+.carte-assise .maplibregl-ctrl-attrib a { color: var(--c-encre-2); }
+
+/* Au téléphone : seulement ce qu'il faut aller voir (la taille de la brique dit déjà le nombre de logements). */
+.carte-etroite .rv:not(.rv-metro) .rv-texte b,
+.carte-etroite .rv[data-visite]:not(.rv-metro) .rv-surv,
+.carte-etroite .rv[data-visite]:not(.rv-metro) .rv-sep { display: none; }
+.carte-etroite .rv:not(.rv-metro) .rv-alerte { font-size: 12.5px; }
+
+@media (max-width: 620px) {
+  .rv-texte b { font-size: 13px; }
+  .rv-sous, .rv-alerte { font-size: 11.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv-bouton, .rv-brique, .rv-texte, .carte-assise .maplibregl-canvas-container { transition: none !important; }
+}

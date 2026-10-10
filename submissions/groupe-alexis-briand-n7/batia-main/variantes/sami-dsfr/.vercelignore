@@ -1,0 +1,12 @@
+.git
+node_modules
+__pycache__
+carte/fond/*.pmtiles
+carte/telechargements
+apercu
+captures
+imports
+etat
+telechargements
+*.png
+*.md

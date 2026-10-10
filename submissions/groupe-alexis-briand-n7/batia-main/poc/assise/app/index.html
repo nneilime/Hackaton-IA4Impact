@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F1E9DB">
+  <title>Assise — pannes à venir et décisions</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F1E9DB'/%3E%3Crect x='2' y='6' width='17' height='6' rx='1' fill='%23B0502A'/%3E%3Crect x='21' y='6' width='9' height='6' rx='1' fill='%238A2F14'/%3E%3Crect x='2' y='14' width='8' height='6' rx='1' fill='%23D9905F'/%3E%3Crect x='12' y='14' width='18' height='6' rx='1' fill='%23B0502A'/%3E%3Crect x='2' y='22' width='17' height='6' rx='1' fill='%23B0502A'/%3E%3Crect x='21' y='22' width='9' height='6' rx='1' fill='%23D9905F'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/vendor/fonts/polices.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <a class="evitement" href="#contenu">Aller au contenu</a>
+  <header class="entete">
+    <div class="entete-ligne">
+      <a class="marque" href="#/" aria-label="Assise, retour à l'accueil">
+        <span class="marque-nom">Assise</span>
+        <span class="marque-sous">Équipe technique · Sud-Ouest</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#/" data-nav="decider">À décider</a>
+        <a href="#/parc" data-nav="parc">Le parc</a>
+        <a href="#/energie" data-nav="energie">Énergie</a>
+        <a href="#/methode" data-nav="methode">Méthode</a>
+      </nav>
+      <div class="recherche" role="search">
+        <label class="recherche-champ">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="recherche" type="search" autocomplete="off" spellcheck="false" placeholder="Logement, résidence, équipement…" aria-label="Rechercher un logement, une résidence ou un équipement" aria-controls="recherche-resultats" aria-expanded="false">
+        </label>
+        <div id="recherche-resultats" class="recherche-resultats" role="listbox" hidden></div>
+      </div>
+    </div>
+    <div class="assises" aria-hidden="true"></div>
+  </header>
+
+  <main id="contenu" class="contenu" tabindex="-1">
+    <p class="chargement">Lecture du parc…</p>
+  </main>
+
+  <nav class="nav-bas" aria-label="Sections">
+    <a href="#/" data-nav="decider"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="3.2" rx=".6"/><rect x="3" y="10.4" width="18" height="3.2" rx=".6"/><rect x="3" y="15.8" width="11" height="3.2" rx=".6"/></svg><span>À décider</span></a>
+    <a href="#/parc" data-nav="parc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-3.9 0-7 3-7 6.9 0 5 7 12.1 7 12.1s7-7.1 7-12.1c0-3.9-3.1-6.9-7-6.9Zm0 9.6a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4Z"/></svg><span>Le parc</span></a>
+    <a href="#/energie" data-nav="energie"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.2 2 5 13.4h5.6L9.8 22 19 9.9h-5.7L13.2 2Z"/></svg><span>Énergie</span></a>
+    <a href="#/methode" data-nav="methode"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h10l4 4v14H5V3Zm9 1.8V8h3.2L14 4.8ZM8 11h8v1.8H8V11Zm0 3.6h8v1.8H8v-1.8Z"/></svg><span>Méthode</span></a>
+  </nav>
+
+  <div id="voile" class="voile" hidden></div>
+  <aside id="fiche" class="fiche" aria-modal="true" role="dialog" aria-labelledby="fiche-titre" hidden>
+    <div class="fiche-poignee" aria-hidden="true"></div>
+    <button class="fiche-fermer" type="button" aria-label="Fermer la fiche">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div id="fiche-corps" class="fiche-corps"></div>
+  </aside>
+
+  <div id="annonce" class="annonce" role="status" aria-live="polite"></div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "deck-recorder",
+  "private": true,
+  "type": "module",
+  "description": "Enregistre des démos du vrai site (souris visible, zooms caméra) pour le diapo.",
+  "dependencies": { "playwright-core": "1.48.2" }
+}

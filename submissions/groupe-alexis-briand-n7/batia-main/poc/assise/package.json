@@ -1,0 +1,13 @@
+{
+  "name": "assise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Assise — voir venir les pannes et décider quoi réparer d'abord (In'li Sud-Ouest, données fictives du kit BâtIA)",
+  "type": "module",
+  "scripts": {
+    "start": "node serveur.mjs",
+    "reseau": "node serveur.mjs --reseau",
+    "eprouver": "node outils/eprouver.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

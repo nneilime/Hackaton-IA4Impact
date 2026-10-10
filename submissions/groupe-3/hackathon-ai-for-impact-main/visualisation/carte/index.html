@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trains d'Occitanie</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root { --bg:#fff; --fg:#1f2328; --muted:#667085; --line:#e4e7ec; --accent:#1a73e8; --panel:#fff; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; font:14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--fg); background:var(--bg); }
+  #app { display:flex; height:100%; }
+  #side { width:340px; min-width:340px; display:flex; flex-direction:column; border-right:1px solid var(--line); background:var(--panel); z-index:2; }
+  #side header { padding:14px 16px 8px; }
+  #side h1 { font-size:17px; margin:0 0 2px; }
+  #side .sub { color:var(--muted); font-size:12px; }
+  .sec { padding:10px 16px; border-top:1px solid var(--line); }
+  .sec h2 { font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:0 0 6px; font-weight:600; }
+  label { display:block; font-size:12px; color:var(--muted); margin:6px 0 2px; }
+  input,select,button { font:inherit; }
+  input[type=datetime-local],input[type=text],select { width:100%; padding:6px 8px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--fg); }
+  .row { display:flex; gap:6px; }
+  .row > * { flex:1; }
+  .chips { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+  .chip { border:1px solid var(--line); background:#f8f9fb; border-radius:14px; padding:3px 10px; cursor:pointer; font-size:12px; }
+  .chip:hover { border-color:var(--accent); color:var(--accent); }
+  #count { font-size:12px; color:var(--muted); margin-top:6px; }
+  #list { flex:1; overflow:auto; border-top:1px solid var(--line); }
+  .tr { display:flex; align-items:center; gap:8px; padding:6px 16px; cursor:pointer; border-bottom:1px solid #f2f4f7; }
+  .tr:hover { background:#f5f8ff; }
+  .tr.sel { background:#e8f0fe; }
+  .sw { width:14px; height:14px; border-radius:3px; flex:none; }
+  .tr b { font-variant-numeric:tabular-nums; min-width:48px; }
+  .tr .od { font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; }
+  .tr .n { font-size:11px; color:var(--muted); }
+  #map { flex:1; }
+  #clock { position:absolute; left:50%; transform:translateX(-50%); bottom:18px; z-index:500; background:#fff; border-radius:10px;
+           box-shadow:0 2px 10px rgba(0,0,0,.2); padding:8px 12px; display:none; align-items:center; gap:10px; width:min(560px, calc(100% - 32px)); }
+  #clock input { flex:1; }
+  #clock .t { font-variant-numeric:tabular-nums; font-weight:600; min-width:46px; }
+  #clock button { border:0; background:var(--accent); color:#fff; border-radius:6px; padding:4px 10px; cursor:pointer; }
+  #detail { padding:10px 16px; border-top:1px solid var(--line); display:none; max-height:40%; overflow:auto; font-size:13px; }
+  #detail table { border-collapse:collapse; width:100%; }
+  #detail td { padding:2px 4px; border-bottom:1px solid #f2f4f7; }
+  #detail td.h { font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--muted); }
+  .kv { display:grid; grid-template-columns:auto 1fr; gap:2px 10px; margin:6px 0; font-size:12px; }
+  .kv span:nth-child(odd) { color:var(--muted); }
+  .x { float:right; border:0; background:none; cursor:pointer; font-size:16px; color:var(--muted); }
+  .lbl-train { background:var(--c); color:#fff; border:0; font-weight:700; padding:1px 5px; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.3); font-size:11px; }
+  .leaflet-tooltip.lbl { background:none; border:0; box-shadow:none; padding:0; }
+  .leaflet-tooltip.lbl::before { display:none; }
+  .lbl-train, .lbl-time { display:inline-block; }
+  .lbl-time { background:#fff; border:1px solid var(--c); color:#111; padding:0 4px; border-radius:3px; font-size:10.5px; font-variant-numeric:tabular-nums; box-shadow:none; }
+  .leaflet-tooltip.stopname { font-size:12px; }
+  .hint { font-size:12px; color:#9a6700; background:#fff8c5; border-radius:6px; padding:6px 8px; margin-top:6px; display:none; }
+  @media (max-width:760px) {
+    #app { flex-direction:column; }
+    #side { width:100%; min-width:0; height:46%; border-right:0; border-bottom:1px solid var(--line); }
+  }
+  label.check { display:flex; align-items:center; gap:6px; color:var(--fg); font-size:13px; margin-top:8px; cursor:pointer; }
+  .star-key { color:#c2410c; }
+  .site-ico { display:flex; align-items:center; justify-content:center; border-radius:50%; background:#c2410c; color:#fff;
+              border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.4); line-height:1; }
+  .site-pop h3 { margin:0 0 2px; font-size:14px; }
+  .site-pop .m { color:#667085; font-size:12px; }
+  .site-pop .tags { display:flex; flex-wrap:wrap; gap:3px; margin:6px 0; }
+  .site-pop .tags span { background:#fff1e6; color:#9a3412; border-radius:10px; padding:1px 7px; font-size:11px; }
+  .site-pop a { color:var(--accent); cursor:pointer; }
+</style>
+</head>
+<body>
+<div id="app">
+  <aside id="side">
+    <header>
+      <h1>Trains d'Occitanie</h1>
+      <div class="sub">Dessertes TER · horaires théoriques</div>
+    </header>
+    <div class="sec">
+      <h2>Période</h2>
+      <div class="row">
+        <div><label for="from">Début</label><input type="datetime-local" id="from"></div>
+        <div><label for="to">Fin</label><input type="datetime-local" id="to"></div>
+      </div>
+      <div class="chips">
+        <span class="chip" data-p="morning">Matinée</span>
+        <span class="chip" data-p="day">Journée</span>
+        <span class="chip" data-p="week">Semaine</span>
+        <span class="chip" data-p="all">Tout</span>
+      </div>
+      <div class="hint" id="hint"></div>
+    </div>
+    <div class="sec">
+      <h2>Filtres</h2>
+      <label for="num">Numéro(s) de train</label>
+      <input type="text" id="num" placeholder="ex. 17301, 8650… (préfixe accepté)">
+      <label for="axe">Axe</label>
+      <select id="axe"><option value="">Tous les axes</option></select>
+      <div id="count"></div>
+      <label class="check"><input type="checkbox" id="showLio" checked> Réseau de cars liO <span style="color:#667085;font-size:12px">(arrêts visibles en zoomant)</span></label>
+      <label class="check"><input type="checkbox" id="showSites" checked> Sites touristiques <span class="star-key">★</span></label>
+    </div>
+    <div id="detail"></div>
+    <div id="list"></div>
+  </aside>
+  <div id="map"></div>
+</div>
+<div id="clock">
+  <button id="play">▶</button>
+  <input type="range" id="slider" min="0" max="1440" step="1">
+  <span class="t" id="tnow">--:--</span>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="data.js"></script>
+<script src="sites.js" onerror="window.SITES=[]"></script>
+<script src="lio.js" onerror="window.LIO=null"></script>
+<script>
+const D = window.DATA;
+const DAY = 1440;
+const $ = id => document.getElementById(id);
+
+// ---------- données dérivées ----------
+const dateMs = D.dates.map(d => Date.parse(d + 'T00:00:00'));
+const trains = [...new Set(D.services.map(s => s[0]))].sort((a, b) => a - b);
+// couleur par numéro : teintes réparties par l'angle d'or + 3 niveaux de luminosité
+const colorOf = {};
+trains.forEach((t, i) => {
+  const h = (i * 137.508) % 360, l = [38, 48, 30][i % 3], s = [78, 70, 85][i % 3];
+  colorOf[t] = `hsl(${h.toFixed(0)},${s}%,${l}%)`;
+});
+const monthKey = ms => { const d = new Date(ms); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); };
+function infoFor(train, ms) {
+  const inf = D.info[String(train)]; if (!inf) return null;
+  return inf[monthKey(ms)] || Object.values(inf)[0];
+}
+const axes = new Set(); Object.values(D.info).forEach(m => Object.values(m).forEach(v => axes.add(v[0])));
+[...axes].sort().forEach(a => $('axe').add(new Option(a, a)));
+
+// ---------- carte ----------
+const map = L.map('map', { preferCanvas: true, zoomControl: true }).setView([43.75, 2.4], 8);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+map.fitBounds([[42.33, -0.33], [45.05, 4.85]]);
+
+const lineLayer = L.layerGroup().addTo(map);
+const stopLayer = L.layerGroup().addTo(map);
+const labelLayer = L.layerGroup().addTo(map);
+const trainPosLayer = L.layerGroup().addTo(map);
+const canvas = L.canvas({ padding: 0.3, tolerance: 6 });
+const siteLayer = L.layerGroup().addTo(map);
+
+// ---------- réseau liO (GTFS) : sous les trains ----------
+map.createPane('lio').style.zIndex = 350;
+const lioCanvas = L.canvas({ pane: 'lio', padding: 0.3, tolerance: 4 });
+const lioLayer = L.layerGroup(), lioStops = L.layerGroup();
+if (window.LIO) {
+  for (const [rid, shapes] of Object.entries(LIO.lines)) {
+    const [num, name, col, agency] = LIO.routes[rid];
+    const tip = `<b>liO ${num}</b><br>${name}<br><span style="color:#667085">${agency}</span>`;
+    shapes.forEach(sh => L.polyline(sh, { renderer: lioCanvas, pane: 'lio', color: col, weight: 2.5, opacity: 0.6, dashArray: '6 4' })
+      .bindTooltip(tip, { sticky: true }).addTo(lioLayer));
+  }
+  for (const [name, lat, lon, rids] of LIO.stops) {
+    const lignes = rids.map(r => LIO.routes[r]).filter(Boolean)
+      .map(r => `<span class="sw" style="display:inline-block;width:9px;height:9px;background:${r[2]}"></span> <b>${r[0]}</b> ${r[1]}`).join('<br>');
+    L.circleMarker([lat, lon], { renderer: lioCanvas, pane: 'lio', radius: 3, color: '#555', weight: 1, fillColor: '#ffe08a', fillOpacity: 1 })
+      .bindPopup(`<b>${name}</b><div style="font-size:12px;margin-top:4px">${lignes}</div>`, { maxWidth: 300 }).addTo(lioStops);
+  }
+  lioLayer.addTo(map);
+} else { $('showLio').closest('label').style.display = 'none'; }
+function syncLio() {
+  const on = $('showLio').checked;
+  on ? lioLayer.addTo(map) : lioLayer.remove();
+  on && map.getZoom() >= 12 ? lioStops.addTo(map) : lioStops.remove();
+}
+map.on('zoomend', syncLio);
+$('showLio').addEventListener('change', syncLio);
+
+// ---------- sites touristiques ----------
+function kmBetween(a1, o1, a2, o2) {
+  const r = Math.PI / 180, x = (o2 - o1) * r * Math.cos((a1 + a2) / 2 * r), y = (a2 - a1) * r;
+  return Math.hypot(x, y) * 6371;
+}
+const maxVis = Math.max(1, ...(window.SITES || []).map(s => s.total_visites || 0));
+(window.SITES || []).forEach(site => {
+  let best = -1, bd = Infinity;
+  D.stops.forEach((st, i) => { const d = kmBetween(site.latitude, site.longitude, st[1], st[2]); if (d < bd) { bd = d; best = i; } });
+  const size = Math.round(16 + 16 * Math.sqrt((site.total_visites || 0) / maxVis));
+  const icon = L.divIcon({ className: '', iconSize: [size, size],
+    html: `<div class="site-ico" style="width:${size}px;height:${size}px;font-size:${Math.round(size * 0.6)}px">★</div>` });
+  const tags = (site.mots_cles || []).map(k => `<span>${k}</span>`).join('');
+  const pop = `<div class="site-pop"><h3>${site.site}</h3>
+    <div class="m">${site.adresse || site.commune || ''}</div>
+    ${site.total_visites ? `<div style="margin-top:4px"><b>${site.total_visites.toLocaleString('fr-FR')}</b> visites (2021)</div>` : ''}
+    <div class="tags">${tags}</div>
+    ${best >= 0 ? `<div>Gare la plus proche : <a data-stop="${best}">${D.stops[best][0]}</a> (${bd.toFixed(1)} km)</div>` : ''}</div>`;
+  L.marker([site.latitude, site.longitude], { icon, zIndexOffset: 1000, title: site.site })
+    .bindPopup(pop, { maxWidth: 280 }).addTo(siteLayer);
+});
+map.on('popupopen', e => e.popup.getElement().querySelectorAll('a[data-stop]').forEach(a =>
+  a.addEventListener('click', () => { const i = +a.dataset.stop; showStop(i); map.setView([D.stops[i][1], D.stops[i][2]], Math.max(map.getZoom(), 11)); })));
+$('showSites').addEventListener('change', e => e.target.checked ? siteLayer.addTo(map) : siteLayer.remove());
+
+function segPath(a, b) {
+  const p = D.paths[a + '-' + b]; if (p) return p;
+  const r = D.paths[b + '-' + a]; return r ? r.slice().reverse() : [[D.stops[a][1], D.stops[a][2]], [D.stops[b][1], D.stops[b][2]]];
+}
+function patternStops(p) { const pat = D.patterns[p], out = []; for (let i = 0; i < pat.length; i += 3) out.push([pat[i], pat[i + 1], pat[i + 2]]); return out; }
+const patCache = {};
+function patternGeom(p) {
+  if (patCache[p]) return patCache[p];
+  const st = patternStops(p), pts = [], segs = [];
+  for (let i = 0; i < st.length - 1; i++) {
+    const seg = segPath(st[i][0], st[i + 1][0]);
+    segs.push(seg);
+    pts.push(...(i ? seg.slice(1) : seg));
+  }
+  return patCache[p] = { st, pts, segs };
+}
+const fmt = m => { m = ((m % DAY) + DAY) % DAY; return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); };
+const toLocalInput = ms => { const d = new Date(ms); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 16); };
+
+// ---------- état ----------
+let selected = null;   // numéro de train sélectionné
+let visible = [];      // circulations dans la période : {train, p, ms, start, end}
+
+function period() {
+  return [Date.parse($('from').value), Date.parse($('to').value)];
+}
+function numFilter() {
+  const toks = $('num').value.split(/[\s,;]+/).filter(Boolean);
+  return toks.length ? t => toks.some(k => String(t).startsWith(k)) : () => true;
+}
+
+function compute() {
+  const [S, E] = period(), okNum = numFilter(), axe = $('axe').value;
+  visible = [];
+  for (const [train, p, ds] of D.services) {
+    if (!okNum(train)) continue;
+    const pat = D.patterns[p], first = pat[2], last = pat[pat.length - 2];
+    for (const di of ds) {
+      const ms = dateMs[di], start = ms + first * 60000, end = ms + last * 60000;
+      if (end < S || start > E) continue;
+      if (axe) { const inf = infoFor(train, ms); if (!inf || inf[0] !== axe) continue; }
+      visible.push({ train, p, ms, start, end });
+    }
+  }
+  visible.sort((a, b) => a.start - b.start);
+}
+
+function render() {
+  compute();
+  const [S, E] = period(), short = E - S <= DAY * 60000 && E > S;
+  lineLayer.clearLayers(); stopLayer.clearLayers(); labelLayer.clearLayers();
+
+  // une ligne par (train, horaire type), pour ne pas superposer 100 fois le même tracé
+  const drawn = new Map(), usedStops = new Set();
+  for (const c of visible) {
+    const k = c.train + '|' + c.p;
+    if (!drawn.has(k)) drawn.set(k, c);
+    patternStops(c.p).forEach(s => usedStops.add(s[0]));
+  }
+  const order = [...drawn.values()].sort((a, b) => (a.train === selected) - (b.train === selected));
+  for (const c of order) {
+    const g = patternGeom(c.p), isSel = c.train === selected, dim = selected !== null && !isSel;
+    const pl = L.polyline(g.pts, {
+      renderer: canvas, color: colorOf[c.train], weight: isSel ? 6 : 3.5,
+      opacity: dim ? 0.18 : 0.9, lineCap: 'round', lineJoin: 'round'
+    }).addTo(lineLayer);
+    pl.on('click', () => select(c.train));
+    pl.bindTooltip(() => trainTip(c.train, c.ms), { sticky: true });
+  }
+
+  for (const i of usedStops) {
+    const s = D.stops[i];
+    L.circleMarker([s[1], s[2]], { renderer: canvas, radius: 3.5, color: '#333', weight: 1.2, fillColor: '#fff', fillOpacity: 1 })
+      .bindTooltip(s[0], { className: 'stopname', direction: 'top' })
+      .on('click', () => showStop(i)).addTo(stopLayer);
+  }
+
+  // étiquettes : numéro du train + heure à chaque arrêt (période < 1 jour)
+  const hint = $('hint'); hint.style.display = 'none';
+  if (short) {
+    const lbl = selected !== null ? visible.filter(c => c.train === selected) : visible;
+    const withTimes = lbl.length <= 25;
+    if (lbl.length <= 80) for (const c of lbl) addLabels(c, withTimes);
+    if (!withTimes) {
+      hint.textContent = `${lbl.length} circulations : heures masquées pour rester lisible. Sélectionnez un train, filtrez par numéro ou réduisez la période (≤ 25 circulations).`;
+      hint.style.display = 'block';
+    }
+  } else if (E > S) {
+    hint.textContent = 'Choisissez une période de moins d’un jour pour afficher les numéros et les heures de passage.';
+    hint.style.display = 'block';
+  }
+
+  renderList(); setupClock(short); renderDetail();
+}
+
+function addLabels(c, withTimes) {
+  const g = patternGeom(c.p), col = colorOf[c.train];
+  const mid = g.pts[Math.floor(g.pts.length / 2)];
+  const s0 = D.stops[g.st[0][0]];
+  L.tooltip({ permanent: true, direction: 'top', offset: [0, -8], className: 'lbl', interactive: false })
+    .setLatLng([s0[1], s0[2]]).setContent(`<span class="lbl-train" style="--c:${col}">${c.train}</span>`).addTo(labelLayer);
+  L.tooltip({ permanent: true, direction: 'center', className: 'lbl', interactive: false })
+    .setLatLng(mid).setContent(`<span class="lbl-train" style="--c:${col}">${c.train}</span>`).addTo(labelLayer);
+  if (!withTimes) return;
+  g.st.forEach((s, idx) => {
+    const st = D.stops[s[0]];
+    const txt = s[1] === s[2] || idx === 0 ? fmt(idx === 0 ? s[2] : s[1]) : fmt(s[1]) + '→' + fmt(s[2]);
+    L.circleMarker([st[1], st[2]], { renderer: canvas, radius: 4, color: col, weight: 2, fillColor: '#fff', fillOpacity: 1 })
+      .bindTooltip(`<span class="lbl-time" style="--c:${col}">${txt}</span>`, { permanent: true, direction: idx % 2 ? 'right' : 'left', offset: [idx % 2 ? 6 : -6, 0], className: 'lbl' })
+      .on('click', () => showStop(s[0])).addTo(labelLayer);
+  });
+}
+function trainTip(train, ms) {
+  const inf = infoFor(train, ms);
+  return `<b>Train ${train}</b>` + (inf ? `<br>${inf[0]}<br><span style="color:#667085">${inf[1]}</span>` : '');
+}
+
+function renderList() {
+  const per = new Map();
+  for (const c of visible) { const e = per.get(c.train) || { n: 0, ms: c.ms }; e.n++; per.set(c.train, e); }
+  $('count').textContent = `${per.size} trains · ${visible.length} circulations sur la période`;
+  const html = [...per.entries()].sort((a, b) => a[0] - b[0]).map(([t, e]) => {
+    const inf = infoFor(t, e.ms);
+    return `<div class="tr${t === selected ? ' sel' : ''}" data-t="${t}"><span class="sw" style="background:${colorOf[t]}"></span>
+      <b>${t}</b><span class="od">${inf ? inf[1] : ''}</span><span class="n">${e.n}×</span></div>`;
+  }).join('');
+  $('list').innerHTML = html || '<div style="padding:16px;color:#667085">Aucun train sur cette période.</div>';
+}
+$('list').addEventListener('click', e => { const r = e.target.closest('.tr'); if (r) select(+r.dataset.t); });
+
+function select(t) {
+  selected = selected === t ? null : t;
+  render();
+  if (selected !== null) {
+    const cs = visible.filter(c => c.train === selected);
+    if (cs.length) map.fitBounds(L.latLngBounds(cs.flatMap(c => patternGeom(c.p).pts)), { padding: [40, 40], maxZoom: 11 });
+  }
+}
+
+function renderDetail() {
+  const el = $('detail');
+  if (selected === null) { if (!el.dataset.stop) el.style.display = 'none'; return; }
+  delete el.dataset.stop;
+  const cs = visible.filter(c => c.train === selected);
+  const c = cs[0];
+  let h = `<button class="x" onclick="select(${selected})" title="Désélectionner">×</button>
+    <div><span class="sw" style="display:inline-block;vertical-align:-2px;background:${colorOf[selected]}"></span> <b>Train ${selected}</b></div>`;
+  if (c) {
+    const inf = infoFor(selected, c.ms);
+    if (inf) h += `<div class="kv"><span>Axe</span><span>${inf[0]}</span><span>O / D</span><span>${inf[1]}</span>
+      <span>Fréquentation</span><span>${inf[2]} (mois)</span><span>Régularité</span><span>${inf[3]}</span>
+      <span>Suppressions</span><span>${inf[4]}</span><span>Minutes perdues</span><span>${inf[5]}</span></div>`;
+    h += `<div style="color:#667085;font-size:12px">${cs.length} circulation(s) · horaires du ${new Date(c.ms).toLocaleDateString('fr-FR')}</div><table>`;
+    for (const s of patternGeom(c.p).st) h += `<tr><td class="h">${fmt(s[1])}${s[2] !== s[1] ? '–' + fmt(s[2]) : ''}</td><td>${D.stops[s[0]][0]}</td></tr>`;
+    h += '</table>';
+  } else h += '<div style="color:#667085">Ne circule pas sur la période choisie.</div>';
+  el.innerHTML = h; el.style.display = 'block';
+}
+
+function showStop(i) {
+  const el = $('detail'), rows = [];
+  for (const c of visible) for (const s of patternGeom(c.p).st)
+    if (s[0] === i) rows.push({ t: c.ms + s[1] * 60000, train: c.train, a: s[1], d: s[2] });
+  rows.sort((a, b) => a.t - b.t);
+  const multi = new Set(rows.map(r => new Date(r.t).toDateString())).size > 1;
+  let h = `<button class="x" onclick="this.parentNode.style.display='none'">×</button><b>${D.stops[i][0]}</b>
+    <div style="color:#667085;font-size:12px">${rows.length} passage(s) sur la période</div><table>`;
+  for (const r of rows.slice(0, 300)) h += `<tr><td class="h">${multi ? new Date(r.t).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }) + ' ' : ''}${fmt(r.a)}</td>
+    <td><span class="sw" style="display:inline-block;width:10px;height:10px;background:${colorOf[r.train]}"></span> <a href="#" onclick="select(${r.train});return false">${r.train}</a></td></tr>`;
+  h += '</table>' + (rows.length > 300 ? '<div style="color:#667085">… 300 premiers affichés</div>' : '');
+  el.innerHTML = h; el.dataset.stop = i; el.style.display = 'block';
+}
+
+// ---------- horloge : position des trains à un instant (période < 1 jour) ----------
+let playing = null;
+function setupClock(short) {
+  const box = $('clock');
+  if (!short) { box.style.display = 'none'; trainPosLayer.clearLayers(); stop(); return; }
+  const [S, E] = period(), sl = $('slider');
+  sl.min = 0; sl.max = Math.round((E - S) / 60000);
+  if (+sl.value > +sl.max) sl.value = 0;
+  box.style.display = 'flex'; drawPositions();
+}
+function interp(c, tMs) {
+  const g = patternGeom(c.p), m = (tMs - c.ms) / 60000;
+  for (let i = 0; i < g.st.length; i++) {
+    if (m <= g.st[i][2]) {
+      if (i === 0 || m >= g.st[i][1]) return [D.stops[g.st[i][0]][1], D.stops[g.st[i][0]][2]];
+      const seg = g.segs[i - 1], f = (m - g.st[i - 1][2]) / Math.max(1, g.st[i][1] - g.st[i - 1][2]);
+      const L_ = []; let tot = 0;
+      for (let k = 1; k < seg.length; k++) { const d = Math.hypot(seg[k][0] - seg[k - 1][0], (seg[k][1] - seg[k - 1][1]) * 0.72); L_.push(d); tot += d; }
+      let target = f * tot;
+      for (let k = 0; k < L_.length; k++) {
+        if (target <= L_[k]) { const r = L_[k] ? target / L_[k] : 0; return [seg[k][0] + (seg[k + 1][0] - seg[k][0]) * r, seg[k][1] + (seg[k + 1][1] - seg[k][1]) * r]; }
+        target -= L_[k];
+      }
+      return seg[seg.length - 1];
+    }
+  }
+  return null;
+}
+function drawPositions() {
+  trainPosLayer.clearLayers();
+  const [S] = period(), t = S + $('slider').value * 60000;
+  $('tnow').textContent = new Date(t).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  for (const c of visible) {
+    if (t < c.start || t > c.end) continue;
+    if (selected !== null && c.train !== selected) continue;
+    const pos = interp(c, t); if (!pos) continue;
+    L.circleMarker(pos, { renderer: canvas, radius: 8, color: '#fff', weight: 2.5, fillColor: colorOf[c.train], fillOpacity: 1 })
+      .bindTooltip(trainTip(c.train, c.ms)).on('click', () => select(c.train)).addTo(trainPosLayer);
+  }
+}
+function stop() { clearInterval(playing); playing = null; $('play').textContent = '▶'; }
+$('slider').addEventListener('input', drawPositions);
+$('play').addEventListener('click', () => {
+  if (playing) return stop();
+  $('play').textContent = '❚❚';
+  playing = setInterval(() => {
+    const sl = $('slider'); if (+sl.value >= +sl.max) sl.value = 0; else sl.value = +sl.value + 2; drawPositions();
+  }, 80);
+});
+
+// ---------- contrôles ----------
+const d0 = dateMs[0];
+function preset(p) {
+  const base = Date.parse($('from').value) || d0;
+  const day = new Date(base); day.setHours(0, 0, 0, 0); const b = day.getTime();
+  const r = { morning: [b + 6 * 3600e3, b + 12 * 3600e3], day: [b, b + DAY * 60000 - 60000],
+              week: [b, b + 7 * DAY * 60000], all: [dateMs[0], dateMs[dateMs.length - 1] + DAY * 60000 - 60000] }[p];
+  $('from').value = toLocalInput(r[0]); $('to').value = toLocalInput(r[1]); render();
+}
+document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => preset(c.dataset.p)));
+$('from').min = $('to').min = toLocalInput(dateMs[0]);
+$('from').max = $('to').max = toLocalInput(dateMs[dateMs.length - 1] + DAY * 60000);
+['from', 'to', 'axe'].forEach(id => $(id).addEventListener('change', render));
+let deb; $('num').addEventListener('input', () => { clearTimeout(deb); deb = setTimeout(render, 250); });
+
+$('from').value = toLocalInput(d0 + 6 * 3600e3);
+$('to').value = toLocalInput(d0 + 12 * 3600e3);
+render();
+</script>
+</body>
+</html>

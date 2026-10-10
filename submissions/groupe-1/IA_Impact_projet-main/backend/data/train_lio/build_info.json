@@ -1,0 +1,36 @@
+{
+  "source": "https://eu.ftp.opendatasoft.com/sncf/plandata/Export_OpenData_SNCF_GTFS_NewTripId.zip",
+  "feed_version": "2026-10-09",
+  "valid_from": "20261009",
+  "valid_until": "20270331",
+  "reference_day": "20261105",
+  "stations": 259,
+  "lio_source": "transport.data.gouv.fr — Réseau interurbain liO Occitanie",
+  "lio_feed_version": "09/10/2026-02:45",
+  "missions": 403,
+  "segments": 637,
+  "walk_links": 0,
+  "modes": {
+    "Train TER": 403
+  },
+  "lio_networks": {
+    "liO 09": 87,
+    "liO 11": 127,
+    "liO 12": 180,
+    "liO 30": 432,
+    "liO 31": 269,
+    "liO 32": 76,
+    "liO 34": 614,
+    "liO 46": 61,
+    "liO 48": 96,
+    "liO 65": 91,
+    "liO 66": 213,
+    "liO 81": 238,
+    "liO 82": 141,
+    "liO TIL": 32
+  },
+  "dataset": "train_lio",
+  "modes_kept": [
+    "Train TER"
+  ]
+}

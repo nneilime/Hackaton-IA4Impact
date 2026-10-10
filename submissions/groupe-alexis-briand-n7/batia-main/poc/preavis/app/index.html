@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Préavis · In'li Sud-Ouest</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="barre">
+  <a class="marque" href="#/carte" aria-label="Préavis, retour à la carte">
+    <span class="marque-nom">Préavis</span>
+    <span class="marque-sous">Une panne s'annonce des mois avant. Préavis l'écoute.</span>
+  </a>
+  <nav class="onglets" aria-label="Écrans">
+    <a href="#/carte" data-ecran="carte"><span class="q">Où ?</span> Le parc</a>
+    <a href="#/lundi" data-ecran="lundi"><span class="q">Quoi d'abord ?</span> Lundi matin</a>
+    <a href="#/energie" data-ecran="energie"><span class="q">Que rénover ?</span> Énergie</a>
+  </nav>
+  <div class="date-ref" id="date-ref"></div>
+</header>
+
+<main>
+  <section id="ecran-carte" class="ecran" hidden>
+    <div class="scene">
+      <nav class="fil" id="fil" aria-label="Niveau de la carte"></nav>
+      <svg id="carte" role="img" aria-label="Carte du parc"></svg>
+      <div class="facades" id="facades" hidden></div>
+      <div class="legende" id="legende"></div>
+    </div>
+    <aside class="volet" id="volet"></aside>
+  </section>
+
+  <section id="ecran-lundi" class="ecran" hidden></section>
+  <section id="ecran-energie" class="ecran" hidden></section>
+</main>
+
+<div class="fiche-voile" id="fiche-voile" hidden></div>
+<aside class="fiche" id="fiche" hidden aria-modal="true" role="dialog" aria-label="Fiche du logement"></aside>
+<div class="infobulle" id="infobulle" hidden></div>
+
+<script src="vendor/d3.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

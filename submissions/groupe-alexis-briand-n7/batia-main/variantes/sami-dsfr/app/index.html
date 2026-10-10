@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000091">
+  <title>BâtIA · In'li Sud-Ouest</title>
+  <script src="/garde.js"></script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='9' width='28' height='14' rx='2' fill='%23000091'/%3E%3Crect x='2' y='18' width='28' height='5' rx='1' fill='%23CACAFB'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/carte/vendor/polices/polices.css">
+  <link rel="stylesheet" href="/palette.css">
+  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/reel/reel.css">
+</head>
+<body class="sans-territoire">
+  <div id="carte" role="region" aria-label="Carte du parc"></div>
+
+  <header class="marque" aria-label="BâtIA">
+    <a class="marque-nom" href="#/" aria-label="BâtIA, retour au parc"><span>BâtIA</span><small>prototype non officiel</small></a>
+    <div class="outils">
+    <div class="recherche">
+      <svg aria-hidden="true" viewBox="0 0 20 20" width="17" height="17"><circle cx="8.5" cy="8.5" r="5.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 13l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="recherche" type="search" autocomplete="off" spellcheck="false" placeholder="Logement, résidence…" aria-label="Rechercher un logement, une résidence ou un équipement" aria-controls="suggestions" aria-expanded="false">
+      <kbd>/</kbd>
+      <ul id="suggestions" role="listbox" hidden></ul>
+    </div>
+    <div class="menu">
+      <button type="button" class="menu-bouton" data-menu aria-haspopup="menu" aria-expanded="false" aria-label="Plus d’actions" title="Plus d’actions"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><circle cx="4" cy="10" r="1.9" fill="currentColor"/><circle cx="10" cy="10" r="1.9" fill="currentColor"/><circle cx="16" cy="10" r="1.9" fill="currentColor"/></svg></button>
+      <div class="menu-liste" role="menu" hidden>
+        <button type="button" class="rejeu-entree" id="rejeu-entree" role="menuitem" title="Rejeu de 2025 (touche L)"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><path d="M6 4.2v11.6L15.6 10z" fill="currentColor"/></svg><span>Rejeu de 2025</span><kbd>L</kbd></button>
+        <a role="menuitem" href="#/donnees">Données</a>
+        <a role="menuitem" href="#/methode">Méthode</a>
+        <hr>
+        <a role="menuitem" href="/api/export/scores.csv" download>Exporter les scores du défi 1</a>
+        <a role="menuitem" href="/api/export/decisions.csv" download>Exporter les décisions</a>
+        <a role="menuitem" href="/api/export/plan.csv" download>Exporter le plan de rénovation</a>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <div class="lentilles" role="tablist" aria-label="Lentille">
+    <button type="button" role="tab" data-lentille="pannes" aria-selected="true">Pannes</button>
+    <button type="button" role="tab" data-lentille="energie" aria-selected="false">Énergie</button>
+    <button type="button" role="tab" data-lentille="renovations" aria-selected="false">Rénovations</button>
+  </div>
+
+  <div class="place-bascule" id="place-bascule">
+    <div class="bascule" role="radiogroup" aria-label="Données affichées">
+      <button type="button" role="radio" data-monde="kit" aria-checked="true">Kit du jury</button>
+      <button type="button" role="radio" data-monde="reel" aria-checked="false">Données réelles</button>
+    </div>
+    <div class="compte-util">
+      <button type="button" class="avatar" data-compte aria-haspopup="dialog" aria-expanded="false" title="Compte">CM</button>
+      <div class="compte-popover" role="dialog" aria-label="Compte" hidden>
+        <div class="compte-tete"><span class="avatar grand">CM</span><div><b>Camille Martin</b><small>In’li Sud-Ouest · compte de démonstration</small></div></div>
+        <div class="compte-roles" role="radiogroup" aria-label="Rôle">
+          <button type="button" role="radio" data-role="gestionnaire" aria-checked="true"><b>Gestionnaire de proximité</b><small>pilote, commande et contrôle les prestataires</small></button>
+          <button type="button" role="radio" data-role="direction" aria-checked="false"><b>Direction</b><small>arbitre le plan d’investissement, remplacement à l’unité ou rénovation globale</small></button>
+        </div>
+        <button type="button" class="compte-action" data-semaine>Mes 10 actions de la semaine</button>
+        <a class="compte-action" href="/direction.html">Remplacement groupé ou au fil de l’eau</a>
+        <button type="button" class="compte-action" data-anim aria-pressed="false">Réduire les animations</button>
+        <button type="button" class="compte-action compte-sortie" data-sortie>Se déconnecter</button>
+      </div>
+    </div>
+    <a class="capot-entree" href="/capot/">Sous le capot<svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+
+  <aside class="panneau file" id="file" aria-label="File"></aside>
+  <aside class="panneau fiche" id="fiche" aria-label="Fiche" hidden></aside>
+
+  <nav class="echelles" aria-label="Échelle de la carte">
+    <button type="button" data-echelle="france">France</button>
+    <button type="button" data-echelle="sudouest">Sud-Ouest</button>
+    <button type="button" data-echelle="toulouse">Métropole</button>
+  </nav>
+
+  <div class="page" id="page" hidden>
+    <div class="page-fond" data-fermer></div>
+    <article class="page-corps" role="dialog" aria-modal="true" aria-labelledby="page-titre" tabindex="-1"></article>
+  </div>
+
+  <div class="annonce" id="annonce" role="status" aria-live="polite"></div>
+
+  <script type="module" src="/app.mjs"></script>
+  <script type="module" src="/reel/monde.mjs"></script>
+  <script type="module" src="/rejeu/rejeu.mjs"></script>
+</body>
+</html>

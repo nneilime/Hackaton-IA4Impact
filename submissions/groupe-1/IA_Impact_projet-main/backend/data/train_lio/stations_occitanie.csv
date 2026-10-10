@@ -1,0 +1,260 @@
+stop_id,name,lat,lon,department,commune
+87781278,Agde,43.31728,3.466203,Hérault,Agde
+87775858,Aigues-Mortes,43.570901,4.19121,Gard,Aigues-Mortes
+87775833,Aimargues,43.678643,4.20845,Gard,Aimargues
+87615195,Albi Madeleine,43.938137,2.141209,Tarn,Albi
+87615005,Albi Ville,43.92238,2.137958,Tarn,Albi
+87613398,Albias,44.091981,1.444922,Tarn-et-Garonne,Albias
+87775288,Alès,44.127825,4.084948,Gard,Ales
+87783654,Allenc,44.541296,3.663893,Lozère,Allenc
+87611517,Andorre l'Hospitalet,42.589453,1.800264,Ariège,L'Hospitalet-Pres-L'Andorre
+87784231,Argelès-sur-Mer,42.543908,3.021919,Pyrénées-Orientales,Argeles-Sur-Mer
+87613075,Assier,44.67468,1.869757,Lot,Assier
+87611764,Aubiet,43.650192,0.789173,Gers,Aubiet
+87613224,Aubin,44.527276,2.239313,Aveyron,Aubin
+87611749,Auch,43.647488,0.596661,Gers,Auch
+87783266,Aumont-Aubrac,44.718235,3.283582,Lozère,Peyre En Aubrac
+87611384,Auterive,43.348993,1.468831,Haute-Garonne,Auterive
+87616011,Avignonet,43.363877,1.787269,Haute-Garonne,Avignonet-Lauragais
+87611533,Ax-les-Thermes,42.724841,1.833295,Ariège,Ax-Les-Thermes
+87613604,Bagnac,44.665276,2.160192,Lot,Bagnac-Sur-Cele
+87783647,Bagnols - Chadenet,44.528613,3.628178,Lozère,Chadenet
+87764571,Bagnols-sur-Cèze,44.161604,4.626982,Gard,Bagnols-Sur-Ceze
+87773457,Baillargues,43.653323,4.007159,Hérault,Baillargues
+87111864,Balsièges Bourg,44.482212,3.456598,Lozère,Balsieges
+87783324,Banassac - La Canourgue,44.447763,3.195852,Lozère,Banassac-Canilhac
+87784298,Banyuls-sur-Mer,42.482958,3.12505,Pyrénées-Orientales,Banyuls-Sur-Mer
+87615757,Baraqueville,44.270512,2.4274,Aveyron,Baraqueville
+87783563,Barjac,44.499264,3.410979,Lozère,Barjac
+87611723,Baziège,43.453608,1.620698,Haute-Garonne,Baziege
+87775023,Beaucaire,43.80209,4.647087,Gard,Beaucaire
+87775809,Beauvoisin,43.724503,4.321218,Gard,Beauvoisin
+87781609,Bédarieux,43.608697,3.149569,Hérault,Bedarieux
+87783670,Belvezet,44.561778,3.751869,Lozère,Mont Lozere Et Goulet
+87784892,Bena Fanes,42.458078,1.916726,Pyrénées-Orientales,Enveitg
+87594747,Bétaille,44.942455,1.734326,Lot,Betaille
+87781005,Béziers,43.336295,3.218895,Hérault,Beziers
+87784801,Bolquère - Eyne,42.497873,2.087559,Pyrénées-Orientales,Bolquere
+87775346,Boucoiran,43.992694,4.187634,Gard,Boucoiran-Et-Nozieres
+87784876,Bourg-Madame,42.43237,1.948595,Pyrénées-Orientales,Bourg-Madame
+87611095,Boussens,43.179617,0.972543,Haute-Garonne,Boussens
+87615054,Bram,43.243815,2.119325,Aude,Bram
+87611822,Brax - Léguevin,43.614887,1.236922,Haute-Garonne,Brax
+87594762,Bretenoux - Biars,44.927466,1.844383,Lot,Biars-Sur-Cere
+87613000,Cahors,44.449275,1.433325,Lot,Cahors
+87783340,Campagnac - Saint-Geniez,44.421956,3.066401,Aveyron,Saint-Saturnin-De-Lenne
+87613109,Capdenac,44.578246,2.077963,Aveyron,Capdenac-Gare
+87671156,Capvern,43.103345,0.329639,Hautes-Pyrénées,Capvern
+87611061,Carbonne,43.298219,1.212514,Haute-Garonne,Carbonne
+87615286,Carcassonne,43.218029,2.351824,Aude,Carcassonne
+87615625,Carmaux,44.048782,2.152401,Tarn,Carmaux
+87611665,Castelnau-d'Estrétefonds,43.786195,1.341821,Haute-Garonne,Castelnau-D'Estretefonds
+87615039,Castelnaudary,43.312292,1.95039,Aude,Castelnaudary
+87611897,Castelsarrasin,44.040226,1.114155,Tarn-et-Garonne,Castelsarrasin
+87615468,Castres,43.599134,2.231072,Tarn,Castres
+87613356,Caussade,44.162244,1.533667,Tarn-et-Garonne,Caussade
+87611079,Cazères,43.212834,1.083106,Haute-Garonne,Cazeres
+87781542,Ceilhes - Roqueredonde,43.812151,3.155302,Hérault,Roqueredonde
+87785006,Cerbère,42.441773,3.163403,Pyrénées-Orientales,Cerbere
+87775221,Chamborigaud,44.300243,3.979333,Gard,Chamborigaud
+87783530,Chanac,44.473979,3.345412,Lozère,Esclanedes
+87734343,Chapeauroux,44.83806,3.741864,Lozère,Saint Bonnet-Laval
+87775148,Chasseradès,44.553985,3.839932,Lozère,Mont Lozere Et Goulet
+87783290,Chirac,44.524661,3.263818,Lozère,Bourgs Sur Colagne
+87611376,Cintegabelle,43.305408,1.520477,Haute-Garonne,Cintegabelle
+87784256,Collioure,42.526928,3.078202,Pyrénées-Orientales,Collioure
+87611467,Colomiers,43.603734,1.334221,Haute-Garonne,Colomiers
+87611921,Colomiers Lycée International,43.616306,1.314116,Haute-Garonne,Colomiers
+87613802,Cordes - Vindrac,44.067189,1.900229,Tarn,Vindrac-Alayrac
+87615120,Couffoulens - Leuc,43.155635,2.316421,Aude,Couffoulens
+87781161,Coursan,43.233731,3.050946,Aude,Coursan
+87613232,Cransac,44.522951,2.271867,Aveyron,Cransac
+87615484,Damiatte - Saint-Paul,43.656094,1.974106,Tarn,Damiatte
+87613174,Dégagnac,44.653459,1.340152,Lot,Degagnac
+87611681,Dieupentale,43.865526,1.276101,Tarn-et-Garonne,Dieupentale
+87784207,Elne,42.597114,2.963585,Pyrénées-Orientales,Elne
+87784843,Err,42.442778,2.029105,Pyrénées-Orientales,Err
+87611707,Escalquens,43.517093,1.542375,Haute-Garonne,Escalquens
+87784827,Estavar,42.463243,2.017907,Pyrénées-Orientales,Estavar
+87613091,Figeac,44.603515,2.037355,Lot,Figeac
+87611616,Foix,42.969707,1.60704,Ariège,Foix
+87775379,Fons - Saint-Mamert,43.907321,4.206696,Gard,Fons
+87784819,Font-Romeu-Odeillo-Via,42.491243,2.038396,Pyrénées-Orientales,Font-Romeu-Odeillo-Via
+87784769,Fontpédrouse St-Thomas les B.,42.513806,2.188658,Pyrénées-Orientales,Fontpedrouse
+87773556,Frontignan,43.444934,3.758689,Hérault,Frontignan
+87615252,Gaillac,43.905984,1.89483,Tarn,Gaillac
+87775130,Gallargues,43.716033,4.171079,Gard,Gallargues-Le-Montueux
+87497461,Gallieni-Cancéropôle,43.573088,1.41958,Haute-Garonne,Toulouse
+87775791,Générac,43.732438,4.343474,Gard,Generac
+87775213,Génolhac,44.347119,3.95164,Gard,Genolhac
+87594325,Gignac - Cressensac,45.014731,1.483288,Lot,Gignac
+87611772,Gimont Cahuzac,43.633194,0.867711,Gers,Gimont
+87613141,Gourdon,44.741932,1.389264,Lot,Gourdon
+87615377,Gragnague,43.695951,1.567514,Haute-Garonne,Gragnague
+87613059,Gramat,44.773549,1.722343,Lot,Gramat
+87775254,Grand-Combe la Pise,44.209816,4.032959,Gard,La Grand-Combe
+87611673,Grisolles,43.827085,1.302396,Tarn-et-Garonne,Grisolles
+87784561,Ille-sur-Têt,42.66824,2.624286,Pyrénées-Orientales,Ille-Sur-Tet
+87784710,Joncet,42.561524,2.311146,Pyrénées-Orientales,Serdinya
+87611806,L'Isle-Jourdain,43.617185,1.089829,Gers,L'Isle-Jourdain
+87775171,La Bastide-St-Laurent-les-B.,44.593483,3.904285,Lozère,La Bastide-Puylaurent
+87775247,La Levade,44.228602,4.010274,Gard,La Grand-Combe
+87612002,Labège Innopole,43.547467,1.512964,Haute-Garonne,Labege
+87612028,Labège Village,43.531025,1.532597,Haute-Garonne,Labege
+87615526,Labruguière,43.542566,2.259426,Tarn,Labruguiere
+87611434,Lacourtensourt,43.663842,1.41409,Haute-Garonne,Fenouillet
+87613471,Laguépie,44.145485,1.968591,Tarn-et-Garonne,Laguepie
+87613323,Lalbenque - Fontanes,44.333656,1.511578,Lot,Fontanes
+87611855,Lamagistère,44.126777,0.825357,Tarn-et-Garonne,Lamagistere
+87734350,Langogne,44.732604,3.857239,Lozère,Langogne
+87671123,Lannemezan,43.114273,0.387367,Hautes-Pyrénées,Lannemezan
+87611939,Lardenne,43.596688,1.383056,Haute-Garonne,Toulouse
+87611483,Latour-de-Carol - Enveitg,42.458991,1.904433,Pyrénées-Orientales,Enveitg
+87594796,Laval-de-Cère,44.951166,1.931781,Lot,Laval-De-Cere
+87615476,Lavaur,43.70344,1.813069,Tarn,Lavaur
+87611459,Lavilledieu,44.035257,1.214856,Tarn-et-Garonne,La Ville-Dieu-Du-Temple
+87781583,Le Bousquet-d'Orb,43.69121,3.168938,Hérault,La Tour-Sur-Orb
+87783548,Le Bruel,44.481329,3.358325,Lozère,Esclanedes
+87775825,Le Cailar,43.683217,4.234803,Gard,Le Cailar
+87611046,Le Fauga,43.404424,1.28306,Haute-Garonne,Le Fauga
+87775866,Le Grau-du-Roi,43.537127,4.140338,Gard,Le Grau-Du-Roi
+87783308,Le Monastier,44.508936,3.25213,Lozère,Bourgs Sur Colagne
+87784512,Le Soler,42.678989,2.795227,Pyrénées-Orientales,Le Soler
+87353573,Le Toec,43.595554,1.401371,Haute-Garonne,Toulouse
+87611350,Le Vernet d'Ariège,43.189541,1.611911,Ariège,Le Vernet
+87611574,Les Cabannes,42.786285,1.686299,Ariège,Les Cabannes
+87781559,Les Cabrils,43.779707,3.186083,Hérault,Joncels
+87328021,Les Cauquillous,43.734451,1.754096,Tarn,Lavaur
+87594564,Les Quatre-Routes,44.997639,1.643914,Lot,Le Vignon-En-Quercy
+87353581,Les Ramassiers,43.602399,1.352946,Haute-Garonne,Toulouse
+87783514,Les Salelles,44.483269,3.280401,Lozère,Les Salelles
+87781088,Leucate la Franqui,42.932836,3.012845,Aude,Leucate
+87613489,Lexos,44.142396,1.885101,Tarn-et-Garonne,Varen
+87615112,Lézignan-Corbières,43.199956,2.769139,Aude,Lezignan-Corbieres
+87615161,Limoux,43.056393,2.222783,Aude,Limoux
+87598755,Limoux - Flassian,43.068451,2.218283,Aude,Limoux
+87615310,Lisle-sur-Tarn,43.85639,1.80823,Tarn,Lisle-Sur-Tarn
+87611053,Longages - Noé,43.356471,1.251657,Haute-Garonne,Longages
+87671339,Lourdes,43.100429,-0.042186,Hautes-Pyrénées,Lourdes
+87611178,Loures - Barbazan,43.021075,0.610449,Hautes-Pyrénées,Loures-Barousse
+87615773,Luc-Primaube,44.2915,2.554776,Aveyron,Luc-La-Primaube
+87611236,Luchon,42.797336,0.596649,Haute-Garonne,Bagneres-De-Luchon
+87781575,Lunas,43.709581,3.194899,Hérault,Lunas
+87773408,Lunel,43.679392,4.131086,Hérault,Lunel
+87773424,Lunel-Viel,43.681173,4.09374,Hérault,Lunel-Viel
+87611558,Luzenac - Garanou,42.764472,1.753416,Ariège,Garanou
+87781666,Magalas,43.4676,3.229541,Hérault,Magalas
+87611194,Marignac - Saint-Béat,42.915488,0.651945,Haute-Garonne,Marignac
+87784629,Marquixanes,42.643067,2.486215,Pyrénées-Orientales,Marquixanes
+87781294,Marseillan Plage,43.318258,3.535629,Hérault,Marseillan
+87615419,Marssac-sur-tarn,43.91523,2.02678,Tarn,Marssac-Sur-Tarn
+87611087,Martres-Tolosane,43.196254,1.016416,Haute-Garonne,Martres-Tolosane
+87783282,Marvejols,44.544675,3.281119,Lozère,Bourgs Sur Colagne
+87615542,Mazamet,43.497785,2.374735,Tarn,Mazamet
+87783605,Mende,44.522347,3.501981,Lozère,Mende
+87611525,Mérens-les-Vals,42.659488,1.837128,Ariège,Merens-Les-Vals
+87611814,Mérenvielle,43.636505,1.15033,Haute-Garonne,Merenvielle
+87775098,Milhaud,43.788489,4.303327,Gard,Milhaud
+87784546,Millas,42.688896,2.69375,Pyrénées-Orientales,Millas
+87783001,Millau,44.102344,3.07457,Aveyron,Millau
+87611889,Moissac,44.102173,1.077277,Tarn-et-Garonne,Moissac
+87784793,Mont-Louis - La Cabanasse,42.50209,2.113138,Pyrénées-Orientales,La Cabanasse
+87615369,Montastruc-la-Conseillère,43.715984,1.598016,Haute-Garonne,Montastruc-La-Conseillere
+87611244,Montauban Ville Bourbon,44.01444,1.341499,Tarn-et-Garonne,Montauban
+87612010,Montaudran,43.573691,1.480201,Haute-Garonne,Toulouse
+87611699,Montbartier,43.924141,1.264501,Tarn-et-Garonne,Montbartier
+87618207,Montlaur,43.475022,1.577921,Haute-Garonne,Montlaur
+87781534,Montpaon,43.868524,3.109722,Aveyron,Fondamente
+87773002,Montpellier Saint-Roch,43.604738,3.880674,Hérault,Montpellier
+87611848,Montrabé,43.644907,1.524006,Haute-Garonne,Montrabe
+87611152,Montréjeau - Gourdan-Polignan,43.078085,0.57359,Haute-Garonne,Gourdan-Polignan
+87611038,Muret,43.464824,1.324449,Haute-Garonne,Muret
+87613463,Najac,44.221802,1.976163,Aveyron,Najac
+87781104,Narbonne,43.190618,3.005667,Aude,Narbonne
+87615732,Naucelle,44.185439,2.363259,Aveyron,Naucelle
+87775007,Nîmes Centre,43.832313,4.365872,Gard,Nimes
+87703975,Nîmes Pont du Gard,43.816809,4.507678,Gard,Manduel
+87775353,Nozières - Brignon,43.976013,4.207292,Gard,Boucoiran-Et-Nozieres
+87784736,Nyer,42.541698,2.263018,Pyrénées-Orientales,Nyer
+87784728,Olette - Canaveilles les Bains,42.55472,2.271931,Pyrénées-Orientales,Olette
+87784868,Osséja,42.419967,1.977117,Pyrénées-Orientales,Osseja
+87611343,Pamiers,43.116207,1.619451,Ariège,Pamiers
+87784009,Perpignan,42.696096,2.879355,Pyrénées-Orientales,Perpignan
+87611830,Pibrac,43.621329,1.289117,Haute-Garonne,Pibrac
+87618116,Pins-Justaret,43.479213,1.399645,Haute-Garonne,Pins-Justaret
+87784785,Planès,42.500918,2.136927,Pyrénées-Orientales,Planes
+87615146,Pomas,43.112196,2.28842,Aude,Pomas
+87764555,Pont-Saint-Esprit,44.25315,4.643118,Gard,Pont-Saint-Esprit
+87781062,Port-la-Nouvelle,43.019934,3.038819,Aude,Port-La-Nouvelle
+87784264,Port-Vendres,42.513608,3.102576,Pyrénées-Orientales,Port-Vendres
+87611509,Porté-Puymorens,42.538781,1.824852,Pyrénées-Orientales,Porta
+87611400,Portet Saint-Simon,43.527904,1.389243,Haute-Garonne,Portet-Sur-Garonne
+87784637,Prades - Molitg-les-Bains,42.617085,2.429486,Pyrénées-Orientales,Prades
+87594754,Puybrun,44.921771,1.784281,Lot,Puybrun
+87615328,Rabastens - Couffouleux,43.819654,1.730455,Tarn,Coufouleux
+87784660,Ria,42.603408,2.390749,Pyrénées-Orientales,Ria-Sirach
+87784173,Rivesaltes,42.766375,2.867807,Pyrénées-Orientales,Rivesaltes
+87613042,Rocamadour - Padirac,44.818243,1.657104,Lot,Rocamadour
+87613422,Rodez,44.362633,2.58056,Aveyron,Rodez
+87615351,Roquesérière - Buzet,43.751247,1.619875,Haute-Garonne,Buzet-Sur-Tarn
+87784835,Saillagouse,42.456899,2.032165,Pyrénées-Orientales,Saillagouse
+87611301,Saint-Agne,43.579477,1.45012,Haute-Garonne,Toulouse
+87773465,Saint-Aunès,43.635442,3.96309,Hérault,Saint-Aunes
+87775072,Saint-Césaire,43.813345,4.327634,Gard,Nimes
+87783241,Saint-Chély-d'Apcher,44.801791,3.270857,Lozère,Saint-Chely-D'Apcher
+87613257,Saint-Christophe,44.464619,2.407758,Aveyron,Saint-Christophe-Vallon
+87446179,Saint-Cyprien Arènes,43.594048,1.416493,Haute-Garonne,Toulouse
+87594572,Saint-Denis-Près-Martel,44.946029,1.666238,Lot,Saint-Denis-Les-Martel
+87784520,Saint-Féliu-d'Avall,42.677277,2.737806,Pyrénées-Orientales,Saint-Feliu-D'Avall
+87611137,Saint-Gaudens,43.105048,0.729154,Haute-Garonne,Saint-Gaudens
+87775361,Saint-Geniès-de-Malgoirès,43.950168,4.214942,Gard,Saint-Genies-De-Malgoires
+87783423,Saint-Georges-de-Luzençon,44.066553,2.983784,Aveyron,Saint-Georges-De-Luzencon
+87611624,Saint-Jean-de-Verges,43.01259,1.608105,Ariège,Crampagna
+87611657,Saint-Jory,43.738375,1.371619,Haute-Garonne,Saint-Jory
+87775841,Saint-Laurent-d'Aigouze,43.639288,4.19307,Gard,Saint-Laurent-D'Aigouze
+87353599,Saint-Martin du Touch,43.599788,1.371855,Haute-Garonne,Toulouse
+87611103,Saint-Martory,43.138672,0.934754,Haute-Garonne,Saint-Martory
+87671362,Saint-Pé-de-Bigorre,43.101483,-0.161423,Hautes-Pyrénées,Saint-Pe-De-Bigorre
+87783431,Saint-Rome-de-Cernon,44.013981,2.967374,Aveyron,Saint-Rome-De-Cernon
+87615344,Saint-Sulpice,43.775073,1.680702,Tarn,Saint-Sulpice-La-Pointe
+87775239,Sainte-Cécile-d'Andorge,44.255436,3.97585,Gard,Sainte-Cecile-D'Andorge
+87784850,Sainte-Léocadie,42.441184,2.010435,Pyrénées-Orientales,Sainte-Leocadie
+87618710,Saléchan - Siradan,42.963309,0.631253,Hautes-Pyrénées,Salechan
+87613877,Salles-Courbatiès,44.475085,2.07892,Aveyron,Salles-Courbaties
+87784157,Salses,42.835609,2.917447,Pyrénées-Orientales,Salses-Le-Chateau
+87784777,Sauto,42.506371,2.160039,Pyrénées-Orientales,Sauto
+87611368,Saverdun,43.239335,1.570636,Ariège,Saverdun
+87784702,Serdinya,42.567008,2.323346,Pyrénées-Orientales,Serdinya
+87773200,Sète,43.412641,3.696571,Hérault,Sete
+87783365,Sévérac-le-Château,44.324652,3.056945,Aveyron,Severac D'Aveyron
+87594333,Souillac,44.902127,1.466605,Lot,Souillac
+87615674,Tanus,44.100443,2.314921,Tarn,Tanus
+87611590,Tarascon-sur-Ariège,42.849498,1.600042,Ariège,Tarascon-Sur-Ariege
+87671008,Tarbes,43.239863,0.069442,Hautes-Pyrénées,Tarbes
+87615245,Tessonnières,43.928421,1.936953,Tarn,Gaillac
+87784751,Thuès Carença,42.522949,2.222728,Pyrénées-Orientales,Thues-Entre-Valls
+87784744,Thuès les Bains,42.528801,2.249094,Pyrénées-Orientales,Nyer
+87611004,Toulouse Matabiau,43.611206,1.453616,Haute-Garonne,Toulouse
+87671172,Tournay,43.183662,0.23915,Hautes-Pyrénées,Tournay
+87783456,Tournemire - Roquefort,43.9698,3.016626,Aveyron,Tournemire
+87775106,Uchaud,43.758096,4.267443,Gard,Uchaud
+87784884,Ur les Escaldes,42.457481,1.940549,Pyrénées-Orientales,Ur
+87611863,Valence d'Agen,44.111643,0.891595,Tarn-et-Garonne,Valence
+87773432,Valergues - Lansargues,43.672631,4.060256,Hérault,Valergues
+87611327,Varilhes,43.041594,1.628318,Ariège,Varilhes
+87775817,Vauvert,43.695037,4.270165,Gard,Vauvert
+87594739,Vayrac,44.950301,1.70635,Lot,Vayrac
+87611392,Venerque - Le Vernet,43.433359,1.425956,Haute-Garonne,Vernet
+87775114,Vergèze - Codognan,43.739784,4.218911,Gard,Vergeze
+87615138,Verzeille,43.130422,2.32155,Aude,Leuc
+87781260,Vias,43.315653,3.425356,Hérault,Vias
+87773531,Vic - Mireval,43.500704,3.799379,Hérault,Vic-La-Gardiole
+87615492,Vielmur-sur-Agout,43.62384,2.089295,Tarn,Vielmur-Sur-Agout
+87775197,Villefort,44.43951,3.924015,Lozère,Villefort
+87784686,Villefranche - Vernet-les-Bains,42.5917,2.370354,Pyrénées-Orientales,Fuilla
+87615013,Villefranche-de-Lauragais,43.398537,1.714725,Haute-Garonne,Villefranche-De-Lauragais
+87613893,Villefranche-de-Rouergue,44.347498,2.036459,Aveyron,Villefranche-De-Rouergue
+87773515,Villeneuve-lès-Maguelone,43.543728,3.849887,Hérault,Villeneuve-Les-Maguelone
+87618215,Villenouvelle,43.433308,1.660886,Haute-Garonne,Villenouvelle
+87784611,Vinça,42.648252,2.527832,Pyrénées-Orientales,Vinca
+87613661,Viviez - Decazeville,44.555568,2.218258,Aveyron,Viviez

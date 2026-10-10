@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 -5 176 176">
+  <title>Tchouette</title>
+  <!-- Liseré blanc d'autocollant (lisible sur onglet sombre) -->
+  <g fill="#FFFFFF" stroke="#FFFFFF" stroke-width="18" stroke-linejoin="round">
+    <path d="M56 62 L40 6 L94 38 Z"/>
+    <path d="M144 62 L160 6 L106 38 Z"/>
+    <path d="M34 138 V102 C34 58 62 30 100 30 C138 30 166 58 166 102 V138 Q166 154 150 154 H50 Q34 154 34 138 Z"/>
+    <g transform="translate(7 7)">
+      <path d="M56 62 L40 6 L94 38 Z"/>
+      <path d="M144 62 L160 6 L106 38 Z"/>
+      <path d="M34 138 V102 C34 58 62 30 100 30 C138 30 166 58 166 102 V138 Q166 154 150 154 H50 Q34 154 34 138 Z"/>
+    </g>
+  </g>
+  <!-- Ombre portée dure -->
+  <g transform="translate(7 7)" fill="#0B2341" stroke="#0B2341" stroke-width="9" stroke-linejoin="round">
+    <path d="M56 62 L40 6 L94 38 Z"/>
+    <path d="M144 62 L160 6 L106 38 Z"/>
+    <path d="M34 138 V102 C34 58 62 30 100 30 C138 30 166 58 166 102 V138 Q166 154 150 154 H50 Q34 154 34 138 Z"/>
+  </g>
+  <!-- Aigrettes -->
+  <g fill="#C8102E" stroke="#0B2341" stroke-width="9" stroke-linejoin="round">
+    <path d="M56 62 L40 6 L94 38 Z"/>
+    <path d="M144 62 L160 6 L106 38 Z"/>
+  </g>
+  <!-- Cabine -->
+  <path d="M34 138 V102 C34 58 62 30 100 30 C138 30 166 58 166 102 V138 Q166 154 150 154 H50 Q34 154 34 138 Z" fill="#C8102E" stroke="#0B2341" stroke-width="9" stroke-linejoin="round"/>
+  <!-- Pare-brise et afficheur -->
+  <path d="M74 40 H126 Q132 40 134.5 45 L139 55 Q141.5 61 135 61 H65 Q58.5 61 61 55 L65.5 45 Q68 40 74 40 Z" fill="#0B2341" stroke="#0B2341" stroke-width="3" stroke-linejoin="round"/>
+  <g fill="#FFCD00">
+    <circle cx="88" cy="50.5" r="4.5"/>
+    <circle cx="100" cy="50.5" r="4.5"/>
+    <circle cx="112" cy="50.5" r="4.5"/>
+  </g>
+  <!-- Yeux-phares -->
+  <g stroke="#0B2341">
+    <circle cx="69" cy="104" r="25" fill="#FFCD00" stroke-width="7"/>
+    <circle cx="131" cy="104" r="25" fill="#FFCD00" stroke-width="7"/>
+    <circle cx="69" cy="104" r="16" fill="#FFFFFF" stroke-width="3"/>
+    <circle cx="131" cy="104" r="16" fill="#FFFFFF" stroke-width="3"/>
+  </g>
+  <g fill="#0B2341">
+    <circle cx="69" cy="106" r="9.5"/>
+    <circle cx="131" cy="106" r="9.5"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="65.5" cy="102" r="3.6"/>
+    <circle cx="127.5" cy="102" r="3.6"/>
+  </g>
+  <!-- Bec -->
+  <path d="M87 121 H113 L100 140 Z" fill="#FFCD00" stroke="#0B2341" stroke-width="6" stroke-linejoin="round"/>
+</svg>

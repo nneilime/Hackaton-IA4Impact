@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000091">
+  <title>Sous le capot · BâtIA</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='9' width='28' height='14' rx='2' fill='%23000091'/%3E%3Crect x='2' y='18' width='28' height='5' rx='1' fill='%23E3E3FD'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/carte/vendor/polices/polices.css">
+  <link rel="stylesheet" href="/carte/vendor/maplibre/maplibre-gl.css">
+  <link rel="stylesheet" href="/palette.css">
+  <link rel="stylesheet" href="/capot/capot.css">
+</head>
+<body class="vide">
+  <div class="cadre">
+    <header class="bandeau">
+      <a class="marque" href="/?monde=reel" id="marque" title="Retour à la carte en données réelles (Échap)"><b><span class="retour" aria-hidden="true">←</span> BâtIA</b><span>Sous le capot</span></a>
+      <p class="mention">Données publiques réelles · Prototype non officiel</p>
+    </header>
+
+    <form class="saisie" id="saisie" autocomplete="off">
+      <label for="adresse" class="consigne">Une adresse suffit.</label>
+      <input id="adresse" type="text" spellcheck="false" placeholder="Tapez une adresse" aria-describedby="pretes">
+      <ul class="pretes" id="pretes" aria-label="Adresses prêtes"></ul>
+    </form>
+
+    <ol class="fiche" id="fiche" aria-live="polite"></ol>
+
+    <section class="scene" aria-label="L'immeuble">
+      <div id="carte" class="carte"></div>
+      <figure class="photo" id="photo" hidden>
+        <div class="photo-image" id="photo-image" role="img" aria-label="Façade de l'immeuble, photo de rue"></div>
+        <figcaption id="photo-legende"></figcaption>
+      </figure>
+      <p class="credits-carte" id="credits-carte">Vue du ciel : IGN · Fond : © contributeurs OpenStreetMap, Protomaps</p>
+    </section>
+
+    <section class="verdict" id="verdict" hidden aria-live="polite"></section>
+    <p class="bilan" id="bilan"></p>
+  </div>
+  <div class="signe" id="signe" aria-hidden="true"></div>
+  <script type="module" src="/capot/capot.mjs"></script>
+</body>
+</html>

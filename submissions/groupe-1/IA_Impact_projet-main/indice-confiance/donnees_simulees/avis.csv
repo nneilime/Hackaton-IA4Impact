@@ -1,0 +1,16 @@
+﻿site_id;nom_site;note_moyenne;nb_avis;source
+SITE_01;Cité Médiévale de Carcassonne;4.8;11;simulé
+SITE_02;Musée Toulouse-Lautrec;4.6;9;simulé
+SITE_03;Château de Foix;4.7;12;simulé
+SITE_04;Cité de l'Espace;4.9;12;simulé
+SITE_05;Arènes de Nîmes;4.5;8;simulé
+SITE_06;Musée Fabre;4.4;7;simulé
+SITE_07;Château Royal de Collioure;4.2;5;simulé
+SITE_08;Tours et Remparts d'Aigues-Mortes;4.6;10;simulé
+SITE_09;Musée Soulages;4.3;6;simulé
+SITE_10;Pont Valentré et Ville Médiévale;3.9;4;simulé
+SITE_11;Musée Jean Jaurès;3.8;3;simulé
+SITE_12;Espace Georges Brassens;4.1;5;simulé
+SITE_13;Grotte Préhistorique de Bédeilhac;3.5;2;simulé
+SITE_14;Fort Saint-Elme (accès crête);2.8;4;simulé
+SITE_15;Musée Ingres Bourdelle;;0;simulé

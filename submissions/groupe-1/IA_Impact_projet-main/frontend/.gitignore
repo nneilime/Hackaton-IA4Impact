@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.tsbuildinfo
+public/basemap/
+# Clés locales (clé Google Maps de la fenêtre du train) : jamais versionnées
+*.local
+scripts/.trackside-cache.json
+scripts/__pycache__/

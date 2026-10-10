@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "outputDirectory": "public",
+  "functions": {
+    "api/serveur.mjs": {
+      "includeFiles": "{app,carte,capot,reel,rejeu,risque,livrables,donnees,moteur,outils}/**",
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/serveur?__chemin=/$1" }
+  ]
+}

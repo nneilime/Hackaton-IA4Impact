@@ -1,0 +1,32 @@
+{
+  "date_reference": "2024-12-31",
+  "periode_test_debut": "2025-01-01",
+  "periode_test_fin": "2025-09-30",
+  "nb_equipements": 1285,
+  "nb_pannes": 76,
+  "taux_base": 0.0591,
+  "taille_top10": 128,
+  "auc": 0.876,
+  "precision_top10": 0.336,
+  "pannes_captees_top10": 43,
+  "auc_age_seul": 0.776,
+  "precision_top10_age_seul": 0.125,
+  "pannes_captees_top10_age_seul": 16,
+  "baseline": "âge relatif seul (âge à la date de référence / durée de vie de référence), comme le notebook du kit",
+  "reglage": {
+    "date_reference": "2023-12-31",
+    "periode_test_debut": "2024-01-01",
+    "periode_test_fin": "2024-09-30",
+    "nb_equipements": 1285,
+    "nb_pannes": 64,
+    "taux_base": 0.0498,
+    "taille_top10": 128,
+    "auc": 0.86,
+    "precision_top10": 0.312,
+    "pannes_captees_top10": 40,
+    "auc_age_seul": 0.712,
+    "precision_top10_age_seul": 0.117,
+    "pannes_captees_top10_age_seul": 15,
+    "baseline": "âge relatif seul (âge à la date de référence / durée de vie de référence), comme le notebook du kit"
+  }
+}

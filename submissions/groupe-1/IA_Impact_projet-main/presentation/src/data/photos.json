@@ -1,0 +1,154 @@
+{
+ "PHOTOS": {
+  "cite-carcassonne": {
+   "author": "Chensiyuan",
+   "license": "CC BY-SA 4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:1_carcassonne_aerial_2016.jpg",
+   "file": "assets/photos/cite-carcassonne.jpg"
+  },
+  "pont-valentre": {
+   "author": "Benjamin Smith",
+   "license": "CC BY-SA 4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Cahors_-_Pont_Valentr%C3%A9_-_11.jpg",
+   "file": "assets/photos/pont-valentre.jpg"
+  },
+  "viaduc-millau": {
+   "author": "Tobi 87",
+   "license": "CC BY-SA 3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Panorama_de_la_vall%C3%A9e_de_Millau.jpg",
+   "file": "assets/photos/viaduc-millau.jpg"
+  },
+  "arenes-nimes": {
+   "author": "Wolfgang Staudt from Saarbruecken, Germany",
+   "license": "CC BY 2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Arenes_de_Nimes_panorama.jpg",
+   "file": "assets/photos/arenes-nimes.jpg"
+  },
+  "canal-du-midi": {
+   "author": "Michiel1972",
+   "license": "CC BY-SA 3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Canal_du_Midi_aug_2011.jpg",
+   "file": "assets/photos/canal-du-midi.jpg"
+  },
+  "chateau-collioure": {
+   "author": "Patrick Subotkiewiez",
+   "license": "CC BY 2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Chateau_royal_de_Collioure_01.jpg",
+   "file": "assets/photos/chateau-collioure.jpg"
+  }
+ },
+ "SCENERY": [
+  {
+   "id": "leucate",
+   "title": "Étang de Leucate, au bord des voies",
+   "file": "assets/scenery/leucate.jpg",
+   "author": "Florian Pépellin",
+   "license": "CC BY-SA 3.0",
+   "place": false
+  },
+  {
+   "id": "clape",
+   "title": "Massif de la Clape",
+   "file": "assets/scenery/clape.jpg",
+   "author": "Florian Pépellin",
+   "license": "CC BY-SA 4.0",
+   "place": false
+  },
+  {
+   "id": "vignes",
+   "title": "Vignes du Minervois",
+   "file": "assets/scenery/vignes.jpg",
+   "author": "Delphine Ménard",
+   "license": "CC BY-SA 2.0",
+   "place": false
+  },
+  {
+   "id": "cite-carcassonne",
+   "title": "La Cité de Carcassonne",
+   "file": "assets/scenery/cite-carcassonne.jpg",
+   "author": "Chensiyuan",
+   "license": "CC BY-SA 4.0",
+   "place": true
+  },
+  {
+   "id": "montagne-noire",
+   "title": "Montagne Noire",
+   "file": "assets/scenery/montagne-noire.jpg",
+   "author": "Krzysztof Golik",
+   "license": "CC BY-SA 4.0",
+   "place": false
+  },
+  {
+   "id": "tournesols",
+   "title": "Champs de tournesols",
+   "file": "assets/scenery/tournesols.jpg",
+   "author": "Chabe01",
+   "license": "CC BY-SA 4.0",
+   "place": false
+  },
+  {
+   "id": "garonne",
+   "title": "La Garonne à Toulouse",
+   "file": "assets/scenery/garonne.jpg",
+   "author": "kallerna",
+   "license": "CC BY-SA 4.0",
+   "place": false
+  }
+ ],
+ "MODEL": {
+  "author": "mohamedhussien",
+  "license": "CC BY 4.0",
+  "source": "https://sketchfab.com/3d-models/the-arenas-amphitheatre-of-nimes-f3a998a7d81f49858e059037951043cf",
+  "file": "assets/models/arenes-nimes.glb",
+  "title": "Arènes de Nîmes"
+ },
+ "MODELS": {
+  "arenes-nimes": {
+   "author": "mohamedhussien",
+   "license": "CC BY 4.0",
+   "source": "https://sketchfab.com/3d-models/the-arenas-amphitheatre-of-nimes-f3a998a7d81f49858e059037951043cf",
+   "file": "assets/models/arenes-nimes.glb"
+  },
+  "maison-carree": {
+   "author": "CHEI - UC San Diego",
+   "license": "CC BY 4.0",
+   "source": "https://sketchfab.com/3d-models/maison-carree-nimes-southern-france-e526e004a60a4f15bac67e43be4d4e0f",
+   "file": "assets/models/maison-carree.glb"
+  },
+  "viaduc-millau": {
+   "author": "Robert Kiraly",
+   "license": "CC BY 4.0",
+   "source": "https://sketchfab.com/3d-models/millau-viaduct-f7bbb3fa445f43d880668c1651290c92",
+   "file": "assets/models/viaduc-millau.glb"
+  }
+ },
+ "IDEAS": [
+  {
+   "title": "La Cité de Carcassonne",
+   "city": "Carcassonne",
+   "minutes": 59,
+   "transfers": 0,
+   "file": "assets/photos/cite-carcassonne.jpg",
+   "author": "Chensiyuan",
+   "license": "CC BY-SA 4.0"
+  },
+  {
+   "title": "Pont Valentré",
+   "city": "Cahors",
+   "minutes": 82,
+   "transfers": 0,
+   "file": "assets/photos/pont-valentre.jpg",
+   "author": "Benjamin Smith",
+   "license": "CC BY-SA 4.0"
+  },
+  {
+   "title": "Abbaye de Moissac",
+   "city": "Moissac",
+   "minutes": 58,
+   "transfers": 0,
+   "file": "assets/photos/abbaye-moissac.jpg",
+   "author": "Abxbay",
+   "license": "CC BY-SA 3.0"
+  }
+ ]
+}

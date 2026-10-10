@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BâtIA — voir venir les pannes, ordonner les rénovations</title>
+<style>
+/* ===========================================
+   POLICES LOCALES (aucune connexion requise)
+   Inter : la police de l'application (OFL).
+   Archivo (variable, axe de largeur) : titres et chiffres (OFL).
+   =========================================== */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: block;
+  src: url('fonts/Inter-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: block;
+  src: url('fonts/Inter-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; font-display: block;
+  src: url('fonts/Archivo-var-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; font-display: block;
+  src: url('fonts/Archivo-var-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* ===========================================
+   THÈME : la charte de l'application
+   =========================================== */
+:root {
+  --stage-bg: #0b0b2e;
+  --slide-bg: #F6F6F6;
+  --bleu: #000091;
+  --bleu-nuit: #00003d;
+  --bleu-pale: #E3E3FD;
+  --noir: #161616;
+  --gris: #F6F6F6;
+  --gris-texte: #5f5f6e;
+  --urgent: #CE0500;   --urgent-fond: #FFE9E9;
+  --alerte: #B34000;   --alerte-fond: #FFE9E6;   --alerte-trait: #E4794A;
+  --vigilance: #7a6514; --vigilance-fond: #FEECC2; --vigilance-trait: #C8AA39;
+  --font-titre: 'Archivo', 'Inter', sans-serif;
+  --font-texte: 'Inter', sans-serif;
+  --pad: 112px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===========================================
+   SCÈNE FIXE 16:9 (viewport-base.css, copié en entier)
+   =========================================== */
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: var(--stage-bg, #000); }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: var(--stage-bg, #000); }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: var(--slide-bg, #fff); }
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; display: block; visibility: hidden; opacity: 0; pointer-events: none; background: var(--slide-bg, #fff); }
+.slide.active, .slide.visible { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
+img, video, canvas, svg { max-width: 100%; max-height: 100%; }
+.deck-controls { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 1000; }
+@media print {
+  html, body { width: 1920px; height: auto; overflow: visible; background: #fff; }
+  .deck-viewport { position: static; overflow: visible; background: #fff; }
+  .deck-stage { position: static; width: auto; height: auto; transform: none !important; background: none; }
+  .slide { position: relative; display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; width: 1920px; height: 1080px; break-after: page; page-break-after: always; }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+  .deck-controls { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+}
+
+/* ===========================================
+   BASE TYPOGRAPHIQUE
+   =========================================== */
+.deck-stage { font-family: var(--font-texte); color: var(--noir); -webkit-font-smoothing: antialiased; }
+.slide { transition: opacity .5s ease, visibility .5s; }
+.titre { font-family: var(--font-titre); font-stretch: 72%; font-weight: 800; letter-spacing: -0.01em; line-height: .95; }
+.chiffre { font-family: var(--font-titre); font-stretch: 68%; font-weight: 800; line-height: .9; font-variant-numeric: lining-nums; }
+.surtitre { font-family: var(--font-texte); font-weight: 600; font-size: 24px; letter-spacing: .14em; text-transform: uppercase; }
+.mention { font-size: 22px; color: var(--gris-texte); font-weight: 500; }
+/* Retours à la ligne équilibrés : pas de mot orphelin */
+.titre, .quoi, .role, .mention, .outil p, .verdict p, .chiffres p { text-wrap: balance; }
+.nw { white-space: nowrap; }
+
+/* Pied de page discret : nom du projet + numéro */
+.pied { position: absolute; left: var(--pad); right: var(--pad); bottom: 48px; display: flex; justify-content: space-between;
+  font-size: 20px; font-weight: 600; letter-spacing: .08em; color: rgba(22,22,22,.45); z-index: 5; }
+.sombre .pied { color: rgba(255,255,255,.6); }
+
+/* ===========================================
+   FONDS PHOTO : plein cadre, voile bleu nuit
+   =========================================== */
+.photo { position: absolute; inset: 0; background-size: cover; background-position: center; background-color: var(--bleu-nuit); transform: scale(1.06); transition: transform 9s var(--ease); }
+.slide.visible .photo { transform: scale(1); }
+.voile { position: absolute; inset: 0; }
+.sombre { color: #fff; background: var(--bleu-nuit); }
+
+/* ===========================================
+   PANNEAUX BLANCS (comme sur la carte de l'application)
+   =========================================== */
+.panneau { background: #fff; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,40,.06), 0 18px 48px rgba(0,0,40,.16); color: var(--noir); }
+.pastille { display: inline-flex; align-items: center; gap: 12px; border-radius: 999px; padding: 10px 24px; font-weight: 700; font-size: 26px; }
+.pastille::before { content: ''; width: 14px; height: 14px; border-radius: 50%; background: currentColor; }
+.p-urgent { color: var(--urgent); background: var(--urgent-fond); }
+.p-alerte { color: var(--alerte); background: var(--alerte-fond); }
+.p-vigilance { color: var(--vigilance); background: var(--vigilance-fond); }
+.p-alerte::before { background: var(--alerte-trait); }
+.p-vigilance::before { background: var(--vigilance-trait); }
+
+/* ===========================================
+   APPARITIONS (déclenchées par .visible)
+   =========================================== */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: calc(var(--d, 0) * 110ms + 150ms); }
+.slide.visible .reveal { opacity: 1; transform: none; }
+html.export .reveal, html.export .photo, html.export .slide { transition: none !important; }
+html.export .photo { transform: none; }
+html.export .progression { display: none; }
+
+/* ===========================================
+   1 — TITRE
+   =========================================== */
+#s1 .voile { background: linear-gradient(180deg, rgba(0,0,45,.15) 0%, rgba(0,0,45,.25) 45%, rgba(0,0,40,.88) 100%); }
+#s1 .bloc { position: absolute; left: var(--pad); right: var(--pad); bottom: 120px; }
+#s1 .surtitre { position: absolute; left: var(--pad); top: 96px; color: rgba(255,255,255,.85); }
+#s1 h1 { font-size: 300px; font-stretch: 78%; font-weight: 800; margin: 18px 0 30px -10px; letter-spacing: -0.02em; }
+#s1 .accroche { font-size: 46px; font-weight: 500; max-width: 1300px; line-height: 1.2; }
+#s1 .accroche b { font-weight: 700; color: #fff; background: var(--bleu); padding: 0 14px; border-radius: 8px; }
+
+/* ===========================================
+   2 — INTRODUCTION : le problème + l'avis
+   =========================================== */
+#s2 .gauche { position: absolute; left: 0; top: 0; bottom: 0; width: 1010px; overflow: hidden; color: #fff; }
+#s2 .gauche .voile { background: linear-gradient(180deg, rgba(0,0,50,.55) 0%, rgba(0,0,50,.35) 40%, rgba(0,0,40,.9) 100%); }
+#s2 .gauche .contenu { position: absolute; left: var(--pad); right: 80px; top: 110px; bottom: 120px; display: flex; flex-direction: column; }
+#s2 h2 { font-size: 128px; margin-top: 26px; }
+#s2 .chiffres { margin-top: auto; display: flex; gap: 72px; }
+#s2 .chiffres .chiffre { font-size: 132px; }
+#s2 .chiffres p { font-size: 24px; line-height: 1.35; margin-top: 12px; color: rgba(255,255,255,.88); max-width: 340px; }
+#s2 .chiffres p span:not(.nw) { color: rgba(255,255,255,.6); }
+#s2 .droite { position: absolute; left: 1010px; right: 0; top: 0; bottom: 0; padding: 230px 110px 0 100px; }
+#s2 .pied span:first-child { color: rgba(255,255,255,.6); }
+#s2 .carte-avis { position: relative; width: 700px; padding: 26px 30px 30px; transform: rotate(-1.4deg); }
+#s2 .carte-avis img { display: block; width: 100%; height: auto; }
+#s2 .carte-avis .ligne2 { margin-top: 10px; opacity: .95; }
+#s2 .carte-avis::after { content: ''; position: absolute; left: 0; right: 0; bottom: -14px; height: 16px;
+  background: linear-gradient(-45deg, transparent 10px, #fff 0) 0 0 / 20px 16px, linear-gradient(45deg, transparent 10px, #fff 0) 0 0 / 20px 16px; }
+#s2 .degres { position: absolute; right: -40px; top: -44px; transform: rotate(3deg); font-size: 34px; padding: 14px 30px; box-shadow: 0 10px 30px rgba(206,5,0,.25); }
+#s2 blockquote { margin-top: 92px; font-family: var(--font-titre); font-stretch: 80%; font-weight: 700; font-size: 74px; line-height: 1.02; color: var(--bleu); }
+#s2 blockquote::before { content: '« '; }
+#s2 blockquote::after { content: ' »'; }
+#s2 .source { margin-top: 26px; }
+
+/* ===========================================
+   3 — ÉQUIPE
+   =========================================== */
+#s3 h2 { position: absolute; left: var(--pad); top: 100px; font-size: 120px; color: var(--bleu); }
+#s3 .surtitre { position: absolute; left: var(--pad); top: 70px; color: var(--gris-texte); }
+#s3 .grille { position: absolute; left: var(--pad); right: var(--pad); top: 300px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 24px; }
+#s3 .portrait { position: relative; height: 400px; border-radius: 12px; overflow: hidden; background-color: var(--bleu-pale);
+  background-image: linear-gradient(rgba(0,0,145,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,145,.07) 1px, transparent 1px);
+  background-size: 28px 28px; box-shadow: 0 2px 6px rgba(0,0,40,.05), 0 14px 36px rgba(0,0,40,.10); }
+#s3 .portrait .lettre { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-titre); font-stretch: 70%; font-weight: 800; font-size: 210px; color: rgba(0,0,145,.11); }
+#s3 .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover; object-position: center 28%; }
+#s3 .nom { margin-top: 24px; font-family: var(--font-titre); font-stretch: 80%; font-weight: 750; font-size: 36px; line-height: 1.02; color: var(--noir); }
+#s3 .role { margin-top: 12px; font-size: 22px; line-height: 1.35; color: var(--gris-texte); font-weight: 500; }
+/* Septième membre, non humain : même carte, contour en pointillés, « IA » à la place de l'initiale */
+#s3 .ia .portrait { background-color: #fff; border: 3px dashed var(--bleu); box-shadow: none; }
+#s3 .ia .portrait .lettre { font-size: 150px; letter-spacing: .02em; color: rgba(0,0,145,.30); }
+
+/* ===========================================
+   4 — OUTILS : des agents en parallèle
+   =========================================== */
+#s4 { background: var(--bleu); color: #fff; }
+#s4::before { content: ''; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 48px 48px; }
+#s4 .surtitre { position: absolute; left: var(--pad); top: 100px; color: rgba(255,255,255,.7); }
+#s4 h2 { position: absolute; left: var(--pad); top: 150px; font-size: 112px; max-width: 1500px; }
+#s4 .pistes { position: absolute; left: var(--pad); right: var(--pad); top: 428px; height: 300px; }
+#s4 .piste { position: absolute; left: 0; right: 520px; height: 64px; display: flex; align-items: center; }
+#s4 .piste::before { content: ''; position: absolute; left: 150px; right: 0; top: 50%; border-top: 3px dashed rgba(255,255,255,.35); }
+#s4 .piste .agent { position: relative; z-index: 1; font-weight: 700; font-size: 24px; padding: 14px 24px; border-radius: 999px; background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.35); }
+#s4 .piste .fin { position: absolute; right: -18px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.25); }
+#s4 .piste.gagnante::before { border-top: 4px solid #fff; }
+#s4 .piste.gagnante .agent { background: #fff; color: var(--bleu); border-color: #fff; }
+#s4 .piste.gagnante .fin { background: #fff; box-shadow: 0 0 0 10px rgba(255,255,255,.18); }
+#s4 .verdict { position: absolute; right: 0; top: -6px; width: 440px; padding: 34px 36px; }
+#s4 .verdict .titre { font-size: 52px; color: var(--bleu); }
+#s4 .verdict p { margin-top: 14px; font-size: 24px; line-height: 1.35; color: var(--gris-texte); font-weight: 500; }
+#s4 .outils { position: absolute; left: var(--pad); right: var(--pad); bottom: 130px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+#s4 .outil { padding: 30px 34px; }
+#s4 .outil .titre { font-size: 46px; color: var(--bleu); font-stretch: 78%; }
+#s4 .outil p { margin-top: 12px; font-size: 24px; line-height: 1.35; color: var(--gris-texte); font-weight: 500; }
+
+/* ===========================================
+   5 — DÉMO
+   =========================================== */
+#s5 .surtitre { position: absolute; left: var(--pad); top: 150px; color: var(--gris-texte); }
+#s5 h2 { position: absolute; left: var(--pad); top: 200px; font-size: 150px; color: var(--bleu); width: 640px; }
+#s5 .liste { position: absolute; left: var(--pad); top: 560px; width: 620px; display: flex; flex-direction: column; gap: 26px; }
+#s5 .liste .item { font-size: 32px; font-weight: 600; line-height: 1.25; }
+#s5 .liste .item small { display: block; margin-top: 8px; font-size: 22px; font-weight: 500; color: var(--gris-texte); }
+#s5 .niveaux { display: flex; gap: 14px; margin-top: 4px; }
+#s5 .niveaux .pastille { font-size: 22px; padding: 8px 18px; }
+#s5 .dpe { display: flex; gap: 6px; margin-top: 4px; }
+#s5 .dpe span { width: 50px; height: 40px; border-radius: 6px; display: grid; place-items: center; font-weight: 800; font-size: 22px; color: #fff; }
+#s5 .ecran { position: absolute; left: 790px; top: 170px; width: 990px; padding: 0; overflow: hidden; transform: perspective(2200px) rotateY(-9deg) rotateX(2deg); transform-origin: left center; }
+#s5 .ecran .barre { height: 44px; background: #eceef3; display: flex; align-items: center; gap: 10px; padding: 0 18px; }
+#s5 .ecran .barre i { width: 13px; height: 13px; border-radius: 50%; background: #c9ccd6; }
+#s5 .ecran img { display: block; width: 100%; height: auto; max-width: none; max-height: none; }
+#s5 .ecran-legende { position: absolute; left: 860px; top: 760px; width: 900px; }
+
+/* ===========================================
+   6 — SCORING DU KIT (laissée à Sami)
+   =========================================== */
+#s6 .surtitre { position: absolute; left: var(--pad); top: 80px; color: var(--bleu); opacity: .55; }
+#s6 h2 { position: absolute; left: var(--pad); top: 122px; font-size: 84px; color: var(--noir); }
+#s6 h2 b { color: var(--bleu); font-weight: 800; }
+#s6 .sous { position: absolute; left: var(--pad); top: 236px; width: 760px; font-size: 24px; line-height: 1.38; color: var(--gris-texte); font-weight: 500; text-wrap: pretty; }
+#s6 .fiche { position: absolute; left: var(--pad); top: 340px; width: 760px; padding: 28px 36px 18px; }
+#s6 .fiche .tete { display: flex; align-items: center; gap: 18px; }
+#s6 .fiche .tete .pastille { font-size: 22px; padding: 8px 20px; }
+#s6 .fiche .tete .chiffre { font-size: 64px; color: var(--urgent); }
+#s6 .fiche .tete small { font-size: 21px; font-weight: 600; color: var(--gris-texte); }
+#s6 .fiche .lieu { margin-top: 10px; font-size: 21px; color: var(--gris-texte); font-weight: 500; }
+#s6 .fiche .obs { margin-top: 14px; padding: 14px 20px; border-left: 5px solid var(--urgent); background: var(--urgent-fond); border-radius: 0 8px 8px 0; font-size: 22px; font-weight: 650; }
+#s6 .fiche .obs span { display: block; font-size: 17px; font-weight: 500; color: var(--gris-texte); margin-top: 3px; }
+#s6 .raisons { list-style: none; margin: 12px 0 0; padding: 0; }
+#s6 .raisons li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; font-size: 21px; line-height: 1.3; padding: 8px 0; border-bottom: 1px solid #e6e6ee; }
+#s6 .raisons li:last-child { border-bottom: 0; color: var(--gris-texte); }
+#s6 .raisons li b { font-family: var(--font-titre); font-stretch: 72%; font-size: 30px; font-weight: 800; color: var(--bleu); white-space: nowrap; }
+#s6 .droite { position: absolute; left: 936px; right: var(--pad); top: 236px; }
+#s6 .droite .t { font-size: 24px; line-height: 1.38; color: var(--gris-texte); font-weight: 500; text-wrap: pretty; }
+#s6 .droite .t b { color: var(--noir); font-weight: 700; }
+#s6 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 30px; }
+#s6 .duo .panneau { padding: 28px 32px 26px; border-top: 6px solid var(--bleu); }
+#s6 .duo .chiffre { font-size: 132px; color: var(--bleu); white-space: nowrap; }
+#s6 .duo .chiffre small { font-size: 44px; color: var(--noir); margin-left: 8px; }
+#s6 .duo .l { margin-top: 14px; font-size: 21px; line-height: 1.3; font-weight: 600; }
+#s6 .duo .vs { margin-top: 10px; font-size: 19px; color: var(--gris-texte); }
+#s6 .duo .vs b { color: var(--noir); }
+#s6 .bandes { margin-top: 28px; padding: 24px 32px 24px; }
+#s6 .bandes .etiquette { font-size: 17px; }
+#s6 .bandes .rang { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+#s6 .bandes .b { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+#s6 .bandes .pastille { font-size: 19px; padding: 6px 16px; gap: 10px; }
+#s6 .bandes .pastille::before { width: 11px; height: 11px; }
+#s6 .bandes .chiffre { font-size: 50px; }
+#s6 .bandes .chiffre small { font-family: var(--font-texte); font-size: 18px; font-weight: 600; color: var(--gris-texte); margin-left: 6px; }
+#s6 .bandes .seuil { font-size: 17px; color: var(--gris-texte); }
+#s6 .source { position: absolute; left: var(--pad); right: var(--pad); top: 966px; font-size: 19px; color: var(--gris-texte); }
+#s6 .source b { color: var(--noir); font-weight: 650; }
+
+/* ===========================================
+   7 — RÉSULTATS
+   =========================================== */
+#s7 .voile { background: linear-gradient(180deg, rgba(0,0,50,.86) 0%, rgba(0,0,50,.72) 50%, rgba(0,0,40,.9) 100%); }
+#s7 .surtitre { position: absolute; left: var(--pad); top: 96px; color: rgba(255,255,255,.75); }
+#s7 h2 { position: absolute; left: var(--pad); top: 146px; font-size: 124px; }
+#s7 .cartes { position: absolute; left: var(--pad); right: var(--pad); top: 330px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+#s7 .carte { padding: 38px 42px 36px; height: 500px; display: flex; flex-direction: column; }
+#s7 .carte .type { margin-bottom: 26px; align-self: flex-start; }
+#s7 .carte .chiffre { font-size: 140px; color: var(--bleu); white-space: nowrap; }
+#s7 .carte .quoi { margin-top: 18px; font-size: 30px; font-weight: 650; line-height: 1.2; }
+#s7 .carte .mention { margin-top: auto; padding-top: 18px; font-size: 20px; line-height: 1.4; }
+#s7 .bandeau { position: absolute; left: var(--pad); right: var(--pad); top: 884px; font-size: 30px; font-weight: 500; color: rgba(255,255,255,.92); }
+#s7 .bandeau b { font-weight: 700; color: #fff; }
+#s7 .bandeau span:not(.nw) { color: rgba(255,255,255,.62); font-size: 22px; }
+.etiquette { display: inline-block; font-size: 20px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 8px 16px; border-radius: 999px; background: var(--bleu-pale); color: var(--bleu); }
+
+/* ===========================================
+   8 — OUVERTURE
+   =========================================== */
+#s8 .voile { background: linear-gradient(90deg, rgba(0,0,50,.93) 0%, rgba(0,0,60,.8) 50%, rgba(0,0,90,.5) 100%); }
+#s8 .photo { filter: saturate(.45); }
+#s8 .surtitre { position: absolute; left: var(--pad); top: 140px; color: rgba(255,255,255,.75); }
+#s8 h2 { position: absolute; left: var(--pad); top: 190px; font-size: 170px; }
+#s8 .pistes { position: absolute; left: var(--pad); top: 470px; width: 1050px; display: flex; flex-direction: column; gap: 24px; }
+#s8 .piste { display: flex; align-items: center; gap: 30px; padding: 28px 36px; }
+#s8 .piste .num { font-family: var(--font-titre); font-stretch: 70%; font-weight: 800; font-size: 64px; color: var(--bleu); width: 48px; }
+#s8 .piste .t { font-size: 36px; font-weight: 700; line-height: 1.15; }
+#s8 .piste .t small { display: block; margin-top: 6px; font-size: 23px; font-weight: 500; color: var(--gris-texte); }
+
+/* ===========================================
+   9 — QUESTIONS
+   =========================================== */
+#s9 .voile { background: linear-gradient(180deg, rgba(0,0,45,.3) 0%, rgba(0,0,45,.35) 40%, rgba(0,0,40,.9) 100%); }
+#s9 .bloc { position: absolute; left: var(--pad); right: var(--pad); bottom: 150px; }
+#s9 h2 { font-size: 196px; font-stretch: 74%; }
+#s9 .merci { margin-top: 36px; font-size: 40px; font-weight: 500; color: rgba(255,255,255,.88); }
+#s9 .merci b { font-family: var(--font-titre); font-stretch: 80%; font-weight: 800; color: #fff; }
+
+/* Indicateur de progression, hors de la scène */
+.progression { position: fixed; left: 0; bottom: 0; height: 4px; background: var(--bleu-pale); opacity: .7; transition: width .4s var(--ease); z-index: 1000; }
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+<main class="deck-stage" id="deckStage">
+
+  <!-- ========== 1. BONJOUR À TOUS : présentation ========== -->
+  <section class="slide sombre" id="s1">
+    <div class="photo" style="background-image:url('images/titre.jpg')"></div>
+    <div class="voile"></div>
+    <div class="surtitre reveal" style="--d:0">Hackathon AI for Impact · Défi <span class="nw">In'li Sud-Ouest</span></div>
+    <div class="bloc">
+      <h1 class="titre reveal" style="--d:1">BâtIA</h1>
+      <p class="accroche reveal" style="--d:2">Voir venir les pannes. <b>Ordonner les rénovations.</b></p>
+    </div>
+  </section>
+
+  <!-- ========== 2. INTRODUCTION : contexte, problème, chiffres, avis ========== -->
+  <section class="slide" id="s2">
+    <div class="gauche sombre">
+      <div class="photo" style="background-image:url('images/froid.jpg')"></div>
+      <div class="voile"></div>
+      <div class="contenu">
+        <div class="surtitre reveal" style="--d:0;color:rgba(255,255,255,.8)">Aujourd'hui</div>
+        <h2 class="titre reveal" style="--d:1">La panne,<br>on la subit.</h2>
+        <div class="chiffres">
+          <div class="reveal" style="--d:3">
+            <div class="chiffre">6&#8239;239</div>
+            <p>logements <span class="nw">In'li Sud-Ouest</span> <span>(site officiel)</span></p>
+          </div>
+          <div class="reveal" style="--d:4">
+            <div class="chiffre">76</div>
+            <p>équipements en panne bloquante <span>(données du défi, janvier-septembre 2025)</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="droite">
+      <div class="carte-avis panneau reveal" style="--d:2">
+        <img src="assets/avis-entete.png" alt="Avis Trustpilot, 1 étoile, 27 novembre 2025 : Inaction totale !">
+        <img class="ligne2" src="assets/avis-chaudiere.png" alt="La chaudière ne marche pas : pas de chauffage et pas d'eau chaude.">
+        <span class="pastille p-urgent degres">9&nbsp;°C à l'intérieur</span>
+      </div>
+      <blockquote class="reveal" style="--d:4">Aucune réaction face à la détresse.</blockquote>
+      <p class="mention source reveal" style="--d:5">Avis d'un locataire sur Trustpilot, 1 étoile, 27 novembre 2025</p>
+    </div>
+    <div class="pied"><span>BâtIA</span><span>2 / 9</span></div>
+  </section>
+
+  <!-- ========== 3. L'ÉQUIPE ET LES RÔLES ==========
+       Déposer photos/<prenom>.jpg : la photo remplace le motif automatiquement. -->
+  <section class="slide" id="s3">
+    <div class="surtitre reveal" style="--d:0">Les rôles</div>
+    <h2 class="titre reveal" style="--d:0">L'équipe</h2>
+    <div class="grille">
+      <div class="membre reveal" style="--d:1"><div class="portrait"><span class="lettre">A</span><img src="photos/alexis.jpg" alt="Alexis Briend" onerror="this.remove()"></div>
+        <div class="nom">Alexis<br>Briend</div><div class="role">Développement, pilotage des agents IA</div></div>
+      <div class="membre reveal" style="--d:2"><div class="portrait"><span class="lettre">S</span><img src="photos/sami.jpg" alt="Sami Ennedoui" onerror="this.remove()"></div>
+        <div class="nom">Sami<br>Ennedoui</div><div class="role">Développement, calcul des scores</div></div>
+      <div class="membre reveal" style="--d:3"><div class="portrait"><span class="lettre">D</span><img src="photos/daylami.jpg" alt="Daylami Affane" onerror="this.remove()"></div>
+        <div class="nom">Daylami<br>Affane</div><div class="role">Responsable technique, architecture</div></div>
+      <div class="membre reveal" style="--d:4"><div class="portrait"><span class="lettre">C</span><img src="photos/clement.jpg" alt="Clément Bergeot" onerror="this.remove()"></div>
+        <div class="nom">Clément<br>Bergeot</div><div class="role">Design de l'expérience (UX)</div></div>
+      <div class="membre reveal" style="--d:5"><div class="portrait"><span class="lettre">A</span><img src="photos/alexandre.jpg" alt="Alexandre Chaufoureau" onerror="this.remove()"></div>
+        <div class="nom">Alexandre<br>Chaufoureau</div><div class="role">Tests, jusqu'aux cas limites</div></div>
+      <div class="membre reveal" style="--d:6"><div class="portrait"><span class="lettre">E</span><img src="photos/edik.jpg" alt="Edik Planson" onerror="this.remove()"></div>
+        <div class="nom">Edik<br>Planson</div><div class="role">Pitch, matériel, vision d'ensemble</div></div>
+      <div class="membre ia reveal" style="--d:7"><div class="portrait"><span class="lettre">IA</span></div>
+        <div class="nom">Claude<br><span class="nw">l'IA de l'équipe</span></div><div class="role">Agent CTO&nbsp;· <span class="nw">ne dort jamais</span></div></div>
+    </div>
+    <div class="pied"><span>BâtIA</span><span>3 / 9</span></div>
+  </section>
+
+  <!-- ========== 4. OUTILS CHOISIS : des agents en parallèle ========== -->
+  <section class="slide sombre" id="s4">
+    <div class="surtitre reveal" style="--d:0">Notre façon de travailler</div>
+    <h2 class="titre reveal" style="--d:1">Plusieurs pistes en parallèle,<br>on garde la meilleure.</h2>
+    <div class="pistes">
+      <div class="piste reveal" style="top:0;--d:2"><span class="agent">Agent IA</span><span class="fin"></span></div>
+      <div class="piste gagnante reveal" style="top:100px;--d:3"><span class="agent">Agent IA</span><span class="fin"></span></div>
+      <div class="piste reveal" style="top:200px;--d:4"><span class="agent">Agent IA</span><span class="fin"></span></div>
+      <div class="verdict panneau reveal" style="--d:5">
+        <div class="titre">On compare,<br>on choisit.</div>
+        <p>Directions visuelles, analyses de marché… et ces diapositives elles-mêmes.</p>
+      </div>
+    </div>
+    <div class="outils">
+      <div class="outil panneau reveal" style="--d:6"><div class="titre">Figma</div><p>Les maquettes de l'interface</p></div>
+      <div class="outil panneau reveal" style="--d:7"><div class="titre">Claude Code · Codex</div><p>Opus et GPT-6 Astra : des agents en parallèle, chacun sur sa piste</p></div>
+      <div class="outil panneau reveal" style="--d:8"><div class="titre">Telegram · Discord</div><p>Un bot relié au dépôt GitHub annonce l'avancement</p></div>
+    </div>
+    <div class="pied"><span>BâtIA</span><span>4 / 9</span></div>
+  </section>
+
+  <!-- ========== 5. L'INTERFACE : on bascule sur la démo ========== -->
+  <section class="slide" id="s5">
+    <div class="surtitre reveal" style="--d:0">Foraine, notre application</div>
+    <h2 class="titre reveal" style="--d:1">Place<br>à la démo</h2>
+    <div class="liste">
+      <div class="item reveal" style="--d:2">Une carte, des panneaux, trois niveaux
+        <div class="niveaux"><span class="pastille p-urgent">Urgent</span><span class="pastille p-alerte">Alerte</span><span class="pastille p-vigilance">Vigilance</span></div></div>
+      <div class="item reveal" style="--d:3">Les étiquettes énergie officielles
+        <div class="dpe"><span style="background:#329837">A</span><span style="background:#57AF37">B</span><span style="background:#C6D300">C</span><span style="background:#F2E500;color:#161616">D</span><span style="background:#FFCB03;color:#161616">E</span><span style="background:#F39739">F</span><span style="background:#E4251F">G</span></div></div>
+      <div class="item reveal" style="--d:4">Puis les données réelles
+        <small>6&#8239;601 logements sur 5 départements (données publiques)</small></div>
+    </div>
+    <div class="ecran panneau reveal" style="--d:2">
+      <div class="barre"><i></i><i></i><i></i></div>
+      <img src="assets/demo-carte.jpg" alt="L'application Foraine : la carte du Sud-Ouest et ses panneaux">
+    </div>
+    <div class="pied"><span>BâtIA</span><span>5 / 9</span></div>
+  </section>
+
+  <!-- ========== 6. SCORING DES DONNÉES DU KIT : laissée vide pour Sami ========== -->
+  <section class="slide" id="s6">
+    <div class="surtitre">Le scoring des données du kit</div>
+    <h2 class="titre reveal" style="--d:0"><b>Un barème à points</b>, lisible par un technicien.</h2>
+    <p class="sous reveal" style="--d:1">Chaque raison pèse des points, le total donne une catégorie, et chaque catégorie affiche ce qui s’est vraiment passé l’an dernier.</p>
+    <div class="fiche panneau reveal" style="--d:2">
+      <div class="tete"><span class="pastille p-urgent">Urgent</span><span class="chiffre">169</span><small>points · 1<sup>er</sup> sur 1&#8239;285</small></div>
+      <p class="lieu">Pompe à chaleur air/eau · Résidence D · logement 020</p>
+      <div class="obs">28 pannes sur 46 l’an dernier, 61&nbsp;%<span>parmi les équipements qui avaient ce niveau de points</span></div>
+      <ul class="raisons">
+        <li><span>3 commentaires d’usure du technicien en 12 mois, le dernier : « Réparation provisoire, fiabilité incertaine »</span><b>+39</b></li>
+        <li><span>14,6 ans sur 16 ans de durée de vie, 91&nbsp;%</span><b>+35</b></li>
+        <li><span>Commentaire d’usure écrit pendant un dépannage</span><b>+28</b></li>
+        <li><span>La demande du locataire nomme l’appareil, dans les 6 mois</span><b>+28</b></li>
+        <li><span>Autres situations : demande du locataire, dépannage récent, panne bloquante réparée, visites manquées</span><b>+39</b></li>
+      </ul>
+    </div>
+    <div class="droite">
+      <p class="t reveal" style="--d:2"><b>Réglé sur 2024, testé sur 2025, sans regarder l’avenir.</b> Au 31 décembre 2024 le barème classe les 1&#8239;285 équipements, puis on compte les pannes bloquantes de janvier à septembre 2025.</p>
+      <div class="duo">
+        <div class="panneau reveal" style="--d:3"><div class="chiffre">43<small>sur 76</small></div><div class="l">pannes bloquantes captées en visitant les 128 équipements les mieux classés</div><div class="vs">contre <b>16</b> avec l’âge seul, comme le notebook du kit</div></div>
+        <div class="panneau reveal" style="--d:4"><div class="chiffre">0,88</div><div class="l">d’AUC : la chance qu’un équipement qui va tomber en panne soit classé devant un autre qui ne tombera pas</div><div class="vs">contre <b>0,78</b> avec l’âge seul</div></div>
+      </div>
+      <div class="bandes panneau reveal" style="--d:5">
+        <span class="etiquette">Ce que chaque catégorie a donné l’an dernier</span>
+        <div class="rang">
+          <div class="b"><span class="pastille p-urgent">Urgent</span><span class="chiffre">28 sur 46<small>61&nbsp;%</small></span><span class="seuil">80 points et plus</span></div>
+          <div class="b"><span class="pastille p-alerte">Alerte</span><span class="chiffre">9 sur 16<small>56&nbsp;%</small></span><span class="seuil">60 à 79 points</span></div>
+          <div class="b"><span class="pastille p-vigilance">Vigilance</span><span class="chiffre">14 sur 109<small>13&nbsp;%</small></span><span class="seuil">40 à 59 points</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="source reveal" style="--d:6"><b>Données du kit seulement</b> · 1&#8239;285 équipements, environ 10&#8239;000 interventions de 2018 à 2025 · barème dans <b>poc/preavis/moteur/BAREME.md</b></p>
+    <div class="pied"><span>BâtIA</span><span>6 / 9</span></div>
+  </section>
+
+  <!-- ========== 7. RÉSULTATS ========== -->
+  <section class="slide sombre" id="s7">
+    <div class="photo" style="background-image:url('images/chaufferie.jpg')"></div>
+    <div class="voile"></div>
+    <div class="surtitre reveal" style="--d:0">Résultats</div>
+    <h2 class="titre reveal" style="--d:1">Même budget, meilleur ordre.</h2>
+    <div class="cartes">
+      <div class="carte panneau reveal" style="--d:2">
+        <span class="etiquette type">Rénovations</span>
+        <div class="chiffre">≈&#8239;130&#8239;000&nbsp;€</div>
+        <div class="quoi">de loyers sauvés, sans un euro de plus</div>
+        <div class="mention">216&#8239;967&nbsp;€ de loyers perdus contre 86&#8239;926&nbsp;€, 2027-2035 (calcul de l'équipe, données du défi)</div>
+      </div>
+      <div class="carte panneau reveal" style="--d:3">
+        <span class="etiquette type">Énergie</span>
+        <div class="chiffre">× 3</div>
+        <div class="quoi">l'énergie économisée en 2028</div>
+        <div class="mention">2&#8239;032 MWh par an contre 641 (calcul de l'équipe, données du défi)</div>
+      </div>
+      <div class="carte panneau reveal" style="--d:4">
+        <span class="etiquette type">Locataires</span>
+        <div class="chiffre">≈&#8239;70</div>
+        <div class="quoi">pannes par an traitées avant que le locataire ne les subisse</div>
+        <div class="mention">Chez <span class="nw">In'li Sud-Ouest</span> (estimation, fourchette de 40 à 160)</div>
+      </div>
+    </div>
+    <p class="bandeau reveal" style="--d:5">Rapporté aux 6&#8239;239 logements d'<span class="nw">In'li Sud-Ouest</span> : <b>de l'ordre de 80&#8239;000&nbsp;€ par an</b> <span>(estimation)</span></p>
+    <div class="pied"><span>BâtIA</span><span>7 / 9</span></div>
+  </section>
+
+  <!-- ========== 8. CONCLUSION ET OUVERTURE ========== -->
+  <section class="slide sombre" id="s8">
+    <div class="photo" style="background-image:url('images/facade.jpg')"></div>
+    <div class="voile"></div>
+    <div class="surtitre reveal" style="--d:0">Et ensuite</div>
+    <h2 class="titre reveal" style="--d:1">Demain ?</h2>
+    <div class="pistes">
+      <div class="piste panneau reveal" style="--d:2"><span class="num">1</span><div class="t">Des capteurs sur les appareils<small>comme le font déjà certains concurrents</small></div></div>
+      <div class="piste panneau reveal" style="--d:3"><span class="num">2</span><div class="t">Les conseils de rénovation dans l'application</div></div>
+      <div class="piste panneau reveal" style="--d:4"><span class="num">3</span><div class="t">Les données réelles, nourries par nos scrapings<small>toute la donnée publique déjà récupérée</small></div></div>
+    </div>
+    <div class="pied"><span>BâtIA</span><span>8 / 9</span></div>
+  </section>
+
+  <!-- ========== 9. QUESTIONS ========== -->
+  <section class="slide sombre" id="s9">
+    <div class="photo" style="background-image:url('images/nuit.jpg')"></div>
+    <div class="voile"></div>
+    <div class="bloc">
+      <h2 class="titre reveal" style="--d:0">Avez-vous des questions&nbsp;?</h2>
+      <p class="merci reveal" style="--d:1">Merci. <b>BâtIA</b> · voir venir les pannes, ordonner les rénovations.</p>
+    </div>
+  </section>
+
+</main>
+</div>
+<div class="progression" id="progression"></div>
+
+<script>
+/* ===========================================
+   CONTRÔLEUR : flèches, espace, F plein écran, #n dans l'adresse
+   =========================================== */
+class SlidePresentation {
+  constructor() {
+    this.slides = document.querySelectorAll('.slide');
+    this.stage = document.getElementById('deckStage');
+    this.bar = document.getElementById('progression');
+    if (/export/.test(location.search)) document.documentElement.classList.add('export');
+    this.setupStageScale();
+    this.setupKeyboardNav();
+    this.setupTouchNav();
+    const n = parseInt(location.hash.slice(1), 10);
+    this.showSlide(Number.isFinite(n) ? n - 1 : 0);
+    window.addEventListener('hashchange', () => {
+      const h = parseInt(location.hash.slice(1), 10);
+      if (Number.isFinite(h) && h - 1 !== this.current) this.showSlide(h - 1);
+    });
+  }
+  setupStageScale() {
+    const scale = () => {
+      const f = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+      const x = (window.innerWidth - 1920 * f) / 2, y = (window.innerHeight - 1080 * f) / 2;
+      this.stage.style.transform = `translate(${x}px, ${y}px) scale(${f})`;
+    };
+    scale();
+    window.addEventListener('resize', scale);
+  }
+  setupKeyboardNav() {
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); this.showSlide(this.current + 1); }
+      else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); this.showSlide(this.current - 1); }
+      else if (e.key === 'Home') this.showSlide(0);
+      else if (e.key === 'End') this.showSlide(this.slides.length - 1);
+      else if (e.key === 'f' || e.key === 'F') this.toggleFullscreen();
+    });
+  }
+  setupTouchNav() {
+    let x0 = null;
+    document.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    document.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) this.showSlide(this.current + (dx < 0 ? 1 : -1));
+      x0 = null;
+    });
+  }
+  toggleFullscreen() {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
+  showSlide(i) {
+    this.current = Math.max(0, Math.min(i, this.slides.length - 1));
+    this.slides.forEach((s, k) => {
+      s.classList.toggle('active', k === this.current);
+      s.classList.toggle('visible', k === this.current);
+    });
+    this.bar.style.width = ((this.current + 1) / this.slides.length * 100) + '%';
+    history.replaceState(null, '', '#' + (this.current + 1));
+  }
+}
+new SlidePresentation();
+</script>
+</body>
+</html>

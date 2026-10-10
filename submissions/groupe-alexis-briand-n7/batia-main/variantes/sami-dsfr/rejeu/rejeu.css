@@ -1,0 +1,112 @@
+/* Rejeu de 2025 — calque posé sur la carte de BâtIA. Deux couleurs que les daltoniens distinguent, toujours doublées
+   d'une forme : disque plein = vue venir (le bleu d'Okabe et Ito, propre au rejeu), croix = manquée (le rouge d'« Urgent »,
+   palette commune). */
+:root { --rj-vue: #0072B2; --rj-vue-pale: #C4DDF0; --rj-manquee: var(--urgent, #D7261E); --rj-papier: #FFFFFF; --rj-encre: #161616; --rj-encre-3: #666666; --rj-trait: #DDDDDD; }
+
+/* Pendant le rejeu, BâtIA se retire : la carte, les briques du rejeu et le panneau seuls. */
+body.rejeu-actif :is(.marque, .outils, .panneau, .territoire, .echelles, .annonce, .rejeu-entree, .place-bascule, .place-bascule *) { visibility: hidden !important; }
+body.rejeu-actif .carte-assise :is(.rv, .maplibregl-ctrl-top-left) { visibility: hidden !important; }
+
+.rejeu-entree-seule { position: fixed; z-index: 13; left: 50%; bottom: 14px; transform: translateX(-50%); }
+
+.rejeu { position: fixed; inset: 0; z-index: 35; pointer-events: none; font-family: var(--sans, sans-serif); color: var(--rj-encre); font-feature-settings: "tnum" 1, "lnum" 1; }
+.rejeu-voile { position: absolute; inset: 0; background: rgba(255, 255, 255, .58); opacity: 0; transition: opacity .6s; }
+.rejeu.ouvert .rejeu-voile { opacity: 1; }
+.rejeu-toile { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* ── Le panneau : la date, les deux compteurs, la légende ── */
+.rejeu-panneau {
+  position: absolute; top: 18px; right: 18px; bottom: 18px; width: 620px; pointer-events: auto;
+  display: flex; flex-direction: column; gap: 26px; padding: 30px 34px 22px;
+  background: var(--rj-papier); border-radius: 4px; box-shadow: var(--ombre);
+  transform: translateX(calc(100% + 30px)); transition: transform .55s cubic-bezier(.2, .8, .2, 1);
+}
+.rejeu.ouvert .rejeu-panneau { transform: none; }
+
+.rejeu-quand { font-family: var(--sans, sans-serif); font-weight: 600; font-size: 84px; line-height: .95; letter-spacing: -.015em; white-space: nowrap; overflow: hidden; }
+.rejeu-quand .q { display: inline-block; }
+.rejeu-quand small { display: block; font-family: var(--sans, sans-serif); font-weight: 600; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; color: var(--rj-encre-3); margin-bottom: 12px; }
+.rejeu-mois { position: relative; margin: 16px 0 0; padding: 12px 0 0; }
+.rejeu-mois ol { display: grid; grid-template-columns: repeat(9, 1fr); margin: 0; padding: 0; list-style: none; }
+.rejeu-mois::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--rj-trait); border-radius: 3px; }
+.rejeu-mois .barre { position: absolute; left: 0; top: 0; height: 6px; width: calc(var(--avance, 0) * 100%); background: var(--rj-encre); border-radius: 3px; }
+.rejeu-mois li { font-size: 15px; font-weight: 600; color: var(--rj-encre-3); text-align: left; }
+.rejeu-mois li.passe { color: var(--rj-encre); }
+
+.rejeu-compteurs { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; opacity: .25; transition: opacity .5s; }
+.rejeu[data-phase="mois"] .rejeu-compteurs, .rejeu[data-phase="fin"] .rejeu-compteurs { opacity: 1; }
+.compteur { display: flex; flex-direction: column; gap: 4px; padding: 14px 14px 16px; border-radius: 4px; box-shadow: inset 0 0 0 1.5px var(--rj-trait); transition: box-shadow .5s; }
+.compteur .c-nom { font-weight: 700; font-size: 21px; line-height: 1.15; }
+.compteur .c-val { display: flex; align-items: baseline; gap: 10px; }
+.compteur .c-val b { font-family: var(--sans, sans-serif); font-weight: 600; font-size: 124px; line-height: .9; color: var(--rj-vue); letter-spacing: -.02em; min-width: 1.1em; }
+.compteur .c-val span { font-size: 20px; color: var(--rj-encre); line-height: 1.2; }
+.compteur .c-val b.saute { animation: rj-saute .35s ease-out; }
+@keyframes rj-saute { from { transform: scale(1.14); } to { transform: none; } }
+.rejeu[data-phase="fin"] .compteur.equipe { box-shadow: inset 0 0 0 3px var(--rj-vue); }
+
+/* Une case par panne : carré bleu plein = vue venir, croix vermillon = manquée. */
+.gaufre { position: relative; display: block; height: calc(4 * var(--case) + 3 * var(--jeu)); margin-top: 10px; --case: 12px; --jeu: 2px; }
+.gaufre i { position: absolute; left: 0; top: 0; width: var(--case); height: var(--case); border-radius: 3px; box-shadow: inset 0 0 0 1px var(--rj-trait); transition: transform .9s cubic-bezier(.3, .7, .2, 1); }
+.gaufre i.vue { background: var(--rj-vue); box-shadow: none; }
+.gaufre i.manquee { box-shadow: none; background: center / 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 2l6 6M8 2l-6 6' stroke='%23D7261E' stroke-width='2.3' stroke-linecap='round'/%3E%3C/svg%3E"); }
+
+.rejeu-legende { display: grid; gap: 9px; margin: 0; padding: 0; list-style: none; font-size: 19px; font-weight: 600; }
+.rejeu-legende li { display: flex; align-items: center; gap: 12px; opacity: 0; transition: opacity .5s; }
+.rejeu-legende svg { flex: none; }
+.rejeu-legende, .rejeu-legende li.tous { opacity: 1; }
+.rejeu:not([data-phase="briques"]) .rejeu-legende li.visite { opacity: 1; }
+.rejeu[data-phase="mois"] .rejeu-legende li, .rejeu[data-phase="fin"] .rejeu-legende li { opacity: 1; }
+
+.rejeu-bas-tel { display: flex; flex-direction: column; gap: 26px; flex: 1; }
+.rejeu-bas { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+.rejeu-commandes { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.rejeu-commandes button { height: 36px; min-width: 36px; padding: 0 11px; border: 0; border-radius: 3px; background: var(--papier-2, #F6F6F6); color: var(--rj-encre); font: 600 14px var(--sans, sans-serif); display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+.rejeu-commandes button:hover { background: var(--mortier, #EEEEEE); }
+.rejeu-commandes .quitter { margin-left: auto; }
+.rejeu-commandes kbd { font: 600 11px var(--sans, sans-serif); color: var(--rj-encre-3); border: 1px solid var(--rj-trait); border-radius: 3px; padding: 0 4px; }
+.rejeu-pied { margin: 0; font-size: 12.5px; color: var(--rj-encre-3); }
+.rejeu-pied b { color: var(--rj-encre); font-weight: 700; }
+.rejeu .cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Écran moyen : le panneau se resserre. */
+@media (max-width: 1500px) and (min-width: 761px) {
+  .rejeu-panneau { width: 500px; padding: 24px 26px 18px; gap: 20px; }
+  .rejeu-quand { font-size: 66px; }
+  .compteur .c-val b { font-size: 92px; }
+  .compteur .c-nom, .compteur .c-val span, .rejeu-legende { font-size: 17px; }
+  .gaufre { --case: 10px; }
+}
+
+/* Téléphone : la date en haut, les compteurs en bas, la carte entre les deux. */
+@media (max-width: 760px) {
+  .rejeu-panneau { inset: 0; width: auto; padding: 0; gap: 0; background: none; box-shadow: none; pointer-events: none; transform: none; }
+  .rejeu-haut, .rejeu-bas-tel { position: absolute; left: 8px; right: 8px; background: var(--rj-papier); border-radius: 4px; box-shadow: var(--ombre); pointer-events: auto; }
+  .rejeu-haut { top: max(8px, env(safe-area-inset-top)); padding: 12px 14px 10px; transform: translateY(-140%); transition: transform .5s; }
+  .rejeu-bas-tel { bottom: max(8px, env(safe-area-inset-bottom)); padding: 10px 10px 8px; display: flex; flex-direction: column; gap: 8px; transform: translateY(140%); transition: transform .5s; }
+  .rejeu.ouvert :is(.rejeu-haut, .rejeu-bas-tel) { transform: none; }
+  .rejeu-quand { font-size: 38px; }
+  .rejeu-quand small { font-size: 11px; margin-bottom: 6px; }
+  .rejeu-mois { margin-top: 8px; padding-top: 9px; }
+  .rejeu-mois::before, .rejeu-mois .barre { height: 4px; }
+  .rejeu-mois li { font-size: 12px; }
+  .rejeu-compteurs { gap: 8px; }
+  .compteur { padding: 8px 8px 9px; gap: 2px; }
+  .compteur .c-nom { font-size: 13.5px; }
+  .compteur .c-val { gap: 6px; }
+  .compteur .c-val b { font-size: 46px; }
+  .compteur .c-val span { font-size: 13px; }
+  .gaufre { --case: 7px; --jeu: 1.5px; margin-top: 5px; }
+  .rejeu-legende { font-size: 13px; gap: 4px 8px; grid-template-columns: 1fr 1fr; }
+  .rejeu-legende li { gap: 6px; }
+  .rejeu-legende .long { display: none; }
+  .rejeu-voile { background: rgba(255, 255, 255, .66); }
+  .rejeu-legende svg { width: 16px; height: 16px; }
+  .rejeu-bas { gap: 6px; margin: 0; }
+  .rejeu-commandes button { height: 34px; padding: 0 9px; font-size: 13px; }
+  .rejeu-commandes kbd, .rejeu-commandes .mot { display: none; }
+  .rejeu-pied { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rejeu-panneau, .rejeu-haut, .rejeu-bas-tel, .gaufre i, .rejeu-voile { transition: none; }
+  .compteur .c-val b.saute { animation: none; }
+}

@@ -1,0 +1,15 @@
+data/
+
+# Backend FastAPI
+backend/.venv/
+backend/*.db
+backend/data/
+backend/.pytest_cache/
+__pycache__/
+.DS_Store
+
+# Données volumineuses de main (hackathon, ne pas commiter)
+database_embedding/
+database_reduit_embedding/
+reseau_urbain_gare_coordonnees/
+garde-fou/

@@ -1,0 +1,16 @@
+﻿site_id;nom_site;gare_proche;distance_m;bus_unique;trottoir_ok;pique_nique_couvert;consignes;theme;source
+SITE_01;Cité Médiévale de Carcassonne;Carcassonne;2100;True;True;True;True;Histoire;simulé
+SITE_02;Musée Toulouse-Lautrec;Albi Ville;950;False;True;False;True;Art;simulé
+SITE_03;Château de Foix;Foix;800;False;True;True;True;Histoire;simulé
+SITE_04;Cité de l'Espace;Toulouse Matabiau;4800;True;True;True;True;Sciences;simulé
+SITE_05;Arènes de Nîmes;Nîmes Centre;450;False;True;False;True;Histoire;simulé
+SITE_06;Musée Fabre;Montpellier Saint-Roch;850;False;True;False;True;Art;simulé
+SITE_07;Château Royal de Collioure;Collioure;600;False;True;False;False;Histoire;simulé
+SITE_08;Tours et Remparts d'Aigues-Mortes;Aigues-Mortes;700;False;True;True;True;Histoire;simulé
+SITE_09;Musée Soulages;Rodez;1300;True;True;False;True;Art;simulé
+SITE_10;Pont Valentré et Ville Médiévale;Cahors;1100;False;True;True;False;Histoire;simulé
+SITE_11;Musée Jean Jaurès;Castres;900;False;True;False;False;Histoire;simulé
+SITE_12;Espace Georges Brassens;Sète;3200;True;True;False;True;Culture;simulé
+SITE_13;Grotte Préhistorique de Bédeilhac;Foix;1750;False;True;True;False;Préhistoire;simulé
+SITE_14;Fort Saint-Elme (accès crête);Collioure;1100;False;False;False;False;Histoire;simulé
+SITE_15;Musée Ingres Bourdelle;Montauban Ville Bourbon;800;False;True;True;True;Art;simulé

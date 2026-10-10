@@ -1,0 +1,9 @@
+{
+  "name": "batia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BâtIA : voir venir les pannes et décider quoi réparer d'abord (In'li Sud-Ouest, données fictives BâtIA).",
+  "type": "module",
+  "scripts": { "start": "node serveur.mjs" },
+  "engines": { "node": ">=20" }
+}

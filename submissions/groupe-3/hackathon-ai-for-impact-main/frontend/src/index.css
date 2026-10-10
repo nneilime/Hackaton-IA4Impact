@@ -1,0 +1,102 @@
+@import "@fontsource-variable/montserrat";
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: false;
+}
+
+/* Thème unique tiré de la charte liO : bleu nuit, rouge et or d'Occitanie. */
+@plugin "daisyui/theme" {
+  name: "lio";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: #ffffff;
+  --color-base-200: #f4f5f7;
+  --color-base-300: #e2e5e9;
+  --color-base-content: #1e1e1e;
+
+  --color-primary: #c8102e;
+  --color-primary-content: #ffffff;
+  --color-secondary: #0b2341;
+  --color-secondary-content: #ffffff;
+  --color-accent: #ffcd00;
+  --color-accent-content: #1e1e1e;
+  --color-neutral: #071629;
+  --color-neutral-content: #ffffff;
+
+  --color-info: #1b3b66;
+  --color-info-content: #ffffff;
+  --color-success: #11724a;
+  --color-success-content: #ffffff;
+  --color-warning: #ffcd00;
+  --color-warning-content: #1e1e1e;
+  --color-error: #a00d24;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1.5px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme {
+  --font-sans: "Montserrat Variable", "Marianne", "Montserrat", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Animations partagées (voir frontend/DESIGN.md §5). Toujours avec motion-safe: */
+  --animate-entree: entree 280ms ease-out backwards;
+  --animate-pop: pop 320ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  --animate-flotte: flotte 4s ease-in-out infinite;
+  --animate-train-passe: train-passe 11s linear infinite;
+
+  @keyframes entree {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(0.85);
+    }
+    60% {
+      transform: scale(1.08);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes flotte {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  /* Le train traverse en 45 % du cycle, puis reste hors champ jusqu'au passage suivant. */
+  @keyframes train-passe {
+    0% {
+      transform: translateX(-30vw);
+    }
+    45% {
+      transform: translateX(130vw);
+    }
+    100% {
+      transform: translateX(130vw);
+    }
+  }
+}

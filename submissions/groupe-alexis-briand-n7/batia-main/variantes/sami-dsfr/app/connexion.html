@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000091">
+<title>Connexion · BâtIA</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='9' width='28' height='14' rx='2' fill='%23000091'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/carte/vendor/polices/polices.css">
+<style>
+:root { --bleu: #000091; --bleu-vif: #1212FF; --bleu-pale: #E3E3FD; --encre: #161616; --encre-2: #3A3A3A; --encre-3: #666666; --gris: #F6F6F6; --gris-2: #EEEEEE; --trait: #DDDDDD; --urgent: #CE0500; }
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body { font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.5; color: var(--encre); background: var(--gris); display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh; }
+header { background: #fff; border-bottom: 1px solid var(--trait); padding: 14px 24px; display: flex; align-items: baseline; gap: 10px; }
+header b { font-size: 20px; color: var(--bleu); letter-spacing: -.01em; }
+header small { color: var(--encre-3); font-size: 12px; }
+main { display: grid; place-items: center; padding: 32px 16px; }
+.carte { width: 100%; max-width: 420px; background: #fff; border: 1px solid var(--trait); border-radius: 12px; padding: 28px 28px 24px; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,145,.06); }
+h1 { font-size: 22px; line-height: 1.2; margin: 0 0 4px; }
+.sous { margin: 0 0 22px; color: var(--encre-3); }
+label { display: block; font-weight: 600; font-size: 13.5px; margin: 14px 0 6px; }
+.champ { position: relative; display: flex; }
+input[type=text], input[type=email], input[type=password] { width: 100%; height: 42px; border: 1.5px solid var(--trait); border-radius: 8px; padding: 0 12px; font: inherit; color: inherit; background: #fff; }
+input:focus { outline: 2px solid var(--bleu); outline-offset: 1px; border-color: var(--bleu); }
+.champ button { position: absolute; right: 6px; top: 6px; height: 30px; padding: 0 10px; border: 0; border-radius: 6px; background: transparent; color: var(--bleu); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.champ button:hover { background: var(--bleu-pale); }
+fieldset { border: 0; padding: 0; margin: 18px 0 0; }
+legend { font-weight: 600; font-size: 13.5px; padding: 0; margin-bottom: 6px; }
+.roles { display: grid; gap: 6px; }
+.roles label { position: relative; margin: 0; padding: 10px 12px 10px 38px; border: 1px solid var(--trait); border-radius: 8px; font-weight: 500; cursor: pointer; }
+.roles label small { display: block; font-weight: 400; color: var(--encre-3); font-size: 12.5px; }
+.roles input { position: absolute; left: 12px; top: 13px; width: 16px; height: 16px; margin: 0; accent-color: var(--bleu); }
+.roles label:has(:checked) { border-color: var(--bleu); background: var(--bleu-pale); }
+.erreur { margin: 12px 0 0; color: var(--urgent); font-weight: 600; }
+.valider { margin-top: 22px; width: 100%; height: 44px; border: 0; border-radius: 8px; background: var(--bleu); color: #fff; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.valider:hover { background: var(--bleu-vif); }
+.valider:focus-visible { outline: 2px solid var(--bleu); outline-offset: 2px; }
+form.envoi .valider { opacity: .6; pointer-events: none; }
+.demo { margin: 18px 0 0; padding: 10px 12px; border-radius: 8px; background: var(--gris); color: var(--encre-2); font-size: 12.5px; border-left: 4px solid #B5B5B5; }
+.liens { margin-top: 14px; display: flex; justify-content: space-between; font-size: 13px; }
+a { color: var(--bleu); }
+footer { padding: 14px 24px; color: var(--encre-3); font-size: 12px; text-align: center; }
+@media (prefers-reduced-motion: no-preference) { .carte { animation: venir .35s ease-out both; } @keyframes venir { from { opacity: 0; transform: translateY(8px); } } }
+</style>
+</head>
+<body>
+<header><b>BâtIA</b><small>prototype non officiel · In'li Sud-Ouest</small></header>
+<main>
+  <form class="carte" novalidate>
+    <h1>Se connecter</h1>
+    <p class="sous">Accédez au parc, aux alertes et au plan de rénovation.</p>
+    <label for="identifiant">Identifiant</label>
+    <div class="champ"><input id="identifiant" name="identifiant" type="email" autocomplete="username" value="camille.martin@inli-sud-ouest.fr" spellcheck="false"></div>
+    <label for="motdepasse">Mot de passe</label>
+    <div class="champ"><input id="motdepasse" name="motdepasse" type="password" autocomplete="current-password"><button type="button" data-voir aria-pressed="false">Afficher</button></div>
+    <fieldset>
+      <legend>Rôle</legend>
+      <div class="roles">
+        <label><input type="radio" name="role" value="gestionnaire" checked>Gestionnaire de proximité<small>pilote, commande et contrôle les prestataires</small></label>
+        <label><input type="radio" name="role" value="direction">Direction<small>arbitre le plan d'investissement</small></label>
+      </div>
+    </fieldset>
+    <p class="erreur" role="alert" hidden></p>
+    <button type="submit" class="valider">Se connecter</button>
+    <p class="demo">Compte de démonstration : aucun identifiant n'est vérifié et rien n'est envoyé. Le rôle choisi décide de ce que l'écran montre.</p>
+    <div class="liens"><a href="#" tabindex="-1" aria-disabled="true">Mot de passe oublié</a><a href="/capot/">Sous le capot</a></div>
+  </form>
+</main>
+<footer>Données fictives du kit BâtIA. Prototype de hackathon, aucune donnée personnelle n'est collectée.</footer>
+<script type="module" src="/connexion.mjs"></script>
+</body>
+</html>

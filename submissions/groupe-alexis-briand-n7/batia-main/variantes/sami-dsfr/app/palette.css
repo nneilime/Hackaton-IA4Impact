@@ -1,0 +1,16 @@
+/* La palette de BâtIA, une seule pour toute l'application : la carte du kit, les onglets Pannes, Énergie et
+   Rénovations, les données réelles et la page « Sous le capot » (qui charge ce fichier, /palette.css).
+   Une même couleur veut dire la même chose partout ; une couleur vive ne sert qu'à ce qui compte. */
+:root {
+  /* ce qui demande d'agir, du plus grave au moins grave, puis ce qui va bien */
+  --urgent: #CE0500; --alerte: #E4794A; --vigilance: #C8AA39; --lancer: #18753C;
+  --alerte-texte: #B34000;
+  --urgent-fond: #FFE9E9; --alerte-fond: #FFE9E6; --vigilance-fond: #FEECC2; --vigilance-texte: #716043; --lancer-fond: #B8FEC9;
+  --sur-urgent: #fff; --sur-alerte: #161616; --sur-vigilance: #161616; --sur-lancer: #fff;
+  /* ce qui ne crie pas : à surveiller (gris clair, bordé), calme (blanc) */
+  --surveiller: #EEEEEE;
+
+  /* Étiquettes énergie : les sept couleurs de l'étiquette DPE de 2021, telles quelles. */
+  --dpe-A: #329837; --dpe-B: #57AF37; --dpe-C: #C6D300; --dpe-D: #F2E500; --dpe-E: #FFCB03; --dpe-F: #F39739; --dpe-G: #E4251F;
+  --sur-dpe-A: #fff; --sur-dpe-B: #161616; --sur-dpe-C: #161616; --sur-dpe-D: #161616; --sur-dpe-E: #161616; --sur-dpe-F: #161616; --sur-dpe-G: #fff;
+}
