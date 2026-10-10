@@ -1,0 +1,40 @@
+# Config nginx du conteneur frontend.
+# Les ${VARIABLES} sont remplacées au démarrage par les variables d'environnement.
+server {
+  listen 80;
+  root /usr/share/nginx/html;
+  index index.html;
+
+  # Les appels /api/... sont transmis au conteneur "backend" (même réseau Docker).
+  # Résultat : le navigateur parle toujours au même domaine -> pas de CORS.
+  # L'IP 127.0.0.11 est le DNS interne de Docker ; passer par une variable évite
+  # que nginx plante au démarrage si le back n'est pas (encore) lancé.
+  location /api/ {
+    resolver 127.0.0.11 valid=10s;
+    set $back_upstream ${BACK_URL};
+    proxy_pass $back_upstream;
+    # /ask et /opportunities peuvent être lents (IA, grosse base, préchauffage du back juste après un démarrage) : 60 s par défaut est trop court.
+    proxy_connect_timeout 10s;
+    proxy_read_timeout 180s;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    # Clé d'API ajoutée ICI, côté serveur : elle n'est jamais envoyée au navigateur.
+    # Une valeur vide (API_KEY non renseignée) = nginx n'envoie pas l'en-tête.
+    # Les guillemets sont indispensables : sans eux, une clé vide donne « proxy_set_header X-API-Key ; » et nginx ne démarre pas.
+    proxy_set_header X-API-Key "${API_KEY}";
+  }
+
+  # Angular = SPA : toute URL inconnue renvoie index.html (le routeur prend le relais)
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+
+  # Fichiers générés par le build (nom hashé) : cache long
+  location ~* \.(js|css|woff2?|png|jpg|svg|ico)$ {
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+    try_files $uri =404;
+  }
+}

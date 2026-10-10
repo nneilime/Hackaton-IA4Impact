@@ -1,0 +1,2 @@
+source_id,started_at,finished_at,input_file,rows_read,rows_written,status,notes
+CA-PPID,2026-10-10T05:50:29.220935+00:00,2026-10-10T05:50:32.139130+00:00,/Users/dylandsaldana/Desktop/Hackathon_for_impacts_2026/data/raw/canada/product_en_20261010T055031Z.csv,21811,3037,success,

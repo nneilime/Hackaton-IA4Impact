@@ -1,0 +1,51 @@
+﻿.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/
+output/
+secrets/
+db/*.db
+frontend/node_modules/
+
+# --- Secrets / environnement (seul .env.example est commité) -----------------
+.env.*
+!.env.example
+
+# --- Front (Angular) ---------------------------------------------------------
+frontend/dist/
+frontend/.angular/
+frontend/coverage/
+frontend/.nx/
+# généré par scripts/generate-env.mjs
+frontend/src/environments/
+
+# --- Back (génériques, à compléter selon la techno choisie) ------------------
+backend/node_modules/
+backend/vendor/
+backend/dist/
+backend/build/
+backend/__pycache__/
+backend/.venv/
+backend/storage/logs/
+
+# --- Docker ------------------------------------------------------------------
+# surcharges locales perso
+docker-compose.override.yml
+*.log
+
+# --- Éditeurs / OS -----------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/extensions.json
+Thumbs.db
+
+# --- Nos ajouts (kit LPC) ---
+db/*.db
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/src/environments/
+
+data/merged/*.csv

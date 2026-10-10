@@ -1,0 +1,89 @@
+# =============================================================================
+#  DOCKER COMPOSE - guide rapide
+# =============================================================================
+#  Docker en 30 secondes :
+#    - une IMAGE   = une recette figée (ex : "nginx", "postgres")
+#    - un CONTENEUR = une image en train de tourner
+#    - un SERVICE  = une entrée ci-dessous ; compose crée le(s) conteneur(s)
+#    - un VOLUME   = un disque qui survit à la suppression du conteneur
+#                    (indispensable pour la base de données !)
+#    - un RÉSEAU   = compose en crée un : les services s'y appellent par leur
+#                    NOM (le back joint la base avec l'hôte "db", pas "localhost")
+#
+#  Commandes utiles (à lancer à la racine du repo) :
+#    docker compose up -d --build                  front seul (état actuel)
+#    docker compose --profile backend up -d --build   front + back (base = PostgreSQL d'équipe)
+#    docker compose --profile localdb up -d postgres   base PostgreSQL locale autonome (optionnel)
+#    docker compose ps                             état des services
+#    docker compose logs -f backend                   logs en direct d'un service
+#    docker compose restart backend                   redémarrer un service
+#    docker compose down                           tout arrêter (données conservées)
+#    docker compose down -v                        tout arrêter ET EFFACER la base !
+#
+#  Les variables ${...} viennent du fichier `.env` à la racine (voir .env.example).
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # FRONT : Angular compilé, servi par nginx. Actif par défaut.
+  # ---------------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend              # dossier contenant le Dockerfile
+      args:
+        FRONT_API_URL: ${FRONT_API_URL:-/api}
+        BACK_URL: ${BACK_URL:-}          # renseigné = le navigateur appelle le back en direct (BACK_URL/api)
+    env_file:
+      - .env
+    environment:
+      # Où nginx envoie /api : BACK_URL du .env (ex. back d'équipe http://64.176.83.254:3000), sinon le service backend ci-dessous.
+      BACK_URL: ${BACK_URL:-http://backend:${BACK_PORT:-3000}}
+    ports:
+      - "${FRONT_PORT:-8080}:80"    # "port sur ta machine : port dans le conteneur"
+    restart: unless-stopped         # redémarre tout seul après un crash/reboot du serveur
+
+  # ---------------------------------------------------------------------------
+  # BACK : à activer quand la techno sera choisie.
+  # `profiles` = service ignoré tant qu'on ne lance pas avec `--profile backend`.
+  # Pour l'activer pour de bon : supprimer les 2 lignes `profiles`.
+  # ---------------------------------------------------------------------------
+  backend:
+    profiles: ["backend"]
+    build:
+      context: .                       # racine du dépôt : l'API lit aussi data/ (mapping de synonymes et codes EPPO)
+      dockerfile: backend/Dockerfile
+    env_file:
+      - .env                        # injecte TOUTES les variables du .env racine dans le conteneur
+    ports:
+      - "${BACK_HOST_PORT:-3000}:${BACK_PORT:-3000}"   # accès direct pour tester (optionnel)
+    # Pas de depends_on : la base est le PostgreSQL de l'équipe (DATABASE_URL du .env), pas un conteneur ici.
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # DB LOCALE (OPTIONNELLE) : PostgreSQL 16 pour une installation autonome, profil "localdb".
+  # Par défaut le back utilise le PostgreSQL d'équipe (DATABASE_URL du .env) : ce service n'est PAS lancé.
+  # Lancement : docker compose --profile localdb up -d postgres
+  # Puis DATABASE_URL=postgresql+psycopg://lallemand:lallemand@localhost:5432/lallemand (voir README).
+  # db/schema.sql est exécuté UNE fois, à la création du volume (base vide, jamais la base d'équipe).
+  # ---------------------------------------------------------------------------
+  postgres:
+    profiles: ["localdb"]
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${LOCALDB_NAME:-lallemand}
+      POSTGRES_USER: ${LOCALDB_USER:-lallemand}
+      POSTGRES_PASSWORD: ${LOCALDB_PASSWORD:-lallemand}   # base locale jetable, sans donnée sensible
+    ports:
+      - "${LOCALDB_PORT:-5432}:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+volumes:
+  pg_data:

@@ -1,0 +1,4 @@
+product_id,commercial_name,active_entity_original,active_entity_normalized,formulation_code,is_synthetic,validation_status
+P-TEST-001,TEST GLIOCLADIUM WG,Gliocladium catenulatum J1446,,WG,true,to_verify
+P-TEST-002,TEST CLONOSTACHYS DE,Clonostachys rosea J1446,,WG,true,to_verify
+P-TEST-003,TEST CONIOTHYRIUM WG,Coniothyrium minitans,,WG,true,to_verify

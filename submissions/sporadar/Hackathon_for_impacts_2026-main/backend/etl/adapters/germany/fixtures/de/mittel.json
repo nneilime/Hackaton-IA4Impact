@@ -1,0 +1,5 @@
+{"_note":"SYNTHETIC test data - NOT from BVL. Field names are assumptions.","items":[
+{"kennr":"990001-00","mittelname":"LALSTOP CONTANS WG","formulierung":"WG","zulassungsstatus":"zugelassen","zulassungsende":"2030-12-31","wirkstoffe":["Coniothyrium minitans Stamm CON/M/91-08"]},
+{"kennr":"990002-00","mittelname":"DEMO COMPETITOR","formulierung":"SC","zulassungsstatus":"Zulassung beendet","zulassungsende":"31.12.2024","wirkstoffe":["Demo-Wirkstoff"]},
+{"kennr":"990003-00","mittelname":"NO STATUS PRODUCT","formulierung":"OD","wirkstoffe":[]},
+{"mittelname":"BROKEN RECORD WITHOUT NUMBER"}]}

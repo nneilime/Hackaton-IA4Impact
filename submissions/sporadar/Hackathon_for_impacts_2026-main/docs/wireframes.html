@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body>
+<title>LPC Regulatory Watch wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a field-notebook spec sheet. Each template = annotated screen (left) + numbered notes (right), stacked; sticky tab rail on top. */
+:root{
+  --bg:#f3f5f2;          /* paper with a faint sage bias */
+  --paper:#ffffff;
+  --ink:#1d2622;
+  --ink-2:#4b5852;
+  --ink-3:#7c8983;
+  --line:#d3dad5;
+  --line-2:#e6ebe7;
+  --frame:#fbfcfa;
+  --accent:#2f6f5a;      /* Lallemand-ish field green, used for UI affordances */
+  --accent-soft:#e1efe8;
+  --pin:#b4532a;         /* annotation pins */
+  --ok:#2e7d4f; --ok-bg:#e3f3e8;
+  --warn:#9a6400; --warn-bg:#fdf1d6;
+  --info:#3d5f86; --info-bg:#e5edf6;
+  --bad:#b03a32; --bad-bg:#fbe5e2;
+  --nf:#69726e; --nf-bg:#eef0ef;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141a17;--paper:#1b2320;--ink:#e3ebe6;--ink-2:#b0bdb6;--ink-3:#84928b;--line:#33403a;--line-2:#28322e;--frame:#18201c;
+  --accent:#7cc4a6;--accent-soft:#21362d;--pin:#e48b5e;
+  --ok:#7fd19c;--ok-bg:#1d3527;--warn:#f0bf5a;--warn-bg:#3a2e14;--info:#9cbce2;--info-bg:#1e2a39;--bad:#f08b80;--bad-bg:#3d2220;--nf:#a3ada8;--nf-bg:#262e2a;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141a17;--paper:#1b2320;--ink:#e3ebe6;--ink-2:#b0bdb6;--ink-3:#84928b;--line:#33403a;--line-2:#28322e;--frame:#18201c;
+  --accent:#7cc4a6;--accent-soft:#21362d;--pin:#e48b5e;
+  --ok:#7fd19c;--ok-bg:#1d3527;--warn:#f0bf5a;--warn-bg:#3a2e14;--info:#9cbce2;--info-bg:#1e2a39;--bad:#f08b80;--bad-bg:#3d2220;--nf:#a3ada8;--nf-bg:#262e2a;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);padding-inline:16px;padding-block:0 64px}
+html[lang="fr"] .en{display:none} html[lang="en"] .fr{display:none}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{padding-block:40px 20px;display:grid;gap:14px}
+.eyebrow{font:600 12px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+h1{font:800 clamp(28px,4.4vw,44px)/1.05 var(--display);letter-spacing:-.01em;margin:0;text-wrap:balance}
+h2{font:700 24px/1.15 var(--display);margin:0;text-wrap:balance}
+h3{font:600 15px/1.3 var(--display);margin:0}
+p{margin:0}
+.lede{max-width:68ch;color:var(--ink-2);font-size:17px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper)}
+.seg button{font:600 13px var(--display);border:0;background:none;color:var(--ink-2);padding:7px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.synth{font:500 12px var(--mono);color:var(--warn);background:var(--warn-bg);border-radius:6px;padding:5px 9px}
+nav.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;overflow-x:auto;white-space:nowrap}
+nav.rail a{display:inline-block;font:600 13px var(--display);color:var(--ink-2);text-decoration:none;padding:6px 10px;border-radius:6px}
+nav.rail a:hover{background:var(--accent-soft);color:var(--ink)}
+nav.rail .tid{font:500 11px var(--mono);color:var(--pin);margin-right:4px}
+section.block{padding-block:44px 8px;display:grid;gap:18px;scroll-margin-top:56px}
+.block-head{display:grid;gap:6px;max-width:80ch}
+.block-head .q{font:500 14px var(--mono);color:var(--ink-2)}
+.pair{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:22px;align-items:start}
+@media (max-width:900px){.pair{grid-template-columns:1fr}}
+/* --- notes column --- */
+.notes{display:grid;gap:12px;counter-reset:n}
+.note{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:15px;color:var(--ink-2)}
+.note b{color:var(--ink)}
+.pin{width:22px;height:22px;border-radius:50%;background:var(--pin);color:var(--paper);font:700 12px/22px var(--display);text-align:center;flex:none}
+.pin.inline{display:inline-block;vertical-align:middle;margin-right:6px;width:18px;height:18px;line-height:18px;font-size:10px}
+.api{font:500 12px var(--mono);color:var(--info);background:var(--info-bg);padding:1px 5px;border-radius:4px;white-space:nowrap}
+/* --- wireframe frame --- */
+.screen{background:var(--frame);border:1.5px solid var(--ink-3);border-radius:10px;overflow:hidden;min-width:0}
+.chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--paper)}
+.dots{display:flex;gap:5px}.dots i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.chrome .url{font:400 12px var(--mono);color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.scr{padding:16px;display:grid;gap:14px}
+.appbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between}
+.brand{font:800 15px var(--display);letter-spacing:.01em}
+.fresh{display:flex;flex-wrap:wrap;gap:6px}
+.fresh span{font:400 11.5px var(--mono);color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:2px 8px;background:var(--paper)}
+.fresh span.stale{border-color:var(--warn);color:var(--warn)}
+.ask{display:flex;gap:8px;align-items:center;border:1.5px solid var(--ink-2);border-radius:10px;padding:10px 12px;background:var(--paper)}
+.ask .txt{flex:1;min-width:0;font-size:15px}
+.ask .go{font:700 13px var(--display);background:var(--ink);color:var(--paper);border-radius:7px;padding:6px 12px;white-space:nowrap}
+.understood{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--ink-3)}
+.tag{font:500 12px var(--mono);border:1px dashed var(--ink-3);border-radius:6px;padding:1px 7px;color:var(--ink)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:12px;position:relative}
+.concl{font:600 17px/1.4 var(--body);max-width:70ch}
+.counts{display:flex;flex-wrap:wrap;gap:6px}
+.scope{font-size:13px;color:var(--ink-2);background:var(--line-2);border-radius:8px;padding:8px 10px}
+.scope code{font:500 12px var(--mono);color:var(--ink)}
+.warns{display:grid;gap:4px;font-size:13.5px;color:var(--warn)}
+.disc{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line-2);padding-top:8px}
+.follow{display:flex;flex-wrap:wrap;gap:6px}
+.follow span:not(.pin){font:600 12.5px var(--display);color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:4px 10px}
+.follow span.ghost:not(.pin){color:var(--ink-2);border-color:var(--line)}
+/* pins placed on the screen */
+.mk{position:relative}
+.cellmk{position:relative;padding-right:30px}
+.pin.cp{position:absolute;top:6px;right:6px}
+.mk>.pin{position:absolute;top:-9px;right:-9px;box-shadow:0 0 0 3px var(--frame)}
+.drawer.mk>.pin{top:10px;right:10px}
+/* status chips */
+.chip{display:inline-flex;align-items:center;gap:5px;font:600 12px/1 var(--display);border-radius:6px;padding:4px 7px;white-space:nowrap;border:1px solid transparent}
+.chip.ok{color:var(--ok);background:var(--ok-bg)}
+.chip.warn{color:var(--warn);background:var(--warn-bg)}
+.chip.auto{color:var(--info);background:var(--info-bg)}
+.chip.bad{color:var(--bad);background:var(--bad-bg)}
+.chip.nf{color:var(--nf);background:repeating-linear-gradient(135deg,var(--nf-bg) 0 5px,transparent 5px 9px);border-color:var(--line)}
+.chip.nc{color:var(--ink-3);background:transparent;border:1px dashed var(--ink-3)}
+.chip.hyp{color:var(--pin);background:transparent;border:1px dashed var(--pin)}
+.chip.neutral{color:var(--ink-2);background:var(--line-2)}
+.mono{font-family:var(--mono);font-size:12.5px}
+.muted{color:var(--ink-3)}
+.small{font-size:13px}
+/* T01 rows */
+.rows{display:grid;gap:0;border:1px solid var(--line);border-radius:8px}
+.row:first-child{border-radius:8px 8px 0 0}.row:last-child{border-radius:0 0 8px 8px}
+.row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:10px 14px;align-items:center;padding:10px 12px;border-top:1px solid var(--line-2);background:var(--paper)}
+.row:first-child{border-top:0}
+.row .cc{font:700 15px var(--display)}
+.row .det{display:grid;gap:3px;min-width:0}
+.row .det .l1{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.row .src{font-size:12.5px;color:var(--ink-3);text-align:right}
+.row.nf{background:repeating-linear-gradient(135deg,var(--frame) 0 8px,var(--nf-bg) 8px 10px)}
+.alias{font-size:12.5px;color:var(--warn)}
+@media (max-width:560px){.row{grid-template-columns:44px minmax(0,1fr)}.row .src{grid-column:2;text-align:left}}
+.nc-line{font-size:13px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* tables */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--paper)}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-top:1px solid var(--line-2)}
+thead th{border-top:0;background:var(--line-2);font:600 12.5px var(--display);color:var(--ink-2)}
+td .orig{display:block;font-size:12px;color:var(--ink-3)}
+td.diff{box-shadow:inset 3px 0 0 var(--warn)}
+td.gap{background:repeating-linear-gradient(135deg,var(--paper) 0 8px,var(--nf-bg) 8px 10px);color:var(--ink-3)}
+.code{font:500 11.5px var(--mono);color:var(--info)}
+.dose{font:600 14px var(--body);font-variant-numeric:tabular-nums}
+.num{font-variant-numeric:tabular-nums}
+/* sister cards */
+.sis{display:grid;gap:10px}
+.sc{display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);align-items:center;gap:8px;border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--paper)}
+.sc .prod{font:700 14px var(--display)}
+.link{height:0;border-top:2px dashed var(--pin)}
+.link.solid{border-top-style:solid;border-color:var(--ok)}
+.sc .meta{grid-column:1/-1;display:grid;gap:6px;font-size:13px;color:var(--ink-2)}
+.bar{height:6px;border-radius:3px;background:var(--line-2);overflow:hidden;width:120px;display:inline-block;vertical-align:middle}
+.bar i{display:block;height:100%;background:var(--ink-2)}
+.btns{display:flex;gap:6px;flex-wrap:wrap}
+.btn{font:600 12px var(--display);border:1px solid var(--line);border-radius:6px;padding:4px 9px;color:var(--ink-2);background:var(--paper)}
+/* drawer */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:0}
+@media (max-width:700px){.split{grid-template-columns:1fr}}
+.dim{opacity:.45;padding:16px}
+.drawer{border-left:1.5px solid var(--ink-3);background:var(--paper);padding:16px;display:grid;gap:10px;align-content:start}
+.kv{display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 10px;font-size:13px}
+.kv dt{color:var(--ink-3)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+blockquote{margin:0;border-left:3px solid var(--line);padding:4px 10px;font-size:13px;color:var(--ink-2);font-style:italic}
+/* copilot */
+.teams{display:grid;gap:10px;padding:16px;background:var(--frame)}
+.bubble{background:var(--paper);border:1px solid var(--line);border-radius:4px 12px 12px 12px;padding:12px 14px;display:grid;gap:8px;max-width:560px;font-size:14px}
+.bubble.me{justify-self:end;border-radius:12px 4px 12px 12px;background:var(--accent-soft)}
+.bubble ol{margin:0;padding-left:20px;font-size:12.5px;color:var(--ink-2)}
+sup{font:600 10px var(--mono);color:var(--accent)}
+/* principles */
+.princ{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.pr{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:6px;align-content:start}
+.pr h3{font-size:15px}
+.pr p{font-size:14.5px;color:var(--ink-2)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.legend div{display:flex;gap:8px;align-items:center;font-size:13.5px;color:var(--ink-2)}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px;counter-reset:f}
+.st{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:4px;align-content:start;counter-increment:f}
+.st::before{content:counter(f);font:700 12px var(--mono);color:var(--pin)}
+.st p{font-size:14px;color:var(--ink-2)}
+.who{font:600 11px var(--display);letter-spacing:.08em;text-transform:uppercase}
+.who.ai{color:var(--info)} .who.code{color:var(--ok)}
+.maptable td:first-child{font:500 12.5px var(--mono);color:var(--ink)}
+footer{padding-block:48px 0;color:var(--ink-3);font-size:13px;max-width:80ch}
+@media (prefers-reduced-motion:no-preference){nav.rail a{transition:background .15s}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Hackathon IA for Impact 2026 · Défi Lallemand Plant Care</div>
+  <h1>LPC Regulatory Watch, <span class="fr">gabarits de réponse</span><span class="en">answer templates</span></h1>
+  <p class="lede">
+    <span class="fr">Une forme de réponse par type de question. L'IA détecte l'intention, le back remplit les données depuis la base, l'interface choisit le gabarit. Chaque écran est relié aux champs de <span class="api">openapi.proposed.yaml</span>.</span>
+    <span class="en">One answer shape per question type. The AI detects the intent, the backend fills the data from the database, the UI picks the template. Every screen maps to fields of <span class="api">openapi.proposed.yaml</span>.</span>
+  </p>
+  <div class="toolbar">
+    <div class="seg" role="group" aria-label="Langue / Language">
+      <button type="button" id="lang-fr" aria-pressed="true">FR</button>
+      <button type="button" id="lang-en" aria-pressed="false">EN</button>
+    </div>
+    <span class="synth"><span class="fr">Données d'exemple fictives (statuts, numéros, doses). Alias et produits sœurs tirés du starter kit.</span><span class="en">Synthetic example data (statuses, numbers, doses). Aliases and sister products from the starter kit.</span></span>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Sections">
+  <a href="#principes"><span class="fr">Principes</span><span class="en">Principles</span></a>
+  <a href="#coquille"><span class="fr">Anatomie</span><span class="en">Anatomy</span></a>
+  <a href="#t01"><span class="tid">T01</span><span class="fr">Où</span><span class="en">Where</span></a>
+  <a href="#t02"><span class="tid">T02</span><span class="fr">Comparer</span><span class="en">Compare</span></a>
+  <a href="#t03"><span class="tid">T03</span><span class="fr">Incertain</span><span class="en">Uncertain</span></a>
+  <a href="#t04"><span class="tid">T04</span><span class="fr">Sœurs</span><span class="en">Sisters</span></a>
+  <a href="#t05"><span class="tid">T05</span><span class="fr">Preuve</span><span class="en">Evidence</span></a>
+  <a href="#recherche"><span class="fr">Recherche</span><span class="en">Search</span></a>
+  <a href="#expirations"><span class="fr">Expirations</span><span class="en">Expiries</span></a>
+  <a href="#copilot">Copilot / Teams</a>
+  <a href="#mapping"><span class="fr">Intention → API</span><span class="en">Intent → API</span></a>
+</nav>
+
+<!-- ============ PRINCIPLES ============ -->
+<section class="block" id="principes">
+  <div class="block-head">
+    <div class="eyebrow"><span class="fr">Règles communes</span><span class="en">Shared rules</span></div>
+    <h2><span class="fr">Ce que toutes les réponses respectent</span><span class="en">What every answer follows</span></h2>
+  </div>
+  <div class="princ">
+    <div class="pr"><h3><span class="fr">La conclusion d'abord, avec son incertitude</span><span class="en">Conclusion first, with its uncertainty</span></h3>
+      <p><span class="fr">Une phrase qui compte ce qui est validé, à vérifier, pas trouvé. Sales s'arrête là, Regulatory ouvre le détail.</span><span class="en">One sentence counting what is validated, to verify, not found. Sales stops there, Regulatory opens the detail.</span></p></div>
+    <div class="pr"><h3><span class="fr">Toujours montrer ce qu'on a cherché</span><span class="en">Always show what was searched</span></h3>
+      <p><span class="fr">Sources, date de collecte et noms cherchés (alias compris). Sans ça, une absence ne s'interprète pas.</span><span class="en">Sources, collection date and searched names (aliases included). Without it, an absence can't be read.</span></p></div>
+    <div class="pr"><h3><span class="fr">« Pas trouvé » ne ressemble jamais à « non homologué »</span><span class="en">"Not found" never looks like "not registered"</span></h3>
+      <p><span class="fr">Gris hachuré et point d'interrogation. Le rouge est réservé à un statut retiré ou expiré donné par la source.</span><span class="en">Hatched grey with a question mark. Red is reserved for a withdrawn or expired status stated by the source.</span></p></div>
+    <div class="pr"><h3><span class="fr">Chaque valeur ouvre sa preuve</span><span class="en">Every value opens its evidence</span></h3>
+      <p><span class="fr">Original à côté du normalisé, source officielle, date, statut de validation, confiance IA séparée.</span><span class="en">Original next to normalized, official source, date, validation status, AI confidence kept apart.</span></p></div>
+    <div class="pr"><h3><span class="fr">Une colonne par pays, jamais fusionnée</span><span class="en">One column per country, never merged</span></h3>
+      <p><span class="fr">Les lignes s'alignent par code EPPO, les valeurs restent dans leur pays (règle T02).</span><span class="en">Rows align on EPPO codes, values stay in their country (T02 rule).</span></p></div>
+    <div class="pr"><h3><span class="fr">Une hypothèse se lit comme une hypothèse</span><span class="en">A hypothesis reads as a hypothesis</span></h3>
+      <p><span class="fr">Trait pointillé, conditionnel, score de confiance et badge « à confirmer ».</span><span class="en">Dashed line, conditional wording, confidence score and a "to confirm" badge.</span></p></div>
+  </div>
+  <div class="legend" aria-label="Statuts">
+    <div><span class="chip ok">✓ <span class="fr">Validé</span><span class="en">Validated</span></span></div>
+    <div><span class="chip warn">! <span class="fr">À vérifier</span><span class="en">To verify</span></span></div>
+    <div><span class="chip auto"><span class="fr">Extrait auto</span><span class="en">Auto-extracted</span></span></div>
+    <div><span class="chip nf">? <span class="fr">Pas trouvé</span><span class="en">Not found</span></span></div>
+    <div><span class="chip nc"><span class="fr">Non couvert</span><span class="en">Not covered</span></span></div>
+    <div><span class="chip bad"><span class="fr">Retiré / expiré (selon la source)</span><span class="en">Withdrawn / expired (per source)</span></span></div>
+    <div><span class="chip hyp"><span class="fr">Hypothèse à confirmer</span><span class="en">Hypothesis to confirm</span></span></div>
+  </div>
+</section>
+
+<!-- ============ ANATOMY ============ -->
+<section class="block" id="coquille">
+  <div class="block-head">
+    <div class="eyebrow"><span class="fr">Écran unique</span><span class="en">Single screen</span></div>
+    <h2><span class="fr">Anatomie d'une réponse</span><span class="en">Anatomy of an answer</span></h2>
+    <p class="lede"><span class="fr">Le même cadre pour toutes les questions. Seul le bloc central change selon <span class="api">intent</span>.</span><span class="en">The same frame for every question. Only the central block changes with <span class="api">intent</span>.</span></p>
+  </div>
+  <div class="pair">
+    <div class="screen" role="img" aria-label="Wireframe: answer frame">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><span class="url">lpc-watch / ?q=…</span></div>
+      <div class="scr">
+        <div class="appbar mk">
+          <span class="brand">LPC Regulatory Watch</span>
+          <div class="fresh"><span>FR E-Phy · 10/10 03:12</span><span>CA PPID · 10/10 03:20</span><span class="stale">DE BVL · 09/10 22:40</span><span>FR | EN</span></div>
+          <span class="pin">1</span>
+        </div>
+        <div class="ask mk"><span class="txt"><span class="fr">Dans quels pays LALGUARD M52 OD est-il homologué ?</span><span class="en">In which countries is LALGUARD M52 OD registered?</span></span><span class="go"><span class="fr">Demander</span><span class="en">Ask</span></span><span class="pin">2</span></div>
+        <div class="understood mk"><span class="fr">J'ai compris :</span><span class="en">I understood:</span> <span class="tag">produit = P-LPC-M52</span><span class="tag">pays = tous</span><span class="tag">intent = registration_lookup</span><span class="pin">3</span></div>
+        <div class="card">
+          <p class="concl mk"><span class="fr">Enregistrement trouvé dans 2 des 3 pays interrogés. Rien trouvé en Allemagne, ce qui ne prouve pas l'absence d'homologation.</span><span class="en">Registration found in 2 of the 3 countries searched. Nothing found in Germany, which is not proof of no registration.</span><span class="pin">4</span></p>
+          <div class="counts"><span class="chip ok">1 <span class="fr">validé</span><span class="en">validated</span></span><span class="chip warn">1 <span class="fr">à vérifier</span><span class="en">to verify</span></span><span class="chip nf">1 <span class="fr">pas trouvé</span><span class="en">not found</span></span><span class="chip nc">7 <span class="fr">non couverts</span><span class="en">not covered</span></span></div>
+          <div class="scope mk"><span class="fr">Cherché sous</span><span class="en">Searched as</span> <code>LALGUARD M52 OD</code>, <code>M. brunneum Ma 43</code>, <code>M. brunneum F52</code>, <code>M. anisopliae F52</code> · <span class="fr">dans</span><span class="en">in</span> E-Phy, PPID, BVL<span class="pin">5</span></div>
+          <div class="mk" style="border:1.5px dashed var(--line);border-radius:8px;padding:22px;text-align:center;color:var(--ink-3);font:600 14px var(--display)"><span class="fr">Bloc propre à l'intention (voir T01 à T05)</span><span class="en">Intent-specific block (see T01 to T05)</span><span class="pin">6</span></div>
+          <div class="warns mk"><span>⚠ <span class="fr">Canada : correspondance via l'alias « M. anisopliae F52 », à vérifier.</span><span class="en">Canada: matched through alias "M. anisopliae F52", to verify.</span></span><span class="pin">7</span></div>
+          <div class="follow mk"><span><span class="fr">Comparer les usages FR / CA</span><span class="en">Compare uses FR / CA</span></span><span><span class="fr">Champs à vérifier</span><span class="en">Fields to verify</span></span><span><span class="fr">Produits sœurs ?</span><span class="en">Sister products?</span></span><span class="ghost">⤓ CSV</span><span class="pin">8</span></div>
+          <p class="disc">Regulatory Affairs validation is required. <span class="fr">Données non opposables, les décisions officielles prévalent.</span><span class="en">Data not legally binding, official decisions prevail.</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note"><span class="pin">1</span><p><span class="fr"><b>Fraîcheur des sources</b> en permanence. Orange si la collecte date de plus de 24 h ou vient d'un extrait figé.</span><span class="en"><b>Source freshness</b> always visible. Orange when older than 24 h or from a frozen extract.</span> <span class="api">GET /sources</span></p></div>
+      <div class="note"><span class="pin">2</span><p><span class="fr"><b>Une seule barre de question</b>, avec des exemples cliquables quand elle est vide (les 5 questions test).</span><span class="en"><b>One question bar</b>, with clickable examples when empty (the 5 test questions).</span> <span class="api">POST /ask</span></p></div>
+      <div class="note"><span class="pin">3</span><p><span class="fr"><b>Ce que l'IA a compris</b>, affiché et corrigeable. Si elle s'est trompée de produit, l'utilisateur le voit avant de lire la réponse.</span><span class="en"><b>What the AI understood</b>, shown and editable. A wrong product is visible before the answer is read.</span> <span class="api">parameters</span> <span class="api">intent</span></p></div>
+      <div class="note"><span class="pin">4</span><p><span class="fr"><b>Conclusion</b> rédigée par l'IA à partir des données seulement, avec les compteurs calculés par le code.</span><span class="en"><b>Conclusion</b> written by the AI from the data only, counters computed by code.</span> <span class="api">answer</span> <span class="api">answerStatus</span></p></div>
+      <div class="note"><span class="pin">5</span><p><span class="fr"><b>Périmètre de recherche</b> : noms et alias cherchés, sources interrogées. C'est ce qui rend « pas trouvé » lisible.</span><span class="en"><b>Search scope</b>: names and aliases searched, sources queried. This is what makes "not found" readable.</span> <span class="api">coverage[].searchedTerms</span></p></div>
+      <div class="note"><span class="pin">6</span><p><span class="fr"><b>Le gabarit</b> change selon l'intention : liste de pays, tableau comparatif, file de travail, cartes d'hypothèses…</span><span class="en"><b>The template</b> changes with the intent: country list, comparison table, work queue, hypothesis cards…</span></p></div>
+      <div class="note"><span class="pin">7</span><p><span class="fr"><b>Avertissements</b> en clair, jamais cachés (règle T03).</span><span class="en"><b>Warnings</b> in plain words, never hidden (T03 rule).</span> <span class="api">warnings</span></p></div>
+      <div class="note"><span class="pin">8</span><p><span class="fr"><b>Question suivante</b> proposée par le back : elle déroule la démo T01 → T02 → T03 sans taper.</span><span class="en"><b>Next question</b> suggested by the backend: it walks the demo T01 → T02 → T03 without typing.</span> <span class="api">suggestedQuestions</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ T01 ============ -->
+<section class="block" id="t01">
+  <div class="block-head">
+    <div class="eyebrow">T01 · registration_lookup · Sales, Marketing</div>
+    <h2><span class="fr">Où le produit est-il homologué ?</span><span class="en">Where is the product registered?</span></h2>
+    <p class="q">→ registrations[] + coverage[]</p>
+  </div>
+  <div class="pair">
+    <div class="screen" role="img" aria-label="Wireframe T01">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><span class="url">intent = registration_lookup</span></div>
+      <div class="scr">
+        <div class="rows">
+          <div class="row mk">
+            <span class="cc">FR</span>
+            <div class="det"><div class="l1"><span class="chip ok">✓ <span class="fr">Validé</span><span class="en">Validated</span></span><b>Autorisé</b><span class="muted small">→ active</span></div>
+              <span class="small muted">LALGUARD M52 OD · ANSES · <span class="mono">n° SYN-0000001</span></span></div>
+            <span class="src">E-Phy ↗<br>10/10 03:12</span>
+            <span class="pin">1</span>
+          </div>
+          <div class="row mk">
+            <span class="cc">CA</span>
+            <div class="det"><div class="l1"><span class="chip warn">! <span class="fr">À vérifier</span><span class="en">To verify</span></span><b>Registered</b><span class="muted small">→ active</span></div>
+              <span class="small muted">SYNTHETIC F52 PRODUCT · PMRA · <span class="mono">n° SYN-00001</span></span>
+              <span class="alias">↳ <span class="fr">trouvé via l'alias « Metarhizium anisopliae F52 » (ancien nom taxonomique, confiance 0,90, à vérifier)</span><span class="en">found through alias "Metarhizium anisopliae F52" (former taxonomic name, confidence 0.90, to verify)</span></span></div>
+            <span class="src">PPID ↗<br>10/10 03:20</span>
+            <span class="pin">2</span>
+          </div>
+          <div class="row nf mk">
+            <span class="cc">DE</span>
+            <div class="det"><div class="l1"><span class="chip nf">? <span class="fr">Pas trouvé</span><span class="en">Not found</span></span></div>
+              <span class="small muted"><span class="fr">Cherché dans BVL le 09/10 sous 4 noms. Ne prouve pas l'absence d'homologation.</span><span class="en">Searched in BVL on 09/10 under 4 names. Not proof of no registration.</span></span></div>
+            <span class="src">BVL ↗<br>09/10 22:40</span>
+            <span class="pin">3</span>
+          </div>
+        </div>
+        <div class="nc-line mk"><span class="fr">Pas encore de source intégrée :</span><span class="en">No source integrated yet:</span> <span class="chip nc">US</span><span class="chip nc">MX</span><span class="chip nc">BR</span><span class="chip nc">UY</span><span class="chip nc">BE</span><span class="chip nc">ES</span><span class="chip nc">IT</span><span class="pin">4</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note"><span class="pin">1</span><p><span class="fr"><b>Une ligne par pays</b>, triée : validé, à vérifier, pas trouvé, non couvert. Statut d'origine en gras, statut normalisé à côté.</span><span class="en"><b>One row per country</b>, sorted: validated, to verify, not found, not covered. Original status in bold, normalized next to it.</span> <span class="api">statusOriginal</span> <span class="api">statusNormalized</span></p></div>
+      <div class="note"><span class="pin">2</span><p><span class="fr"><b>Le nom sous lequel on l'a trouvé.</b> Le piège du défi : M52 s'appelle F52 ou M. anisopliae ailleurs. Si la correspondance passe par un alias à vérifier, la ligne le dit.</span><span class="en"><b>The name it was found under.</b> The challenge trap: M52 is F52 or M. anisopliae elsewhere. If the match relies on an alias still to verify, the row says so.</span> <span class="api">matchedVia</span></p></div>
+      <div class="note"><span class="pin">3</span><p><span class="fr"><b>Pas trouvé ≠ non homologué.</b> Fond hachuré, pas de rouge, la date et la source de la recherche sont écrites. C'est le comportement interdit de T01.</span><span class="en"><b>Not found ≠ not registered.</b> Hatched background, no red, the search date and source are written. This is T01's forbidden behaviour.</span> <span class="api">coverage[].outcome = not_found</span></p></div>
+      <div class="note"><span class="pin">4</span><p><span class="fr"><b>Les marchés cibles non couverts</b> restent visibles : l'utilisateur sait où on n'a pas regardé.</span><span class="en"><b>Uncovered target markets</b> stay visible: users know where we did not look.</span> <span class="api">not_covered</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ T02 ============ -->
+<section class="block" id="t02">
+  <div class="block-head">
+    <div class="eyebrow">T02 · use_comparison · Regulatory, Field Solutions</div>
+    <h2><span class="fr">Comparer les usages entre deux pays</span><span class="en">Compare uses between two countries</span></h2>
+    <p class="q">→ comparison.rows[].cells[] (GET /compare)</p>
+  </div>
+  <div class="pair">
+    <div class="screen" role="img" aria-label="Wireframe T02">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><span class="url">intent = use_comparison · FR, CA</span></div>
+      <div class="scr">
+        <p class="concl" style="font-size:15px"><span class="fr">2 usages en commun, 1 seulement en France. Les doses diffèrent sur le fraisier.</span><span class="en">2 shared uses, 1 in France only. Doses differ on strawberry.</span></p>
+        <div class="mk"><div class="tw">
+          <table>
+            <thead><tr><th><span class="fr">Culture × cible</span><span class="en">Crop × target</span></th>
+              <th>FR <span class="chip ok" style="margin-left:4px">✓</span><span class="orig muted" style="font-weight:400">E-Phy · 10/10</span></th>
+              <th>CA <span class="chip warn" style="margin-left:4px">!</span><span class="orig muted" style="font-weight:400">PPID · 10/10</span></th></tr></thead>
+            <tbody>
+              <tr><td><b><span class="fr">Fraisier</span><span class="en">Strawberry</span></b> <span class="code">FRAAN</span><br><span class="fr">Otiorhynque</span><span class="en">Vine weevil</span> <span class="code">OTIOSU</span></td>
+                <td class="diff cellmk"><span class="pin cp">2</span><span class="dose">50 mL/10 L</span><span class="orig">« mL/10 L d'eau » · <span class="fr">sol, max 2</span><span class="en">soil, max 2</span></span></td>
+                <td class="diff"><span class="dose">1 L/1000 L</span><span class="orig">"L per 1000 L" · drench, max 1</span></td></tr>
+              <tr><td><b><span class="fr">Tomate</span><span class="en">Tomato</span></b> <span class="code">LYPES</span><br>Thrips <span class="code">FRANOC</span></td>
+                <td><span class="dose">1 L/ha</span><span class="orig">« 1 L/ha » · DAR 0 j</span></td>
+                <td><span class="dose">1 L/ha</span><span class="orig">"1 L/ha" · PHI 0 d</span></td></tr>
+              <tr><td><b><span class="fr">Concombre</span><span class="en">Cucumber</span></b> <span class="code">CUCSA</span><br>Thrips <span class="code">FRANOC</span></td>
+                <td><span class="dose">1 L/ha</span><span class="orig">« 1 L/ha »</span></td>
+                <td class="gap small cellmk"><span class="pin cp">3</span><span class="fr">Absent des usages extraits de l'étiquette CA (trou d'extraction possible)</span><span class="en">Not in the extracted uses of the CA label (possible extraction gap)</span></td></tr>
+            </tbody>
+          </table></div><span class="pin">1</span></div>
+        <div class="small muted mk" style="position:relative"><span class="fr">Cliquer une dose ouvre sa preuve (voir T05). Export ⤓ CSV pour Excel / Power Automate.</span><span class="en">Clicking a dose opens its evidence (see T05). Export ⤓ CSV for Excel / Power Automate.</span><span class="pin">4</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note"><span class="pin">1</span><p><span class="fr"><b>Lignes alignées par code EPPO</b>, calculées par le back : « Tomate », « tomato » et « Tomate (Gewächshaus) » tombent sur la même ligne. Une colonne par pays, jamais de moyenne ni de fusion.</span><span class="en"><b>Rows aligned on EPPO codes</b>, computed by the backend: "Tomate", "tomato", "Tomate (Gewächshaus)" land on the same row. One column per country, no averaging or merging.</span> <span class="api">rows[]</span> <span class="api">cells[]</span></p></div>
+      <div class="note"><span class="pin">2</span><p><span class="fr"><b>Dose avec son unité normalisée en gros, unité d'origine en dessous.</b> Aucune conversion : deux unités différentes sont signalées comme une différence (liseré orange), jamais converties.</span><span class="en"><b>Dose with its normalized unit in large type, source unit below.</b> No conversion: different units are flagged as a difference (orange edge), never converted.</span> <span class="api">doseValue</span> <span class="api">doseUnitNormalized</span> <span class="api">doseUnitOriginal</span> <span class="api">differsAcrossCountries</span></p></div>
+      <div class="note"><span class="pin">3</span><p><span class="fr"><b>Une case vide dit pourquoi elle est vide</b> : pas d'homologation trouvée, pays non couvert, ou usage absent des données extraites. Ces trois cas ne se ressemblent pas.</span><span class="en"><b>An empty cell says why it is empty</b>: no registration found, country not covered, or use missing from extracted data. The three cases look different.</span> <span class="api">cells[].state</span></p></div>
+      <div class="note"><span class="pin">4</span><p><span class="fr"><b>Export</b> du même tableau, avec les colonnes de preuve.</span><span class="en"><b>Export</b> of the same table, with evidence columns.</span> <span class="api">GET /compare?format=csv</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ T03 ============ -->
+<section class="block" id="t03">
+  <div class="block-head">
+    <div class="eyebrow">T03 · data_quality · Regulatory Affairs</div>
+    <h2><span class="fr">Quels champs sont incertains ?</span><span class="en">Which fields are uncertain?</span></h2>
+    <p class="q">→ issues[] (GET /issues)</p>
+  </div>
+  <div class="pair">
+    <div class="screen" role="img" aria-label="Wireframe T03">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><span class="url">intent = data_quality · P-LPC-M52</span></div>
+      <div class="scr">
+        <div class="counts mk"><span class="chip neutral">4 <span class="fr">manquants</span><span class="en">missing</span></span><span class="chip warn">3 <span class="fr">incertains</span><span class="en">uncertain</span></span><span class="chip auto">6 <span class="fr">non validés</span><span class="en">not validated</span></span><span class="chip neutral">2 <span class="fr">sans code EPPO</span><span class="en">no EPPO code</span></span><span class="pin">1</span></div>
+        <div class="mk"><div class="tw">
+          <table>
+            <thead><tr><th><span class="fr">Priorité</span><span class="en">Priority</span></th><th><span class="fr">Pays</span><span class="en">Country</span></th><th><span class="fr">Champ</span><span class="en">Field</span></th><th><span class="fr">Problème</span><span class="en">Issue</span></th><th><span class="fr">Confiance IA</span><span class="en">AI confidence</span></th><th></th></tr></thead>
+            <tbody>
+              <tr><td><span class="chip bad"><span class="fr">Haute</span><span class="en">High</span></span></td><td>CA</td><td class="mono">matchedVia</td><td><span class="fr">Correspondance par alias F52 non confirmée</span><span class="en">F52 alias match not confirmed</span></td><td class="num">0,90</td><td><a href="#t05"><span class="fr">Vérifier</span><span class="en">Verify</span> ↗</a></td></tr>
+              <tr><td><span class="chip warn"><span class="fr">Moyenne</span><span class="en">Medium</span></span></td><td>CA</td><td class="mono">doseValue</td><td><span class="fr">Dose lue sur l'étiquette par l'IA, à relire</span><span class="en">Dose read from the label by AI, to review</span></td><td class="num">0,62</td><td><a href="#t05"><span class="fr">Vérifier</span><span class="en">Verify</span> ↗</a></td></tr>
+              <tr><td><span class="chip warn"><span class="fr">Moyenne</span><span class="en">Medium</span></span></td><td>FR</td><td class="mono">eppoTargetCode</td><td><span class="fr">« Ravageurs du sol » sans code EPPO</span><span class="en">"Ravageurs du sol" has no EPPO code</span></td><td class="num">–</td><td><a href="#t05"><span class="fr">Vérifier</span><span class="en">Verify</span> ↗</a></td></tr>
+              <tr><td><span class="chip neutral"><span class="fr">Basse</span><span class="en">Low</span></span></td><td>FR</td><td class="mono">expirationDate</td><td><span class="fr">Absent de la source</span><span class="en">Missing in source</span></td><td class="num">–</td><td><a href="#t05"><span class="fr">Vérifier</span><span class="en">Verify</span> ↗</a></td></tr>
+            </tbody>
+          </table></div><span class="pin">2</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note"><span class="pin">1</span><p><span class="fr"><b>Une file de travail, pas un paragraphe.</b> Les compteurs par type de problème servent aussi de filtres.</span><span class="en"><b>A work queue, not a paragraph.</b> Counters per issue type double as filters.</span> <span class="api">countsByType</span></p></div>
+      <div class="note"><span class="pin">2</span><p><span class="fr"><b>Confiance IA et statut de validation dans deux colonnes différentes</b> : 0,90 de confiance ne veut pas dire validé. Chaque ligne ouvre la source à vérifier. La priorité est calculée par le back (alias et statut d'abord).</span><span class="en"><b>AI confidence and validation status in separate columns</b>: 0.90 confidence does not mean validated. Each row opens the source to check. Priority is computed by the backend (aliases and status first).</span> <span class="api">confidence</span> <span class="api">validationStatus</span> <span class="api">priority</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ T04 ============ -->
+<section class="block" id="t04">
+  <div class="block-head">
+    <div class="eyebrow">T04 · sister_product · Marketing, R&amp;D</div>
+    <h2><span class="fr">Quels produits pourraient être des produits sœurs ?</span><span class="en">Which products could be sister products?</span></h2>
+    <p class="q">→ sisterCandidates[] (GET /products/{id}/sisters)</p>
+  </div>
+  <div class="pair">
+    <div class="screen" role="img" aria-label="Wireframe T04">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><span class="url">intent = sister_product · P-LPC-M52</span></div>
+      <div class="scr">
+        <p class="concl" style="font-size:15px"><span class="fr">1 formulation liée validée et 2 hypothèses à confirmer. Aucune n'est une équivalence établie.</span><span class="en">1 validated related formulation and 2 hypotheses to confirm. None is an established equivalence.</span></p>
+        <div class="sis">
+          <div class="sc mk">
+            <span class="prod">LALGUARD M52 OD</span><span class="link"></span><span class="prod">MITAXION G <span class="muted small">(FR)</span></span>
+            <div class="meta">
+              <div><span class="chip hyp"><span class="fr">Hypothèse à confirmer</span><span class="en">Hypothesis to confirm</span></span> <span class="mono">sister_product_candidate</span> · <span class="fr">confiance</span><span class="en">confidence</span> <span class="bar"><i style="width:80%"></i></span> <span class="num">0,80</span> · strong_candidate</div>
+              <div><span class="fr">Pourquoi :</span><span class="en">Why:</span> “Same active organism/strain family in internal France list; identity/formulation requires review”</div>
+              <div class="btns"><span class="btn"><span class="fr">Confirmer</span><span class="en">Confirm</span></span><span class="btn"><span class="fr">Rejeter</span><span class="en">Reject</span></span><span class="muted small">(stretch · POST /reviews)</span></div>
+            </div>
+            <span class="pin">1</span>
+          </div>
+          <div class="sc">
+            <span class="prod">LALGUARD M52 OD</span><span class="link"></span><span class="prod">MET52 OD</span>
+            <div class="meta">
+              <div><span class="chip hyp"><span class="fr">Hypothèse à confirmer</span><span class="en">Hypothesis to confirm</span></span> <span class="mono">historical_or_market_name</span> · <span class="bar"><i style="width:70%"></i></span> <span class="num">0,70</span> · candidate</div>
+              <div><span class="fr">Pourquoi :</span><span class="en">Why:</span> “Legacy market wording may occur; verify market and registration before linking”</div>
+            </div>
+          </div>
+          <div class="sc mk">
+            <span class="prod">LALGUARD M52 OD</span><span class="link solid"></span><span class="prod">LALGUARD M52 GR</span>
+            <div class="meta">
+              <div><span class="chip ok">✓ <span class="fr">Validé</span><span class="en">Validated</span></span> <span class="mono">related_formulation</span> · <span class="bar"><i style="width:95%"></i></span> <span class="num">0,95</span></div>
+              <div><span class="fr">Pourquoi :</span><span class="en">Why:</span> “Same M52 active strain family but different formulation”</div>
+            </div>
+            <span class="pin">2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note"><span class="pin">1</span><p><span class="fr"><b>Trait pointillé et badge « hypothèse »</b> tant que la revue n'est pas faite. La justification est citée telle quelle depuis le fichier de correspondance LPC. Les boutons de revue sont un bonus si le temps le permet.</span><span class="en"><b>Dashed link and "hypothesis" badge</b> until reviewed. The rationale is quoted as is from the LPC mapping file. Review buttons are a bonus if time allows.</span> <span class="api">reviewStatus</span> <span class="api">evidenceSummary</span></p></div>
+      <div class="note"><span class="pin">2</span><p><span class="fr"><b>Trait plein uniquement si validé.</b> Le type de relation reste affiché : une formulation liée n'est pas un produit identique.</span><span class="en"><b>Solid link only when validated.</b> The relationship type stays visible: a related formulation is not an identical product.</span> <span class="api">relationshipType</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ T05 ============ -->
+<section class="block" id="t05">
+  <div class="block-head">
+    <div class="eyebrow">T05 · source_lookup · <span class="fr">tous</span><span class="en">everyone</span></div>
+    <h2><span class="fr">D'où vient cette donnée ?</span><span class="en">Where does this value come from?</span></h2>
+    <p class="q">→ Evidence (<span class="fr">sur chaque valeur</span><span class="en">on every value</span>) + facts[].evidenceIds</p>
+  </div>
+  <div class="pair">
+    <div class="screen" role="img" aria-label="Wireframe T05 evidence drawer">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><span class="url"><span class="fr">clic sur le statut CA</span><span class="en">click on CA status</span></span></div>
+      <div class="split">
+        <div class="dim"><div class="rows"><div class="row"><span class="cc">FR</span><div class="det"><span class="chip ok">✓</span></div><span></span></div><div class="row" style="outline:2px solid var(--accent);outline-offset:-2px"><span class="cc">CA</span><div class="det"><span class="chip warn">!</span></div><span></span></div><div class="row"><span class="cc">DE</span><div class="det"><span class="chip nf">?</span></div><span></span></div></div></div>
+        <aside class="drawer mk">
+          <h3><span class="fr">Statut au Canada</span><span class="en">Status in Canada</span></h3>
+          <dl class="kv">
+            <dt><span class="fr">Normalisé</span><span class="en">Normalized</span></dt><dd><b>active</b></dd>
+            <dt><span class="fr">Texte d'origine</span><span class="en">Source wording</span></dt><dd>Registered <span class="muted">(en)</span></dd>
+            <dt>Source</dt><dd>Health Canada PPID</dd>
+            <dt><span class="fr">Fiche officielle</span><span class="en">Official record</span></dt><dd><a href="#t05">open.canada.ca/… ↗</a></dd>
+            <dt><span class="fr">Collecté le</span><span class="en">Collected</span></dt><dd class="num">2026-10-10 03:20 UTC</dd>
+            <dt>Validation</dt><dd><span class="chip warn">! <span class="fr">À vérifier</span><span class="en">To verify</span></span></dd>
+            <dt><span class="fr">Confiance IA</span><span class="en">AI confidence</span></dt><dd class="num">0,90 <span class="muted small">(<span class="fr">≠ validation</span><span class="en">≠ validation</span>)</span></dd>
+            <dt><span class="fr">Trouvé via</span><span class="en">Matched via</span></dt><dd>M. anisopliae F52 · former_taxonomic_name</dd>
+          </dl>
+          <blockquote>“Metarhizium anisopliae strain F52 … Registered” <span class="muted">(<span class="fr">extrait fictif</span><span class="en">synthetic excerpt</span>)</span></blockquote>
+          <span class="pin">1</span>
+        </aside>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note"><span class="pin">1</span><p><span class="fr"><b>Un panneau de preuve unique</b>, le même partout : on clique sur n'importe quelle valeur (statut, dose, culture) et il s'ouvre. T05 n'a donc pas besoin d'un écran à lui ; si on pose la question, la réponse liste les faits avec leur source.</span><span class="en"><b>One evidence panel</b>, the same everywhere: click any value (status, dose, crop) and it opens. T05 needs no screen of its own; if asked, the answer lists facts with their source.</span> <span class="api">Evidence</span> <span class="api">facts[]</span></p></div>
+      <div class="note"><span class="pin">✓</span><p><span class="fr">Champs affichés : <span class="api">sourceName</span> <span class="api">sourceRecordUrl</span> <span class="api">collectedAt</span> <span class="api">validationStatus</span> <span class="api">confidence</span> <span class="api">excerpt</span> <span class="api">isFrozenExtract</span> <span class="api">isSynthetic</span>. Un badge « extrait figé » ou « donnée fictive » s'ajoute quand c'est le cas.</span><span class="en">Fields shown: <span class="api">sourceName</span> <span class="api">sourceRecordUrl</span> <span class="api">collectedAt</span> <span class="api">validationStatus</span> <span class="api">confidence</span> <span class="api">excerpt</span> <span class="api">isFrozenExtract</span> <span class="api">isSynthetic</span>. A "frozen extract" or "synthetic" badge is added when relevant.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEARCH ============ -->
+<section class="block" id="recherche">
+  <div class="block-head">
+    <div class="eyebrow">ingredient_search · R&amp;D, Field Solutions</div>
+    <h2><span class="fr">Quels produits à base de telle souche, sur telle culture ?</span><span class="en">Which products with this strain, on this crop?</span></h2>
+    <p class="q">→ products[] (GET /products?activeEntity=&amp;crop=)</p>
+  </div>
+  <div class="pair">
+    <div class="screen" role="img" aria-label="Wireframe product search">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><span class="url">activeEntity = Clonostachys rosea J1446 · crop = FRAAN</span></div>
+      <div class="scr">
+        <div class="mk"><div class="tw">
+          <table>
+            <thead><tr><th><span class="fr">Produit</span><span class="en">Product</span></th><th>FR</th><th>CA</th><th>DE</th></tr></thead>
+            <tbody>
+              <tr><td><b>LALSTOP G46 WG</b> <span class="chip neutral">LPC</span><span class="orig">Clonostachys rosea J1446</span></td><td><span class="chip ok">✓</span> <span class="small">Botrytis</span></td><td><span class="chip warn">!</span> <span class="small">Botrytis</span></td><td><span class="chip nf">?</span></td></tr>
+              <tr><td><b>PRESTOP</b> <span class="chip hyp"><span class="fr">sœur ?</span><span class="en">sister?</span></span><span class="orig">Gliocladium catenulatum J1446 (<span class="fr">ancien nom</span><span class="en">former name</span>)</span></td><td><span class="chip auto"><span class="fr">auto</span><span class="en">auto</span></span> <span class="small">Botrytis</span></td><td><span class="chip nf">?</span></td><td><span class="chip nf">?</span></td></tr>
+              <tr><td><b><span class="fr">Concurrent fictif</span><span class="en">Synthetic competitor</span></b> <span class="chip neutral"><span class="fr">concurrent</span><span class="en">competitor</span></span></td><td><span class="chip nf">?</span></td><td><span class="chip ok">✓</span> <span class="small">Pythium</span></td><td><span class="chip nf">?</span></td></tr>
+            </tbody>
+          </table></div><span class="pin">1</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note"><span class="pin">1</span><p><span class="fr"><b>Matrice produit × pays</b>, filtrée par culture. L'ancien nom (Gliocladium) est résolu vers la souche J1446, LPC et concurrents sont distingués, chaque case garde son statut. Couvre aussi la question terrain « quoi contre tel ravageur sur telle culture dans tel pays ».</span><span class="en"><b>Product × country matrix</b>, filtered by crop. The former name (Gliocladium) resolves to strain J1446, LPC and competitors are told apart, each cell keeps its status. Also covers the field question "what against this pest on this crop in this country".</span> <span class="api">ProductMatch</span> <span class="api">isLpcProduct</span> <span class="api">aliases</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPIRIES ============ -->
+<section class="block" id="expirations">
+  <div class="block-head">
+    <div class="eyebrow">expiry_watch · Regulatory · bonus</div>
+    <h2><span class="fr">Qu'est-ce qui expire bientôt ?</span><span class="en">What expires soon?</span></h2>
+    <p class="q">→ expirations[] (GET /expirations?withinMonths=12)</p>
+  </div>
+  <div class="pair">
+    <div class="screen" role="img" aria-label="Wireframe expirations">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><span class="url">intent = expiry_watch · 12 <span class="fr">mois</span><span class="en">months</span></span></div>
+      <div class="scr">
+        <div class="mk"><div class="tw">
+          <table>
+            <thead><tr><th><span class="fr">Échéance</span><span class="en">Expires</span></th><th><span class="fr">Dans</span><span class="en">In</span></th><th><span class="fr">Produit</span><span class="en">Product</span></th><th><span class="fr">Pays</span><span class="en">Country</span></th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td class="num">2026-12-31</td><td class="num"><span class="chip bad">83 j</span></td><td>LALSTOP CONTANS WG</td><td>FR</td><td>E-Phy ↗</td></tr>
+              <tr><td class="num">2027-04-30</td><td class="num"><span class="chip warn">203 j</span></td><td>LALSTOP G46 WG</td><td>CA</td><td>PPID ↗</td></tr>
+              <tr><td class="num">2027-09-01</td><td class="num"><span class="chip neutral">327 j</span></td><td>LALGUARD M52 OD</td><td>FR</td><td>E-Phy ↗</td></tr>
+            </tbody>
+          </table></div><span class="pin">1</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note"><span class="pin">1</span><p><span class="fr"><b>Trié par date</b>, avec un compte à rebours coloré (moins de 3 mois, moins de 9 mois, au-delà). Bonus du cahier « alerte d'expiration » pour un simple filtre SQL sur <span class="api">expirationDate</span>.</span><span class="en"><b>Sorted by date</b>, with a coloured countdown (under 3 months, under 9 months, beyond). The brief's "expiry alert" bonus for a plain SQL filter on <span class="api">expirationDate</span>.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COPILOT ============ -->
+<section class="block" id="copilot">
+  <div class="block-head">
+    <div class="eyebrow">Microsoft 365 · Copilot Studio</div>
+    <h2><span class="fr">La même réponse dans Teams</span><span class="en">The same answer in Teams</span></h2>
+    <p class="q">→ <span class="fr">connecteur personnalisé</span><span class="en">custom connector</span> power-platform.swagger.yaml → askRegulatoryQuestion</p>
+  </div>
+  <div class="pair">
+    <div class="screen" role="img" aria-label="Wireframe Copilot in Teams">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><span class="url">Teams · Copilot agent « LPC Regulatory Watch »</span></div>
+      <div class="teams">
+        <div class="bubble me"><span class="fr">Où LALGUARD M52 OD est-il homologué ?</span><span class="en">Where is LALGUARD M52 OD registered?</span></div>
+        <div class="bubble mk">
+          <p><span class="fr">Enregistrement trouvé dans 2 des 3 pays interrogés. Rien trouvé en Allemagne, ce qui ne prouve pas l'absence d'homologation.</span><span class="en">Registration found in 2 of the 3 countries searched. Nothing found in Germany, which is not proof of no registration.</span></p>
+          <ul style="margin:0;padding-left:18px;font-size:13.5px">
+            <li><span class="fr">France : autorisé, validé</span><span class="en">France: authorised, validated</span> <sup>[1]</sup></li>
+            <li><span class="fr">Canada : registered, à vérifier (trouvé via l'alias F52)</span><span class="en">Canada: registered, to verify (matched via alias F52)</span> <sup>[2]</sup></li>
+            <li><span class="fr">Allemagne : pas trouvé dans BVL</span><span class="en">Germany: not found in BVL</span></li>
+          </ul>
+          <ol><li>ANSES E-Phy · <span class="fr">collecté le</span><span class="en">collected</span> 10/10 · validated</li><li>Health Canada PPID · <span class="fr">collecté le</span><span class="en">collected</span> 10/10 · to_verify</li></ol>
+          <a href="#t01" class="small"><span class="fr">Ouvrir le détail dans l'application ↗</span><span class="en">Open details in the app ↗</span></a>
+          <span class="pin">1</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note"><span class="pin">1</span><p><span class="fr"><b>Copilot reformule</b> : on ne contrôle pas son rendu. Pour garder la traçabilité, <span class="api">/ask</span> renvoie <span class="api">facts</span> et <span class="api">evidence</span>, et la description de l'action demande de citer source et statut et d'interdire « non homologué » sur un not_found. Le lien renvoie vers l'app web pour le comparatif, que Copilot affiche mal.</span><span class="en"><b>Copilot rephrases</b>: we don't control its rendering. To keep traceability, <span class="api">/ask</span> returns <span class="api">facts</span> and <span class="api">evidence</span>, and the action description asks it to cite source and status and forbids "not registered" on not_found. The link opens the web app for the comparison, which Copilot renders poorly.</span></p></div>
+      <div class="note"><span class="pin">+</span><p><span class="fr">Option sans effort : l'URL de l'app web en onglet Teams (« interface intégrable dans Teams »).</span><span class="en">Zero-effort option: the web app URL as a Teams tab ("UI embeddable in Teams").</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAPPING ============ -->
+<section class="block" id="mapping">
+  <div class="block-head">
+    <div class="eyebrow"><span class="fr">Côté IA</span><span class="en">AI side</span></div>
+    <h2><span class="fr">Comment l'agent produit ces réponses</span><span class="en">How the agent produces these answers</span></h2>
+    <p class="lede"><span class="fr">L'IA comprend et rédige, le code remplit. Aucune source, date ou statut n'est écrit par le modèle.</span><span class="en">The AI understands and writes, the code fills. No source, date or status is written by the model.</span></p>
+  </div>
+  <div class="flow">
+    <div class="st"><span class="who ai">IA / AI</span><h3><span class="fr">Comprendre</span><span class="en">Understand</span></h3><p><span class="fr">Détecte l'intention et extrait produit, pays, culture, cible (sortie structurée).</span><span class="en">Detects intent and extracts product, countries, crop, target (structured output).</span></p></div>
+    <div class="st"><span class="who code">Code</span><h3><span class="fr">Résoudre les noms</span><span class="en">Resolve names</span></h3><p><span class="fr">Étend aux alias (fichiers de correspondance) et aux codes EPPO.</span><span class="en">Expands to aliases (mapping files) and EPPO codes.</span></p></div>
+    <div class="st"><span class="who code">Code</span><h3><span class="fr">Interroger la base</span><span class="en">Query the database</span></h3><p><span class="fr">Appelle les mêmes fonctions que les routes REST, calcule la couverture par pays.</span><span class="en">Calls the same functions as the REST routes, computes coverage per country.</span></p></div>
+    <div class="st"><span class="who ai">IA / AI</span><h3><span class="fr">Rédiger</span><span class="en">Write</span></h3><p><span class="fr">Écrit la phrase de conclusion à partir des données reçues seulement.</span><span class="en">Writes the conclusion sentence from the received data only.</span></p></div>
+    <div class="st"><span class="who code">Code</span><h3><span class="fr">Contrôler</span><span class="en">Check</span></h3><p><span class="fr">Tout fait sans preuve est retiré et signalé ; « non homologué » sur un not_found est bloqué.</span><span class="en">Any fact without evidence is dropped and flagged; "not registered" on a not_found is blocked.</span></p></div>
+  </div>
+  <div class="tw maptable">
+    <table>
+      <thead><tr><th>intent</th><th><span class="fr">Question type</span><span class="en">Typical question</span></th><th><span class="fr">Champ rempli dans Answer</span><span class="en">Field filled in Answer</span></th><th><span class="fr">Route réutilisée</span><span class="en">Route reused</span></th><th><span class="fr">Gabarit</span><span class="en">Template</span></th></tr></thead>
+      <tbody>
+        <tr><td>registration_lookup</td><td><span class="fr">Où est homologué X ?</span><span class="en">Where is X registered?</span></td><td>registrations, coverage</td><td>/products/{id}/registrations</td><td><span class="fr">Liste de pays</span><span class="en">Country list</span></td></tr>
+        <tr><td>use_comparison</td><td><span class="fr">Compare X entre FR et CA</span><span class="en">Compare X between FR and CA</span></td><td>comparison</td><td>/compare</td><td><span class="fr">Tableau EPPO × pays</span><span class="en">EPPO × country table</span></td></tr>
+        <tr><td>ingredient_search</td><td><span class="fr">Produits à base de Y sur tomate</span><span class="en">Products with Y on tomato</span></td><td>products</td><td>/products?activeEntity=&amp;crop=</td><td><span class="fr">Matrice produit × pays</span><span class="en">Product × country matrix</span></td></tr>
+        <tr><td>data_quality</td><td><span class="fr">Quels champs sont incertains ?</span><span class="en">Which fields are uncertain?</span></td><td>issues</td><td>/issues</td><td><span class="fr">File de travail</span><span class="en">Work queue</span></td></tr>
+        <tr><td>sister_product</td><td><span class="fr">Produits sœurs de X ?</span><span class="en">Sister products of X?</span></td><td>sisterCandidates</td><td>/products/{id}/sisters</td><td><span class="fr">Cartes d'hypothèses</span><span class="en">Hypothesis cards</span></td></tr>
+        <tr><td>expiry_watch</td><td><span class="fr">Ce qui expire dans 12 mois</span><span class="en">What expires in 12 months</span></td><td>expirations</td><td>/expirations</td><td><span class="fr">Liste datée</span><span class="en">Dated list</span></td></tr>
+        <tr><td>source_lookup</td><td><span class="fr">Source de chaque donnée</span><span class="en">Source of every fact</span></td><td>facts, sources</td><td>/sources</td><td><span class="fr">Faits + panneau de preuve</span><span class="en">Facts + evidence panel</span></td></tr>
+        <tr><td>other</td><td><span class="fr">Hors périmètre</span><span class="en">Out of scope</span></td><td>answerStatus = out_of_scope</td><td>–</td><td><span class="fr">Message clair, pas de recherche web</span><span class="en">Clear message, no web search</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <span class="fr">Contrat : openapi.proposed.yaml (OpenAPI 3.1, compatible avec le starter) et power-platform.swagger.yaml (Swagger 2.0 pour le connecteur). Détails des changements : docs/openapi-changes.md.</span>
+  <span class="en">Contract: openapi.proposed.yaml (OpenAPI 3.1, starter-compatible) and power-platform.swagger.yaml (Swagger 2.0 for the connector). Change details: docs/openapi-changes.md.</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, fr=document.getElementById('lang-fr'), en=document.getElementById('lang-en');
+  function set(l){root.setAttribute('lang',l);fr.setAttribute('aria-pressed',l==='fr');en.setAttribute('aria-pressed',l==='en');try{localStorage.setItem('lpc-wf-lang',l)}catch(e){}}
+  var saved='fr';try{saved=localStorage.getItem('lpc-wf-lang')||'fr'}catch(e){}
+  set(saved==='en'?'en':'fr');
+  fr.addEventListener('click',function(){set('fr')});en.addEventListener('click',function(){set('en')});
+})();
+</script>
+
+</body>
+</html>

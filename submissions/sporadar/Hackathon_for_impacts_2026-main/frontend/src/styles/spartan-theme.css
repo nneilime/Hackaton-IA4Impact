@@ -1,0 +1,226 @@
+/*
+ * Correspondance Atlas → Spartan.
+ * Chaque variable sémantique de Spartan (--primary, --muted, --border…) pointe vers un token Atlas
+ * défini dans atlas-tokens.css : aucune valeur littérale ici, le thème clair/sombre vient des tokens.
+ * À importer APRÈS le preset Spartan pour que nos @theme inline l'emportent.
+ *
+ * Grille d'espacement : Tailwind (1 = 4px) suit déjà la grille Atlas.
+ *   space-1 → 1 · space-2 → 2 · space-3 → 3 · space-4 → 4
+ *   space-5 → 6 · space-6 → 8 · space-7 → 12 · space-8 → 16
+ */
+
+/* Mode sombre : classe `.dark` (convention Spartan) ou `data-theme="dark"` (convention Atlas). */
+@custom-variant dark (&:where(.dark, .dark *, [data-theme='dark'], [data-theme='dark'] *));
+
+:root {
+  --radius: var(--radius-atlas-lg);
+
+  --background: var(--page);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  /* --primary est commun à Atlas et Spartan : même nom, même rôle (déjà défini par atlas-tokens.css). */
+  --primary-foreground: var(--on-primary);
+  --secondary: var(--surface-muted);
+  --secondary-foreground: var(--ink-strong);
+  --muted: var(--surface-muted);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--surface-muted);
+  --accent-foreground: var(--ink-strong);
+  --destructive: var(--status-rejected);
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: var(--focus);
+
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--on-primary);
+  --sidebar-accent: var(--surface-muted);
+  --sidebar-accent-foreground: var(--ink-strong);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--focus);
+
+  /* Atlas ne définit pas de palette de graphiques : on réutilise des tokens existants. */
+  --chart-1: var(--primary);
+  --chart-2: var(--status-validated);
+  --chart-3: var(--status-auto);
+  --chart-4: var(--status-review);
+  --chart-5: var(--ink-muted);
+}
+
+/* Mouvement minimal : transitions de couleur de 150 ms au plus. */
+@theme {
+  --default-transition-duration: 150ms;
+}
+
+@theme inline {
+  /* Couleurs propres à Atlas, utilisables en `bg-surface`, `text-ink-muted`, `border-line`… */
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-strong: var(--ink-strong);
+  --color-ink-muted: var(--ink-muted);
+  --color-link: var(--link);
+  --color-primary-hover: var(--primary-hover);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-on-brand: var(--on-brand);
+  --color-focus: var(--focus);
+  --color-status-validated: var(--status-validated);
+  --color-status-validated-soft: var(--status-validated-soft);
+  --color-status-review: var(--status-review);
+  --color-status-review-soft: var(--status-review-soft);
+  --color-status-review-line: var(--status-review-line);
+  --color-status-auto: var(--status-auto);
+  --color-status-auto-soft: var(--status-auto-soft);
+  --color-status-rejected: var(--status-rejected);
+  --color-on-status-rejected: var(--on-status-rejected);
+  --color-status-obsolete: var(--status-obsolete);
+  --color-status-obsolete-soft: var(--status-obsolete-soft);
+  --color-synthetic-hatch: var(--synthetic-hatch);
+
+  /* Polices : `font-display` s'ajoute à `font-sans` / `font-mono` du preset. */
+  --font-display: var(--atlas-font-display);
+  --font-sans: var(--atlas-font-sans);
+  --font-mono: var(--atlas-font-mono);
+
+  /* Rayons fixes Atlas (le preset les dérive de --radius par des coefficients). */
+  --radius-sm: var(--radius-atlas-sm);
+  --radius-md: var(--radius-atlas-md);
+  --radius-lg: var(--radius-atlas-lg);
+  --radius-pill: var(--radius-atlas-pill);
+
+  /* Ombres par thème. */
+  --shadow-sm: var(--atlas-shadow-sm);
+  --shadow-md: var(--atlas-shadow-md);
+}
+
+/* ---------- Styles typographiques Atlas (tokens.json › type.groups) ---------- */
+
+@utility type-display-xl {
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 52.8px;
+  font-weight: 400;
+  letter-spacing: 0.001em;
+  text-transform: uppercase;
+  color: var(--ink-strong);
+}
+
+@utility type-display-l {
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 37.4px;
+  font-weight: 400;
+  letter-spacing: 0.001em;
+  text-transform: uppercase;
+  color: var(--ink-strong);
+}
+
+@utility type-display-m {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 26.4px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--ink-strong);
+}
+
+@utility type-figure {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+@utility type-title {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+@utility type-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+@utility type-body-sm {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+}
+
+@utility type-label {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+@utility type-caption {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@utility type-code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+@utility type-code-sm {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+/* ---------- Base ---------- */
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Focus clavier : anneau plein de 2 px, décalé de 2 px, sur tout élément interactif. */
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}

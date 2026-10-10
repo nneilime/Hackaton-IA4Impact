@@ -1,0 +1,99 @@
+/*
+ * Atlas Homologations — tokens bruts du design system.
+ * Source : artifact « Atlas Homologations » (project/tokens.json), version 1791592663-46a8,
+ * synchronisé le 2026-10-10. Ne pas modifier ici sans resynchroniser le design system.
+ * Les noms de variables sont ceux du design system ; spartan-theme.css les relie à Spartan.
+ */
+
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --page: #f8f9fa;
+  --surface: #ffffff;
+  --surface-muted: #ebeced;
+  --line: #dee2e6;
+  --line-strong: #7d878d;
+  --ink: #212529;
+  --ink-strong: #36434b;
+  --ink-muted: #59646b;
+  --link: #2e5f9e;
+  --primary: #36434b;
+  --primary-hover: #2b363c;
+  --on-primary: #ffffff;
+  --brand: #e30327;
+  --brand-soft: #f9cdd4;
+  --on-brand: #ffffff;
+  --focus: #447cc7;
+  --status-validated: #0b6b5f;
+  --status-validated-soft: #dff1ed;
+  --status-review: #8a5300;
+  --status-review-soft: #fff3cd;
+  --status-review-line: #ffc107;
+  --status-auto: #1c355e;
+  --status-auto-soft: #e3ecf8;
+  --status-rejected: #b6021f;
+  --on-status-rejected: #ffffff;
+  --status-obsolete: var(--ink-muted);
+  --status-obsolete-soft: var(--surface-muted);
+  --synthetic-hatch: #cdd0d2;
+
+  --atlas-shadow-sm: 0 1px 2px rgba(16, 16, 16, 0.08);
+  --atlas-shadow-md: 0 6px 20px rgba(16, 16, 16, 0.12);
+}
+
+:root.dark,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --page: #151b1e;
+  --surface: #1d2529;
+  --surface-muted: #2b363c;
+  --line: #36434b;
+  --line-strong: #7d878d;
+  --ink: #eef0f1;
+  --ink-strong: #ffffff;
+  --ink-muted: #a9b1b6;
+  --link: #9fc0ee;
+  --primary: #e1e3e4;
+  --primary-hover: #ffffff;
+  --on-primary: #1d2529;
+  --brand: #ff5a70;
+  --brand-soft: #3d1219;
+  --on-brand: #1d2529;
+  --focus: #8fb4e8;
+  --status-validated: #7fd6c5;
+  --status-validated-soft: #12352f;
+  --status-review: #ffd27a;
+  --status-review-soft: #3b2d0c;
+  --status-review-line: #ffc107;
+  --status-auto: #b3cdf0;
+  --status-auto-soft: #18283d;
+  --status-rejected: #ff8597;
+  --on-status-rejected: #2a0a0f;
+  --synthetic-hatch: #36434b;
+
+  --atlas-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --atlas-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Polices, espacements et rayons identiques dans les deux thèmes. */
+:root {
+  --atlas-font-display: bebas-neue-pro, 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --atlas-font-sans: open-sans, 'Open Sans', 'Segoe UI', system-ui, sans-serif;
+  --atlas-font-mono: 'IBM Plex Mono', Consolas, ui-monospace, monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --radius-atlas-sm: 4px;
+  --radius-atlas-md: 6px;
+  --radius-atlas-lg: 12px;
+  --radius-atlas-pill: 70px;
+}

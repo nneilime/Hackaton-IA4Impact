@@ -1,0 +1,605 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "LPC Regulatory Watch",
+    "version": "0.2.2",
+    "description": "Sourced answers on plant protection product registrations (Lallemand Plant Care hackathon prototype). Every value carries its official source, collection date and validation status. Regulatory Affairs validation is required."
+  },
+  "host": "sporadar.nhanlenguyen.dev",
+  "basePath": "/api",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-API-Key",
+      "description": "API key. The server runs with an empty API_KEY for now, so any value (for example demo) is accepted."
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/ask": {
+      "post": {
+        "operationId": "askRegulatoryQuestion",
+        "summary": "Ask a regulatory question",
+        "description": "Use this for any question about where a product is registered, its authorized uses, doses, sister products, expirations, uncertain data or sources. Answers come only from the structured regulatory database. Always repeat the source and validation status of each fact you cite, and never say a product is \"not registered\" when a country's coverage outcome is not_found.",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AskRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Grounded answer",
+            "schema": {
+              "$ref": "#/definitions/Answer"
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "operationId": "searchProducts",
+        "summary": "Search products",
+        "description": "Find products by name, alias, microorganism, crop, target or country. Returns product ids for the other actions.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "type": "string",
+            "required": false,
+            "x-ms-summary": "Name or alias"
+          },
+          {
+            "in": "query",
+            "name": "activeEntity",
+            "type": "string",
+            "required": false,
+            "x-ms-summary": "Microorganism or active substance"
+          },
+          {
+            "in": "query",
+            "name": "crop",
+            "type": "string",
+            "required": false,
+            "x-ms-summary": "Crop (EPPO code or name)",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "in": "query",
+            "name": "target",
+            "type": "string",
+            "required": false,
+            "x-ms-summary": "Pest or disease (EPPO code or name)",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "type": "string",
+            "required": false,
+            "x-ms-summary": "Country code (ISO 2 letters)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching products",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productId}/registrations": {
+      "get": {
+        "operationId": "getProductRegistrations",
+        "summary": "Registrations of a product by country",
+        "description": "Registrations per country with status, evidence and authorized uses, plus the search coverage per target market. Coverage outcome not_found means searched without result, not \"not registered\".",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "type": "string",
+            "required": true,
+            "x-ms-summary": "Product id"
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "type": "string",
+            "required": false,
+            "x-ms-summary": "Country code (ISO 2 letters)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registrations",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Registration"
+                  }
+                },
+                "coverage": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/CountryCoverage"
+                  }
+                },
+                "warnings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "disclaimer": {
+                  "type": "string",
+                  "x-ms-summary": "Disclaimer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown product id. Not proof of no registration."
+          }
+        }
+      }
+    },
+    "/compare": {
+      "get": {
+        "operationId": "compareProductUses",
+        "summary": "Compare authorized uses between countries",
+        "description": "Compares crops, targets, doses and restrictions of one product between countries, one column per country, never merged.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "productId",
+            "type": "string",
+            "required": true,
+            "x-ms-summary": "Product id"
+          },
+          {
+            "in": "query",
+            "name": "countries",
+            "type": "string",
+            "required": true,
+            "x-ms-summary": "Country codes, comma-separated (e.g. FR,CA)"
+          },
+          {
+            "in": "query",
+            "name": "crop",
+            "type": "string",
+            "required": false,
+            "x-ms-summary": "Crop filter",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "in": "query",
+            "name": "target",
+            "type": "string",
+            "required": false,
+            "x-ms-summary": "Target filter",
+            "x-ms-visibility": "advanced"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comparison with evidence",
+            "schema": {
+              "$ref": "#/definitions/ComparisonResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AskRequest": {
+      "type": "object",
+      "required": [
+        "question"
+      ],
+      "properties": {
+        "question": {
+          "type": "string",
+          "x-ms-summary": "Question"
+        },
+        "language": {
+          "type": "string",
+          "default": "fr",
+          "x-ms-summary": "Answer language (fr or en)",
+          "x-ms-visibility": "advanced"
+        }
+      }
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "evidenceId": {
+          "type": "string"
+        },
+        "sourceId": {
+          "type": "string"
+        },
+        "sourceName": {
+          "type": "string",
+          "x-ms-summary": "Source"
+        },
+        "sourceUrl": {
+          "type": "string"
+        },
+        "sourceRecordUrl": {
+          "type": "string",
+          "x-nullable": true,
+          "x-ms-summary": "Record URL"
+        },
+        "collectedAt": {
+          "type": "string",
+          "format": "date-time",
+          "x-ms-summary": "Collected at"
+        },
+        "validationStatus": {
+          "type": "string",
+          "x-ms-summary": "Validation status",
+          "enum": [
+            "automatically_extracted",
+            "to_verify",
+            "validated",
+            "rejected",
+            "obsolete",
+            "source_unavailable"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "x-nullable": true
+        },
+        "isFrozenExtract": {
+          "type": "boolean"
+        },
+        "isSynthetic": {
+          "type": "boolean"
+        },
+        "excerpt": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "CountryCoverage": {
+      "type": "object",
+      "properties": {
+        "countryCode": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "found",
+            "not_found",
+            "source_unavailable",
+            "not_covered"
+          ]
+        },
+        "sourceIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lastCollectedAt": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "searchedTerms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "Fact": {
+      "type": "object",
+      "properties": {
+        "factId": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "x-nullable": true,
+          "description": "Value as text."
+        },
+        "valueOriginal": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "countryCode": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "validationStatus": {
+          "type": "string"
+        },
+        "evidenceIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string"
+        },
+        "commercialName": {
+          "type": "string"
+        },
+        "activeEntityNormalized": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "isLpcProduct": {
+          "type": "boolean"
+        },
+        "isSynthetic": {
+          "type": "boolean"
+        }
+      }
+    },
+    "AuthorizedUse": {
+      "type": "object",
+      "properties": {
+        "useId": {
+          "type": "string"
+        },
+        "cropOriginal": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "cropNormalized": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "eppoCropCode": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "targetOriginal": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "targetNormalized": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "eppoTargetCode": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "doseValue": {
+          "type": "number",
+          "x-nullable": true
+        },
+        "doseUnitOriginal": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "doseUnitNormalized": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "restrictionsOriginal": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "evidence": {
+          "$ref": "#/definitions/Evidence"
+        }
+      }
+    },
+    "Registration": {
+      "type": "object",
+      "properties": {
+        "registrationId": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "authorityName": {
+          "type": "string"
+        },
+        "registrationNumber": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "statusOriginal": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "statusNormalized": {
+          "type": "string",
+          "enum": [
+            "active",
+            "expired",
+            "withdrawn",
+            "pending",
+            "unknown"
+          ]
+        },
+        "expirationDate": {
+          "type": "string",
+          "format": "date",
+          "x-nullable": true
+        },
+        "productNameOriginal": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "uses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AuthorizedUse"
+          }
+        },
+        "evidence": {
+          "$ref": "#/definitions/Evidence"
+        }
+      }
+    },
+    "ComparisonResponse": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string"
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "registrations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Registration"
+          }
+        },
+        "coverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountryCoverage"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disclaimer": {
+          "type": "string",
+          "x-ms-summary": "Disclaimer"
+        }
+      }
+    },
+    "SuggestedQuestion": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        }
+      }
+    },
+    "Answer": {
+      "type": "object",
+      "properties": {
+        "answer": {
+          "type": "string",
+          "x-ms-summary": "Answer",
+          "description": "Conclusion with its uncertainty. Quote it with its sources and validation status."
+        },
+        "intent": {
+          "type": "string",
+          "x-ms-summary": "Detected intent"
+        },
+        "answerStatus": {
+          "type": "string",
+          "x-ms-summary": "Answer status"
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        },
+        "coverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountryCoverage"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Evidence"
+          }
+        },
+        "suggestedQuestions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SuggestedQuestion"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disclaimer": {
+          "type": "string",
+          "x-ms-summary": "Disclaimer"
+        }
+      }
+    }
+  }
+}
