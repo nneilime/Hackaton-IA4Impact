@@ -1,0 +1,21 @@
+[
+  "tests/test_backend.py::test_analyze_request_cadrage_example",
+  "tests/test_backend.py::test_analyze_request_missing_info",
+  "tests/test_backend.py::test_confidence_score_calculation",
+  "tests/test_backend.py::test_train_engine_search_and_jauge",
+  "tests/test_backend.py::test_travel_extractor_heuristic_fallback",
+  "tests/test_backend.py::test_travel_extractor_mock",
+  "tests/test_backend.py::test_whisper_model_configuration",
+  "tests/test_frontend_contract.py::test_clarification_accumulates_and_does_not_invent_origin",
+  "tests/test_frontend_contract.py::test_historical_trains_require_opt_in",
+  "tests/test_frontend_contract.py::test_invalid_and_spoken_dates_and_count_corrections",
+  "tests/test_frontend_contract.py::test_invalid_projects_rejected[change0]",
+  "tests/test_frontend_contract.py::test_invalid_projects_rejected[change1]",
+  "tests/test_frontend_contract.py::test_invalid_projects_rejected[change2]",
+  "tests/test_frontend_contract.py::test_invalid_selected_train_rejected",
+  "tests/test_frontend_contract.py::test_structured_session_summary_reservation_and_feedback",
+  "tests/test_frontend_contract.py::test_train_pair_persists_and_route_change_invalidates",
+  "tests/test_frontend_contract.py::test_unknown_destination_in_specification_example",
+  "tests/test_frontend_contract.py::test_unknown_distance_and_duration_are_not_invented",
+  "tests/test_llm.py::test_extracts_station_date_theme"
+]
