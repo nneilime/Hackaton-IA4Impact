@@ -1,0 +1,263 @@
+=== LISEZ_MOI_Enedis.docx ===
+
+HACKATHON LA MÊLÉE 2026
+LISEZ-MOI DU DÉFI ENEDIS
+Ressource → Incident → Clients rétablis
+1. Contexte Enedis
+Lors d'une tempête, d'un épisode de neige, d'inondations, d'orages ou de canicule, plusieurs incidents peuvent apparaître en parallèle. Pour Enedis, l'enjeu est de garantir la sécurité, prioriser les situations et mobiliser au bon endroit les équipes et moyens disponibles afin de réalimenter les clients le plus rapidement possible.
+Les informations arrivent progressivement et évoluent pendant la crise.
+Les ressources sont limitées, localisées, dotées de compétences et soumises à des règles de travail et de repos.
+Les incidents n'ont pas tous le même impact : clients coupés, clients sensibles, territoire, accessibilité, risque réseau.
+La décision doit rester compréhensible et pilotée par l'humain.
+2. L’ambition du défi
+Construire un démonstrateur d’aide à la décision capable de simuler une crise, anticiper et mettre à jour le placement des ressources, proposer des affectations et expliquer les arbitrages réalisés.
+VOIRConsolider la situation : incidents, réseau, clients, ressources.
+PRÉVOIRProjeter l’évolution et détecter les zones de tension ou de saturation.
+OPTIMISERRecommander le meilleur placement et les meilleures affectations.
+3. Périmètre fonctionnel
+Mode préparation : proposer un prépositionnement des équipes à partir d'incidents prévus ou d'un scénario météo.
+Mode jour J : intégrer les incidents réalisés, la disponibilité réelle et recalculer la stratégie au fil de l'eau.
+Mode rejeu : comparer plusieurs stratégies sur une crise historique ou simulée.
+Distinguer si utile la localisation/diagnostic, la réalimentation provisoire et le dépannage définitif.
+4. Données mises à disposition
+poste.csv
+Postes issus de l’extract open data fourni, filtrés sur l’Ariège, la Haute-Garonne et le Gers. Une ligne représente un poste. La commune et les coordonnées proviennent directement de l’extract. Le nombre de clients du poste est généré entre 5 et 150.
+insee.csv
+Référentiel simplifié des communes présentes dans poste.csv. Les coordonnées communales correspondent au centroïde moyen des postes de la commune dans l’extract fourni.
+coupures.csv
+Incidents simulés relocalisés sur les postes du périmètre. Le format reprend cause, durée de dépannage gammée entre 2 et 8h de manière aléatoire. Les incidents par poste sont générés aléatoirement avec un barycentre sur le Comminges, Gers et Ariège pour se rapprocher de la réalité.
+agents.csv
+Vingt sites opérationnels synthétiques répartis entre les trois départements. Chaque site comporte 1 à 5 équipes en function de la taille de nos sites.
+Relation entre les fichiers
+poste.id_poste ← coupures.id_poste
+poste.code_insee ← insee.code_insee
+agents.latitude / longitude permettent de calculer les distances vers poste.latitude / longitude
+5. Modélisation minimale attendue
+Le problème est volontairement simplifié autour de quatre objets et d’une chaîne de valeur directe. Une modélisation en programmation orientée objet est conseillée sur la base des concepts/objets et données fournies suivants :
+Objet
+Fichier fourni
+Données fournies
+Attributs à prendre en compte
+Réseau/Poste électrique
+poste.csv
+Identifiant  poste, commune, latitude, longitude, clients postes, présence clients sensibles
+Position, nombre de clients, risque, clients sensibles ou enjeux territoriaux
+Incident
+coupures.csv
+poste, date, cause, durée de dépannage, clients impactés (cf. poste.csv)
+Localisation, début, état, durée dépannage, cause si disponible
+Ressource/équipe
+agents.csv
+site de départ, équipes, position initiale
+Position à l’instant, compétences, disponibilité, temps de travail, heure estimée de libération
+Territoire
+insee.csv
+commune, département, coordonnées, nombre de postes
+Scénario
+Assemblage du réseau, de la crise et des ressources à chaque instant
+Décision
+Prépositionnement, affectation, réaffectation ou maintien en réserve
+6. En mode crise, boucle de décision T1 à T5
+T1  Lire les nouveaux incidents et mettre à jour les incidents non résolus.
+T2  Identifier les équipes disponibles et leur position de départ ou de fin d’intervention.
+T3  Calculer une priorité par incident à partir des clients impactés, du temps de trajet et des durées estimées.
+T4  Affecter une équipe à un incident, simuler temps de déplacement et reprendre temps de gamme dépannage.
+T5  Rétablir les clients de l’incident résolu, libérer ou repositionner l’équipe, puis recommencer la boucle.
+7. Fonction objectif
+Objectif principal : maximiser le nombre de clients rétablis le plus tôt possible entre T1 et T5.
+Formulation proposée : maximiser Σ Nbclients_rétablis(Ni) × Temps de Coupure totale (Ti), avec Temps de coupure total Ti = Temps d’attente + Temps de route + Temps de dépannage.
+Une équipe ne traite qu’un incident à la fois.
+Un incident n’est résolu qu’après les phases de trajet et dépannage.
+Les clients sont considérés comme rétablis à la résolution de l’incident.
+La sécurité et les contraintes de disponibilité priment sur la fonction objectif.
+La fonction objectif est à ajuster et à justifier. Elle peut être enrichie par des pénalités ou priorités métier :
+Impact client et durée de coupure : Clients sensibles.
+Temps de travail, repos et continuité de prise en charge.
+Distance ou temps de trajet jusqu'à l'incident.
+Saturation : incidents en attente lorsque toutes les ressources sont engagées.
+8. Livrables attendus
+1. Démonstrateur fonctionnel
+Simulation ou rejeu d'une crise sur plusieurs pas de temps.
+Mise à jour dynamique des incidents et des ressources.
+2. Moteur de recommandation
+Prépositionnement et/ou affectation des équipes.
+Comparaison à une stratégie de référence : distance seule, premier arrivé ou règle métier simple.
+3. Visualisation
+Carte, timeline ou tableau de bord montrant incidents, équipes, saturation et décisions.
+Lecture compréhensible de l'évolution de la crise.
+4. Explicabilité
+Pour chaque recommandation : facteurs déterminants, compromis et niveau de confiance ou limites.
+5. Code et documentation
+Python recommandé, dépôt Git, README, instructions d'exécution, architecture, hypothèses et limites.
+9. Critères d’évaluation
+Critère
+Ce qui sera regardé
+Pertinence métier
+La solution répond au défi et respecte la décision humaine.
+Performance
+La stratégie améliore un ou plusieurs indicateurs par rapport à une reference : NiTi.
+Robustesse
+Le prototype gère les aléas/contraintes (ex : 50% des équipes plus disponible après 48h, 2 crises successives), la saturation.
+Explicabilité
+Les recommandations sont compréhensibles et contestables.
+Qualité technique
+Code structuré, reproductible, paramétrable et documenté.
+Expérience utilisateur
+La visualisation permet de comprendre et piloter la situation.
+10. Bonus
+Stress test avec peu d'équipes et beaucoup d'incidents.
+Optimisation robuste ou multi-objectifs.
+Estimation de l'incertitude sur les temps de trajet ou dépannage.
+Scénarios différenciés : mode normal, multi-pannes et crise.
+Analyse des leviers : nombre d'équipes, prépositionnement initial, ressources externes, moyens mobiles de réalimentation.
+11. Garde-fous
+La sécurité prime sur l'optimisation.
+L'outil recommande, le responsable métier décide.
+Aucune donnée personnelle réelle n'est nécessaire.
+Les limites, biais et hypothèses doivent être clairement restitués.
+12. Point de départ technique suggéré
+Langage : Python.
+Optimisation : heuristique, recherche opérationnelle, algorithme génétique, apprentissage par renforcement simple ou approche inspirée des travaux OptimCells.
+Simulation : pas de temps configurable, par exemple 30 minutes.
+Visualisation : Streamlit, Dash, notebook, carte web ou autre restitution démontrable.
+La question à garder en tête
+Si plusieurs territoires sont touchés et que toutes les équipes ne peuvent pas partir partout, où les positionner et à quels incidents les affecter pour rétablir le plus vite possible, en sécurité et en gardant la décision explicable ?
+
+
+=== Hackathon_2026_PITCH_Enedis.pptx (Root) ===
+
+--- Slide 1 ---
+DÉFI ENEDIS
+Optimiser le placement des ressources en situation de crise climatique
+Rétablir l’électricité toujours plus vite pour nos clients et territoires
+Hackathon La Mêlée
+9 et 10 octobre 2026
+--- Slide 2 ---
+Le défi : décider vite dans une situation qui évolue
+De la préparation de crise aux affectations du jour J
+AVANT
+Incidents prévus
+Ressources mobilisables
+Prépositionnement
+PENDANT
+Incidents réalisés
+Disponibilités réelles
+Réaffectation continue
+OBJECTIF
+Prioriser les incidents avec un fort nombre de clients, les clients sensibles
+Réduire les durées de coupure
+Garder la décision explicable
+La sécurité prime. L’outil recommande, le responsable métier décide.
+Hackathon La Mêlée • 9–10 octobre 2026
+2
+--- Slide 3 ---
+L’ambition : VOIR, PRÉVOIR, OPTIMISER
+Un démonstrateur dynamique, métier et explicable
+VOIR
+Consolider incidents, réseau, clients et ressources
+PRÉVOIR
+Projeter les tensions, disponibilités et saturations
+OPTIMISER
+Recommander prépositionnement et affectations
+Arbitrages à rendre visibles
+impact clients
+distance / trajet
+compétences
+temps de dépannage (temps de gamme)
+Hackathon La Mêlée • 9–10 octobre 2026
+3
+--- Slide 4 ---
+Le terrain de jeu et les livrables
+Une solution démontrable en 48 heures
+DONNÉES
+● Réseau simplifié / poches - postes
+● Incidents et impacts nombre de clients
+● Ressources, positions, compétences
+● Hypothèses de trajet et dépannage
+RENDU
+● Démonstrateur Python
+● Moteur de recommandation
+● Carte, timeline ou tableau de bord
+● README, hypothèses et limites
+ÉVALUATION
+● Pertinence métier
+● Performance vs stratégie de référence
+● Robustesse et saturation
+● Explicabilité et qualité UX
+Le bonus : un stress test où peu d’équipes doivent traiter beaucoup d’incidents
+Hackathon La Mêlée • 9–10 octobre 2026
+4
+
+
+=== Hackathon_2026_PITCH_Enedis.pptx (Challenge folder) ===
+
+--- Slide 1 ---
+DÉFI ENEDIS
+Optimiser le placement des
+ressources en situation de crise
+climatique
+Tempêtes, orages, vents violents : renforcer l’aide à la décision pour rétablir l’électricité toujours plus vite.
+Hackathon La Mêlée
+9 et 10 octobre 2026
+ALÉA CLIMATIQUE
+RÉSEAU
+COORDINATION
+--- Slide 2 ---
+Le défi : décider vite dans une situation qui évolue
+De la préparation de crise aux affectations du jour J
+AVANT
+Incidents prévus
+Ressources mobilisables
+Prépositionnement
+PENDANT
+Incidents réalisés
+Disponibilités réelles
+Réaffectation continue
+OBJECTIF
+Prioriser les incidents avec un fort nombre de clients, les clients sensibles
+Réduire les durées de coupure
+Garder la décision explicable
+La sécurité prime. L’outil recommande, le responsable métier décide.
+Hackathon La Mêlée • 9–10 octobre 2026
+2
+--- Slide 3 ---
+L’ambition : VOIR, PRÉVOIR, OPTIMISER
+Un démonstrateur dynamique, métier et explicable
+Hackathon La Mêlée • 9–10 octobre 2026
+3
+VOIR
+Consolider incidents, réseau,
+clients et ressources
+PRÉVOIR
+Projeter les tensions charges / ressources,
+disponibilités et saturations
+OPTIMISER
+Recommander prépositionnements
+et affectations
+Arbitrages à rendre visibles
+Impact clients
+Distance / trajet
+Compétences
+Temps de dépannage
+Un vrai sujet développeur : optimisation, simulation, géospatial, dataviz et aide à la décision.
+--- Slide 4 ---
+Le terrain de jeu et les livrables
+Une solution démontrable en 48 heures
+Hackathon La Mêlée • 9–10 octobre 2026
+4
+DONNÉES
+Réseau simplifié / poches - postes
+Incidents et impacts clients
+Ressources, positions, compétences
+Hypothèses de trajet et dépannage
+RENDU
+Démonstrateur Python
+Moteur de recommandation
+Carte, timeline ou tableau de bord
+README, hypothèses et limites
+ÉVALUATION
+Pertinence métier
+Performance vs stratégie de référence
+Robustesse en situation contrainte
+Explicabilité et qualité UX
+À vous de construire le co-pilote de la crise climatique de demain.
