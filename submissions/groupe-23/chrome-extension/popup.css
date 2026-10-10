@@ -1,0 +1,35 @@
+/* Même palette et typographie que le panneau Figma de Maya. */
+* { box-sizing: border-box; }
+body {
+  width: 310px;
+  margin: 0;
+  background: #f6f4f4;
+  color: #242424;
+  font: 12px Arial, sans-serif;
+}
+main { padding: 22px; }
+header { display: flex; align-items: center; gap: 11px; margin-bottom: 24px; }
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #202020;
+}
+h1 { margin: 0; font-size: 15px; line-height: 22.5px; }
+header p { margin: 3px 0 0; font-size: 10px; line-height: 15px; color: #6c6c6c; }
+button {
+  width: 100%;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  background: #202020;
+  font: inherit;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.5; cursor: wait; }
+button:focus-visible { outline: 2px solid #2fa45b; outline-offset: 3px; }
+#status { margin: 12px 0 0; color: #686868; font-size: 10px; line-height: 16px; }

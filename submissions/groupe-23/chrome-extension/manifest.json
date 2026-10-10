@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "IA for Impact — Maya",
+  "version": "0.6.0",
+  "description": "Prépare et préremplit une réclamation ou un projet de crédit immobilier.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Préparer ma réclamation"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.caisse-epargne.fr/*"
+      ],
+      "js": [
+        "shared.js",
+        "mortgage-contract.js",
+        "adapter.js",
+        "mortgage-adapter.js",
+        "panel-view.js",
+        "markdown.js",
+        "panel.js",
+        "search.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/search.svg",
+        "assets/microphone.svg",
+        "assets/chat-spark-small.svg",
+        "assets/chat-spark-large.svg",
+        "assets/chat-microphone.svg",
+        "assets/chat-send.svg",
+        "assets/vocal-wave.svg",
+        "assets/vocal-home.svg",
+        "assets/vocal-halo.svg",
+        "assets/vocal-microphone.svg",
+        "assets/vocal-mute.svg",
+        "assets/vocal-pause.svg",
+        "assets/vocal-end.svg",
+        "assets/vocal-shield.svg"
+      ],
+      "matches": [
+        "https://www.caisse-epargne.fr/*"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "https://clementpardon.app.n8n.cloud/*"
+  ]
+}
