@@ -1,0 +1,523 @@
+{
+  "_lisez_moi": "Réponses pré-rédigées aux questions simples : servies par le serveur SANS appel au modèle (0 jeton). Chaque entrée : id, declencheurs (expressions régulières sur le texte normalisé : minuscules, sans accents, apostrophes remplacées par des espaces), reponse (**gras** et listes « - » acceptés), suggestions (questions proposées ensuite), statut de la source (constat, hypothese, exemple). Variables remplies depuis data/finance.db : {taux:serie}, {plafond:PRODUIT}, {tarif:mot du service}. Données fictives du prototype.",
+  "reponses": [
+    {
+      "id": "taux_livret_a",
+      "declencheurs": ["taux.{0,25}livret a\\b", "livret a\\b.{0,30}(taux|rapporte|rend|interet|pourcentage)", "combien rapporte.{0,15}livret a\\b"],
+      "reponse": "Le **Livret A** rapporte actuellement **{taux:livret_a}** par an. Les intérêts ne sont pas imposés et l'argent reste disponible à tout moment. Le taux est révisé deux fois par an, en février et en août.",
+      "suggestions": ["Quel sera le taux du Livret A en 2027 ?", "Quel est le plafond du Livret A ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "plafond_livret_a",
+      "declencheurs": ["plafond.{0,25}livret a\\b", "livret a\\b.{0,30}(plafond|maximum|max\\b)", "combien.{0,30}(mettre|placer|deposer).{0,20}livret a\\b"],
+      "reponse": "Vous pouvez verser jusqu'à **{plafond:LIVRET_A}** sur un Livret A (hors intérêts, qui peuvent faire dépasser ce plafond). Un seul Livret A par personne. Au-delà, le **LDDS** (plafond {plafond:LDDS}) rapporte le même taux.",
+      "suggestions": ["Quelle différence entre Livret A et LDDS ?", "Que faire quand mon Livret A est plein ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "livret_a_definition",
+      "declencheurs": ["(c est quoi|qu est ce qu|definition|a quoi sert).{0,20}livret a\\b"],
+      "reponse": "Le **Livret A** est un livret d'épargne sans risque : votre argent est disponible à tout moment, les intérêts ne sont pas imposés et il n'y a pas de frais. Il rapporte aujourd'hui **{taux:livret_a}** par an, dans la limite de **{plafond:LIVRET_A}** versés. C'est l'outil idéal pour l'épargne de précaution.",
+      "suggestions": ["Ouvrir un Livret A", "Combien garder en épargne de précaution ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "ldds",
+      "declencheurs": ["\\bldds\\b", "developpement durable.{0,20}solidaire", "livret.{0,10}developpement durable"],
+      "reponse": "Le **LDDS** (Livret de développement durable et solidaire) rapporte le même taux que le Livret A, soit **{taux:livret_a}** par an, sans impôt. Son plafond est de **{plafond:LDDS}**. L'argent placé finance la transition énergétique et l'économie solidaire.",
+      "suggestions": ["Quelle différence entre Livret A et LDDS ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "livret_a_vs_ldds",
+      "declencheurs": ["(difference|choisir|mieux).{0,40}livret a\\b.{0,20}ldds", "(difference|choisir|mieux).{0,40}ldds.{0,20}livret a\\b"],
+      "reponse": "Le Livret A et le LDDS ont **le même taux** ({taux:livret_a}) et la même fiscalité (aucun impôt). Les différences :\n- plafond : {plafond:LIVRET_A} pour le Livret A, {plafond:LDDS} pour le LDDS\n- le Livret A peut être ouvert à un enfant, le LDDS est réservé aux majeurs\n- l'argent du LDDS finance surtout la transition énergétique\nBeaucoup de clients remplissent d'abord le Livret A, puis le LDDS.",
+      "suggestions": ["Que faire quand mon Livret A est plein ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "livret_plein",
+      "declencheurs": ["livret a\\b.{0,20}(plein|rempli|au plafond)", "(plafond atteint|depasse le plafond)"],
+      "reponse": "Quand votre Livret A est plein, plusieurs options :\n- le **LDDS** : même taux ({taux:livret_a}), jusqu'à {plafond:LDDS}\n- le **LEP** si vos revenus le permettent : {taux:lep}\n- le **Livret B** : sans plafond, {taux:livret_b}, intérêts imposés\n- pour un horizon plus long, l'**assurance vie** ou le **PEL**\nUn conseiller peut vous aider à choisir selon vos projets.",
+      "suggestions": ["Simuler une épargne sur 5 ans", "Être conseillé sur mon épargne"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "lep",
+      "declencheurs": ["\\blep\\b", "livret d epargne populaire"],
+      "reponse": "Le **LEP** (Livret d'épargne populaire) est le livret réglementé le mieux rémunéré : **{taux:lep}** par an, sans impôt, jusqu'à **{plafond:LEP}**. Il est réservé aux personnes dont le revenu fiscal de référence est sous un plafond (environ 22 800 € pour une personne seule). Il faut fournir son avis d'imposition.",
+      "suggestions": ["Quel sera le taux du LEP en 2027 ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "pel",
+      "declencheurs": ["\\bpel\\b", "plan (d )?epargne logement"],
+      "reponse": "Le **PEL** (Plan épargne logement) rapporte **{taux:pel}** par an pour les plans ouverts aujourd'hui, et ce taux est garanti pour toute la durée du plan. Il faut verser au moins 540 € par an, et laisser l'argent au moins 4 ans. Plafond : **{plafond:PEL}**. Les intérêts sont imposés (prélèvement de 30 %).",
+      "suggestions": ["Simuler un PEL sur 4 ans", "Quelle différence entre PEL et CEL ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "cel",
+      "declencheurs": ["\\bcel\\b", "compte epargne logement"],
+      "reponse": "Le **CEL** (Compte épargne logement) est un livret qui rapporte **{taux:cel}** par an, avec un plafond de **{plafond:CEL}**. L'argent reste disponible. Il peut ouvrir droit à un prêt immobilier. Les intérêts sont imposés (prélèvement de 30 %).",
+      "suggestions": ["Quelle différence entre PEL et CEL ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "pel_vs_cel",
+      "declencheurs": ["difference.{0,30}(pel.{0,10}cel|cel.{0,10}pel)"],
+      "reponse": "- **CEL** : un livret, argent disponible, taux variable ({taux:cel}), plafond {plafond:CEL}.\n- **PEL** : un plan bloqué au moins 4 ans, versements réguliers obligatoires, taux garanti ({taux:pel}), plafond {plafond:PEL}.\nLe PEL rapporte plus, mais l'argent est moins disponible.",
+      "suggestions": ["Simuler un PEL sur 4 ans"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "livret_jeune",
+      "declencheurs": ["livret jeune", "epargne.{0,20}(enfant|ado|adolescent|mineur)"],
+      "reponse": "Le **Livret Jeune** est réservé aux 12-25 ans. Il rapporte **{taux:livret_jeune}** par an, sans impôt, jusqu'à **{plafond:LIVRET_JEUNE}**. Avant 12 ans, on peut ouvrir un Livret A au nom de l'enfant.",
+      "suggestions": ["Ouvrir un compte pour mon enfant"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "livret_b",
+      "declencheurs": ["livret b\\b"],
+      "reponse": "Le **Livret B** est un livret Caisse d'Épargne sans plafond légal. Il rapporte **{taux:livret_b}** par an ; les intérêts sont imposés (prélèvement de 30 %). Il est utile quand vos livrets réglementés sont pleins.",
+      "suggestions": ["Que faire quand mon Livret A est plein ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "assurance_vie",
+      "declencheurs": ["(c est quoi|qu est ce qu|comment fonctionne|definition|principe).{0,25}assurance.vie", "assurance.vie.{0,20}(c est quoi|comment ca marche)"],
+      "reponse": "L'**assurance vie** est un placement pour le moyen et long terme (8 ans et plus, idéalement). Deux types de supports :\n- le **fonds euros** : capital garanti, rendement d'environ {taux:fonds_euros} l'an dernier\n- les **unités de compte** : plus de potentiel, mais la valeur peut baisser\nL'argent reste disponible, et la fiscalité devient avantageuse après 8 ans. Elle sert aussi à transmettre un capital à vos proches.",
+      "suggestions": ["Simuler une assurance vie sur 10 ans", "Être conseillé sur mon épargne"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "fonds_euros",
+      "declencheurs": ["fonds (en )?euros?"],
+      "reponse": "Le **fonds euros** est le support garanti de l'assurance vie : votre capital ne peut pas baisser. Son rendement est fixé chaque année ; il était d'environ **{taux:fonds_euros}** (net de frais de gestion, avant prélèvements sociaux).",
+      "suggestions": ["Quel sera le rendement des fonds euros en 2027 ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "per",
+      "declencheurs": ["\\bper\\b", "plan (d )?epargne retraite", "preparer.{0,10}retraite.{0,20}(c est quoi|comment)"],
+      "reponse": "Le **PER** (Plan d'épargne retraite) sert à préparer sa retraite. Les versements peuvent être déduits de vos revenus imposables (dans une limite), ce qui réduit vos impôts aujourd'hui. En contrepartie, l'argent est bloqué jusqu'à la retraite, sauf exceptions (achat de la résidence principale, accidents de la vie). À la sortie : capital, rente, ou les deux.",
+      "suggestions": ["Simuler un PER sur 20 ans", "Être conseillé sur ma retraite"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "pea",
+      "declencheurs": ["\\bpea\\b", "plan (d )?epargne en actions"],
+      "reponse": "Le **PEA** (Plan d'épargne en actions) permet d'investir en actions d'entreprises européennes. Après 5 ans, les gains ne sont plus soumis à l'impôt (seuls les prélèvements sociaux restent dus). Plafond des versements : **{plafond:PEA}**. Attention : la valeur peut baisser, c'est un placement à long terme.",
+      "suggestions": ["Simuler un PEA sur 10 ans"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "epargne_precaution",
+      "declencheurs": ["epargne de precaution", "(combien|quel montant).{0,30}(garder|mettre de cote|epargne de securite)"],
+      "reponse": "On conseille souvent de garder l'équivalent de **3 à 6 mois de dépenses** sur un placement disponible et sans risque (Livret A, LDDS, LEP). Cette réserve couvre les imprévus : panne, réparation, perte de revenus. Le reste peut aller vers des placements de plus long terme.",
+      "suggestions": ["Quel est le taux du Livret A ?", "Être conseillé sur mon épargne"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "taeg",
+      "declencheurs": ["\\btaeg\\b", "taux annuel effectif global"],
+      "reponse": "Le **TAEG** (taux annuel effectif global) est le coût total du crédit, exprimé en pourcentage par an. Il comprend les intérêts, les frais de dossier, les frais de garantie et l'assurance si elle est obligatoire. C'est le bon chiffre pour comparer deux offres de crédit.",
+      "suggestions": ["Simuler un crédit", "C'est quoi le taux d'usure ?"],
+      "statut": "constat"
+    },
+    {
+      "id": "taux_nominal",
+      "declencheurs": ["taux nominal", "difference.{0,20}taux.{0,20}taeg"],
+      "reponse": "Le **taux nominal** sert seulement à calculer les intérêts. Le **TAEG** ajoute tous les autres coûts obligatoires (frais de dossier, garantie, assurance obligatoire) : il est donc toujours un peu plus élevé. Pour comparer des offres, regardez le TAEG.",
+      "suggestions": ["Simuler un crédit"],
+      "statut": "constat"
+    },
+    {
+      "id": "taux_usure",
+      "declencheurs": ["taux d usure", "\\busure\\b"],
+      "reponse": "Le **taux d'usure** est le taux maximum autorisé par la loi pour un crédit : une banque ne peut pas prêter avec un TAEG plus élevé. Il est fixé chaque trimestre par la Banque de France, par type de crédit. Dans ce prototype (données fictives), il est de **{usure:immo_20_plus}** pour un prêt immobilier de 20 ans et plus.",
+      "suggestions": ["Simuler un prêt immobilier"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "endettement",
+      "declencheurs": ["taux d endettement", "\\b35 ?%", "endettement maxi", "combien.{0,15}(puis|peux).{0,10}emprunter.{0,5}$"],
+      "reponse": "Pour un crédit immobilier, vos mensualités de crédit (assurance comprise) ne doivent pas dépasser **35 % de vos revenus** nets. Exemple : avec 3 000 € de revenus par mois, 1 050 € de crédits au plus. La durée est limitée à 25 ans. Donnez-moi vos revenus et vos charges : je calcule votre capacité d'emprunt.",
+      "suggestions": ["Combien puis-je emprunter avec 3 000 € de revenus ?"],
+      "statut": "constat"
+    },
+    {
+      "id": "assurance_emprunteur",
+      "declencheurs": ["assurance (de pret|emprunteur|du pret|credit)", "assurance.{0,15}obligatoire.{0,20}(pret|credit)"],
+      "reponse": "L'**assurance emprunteur** rembourse le crédit en cas de décès, d'invalidité ou d'arrêt de travail. Elle est en pratique exigée pour un prêt immobilier, et facultative pour un crédit à la consommation. Vous pouvez choisir un autre assureur que la banque, à garanties équivalentes, et en changer à tout moment. Son coût dépend surtout de votre âge.",
+      "suggestions": ["Simuler un prêt immobilier"],
+      "statut": "constat"
+    },
+    {
+      "id": "delai_reflexion",
+      "declencheurs": ["delai de reflexion", "(combien de temps|delai).{0,30}(accepter|signer).{0,20}offre"],
+      "reponse": "Après avoir reçu une offre de **prêt immobilier**, la loi impose un **délai de réflexion de 10 jours** : vous ne pouvez pas l'accepter avant le 11e jour. Pour un **crédit à la consommation**, vous avez **14 jours** pour changer d'avis après la signature (délai de rétractation).",
+      "suggestions": ["Simuler un prêt immobilier"],
+      "statut": "constat"
+    },
+    {
+      "id": "retractation",
+      "declencheurs": ["retractation", "(annuler|changer d avis).{0,30}(credit|pret)"],
+      "reponse": "Pour un **crédit à la consommation**, vous disposez de **14 jours** après la signature pour vous rétracter, sans justification ni frais. Pour un **prêt immobilier**, il n'y a pas de rétractation, mais un délai de réflexion de 10 jours avant d'accepter l'offre.",
+      "suggestions": [],
+      "statut": "constat"
+    },
+    {
+      "id": "ptz",
+      "declencheurs": ["\\bptz\\b", "pret a taux zero", "taux zero"],
+      "reponse": "Le **PTZ** (prêt à taux zéro) est un prêt sans intérêts, aidé par l'État, pour acheter votre **première résidence principale**. Il dépend de vos revenus, de la zone et du type de logement, et finance une partie du projet seulement : il complète toujours un autre prêt. Un conseiller vérifie votre éligibilité.",
+      "suggestions": ["Simuler un prêt immobilier", "Parler à un conseiller"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "eco_ptz",
+      "declencheurs": ["eco.?ptz", "pret.{0,20}renovation energetique", "travaux.{0,20}(isolation|energetique).{0,20}(financer|pret)"],
+      "reponse": "L'**éco-prêt à taux zéro** finance sans intérêts des travaux de rénovation énergétique (isolation, chauffage, rénovation globale), jusqu'à 50 000 €. Le logement doit être une résidence principale achevée depuis plus de 2 ans, et les travaux réalisés par un artisan labellisé RGE.",
+      "suggestions": ["Simuler un prêt travaux"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "pret_relais",
+      "declencheurs": ["pret relais", "acheter avant (de )?vendre"],
+      "reponse": "Le **prêt relais** permet d'acheter un nouveau logement avant d'avoir vendu l'actuel. La banque avance une partie du prix de vente estimé (jusqu'à 70 % environ). Chaque mois, vous ne payez que les intérêts ; le capital est remboursé au moment de la vente, dans un délai de 1 à 2 ans.",
+      "suggestions": ["Simuler un prêt relais de 150 000 € sur 12 mois"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "remboursement_anticipe",
+      "declencheurs": ["remboursement anticipe", "rembourser.{0,20}(avant|plus tot|par anticipation)", "solder.{0,15}(pret|credit)"],
+      "reponse": "Vous pouvez rembourser votre crédit en avance, en totalité ou en partie. Des indemnités peuvent s'appliquer :\n- prêt immobilier : {tarif:anticipé du prêt immobilier}\n- crédit à la consommation : {tarif:anticipé d'un crédit}\nFaites la demande à votre conseiller ; il vous donne le montant exact.",
+      "suggestions": ["Parler à un conseiller"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "apport",
+      "declencheurs": ["apport (personnel)?", "(sans|pas d) apport"],
+      "reponse": "L'**apport personnel** est la somme que vous financez vous-même. Il n'est pas toujours obligatoire, mais il est conseillé de couvrir au moins les **frais de notaire et de garantie** (environ 10 % du prix). Un apport plus élevé permet souvent d'obtenir un meilleur taux.",
+      "suggestions": ["Combien puis-je emprunter ?", "Simuler un prêt immobilier"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "frais_notaire",
+      "declencheurs": ["frais de notaire", "frais d acquisition"],
+      "reponse": "Les **frais de notaire** (surtout des taxes) représentent environ **7 à 8 % du prix dans l'ancien** et **2 à 3 % dans le neuf**. Ils s'ajoutent au prix d'achat et sont en général payés avec votre apport.",
+      "suggestions": ["Combien puis-je emprunter ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "taux_immo_actuel",
+      "declencheurs": ["taux.{0,20}(immobilier|immo\\b)", "taux.{0,20}(pret|credit).{0,10}(maison|appartement|logement)", "(pret|credit) immobilier.{0,20}taux"],
+      "reponse": "Taux moyens actuels du crédit immobilier (hors assurance, données fictives du prototype) :\n- sur 15 ans : **{taux:immo_15}**\n- sur 20 ans : **{taux:immo_20}**\n- sur 25 ans : **{taux:immo_25}**\nVotre taux dépend de votre profil (revenus, apport, stabilité). Donnez-moi le montant et la durée : je fais une simulation.",
+      "suggestions": ["Simuler 200 000 € sur 20 ans", "Comment vont évoluer les taux immobiliers ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "taux_conso_actuel",
+      "declencheurs": ["taux.{0,20}(pret perso|pret personnel|credit conso|consommation|pret auto|credit auto)", "(pret perso|pret personnel|credit conso|pret auto|credit auto).{0,20}taux"],
+      "reponse": "Le taux moyen actuel d'un **prêt personnel** sur 3 à 5 ans est d'environ **{taux:conso}** (données fictives du prototype). Les prêts pour véhicule électrique bénéficient d'un taux réduit. Donnez-moi le montant et la durée : je calcule la mensualité et le coût total.",
+      "suggestions": ["Simuler 15 000 € sur 4 ans pour une voiture"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "renouvelable",
+      "declencheurs": ["credit renouvelable", "revolving", "reserve d argent"],
+      "reponse": "Le **crédit renouvelable** est une réserve d'argent utilisable à tout moment, qui se reconstitue à mesure que vous remboursez. Il est pratique mais **coûteux** : son taux est bien plus élevé qu'un prêt personnel. À réserver aux petites dépenses imprévues ; pour un projet, un prêt classique coûte moins cher.",
+      "suggestions": ["Simuler un prêt personnel"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "modulation",
+      "declencheurs": ["modul(er|ation).{0,20}mensualit", "(baisser|augmenter|reporter).{0,15}(mes )?mensualit"],
+      "reponse": "Avec un **prêt modulable**, vous pouvez, une fois par an après la première année, augmenter ou baisser vos mensualités (environ 30 % au plus) ou en reporter. Pour un prêt classique, la demande se fait auprès de votre conseiller, qui étudie votre situation.",
+      "suggestions": ["Parler à un conseiller"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "rib",
+      "declencheurs": ["\\brib\\b", "\\biban\\b", "releve d identite bancaire", "coordonnees bancaires"],
+      "reponse": "Votre **RIB** (avec votre IBAN) est disponible à tout moment :\n- dans l'appli **Banxo** : **Accès rapides**, puis **RIB/IBAN**\n- dans votre espace client, rubrique **Comptes**\n- au début de votre chéquier\nVous pouvez le télécharger ou le partager directement. Ne le confondez pas avec vos codes : un RIB peut être communiqué sans risque à un employeur ou un fournisseur.",
+      "suggestions": ["Qu'est-ce que Wero ?"],
+      "statut": "constat"
+    },
+    {
+      "id": "cloturer_compte",
+      "declencheurs": ["(cloturer|fermer|resilier|supprimer).{0,15}(mon |le |un )?compte", "cloture.{0,10}compte"],
+      "reponse": "La **clôture d'un compte** est gratuite. Faites la demande par écrit ou en agence, après avoir vérifié qu'aucune opération n'est en attente (prélèvements, chèques). Si vous changez de banque, la **mobilité bancaire** est plus simple : la nouvelle banque transfère vos prélèvements et virements et clôture l'ancien compte pour vous.",
+      "suggestions": ["Comment changer de banque ?", "Parler à un conseiller"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "mobilite",
+      "declencheurs": ["changer de banque", "mobilite bancaire", "transferer.{0,15}compte.{0,20}(banque|caisse)"],
+      "reponse": "Changer de banque est gratuit et simple grâce à la **mobilité bancaire** : vous signez un mandat, et la Caisse d'Épargne prévient vos employeurs et organismes, transfère vos prélèvements et virements, puis clôture l'ancien compte si vous le souhaitez. Comptez environ **22 jours ouvrés**.",
+      "suggestions": ["Ouvrir un compte", "Quelles sont vos offres de compte ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "offres_compte",
+      "declencheurs": ["(offres?|formules?).{0,15}(de )?compte", "(prix|tarif|cout).{0,20}(offre|formule) (initial|confort)"],
+      "reponse": "Trois offres principales (tarifs fictifs du prototype) :\n- **Initial** : l'essentiel, carte à autorisation systématique, {offre:INITIAL} par mois\n- **Confort Classic** : carte Visa Classic et assurances, {offre:CONFORT_CLASSIC} par mois\n- **Confort Premier** : carte Visa Premier, plafonds élevés, {offre:CONFORT_PREMIER} par mois\nIl existe aussi une offre pour les 18-25 ans ({offre:JEUNES} par mois).",
+      "suggestions": ["Ouvrir un compte", "Quelle différence entre Visa Classic et Visa Premier ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "frais_tenue",
+      "declencheurs": ["frais de tenue", "tenue de compte", "frais.{0,10}(mensuels|par mois).{0,10}compte"],
+      "reponse": "Les **frais de tenue de compte** sont de **{tarif:Tenue de compte}** (données fictives) hors offre groupée ; ils sont inclus dans les offres Confort. La brochure tarifaire de votre Caisse régionale fait foi.",
+      "suggestions": ["Quelles sont vos offres de compte ?", "Contester des frais"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "commission_intervention",
+      "declencheurs": ["commission d intervention", "frais d incident"],
+      "reponse": "La **commission d'intervention** est facturée quand la banque doit traiter une opération qui pose problème, par exemple un paiement alors que le compte est à découvert sans autorisation. Montant : **{tarif:Commission d'intervention}** (données fictives), plafonné à 80 € par mois. Si vous la jugez injustifiée, vous pouvez la contester.",
+      "suggestions": ["Contester des frais"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "decouvert",
+      "declencheurs": ["decouvert"],
+      "reponse": "Le **découvert autorisé** permet d'avoir un solde négatif pendant quelques jours, dans une limite fixée avec votre conseiller. Vous payez des intérêts seulement sur les jours à découvert (taux de {tarif:découvert autorisé}, fictif). Au-delà de l'autorisation, des frais d'incident peuvent s'appliquer.",
+      "suggestions": ["Parler à mon conseiller"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "plafond_carte",
+      "declencheurs": ["plafond.{0,20}carte", "(augmenter|relever|modifier).{0,15}plafond", "carte.{0,20}plafond"],
+      "reponse": "Vous pouvez **augmenter temporairement le plafond** de votre carte, gratuitement, dans l'appli **Banxo** : **Accès rapides**, puis **Plafond CB**. La hausse est immédiate et dure 30 jours au plus. Pour un changement durable, adressez-vous à votre conseiller.",
+      "suggestions": ["Quels sont les plafonds des cartes ?"],
+      "statut": "constat"
+    },
+    {
+      "id": "cartes_comparaison",
+      "declencheurs": ["(difference|comparer|choisir).{0,30}(visa|carte).{0,30}(premier|classic|infinite)", "(quelles?|les) cartes"],
+      "reponse": "Les cartes proposées (données fictives du prototype) :\n- **Carte à autorisation systématique** : {carte:SECURITE}\n- **Visa Classic** : {carte:VISA_CLASSIC}\n- **Visa Premier** : {carte:VISA_PREMIER}\n- **Visa Infinite** : {carte:VISA_INFINITE}\nPlus la carte est haut de gamme, plus les plafonds et les assurances sont élevés.",
+      "suggestions": ["Comment augmenter mon plafond ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "carte_avalee",
+      "declencheurs": ["carte.{0,20}(avalee|capturee|bloquee dans|restee dans)", "distributeur.{0,20}(garde|avale)"],
+      "reponse": "Si un distributeur a gardé votre carte :\n1. Si c'est un distributeur Caisse d'Épargne, contactez l'agence : la carte peut parfois être récupérée.\n2. Sinon, ou si vous avez un doute (distributeur suspect), faites **opposition** tout de suite.\n3. Une nouvelle carte est ensuite fabriquée (7 à 10 jours ouvrés).",
+      "suggestions": ["Faire opposition sur ma carte"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "paiement_refuse",
+      "declencheurs": ["(paiement|carte).{0,20}refuse", "carte.{0,15}(ne marche|ne fonctionne)"],
+      "reponse": "Un paiement par carte peut être refusé pour plusieurs raisons :\n- **plafond** de paiement atteint (vous pouvez l'augmenter dans l'appli Banxo)\n- **solde** insuffisant\n- code faux saisi 3 fois : la carte se bloque jusqu'à une saisie correcte dans un distributeur\n- paiement en ligne non validé avec **Sécur'Pass**\nSi rien de cela ne s'applique, votre conseiller peut vérifier.",
+      "suggestions": ["Comment augmenter mon plafond ?", "J'ai oublié le code de ma carte"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "apple_google_pay",
+      "declencheurs": ["apple pay", "google pay", "samsung pay", "payer avec (mon )?(telephone|iphone|smartphone|montre)"],
+      "reponse": "Vous pouvez payer avec votre téléphone ou votre montre grâce à **Apple Pay**, **Google Pay** ou **Samsung Pay**. Ajoutez votre carte depuis l'appli **Banxo** (rubrique **Cartes**) ou depuis le portefeuille de votre téléphone, puis validez avec Sécur'Pass. C'est gratuit et vos numéros de carte ne sont pas transmis aux commerçants.",
+      "suggestions": [],
+      "statut": "hypothese"
+    },
+    {
+      "id": "sans_contact",
+      "declencheurs": ["sans contact"],
+      "reponse": "Le **paiement sans contact** par carte est limité à **50 € par achat**. Par sécurité, votre code est demandé de temps en temps (après plusieurs paiements sans contact à la suite). Avec Apple Pay ou Google Pay, il n'y a pas de limite de 50 € car vous vous identifiez sur votre téléphone.",
+      "suggestions": [],
+      "statut": "constat"
+    },
+    {
+      "id": "etranger",
+      "declencheurs": ["(etranger|hors zone euro|voyage|vacances).{0,30}(frais|carte|retrait|payer)", "(frais|retrait|payer).{0,30}(etranger|hors zone euro)"],
+      "reponse": "Dans la **zone euro**, payer et retirer coûte comme en France. **Hors zone euro** (données fictives du prototype) :\n- paiement : {tarif:Paiement par carte hors zone euro}\n- retrait : {tarif:Retrait hors zone euro}\nLes cartes Visa Premier et Infinite incluent des assurances voyage. Pensez à vérifier votre plafond avant de partir.",
+      "suggestions": ["Comment augmenter mon plafond ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "wero",
+      "declencheurs": ["\\bwero\\b", "paylib", "envoyer de l argent.{0,20}(ami|proche|numero)"],
+      "reponse": "**Wero** permet d'envoyer et de recevoir de l'argent entre particuliers en quelques secondes, avec simplement un **numéro de téléphone** ou une adresse e-mail. C'est gratuit et intégré à l'appli **Banxo** (Accès rapides, **Wero**). Il remplace Paylib.",
+      "suggestions": ["Faire un virement instantané"],
+      "statut": "constat"
+    },
+    {
+      "id": "virement_instantane",
+      "declencheurs": ["virement instantane", "virement immediat"],
+      "reponse": "Le **virement instantané** arrive sur le compte du bénéficiaire en **10 secondes**, 24 h sur 24, 7 jours sur 7. Il est gratuit en ligne. Attention : une fois envoyé, il ne peut pas être annulé. Vérifiez bien le bénéficiaire.",
+      "suggestions": ["Ajouter un bénéficiaire de virement"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "delai_virement",
+      "declencheurs": ["(delai|combien de temps|quand).{0,30}virement", "virement.{0,20}(arrive|recu|delai)"],
+      "reponse": "Un **virement classique** en euros arrive en général le **jour ouvré suivant**. Un **virement instantané** arrive en 10 secondes, même le week-end. Un virement vers un nouveau bénéficiaire peut nécessiter son activation d'abord (immédiate avec Sécur'Pass).",
+      "suggestions": ["Ajouter un bénéficiaire de virement"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "securpass",
+      "declencheurs": ["secur.?pass"],
+      "reponse": "**Sécur'Pass** est le service d'authentification de l'appli **Banxo**. Il remplace les codes reçus par SMS : vous validez vos paiements en ligne, l'ajout de bénéficiaires ou vos connexions directement sur votre téléphone, avec votre code Sécur'Pass ou votre empreinte. Il s'active dans l'appli.",
+      "suggestions": ["Ajouter un bénéficiaire de virement"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "cheque_banque",
+      "declencheurs": ["cheque de banque"],
+      "reponse": "Un **chèque de banque** est un chèque garanti par la banque, souvent demandé pour l'achat d'un véhicule d'occasion. Il se commande auprès de votre agence ; coût : {tarif:Chèque de banque} (donnée fictive). Prévoyez quelques jours de délai.",
+      "suggestions": [],
+      "statut": "hypothese"
+    },
+    {
+      "id": "chequier",
+      "declencheurs": ["chequier", "carnet de cheque", "commander.{0,10}cheques?"],
+      "reponse": "Vous pouvez commander un **chéquier** gratuitement dans votre espace client ou l'appli Banxo, ou auprès de votre agence. Il est envoyé à domicile ou mis à disposition en agence.",
+      "suggestions": [],
+      "statut": "hypothese"
+    },
+    {
+      "id": "encaisser_cheque",
+      "declencheurs": ["(deposer|encaisser|remettre).{0,15}cheque", "remise de cheque"],
+      "reponse": "Pour **encaisser un chèque** : remplissez un bordereau de remise (dans le chéquier ou en agence), signez le chèque au dos, puis déposez-le dans une boîte de dépôt en agence ou envoyez-le par courrier. L'argent est en général disponible sous quelques jours ouvrés.",
+      "suggestions": [],
+      "statut": "hypothese"
+    },
+    {
+      "id": "prelevement",
+      "declencheurs": ["prelevement.{0,30}(conteste|rembours|annul|opposition|bloquer|refuser)", "(contester|annuler|bloquer|refuser).{0,15}prelevement"],
+      "reponse": "Pour un **prélèvement** que vous aviez autorisé, vous pouvez demander son remboursement dans les **8 semaines** suivant le débit, sans justification. S'il n'a jamais été autorisé, le délai est de **13 mois**. Vous pouvez aussi faire opposition à un prélèvement à venir, gratuitement, dans votre espace client.",
+      "suggestions": ["Faire une réclamation"],
+      "statut": "constat"
+    },
+    {
+      "id": "phishing",
+      "declencheurs": ["phishing", "hameconnage", "(sms|mail|e-mail|courriel).{0,20}(suspect|bizarre|frauduleux|faux)", "faux (sms|mail)"],
+      "reponse": "Un message vous semble suspect ? **Ne cliquez sur aucun lien** et ne communiquez aucune information. La Caisse d'Épargne ne vous demandera **jamais** vos codes, mots de passe ou un code reçu par SMS, ni par message, ni par téléphone. Supprimez le message. Si vous avez déjà donné des informations, faites opposition sur votre carte et prévenez votre conseiller.",
+      "suggestions": ["Faire opposition sur ma carte", "J'ai reçu un appel d'un faux conseiller"],
+      "statut": "constat"
+    },
+    {
+      "id": "faux_conseiller",
+      "declencheurs": ["faux conseiller", "(appel|appele).{0,30}(banque|conseiller).{0,30}(suspect|bizarre|code|valider)"],
+      "reponse": "Attention à l'arnaque au **faux conseiller** : un escroc se fait passer pour la banque et vous demande de valider une opération « pour la bloquer ». **Raccrochez**. Votre conseiller ne vous demandera jamais de valider une opération sur Sécur'Pass ni de donner un code. En cas de doute, rappelez vous-même votre agence avec le numéro habituel.",
+      "suggestions": ["Faire opposition sur ma carte", "Faire une réclamation"],
+      "statut": "constat"
+    },
+    {
+      "id": "horaires",
+      "declencheurs": ["horaires?", "(heure|quand).{0,15}(ouvert|ouverture|ferme)"],
+      "reponse": "Les horaires dépendent de chaque agence. Retrouvez ceux de votre agence avec **Choisir votre Caisse d'Épargne** en haut de la page, ou dans l'appli Banxo. L'appli et l'espace client restent disponibles 24 h sur 24.",
+      "suggestions": ["Parler à un conseiller"],
+      "statut": "exemple"
+    },
+    {
+      "id": "agence",
+      "declencheurs": ["(trouver|ou est|adresse).{0,20}agence", "agence.{0,15}(proche|plus pres)"],
+      "reponse": "Pour trouver une agence, utilisez **Choisir votre Caisse d'Épargne** en haut de la page : indiquez votre ville, vous obtenez les agences, leurs horaires et leurs accès (dont l'accessibilité en fauteuil roulant).",
+      "suggestions": ["Prendre rendez-vous avec un conseiller"],
+      "statut": "exemple"
+    },
+    {
+      "id": "telephone",
+      "declencheurs": ["(numero|telephone).{0,25}(banque|service client|joindre|appeler|caisse)", "(joindre|appeler|contacter).{0,20}(banque|service client)"],
+      "reponse": "Vous trouverez le numéro de votre agence dans votre espace client et dans l'appli Banxo. Le numéro d'opposition carte figure au dos de votre carte et sur vos relevés. Je peux aussi organiser un rappel par un conseiller, avec le résumé de votre demande.",
+      "suggestions": ["Parler à un conseiller"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "adresse",
+      "declencheurs": ["(changer|modifier|nouvelle).{0,20}adresse", "demenag"],
+      "reponse": "Pour **changer d'adresse**, allez dans votre espace client ou l'appli Banxo, rubrique **Profil**, puis **Coordonnées**. Un justificatif de domicile récent peut être demandé. Si vous déménagez loin, votre compte peut être transféré dans une agence proche de chez vous.",
+      "suggestions": ["Parler à un conseiller"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "procuration",
+      "declencheurs": ["procuration", "mandataire", "donner acces.{0,20}compte"],
+      "reponse": "Une **procuration** permet à une personne de confiance de gérer votre compte à votre place. Elle se signe en agence, en présence ou avec les pièces d'identité des deux personnes. Vous pouvez la limiter et la révoquer à tout moment.",
+      "suggestions": ["Prendre rendez-vous avec un conseiller"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "compte_joint",
+      "declencheurs": ["compte joint", "compte commun", "compte a deux"],
+      "reponse": "Un **compte joint** est un compte partagé par deux personnes (ou plus) : chacun peut l'utiliser seul et a sa propre carte. Attention : chaque titulaire est responsable de tout le solde, y compris des dettes de l'autre. L'ouverture se fait en agence ou en ligne, avec les justificatifs des deux titulaires.",
+      "suggestions": ["Ouvrir un compte"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "compte_mineur",
+      "declencheurs": ["compte.{0,20}(enfant|mineur|ado)", "(enfant|ado|mineur).{0,20}(compte|carte)"],
+      "reponse": "Un **compte pour mineur** s'ouvre en agence par les parents. Dès 12 ans, l'enfant peut avoir une carte à autorisation systématique, avec des plafonds fixés par les parents. Pour épargner, le Livret A (dès la naissance) et le Livret Jeune (dès 12 ans) sont adaptés.",
+      "suggestions": ["Quel est le taux du Livret Jeune ?"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "succession",
+      "declencheurs": ["succession", "deces", "decede", "heritage"],
+      "reponse": "Toutes nos condoléances. En cas de **décès**, prévenez l'agence du défunt avec un acte de décès : les comptes individuels sont bloqués et le dossier est traité avec le notaire. Les frais de dossier sont gratuits pour les petites successions. Un conseiller spécialisé vous accompagne à chaque étape.",
+      "suggestions": ["Prendre rendez-vous avec un conseiller"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "mediateur",
+      "declencheurs": ["mediateur", "mediation"],
+      "reponse": "Si la réponse à votre réclamation ne vous satisfait pas, ou si vous n'avez pas de réponse sous **2 mois**, vous pouvez saisir **gratuitement le médiateur** de la Caisse d'Épargne. Ses coordonnées figurent dans la réponse à votre réclamation et dans la brochure tarifaire.",
+      "suggestions": ["Faire une réclamation"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "delai_reclamation",
+      "declencheurs": ["(delai|combien de temps).{0,30}reclamation", "reclamation.{0,30}(delai|reponse|combien de temps)"],
+      "reponse": "Après une **réclamation**, vous recevez un accusé de réception sous **10 jours ouvrables** au plus, et une réponse sous **2 mois** au plus (15 jours ouvrables pour un problème de carte ou de virement). Sans réponse satisfaisante, vous pouvez saisir le médiateur.",
+      "suggestions": ["Faire une réclamation"],
+      "statut": "hypothese"
+    },
+    {
+      "id": "fraude_remboursement",
+      "declencheurs": ["(rembourse|remboursement).{0,30}(fraude|piratage|operation non autorisee)", "(fraude|pirate).{0,30}rembours"],
+      "reponse": "Pour une **opération que vous n'avez pas autorisée**, signalez-la au plus vite : la banque doit vous rembourser au plus tard le jour ouvré suivant, sauf négligence grave de votre part. Vous avez **13 mois** pour contester. Commencez par faire **opposition** sur votre carte si elle est concernée.",
+      "suggestions": ["Faire opposition sur ma carte", "Contester une opération"],
+      "statut": "constat"
+    },
+    {
+      "id": "banxo",
+      "declencheurs": ["\\bbanxo\\b", "(application|appli).{0,20}(banque|caisse|mobile)"],
+      "reponse": "**Banxo** est l'appli bancaire de la Caisse d'Épargne. Ses **Accès rapides** permettent notamment : **Wero**, **RIB/IBAN**, **Code CB** (voir le code de sa carte) et **Plafond CB**. Vous y consultez vos comptes, faites vos virements et validez vos opérations avec Sécur'Pass.",
+      "suggestions": ["J'ai oublié le code de ma carte", "Comment augmenter mon plafond ?"],
+      "statut": "constat"
+    },
+    {
+      "id": "assistant",
+      "declencheurs": ["^(qui es.tu|tu es qui|c est quoi ce chat|tu es (un robot|une ia|humain))", "es.tu (un robot|une ia|humain|un humain)"],
+      "reponse": "Je suis l'**assistant IA** de la Caisse d'Épargne (prototype). Je réponds à vos questions et vous guide vers la bonne démarche, en citant mes sources. Je suis une intelligence artificielle : je peux me tromper, et un **conseiller** reste joignable à tout moment avec le bouton en haut. Je ne réalise aucune opération sans votre confirmation.",
+      "suggestions": ["Parler à un conseiller"],
+      "statut": "constat"
+    },
+    {
+      "id": "donnees",
+      "declencheurs": ["(mes )?donnees personnelles", "\\brgpd\\b", "(que faites|que fais).{0,15}(de )?mes donnees"],
+      "reponse": "Vos messages servent à répondre à votre demande et, si vous le demandez, à transmettre le contexte à un conseiller. Ne communiquez jamais vos codes, mots de passe ou numéro de carte : ils sont masqués avant l'envoi. Le détail (durée de conservation, droits) est dans **Vos données**, en bas de l'assistant.",
+      "suggestions": [],
+      "statut": "hypothese"
+    },
+    {
+      "id": "banque_populaire",
+      "declencheurs": ["banque populaire", "\\bbred\\b", "\\bcasden\\b"],
+      "reponse": "Cet assistant couvre uniquement la **Caisse d'Épargne**. Pour une question sur la Banque Populaire, consultez son site ou votre conseiller Banque Populaire.",
+      "suggestions": [],
+      "statut": "constat"
+    },
+    {
+      "id": "au_revoir",
+      "declencheurs": ["^(au revoir|bye|a bientot|bonne journee|bonne soiree)\\b"],
+      "reponse": "Au revoir, et bonne journée ! Je reste disponible si vous avez une autre question.",
+      "suggestions": [],
+      "statut": "constat"
+    }
+  ]
+}

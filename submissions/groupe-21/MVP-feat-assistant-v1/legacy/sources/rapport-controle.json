@@ -1,0 +1,28 @@
+{
+  "Caisse d’Épargne": {
+    "pages": 505,
+    "categories": 9,
+    "subcategories": 36,
+    "questions": 459,
+    "other_sections": 1,
+    "errors": [],
+    "unvisited_internal_links": [],
+    "listed_question_urls": 459,
+    "empty_answer_questions": [],
+    "overlong_quotes": [],
+    "canonical_aliases": {}
+  },
+  "Banque Populaire": {
+    "pages": 508,
+    "categories": 9,
+    "subcategories": 36,
+    "questions": 462,
+    "other_sections": 1,
+    "errors": [],
+    "unvisited_internal_links": [],
+    "listed_question_urls": 462,
+    "empty_answer_questions": [],
+    "overlong_quotes": [],
+    "canonical_aliases": {}
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-10-10T01:29:03+00:00",
+  "sections": [
+    "faq-particuliers"
+  ],
+  "banks": {
+    "CE": {
+      "pages_visitees": 505,
+      "questions": 459,
+      "rubriques": 46,
+      "urls_sitemap": 460,
+      "urls_sitemap_non_collectees": [],
+      "questions_vides": [],
+      "mots_total": 71807,
+      "erreurs": []
+    },
+    "BP": {
+      "pages_visitees": 508,
+      "questions": 462,
+      "rubriques": 46,
+      "urls_sitemap": 463,
+      "urls_sitemap_non_collectees": [],
+      "questions_vides": [],
+      "mots_total": 71931,
+      "erreurs": []
+    }
+  }
+}

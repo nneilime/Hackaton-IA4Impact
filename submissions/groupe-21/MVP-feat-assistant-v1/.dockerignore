@@ -1,0 +1,12 @@
+.git
+.env
+.env.*
+!.env.example
+.venv
+.cache
+__pycache__
+**/__pycache__
+*.pyc
+data/voices
+legacy/sources
+*.log
