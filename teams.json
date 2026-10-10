@@ -1,6 +1,41 @@
 {
   "teams": [
     {
+      "slug": "groupe-11",
+      "name": "Groupe 11",
+      "challenge": "imsa",
+      "owner": "GuillaumeVern",
+      "members": [
+        {
+          "login": "GuillaumeVern",
+          "status": "joined",
+          "created_at": "2026-10-10T12:46:58.332Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T12:46:58.332Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T12:46:58.332Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T12:46:58.332Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T12:46:58.332Z"
+        }
+      ],
+      "created_at": "2026-10-10T12:46:58.332Z",
+      "created_by": "GuillaumeVern"
+    },
+    {
       "slug": "groupe-13",
       "name": "Groupe 13",
       "challenge": "imsa",
