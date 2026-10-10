@@ -176,6 +176,46 @@
       "created_by": "chaufoureaualexandre-lang"
     },
     {
+      "slug": "groupe-18",
+      "name": "Groupe 18",
+      "challenge": "action-logement",
+      "owner": "Maz0ky",
+      "members": [
+        {
+          "login": "Maz0ky",
+          "status": "joined",
+          "created_at": "2026-10-10T13:17:29.885Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:17:29.885Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:17:29.885Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:17:29.885Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:17:29.885Z"
+        },
+        {
+          "login": null,
+          "status": "invited",
+          "created_at": "2026-10-10T13:17:29.885Z"
+        }
+      ],
+      "created_at": "2026-10-10T13:17:29.885Z",
+      "created_by": "Maz0ky"
+    },
+    {
       "slug": "groupe-21",
       "name": "Groupe 21",
       "challenge": "bpce-si",
