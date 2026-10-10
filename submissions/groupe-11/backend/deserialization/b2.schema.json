@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/b2-facture.schema.json",
+  "title": "B2 Facture (OCR / parser shared model)",
+  "description": "Shared contract between parse_b2.py (TXT) and the OCR backend (JPG). OCR must fill the same fields. Amounts are float euros. No 'raw' fields.",
+  "type": "object",
+  "required": ["source_file", "lots"],
+  "properties": {
+    "source_file": {
+      "type": "string",
+      "description": "Origin file: 'Facture1_01.txt' from parser, or 'Facture1_01.jpg' from OCR."
+    },
+    "header": {
+      "type": ["object", "null"],
+      "properties": { "subtype": { "const": "0" } }
+    },
+    "lots": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Lot" }
+    },
+    "errors": {
+      "type": "array",
+      "description": "Parser diagnostics. OCR backend: use for low-confidence / missing fields, or leave empty.",
+      "items": { "$ref": "#/$defs/ParseError" }
+    }
+  },
+  "$defs": {
+    "Lot": {
+      "type": "object",
+      "required": ["numero_tiers", "numero_lot", "factures"],
+      "properties": {
+        "numero_tiers": { "type": ["string", "null"], "description": "T1 pos 2-10, 9 chars. OCR: 'N° tiers / FINESS' on the slip." },
+        "numero_lot": { "type": ["string", "null"], "description": "T1 pos 20-22, 3 chars." },
+        "factures": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Facture" }
+        }
+      }
+    },
+    "Facture": {
+      "type": "object",
+      "required": ["numero_assure", "numero_facture", "prestations_hospitalieres", "actes", "total_prestations", "total_honoraires"],
+      "properties": {
+        "numero_assure": { "type": ["string", "null"], "description": "T2 pos 12-24, 13 chars. OCR: 'N° immatriculation assuré'." },
+        "numero_facture": { "type": ["string", "null"], "description": "T2 pos 30-38, 9 chars." },
+        "complements_2S": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Detail3" },
+          "description": "Rare 2-S complement lines (pos39 == 'S')."
+        },
+        "prestations_hospitalieres": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Prestation" }
+        },
+        "actes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Acte" }
+        },
+        "total_prestations": { "type": ["number", "null"], "description": "T5 pos 42-49 (6+2)N in euros, e.g. 818.97. OCR: 'Total prestations / bases remboursement'." },
+        "total_honoraires": { "type": ["number", "null"], "description": "T5 pos 58-65 (6+2)N in euros. OCR: 'Total honoraires'." }
+      }
+    },
+    "Prestation": {
+      "type": "object",
+      "required": ["acte", "numero_gh", "details"],
+      "properties": {
+        "acte": { "type": ["string", "null"], "description": "T3 pos 56-60, e.g. 'GHS', 'PH8', 'EMI', 'FJA'." },
+        "numero_gh": { "type": ["string", "null"], "description": "T3 pos 110-113, e.g. '9606'. OCR: 'N° GHS/GHT/GMT'." },
+        "details": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Detail3" }
+        }
+      }
+    },
+    "Detail3": {
+      "type": "object",
+      "required": ["subtype"],
+      "properties": {
+        "subtype": { "enum": ["2-S", "3-S", "3-H"] }
+      }
+    },
+    "Acte": {
+      "type": "object",
+      "required": ["acte", "details"],
+      "properties": {
+        "acte": { "type": ["string", "null"], "description": "T4 pos 76-80, e.g. 'K', 'B', 'APC', 'CS', 'ATM', 'ADA'." },
+        "details": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Detail4" }
+        }
+      }
+    },
+    "Detail4": {
+      "type": "object",
+      "required": ["subtype"],
+      "properties": {
+        "subtype": { "enum": ["4-S", "4-M", "4-B"] },
+        "numero_gh": { "type": ["string", "null"], "description": "Only for 4-S: T4S pos 120-123." },
+        "code_ccam": { "type": ["string", "null"], "description": "Only for 4-M: pos 43-55, stripped (7 useful chars), e.g. 'JCPD001'." }
+      }
+    },
+    "ParseError": {
+      "type": "object",
+      "required": ["line", "message"],
+      "properties": {
+        "line": { "type": "integer" },
+        "message": { "type": "string" }
+      }
+    }
+  }
+}

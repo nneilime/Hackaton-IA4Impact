@@ -1,0 +1,49 @@
+{
+  "source_file": "Facture1_01.jpg",
+  "header": null,
+  "lots": [
+    {
+      "numero_tiers": "200200145",
+      "numero_lot": "001",
+      "factures": [
+        {
+          "numero_assure": "2520299007001",
+          "numero_facture": "260800001",
+          "complements_2S": [],
+          "prestations_hospitalieres": [
+            {
+              "acte": "GHS",
+              "numero_gh": "9606",
+              "details": [{ "subtype": "3-S" }]
+            },
+            {
+              "acte": "PH8",
+              "numero_gh": "9606",
+              "details": [{ "subtype": "3-S" }, { "subtype": "3-H" }]
+            }
+          ],
+          "actes": [
+            {
+              "acte": "K",
+              "details": [{ "subtype": "4-S", "numero_gh": "9606" }]
+            },
+            {
+              "acte": "ADC",
+              "details": [
+                { "subtype": "4-S", "numero_gh": "4158" },
+                { "subtype": "4-M", "code_ccam": "JCPD001" }
+              ]
+            },
+            {
+              "acte": "B",
+              "details": [{ "subtype": "4-B" }]
+            }
+          ],
+          "total_prestations": 818.97,
+          "total_honoraires": 28.8
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

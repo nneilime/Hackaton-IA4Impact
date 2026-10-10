@@ -1,0 +1,1118 @@
+[
+ {
+  "source_file": "Facture1_01.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "200200145",
+    "numero_lot": "574",
+    "factures": [
+     {
+      "numero_assure": "2520299007001",
+      "numero_facture": "260800001",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "9606",
+        "details": []
+       },
+       {
+        "acte": "PH8",
+        "numero_gh": "9606",
+        "details": []
+       },
+       {
+        "acte": "EMI",
+        "numero_gh": "9606",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": "K",
+        "details": []
+       }
+      ],
+      "total_prestations": 818.97,
+      "total_honoraires": 28.8
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "9606",
+     "montant": 374.47
+    }
+   ],
+   "zone7": [
+    {
+     "acte": "PH8",
+     "numero_gh": "9606"
+    },
+    {
+     "acte": "EMI",
+     "numero_gh": "9606"
+    }
+   ],
+   "executants": [
+    "201400330"
+   ],
+   "signatures": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 847.77,
+   "signature_directeur": true
+  }
+ },
+ {
+  "source_file": "Facture1_03.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "200200145",
+    "numero_lot": "574",
+    "factures": [
+     {
+      "numero_assure": "2520299007003",
+      "numero_facture": "260800003",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "9606",
+        "details": []
+       },
+       {
+        "acte": "PH8",
+        "numero_gh": "9606",
+        "details": []
+       },
+       {
+        "acte": "EMI",
+        "numero_gh": "9606",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": "K",
+        "details": []
+       }
+      ],
+      "total_prestations": 818.97,
+      "total_honoraires": 28.8
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "9606",
+     "montant": 374.47
+    }
+   ],
+   "zone7": [
+    {
+     "acte": "PH8",
+     "numero_gh": "9606"
+    },
+    {
+     "acte": "EMI",
+     "numero_gh": "9606"
+    }
+   ],
+   "executants": [
+    "201400330"
+   ],
+   "signatures": [
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 847.77,
+   "signature_directeur": false
+  }
+ },
+ {
+  "source_file": "Facture1_05.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "200200145",
+    "numero_lot": "574",
+    "factures": [
+     {
+      "numero_assure": "2520299007005",
+      "numero_facture": "260800005",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "9606",
+        "details": []
+       },
+       {
+        "acte": "PH8",
+        "numero_gh": "9606",
+        "details": []
+       },
+       {
+        "acte": "EMI",
+        "numero_gh": "9606",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": "K",
+        "details": []
+       }
+      ],
+      "total_prestations": 818.97,
+      "total_honoraires": 28.8
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "9606",
+     "montant": 374.47
+    }
+   ],
+   "zone7": [
+    {
+     "acte": "PH8",
+     "numero_gh": "9606"
+    },
+    {
+     "acte": "EMI",
+     "numero_gh": "9606"
+    }
+   ],
+   "executants": [
+    "201400330"
+   ],
+   "signatures": [
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 847.77,
+   "signature_directeur": true
+  }
+ },
+ {
+  "source_file": "Facture1_12.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "200200145",
+    "numero_lot": "574",
+    "factures": [
+     {
+      "numero_assure": "2520299007012",
+      "numero_facture": "260800012",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "9606",
+        "details": []
+       },
+       {
+        "acte": "PH8",
+        "numero_gh": "9606",
+        "details": []
+       },
+       {
+        "acte": "EMI",
+        "numero_gh": "9606",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": "K",
+        "details": []
+       }
+      ],
+      "total_prestations": 818.97,
+      "total_honoraires": 28.8
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "9606",
+     "montant": 374.47
+    }
+   ],
+   "zone7": [
+    {
+     "acte": "PH8",
+     "numero_gh": "9606"
+    },
+    {
+     "acte": "EMI",
+     "numero_gh": "9606"
+    }
+   ],
+   "executants": [
+    "201400330"
+   ],
+   "signatures": [
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 847.77,
+   "signature_directeur": true
+  }
+ },
+ {
+  "source_file": "Facture2_01.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "490002037",
+    "numero_lot": "351",
+    "factures": [
+     {
+      "numero_assure": "2540699281001",
+      "numero_facture": "261034501",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "4158",
+        "details": []
+       },
+       {
+        "acte": "PAS",
+        "numero_gh": "4158",
+        "details": []
+       },
+       {
+        "acte": "FJ",
+        "numero_gh": "4158",
+        "details": []
+       },
+       {
+        "acte": "FJA",
+        "numero_gh": "4158",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": "B",
+        "details": []
+       },
+       {
+        "acte": "APC",
+        "details": []
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCPD001"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCLE002"
+         }
+        ]
+       },
+       {
+        "acte": "CS",
+        "details": []
+       },
+       {
+        "acte": "CS",
+        "details": []
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCPD001"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCLE002"
+         }
+        ]
+       },
+       {
+        "acte": "B",
+        "details": []
+       }
+      ],
+      "total_prestations": 1013.22,
+      "total_honoraires": 936.68
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "4158",
+     "montant": 990.22
+    },
+    {
+     "acte": "PAS",
+     "numero_gh": "4158",
+     "montant": null
+    },
+    {
+     "acte": "FJ",
+     "numero_gh": "4158",
+     "montant": null
+    },
+    {
+     "acte": "FJA",
+     "numero_gh": "4158",
+     "montant": 23.0
+    }
+   ],
+   "zone7": [],
+   "executants": [
+    "493700710",
+    "491702593",
+    "491053989"
+   ],
+   "signatures": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 1949.9,
+   "signature_directeur": true
+  }
+ },
+ {
+  "source_file": "Facture2_10.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "490002037",
+    "numero_lot": "351",
+    "factures": [
+     {
+      "numero_assure": "2540699281010",
+      "numero_facture": "261034510",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "4158",
+        "details": []
+       },
+       {
+        "acte": "PAS",
+        "numero_gh": "4158",
+        "details": []
+       },
+       {
+        "acte": "FJ",
+        "numero_gh": "4158",
+        "details": []
+       },
+       {
+        "acte": "FJA",
+        "numero_gh": "4158",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": "B",
+        "details": []
+       },
+       {
+        "acte": "APC",
+        "details": []
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCPD001"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCLE002"
+         }
+        ]
+       },
+       {
+        "acte": "CS",
+        "details": []
+       },
+       {
+        "acte": "CS",
+        "details": []
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCPD001"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCLE002"
+         }
+        ]
+       },
+       {
+        "acte": "B",
+        "details": []
+       }
+      ],
+      "total_prestations": 1013.22,
+      "total_honoraires": 936.68
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "4158",
+     "montant": 990.22
+    },
+    {
+     "acte": "PAS",
+     "numero_gh": "4158",
+     "montant": null
+    },
+    {
+     "acte": "FJ",
+     "numero_gh": "4158",
+     "montant": null
+    },
+    {
+     "acte": "FJA",
+     "numero_gh": "4158",
+     "montant": 23.0
+    }
+   ],
+   "zone7": [],
+   "executants": [
+    "493700710",
+    "491702593",
+    "491053989"
+   ],
+   "signatures": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 1949.9,
+   "signature_directeur": true
+  }
+ },
+ {
+  "source_file": "Facture2_17.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "490002037",
+    "numero_lot": "351",
+    "factures": [
+     {
+      "numero_assure": "2540699281017",
+      "numero_facture": "261034517",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "4158",
+        "details": []
+       },
+       {
+        "acte": "PAS",
+        "numero_gh": "4158",
+        "details": []
+       },
+       {
+        "acte": "FJ",
+        "numero_gh": "4158",
+        "details": []
+       },
+       {
+        "acte": "FJA",
+        "numero_gh": "4158",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": "B",
+        "details": []
+       },
+       {
+        "acte": "APC",
+        "details": []
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCPD001"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCLE002"
+         }
+        ]
+       },
+       {
+        "acte": "CS",
+        "details": []
+       },
+       {
+        "acte": "CS",
+        "details": []
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCPD001"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "YYYY405"
+         }
+        ]
+       },
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JCLE002"
+         }
+        ]
+       },
+       {
+        "acte": "B",
+        "details": []
+       }
+      ],
+      "total_prestations": 1013.22,
+      "total_honoraires": 936.68
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "4158",
+     "montant": 990.22
+    },
+    {
+     "acte": "PAS",
+     "numero_gh": "4158",
+     "montant": null
+    },
+    {
+     "acte": "FJ",
+     "numero_gh": "4158",
+     "montant": null
+    },
+    {
+     "acte": "FJA",
+     "numero_gh": "4158",
+     "montant": 23.0
+    }
+   ],
+   "zone7": [],
+   "executants": [
+    "493700710",
+    "491702593",
+    "491053989"
+   ],
+   "signatures": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 1949.9,
+   "signature_directeur": true
+  }
+ },
+ {
+  "source_file": "Facture3_01.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "490007499",
+    "numero_lot": "925",
+    "factures": [
+     {
+      "numero_assure": "1510999173001",
+      "numero_facture": "491901",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "9603",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JVRP008"
+         }
+        ]
+       }
+      ],
+      "total_prestations": 398.3,
+      "total_honoraires": 50.48
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "9603",
+     "montant": 398.3
+    }
+   ],
+   "zone7": [],
+   "executants": [
+    "490007499"
+   ],
+   "signatures": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 448.78,
+   "signature_directeur": true
+  }
+ },
+ {
+  "source_file": "Facture3_02.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "490007499",
+    "numero_lot": "925",
+    "factures": [
+     {
+      "numero_assure": "1510999173002",
+      "numero_facture": "491902",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "9603",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JVRP008"
+         }
+        ]
+       }
+      ],
+      "total_prestations": 398.3,
+      "total_honoraires": 50.48
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "9603",
+     "montant": 398.3
+    }
+   ],
+   "zone7": [],
+   "executants": [
+    "490007499"
+   ],
+   "signatures": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 448.78,
+   "signature_directeur": false
+  }
+ },
+ {
+  "source_file": "Facture3_08.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "490007499",
+    "numero_lot": "925",
+    "factures": [
+     {
+      "numero_assure": "1510999173008",
+      "numero_facture": "491908",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "9603",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JVRP008"
+         }
+        ]
+       }
+      ],
+      "total_prestations": 398.3,
+      "total_honoraires": 50.48
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "9603",
+     "montant": 398.3
+    }
+   ],
+   "zone7": [],
+   "executants": [
+    "490007499"
+   ],
+   "signatures": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 448.78,
+   "signature_directeur": true
+  }
+ },
+ {
+  "source_file": "Facture3_14.jpg",
+  "header": null,
+  "errors": [],
+  "lots": [
+   {
+    "numero_tiers": "490007499",
+    "numero_lot": "925",
+    "factures": [
+     {
+      "numero_assure": "1510999173014",
+      "numero_facture": "491914",
+      "complements_2S": [],
+      "prestations_hospitalieres": [
+       {
+        "acte": "GHS",
+        "numero_gh": "9603",
+        "details": []
+       }
+      ],
+      "actes": [
+       {
+        "acte": null,
+        "details": [
+         {
+          "subtype": "4-M",
+          "code_ccam": "JVRP008"
+         }
+        ]
+       }
+      ],
+      "total_prestations": 398.3,
+      "total_honoraires": 50.48
+     }
+    ]
+   }
+  ],
+  "scan": {
+   "cerfa": "12278*01",
+   "form_code": "S 3404",
+   "zone6": [
+    {
+     "acte": "GHS",
+     "numero_gh": "9603",
+     "montant": 398.3
+    }
+   ],
+   "zone7": [],
+   "executants": [
+    "490007499"
+   ],
+   "signatures": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "total": 448.78,
+   "signature_directeur": true
+  }
+ }
+]
