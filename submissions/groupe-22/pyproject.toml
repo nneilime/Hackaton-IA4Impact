@@ -1,0 +1,35 @@
+[project]
+name = "test-api-live"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.5.3",
+    "python-dotenv>=1.2.4",
+    "sounddevice>=0.5.6",
+    "websockets>=17.2",
+]
+
+[dependency-groups]
+dev = [
+    "playwright>=1.63.0",
+    "pytest>=9.1.1",
+]
+server = [
+    "fastapi>=0.143.0",
+    "httpx>=0.28.1",
+    "python-dotenv>=1.2.4",
+    "uvicorn>=0.54.0",
+    "weasyprint>=70",
+    "websockets>=17.2",
+]
+
+[tool.uv]
+default-groups = ["server", "dev"]  # uv run uvicorn server:app and uv run pytest work
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# The live tests call the real OpenAI API (cost, varying wording): uv run pytest -m live
+addopts = "-m 'not live'"
+markers = ["live: talks to the real OpenAI API (OPENAI_API_KEY in .env)"]

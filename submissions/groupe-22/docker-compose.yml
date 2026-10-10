@@ -1,0 +1,9 @@
+# Local: docker compose up --build, then http://localhost:8098
+services:
+  app:
+    build: .
+    image: voice-assistant-app:dev
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:${APP_PORT:-8098}:8000"
