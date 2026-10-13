@@ -522,8 +522,8 @@
           "created_at": "2026-10-10T13:13:47.792Z"
         },
         {
-          "login": null,
-          "status": "invited",
+          "login": "matiasestano-hackathonIA",
+          "status": "joined",
           "created_at": "2026-10-10T13:13:47.792Z"
         }
       ],
