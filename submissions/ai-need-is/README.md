@@ -34,5 +34,4 @@ Pour exécuter le prototype en local, suivez ces étapes depuis la racine du pro
    ```
 
 ## Démo / Slides
-- **Démo :** [À compléter]
-- **Présentation :** [À compléter]
+- 🔗 **[Accès à la présentation Google Slides](https://docs.google.com/presentation/d/1XJcq699pjpq2lvmqE8lVcfwFqLQ24a7S/edit?usp=sharing&ouid=100439694964271481023&rtpof=true&sd=true)**
